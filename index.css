@@ -1,0 +1,569 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+header{
+    position: relative;
+    left: 0;
+    right: 0;
+    top: 0;
+    background-color:#1c4e80;
+    box-shadow: 0 5px 10px rgba(0,0,0,.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 5;
+    padding: 5px;
+}
+.companyinfo{
+    display: flex;
+    align-items: center;
+    color: white;
+}
+.companyinfo img{
+    width: 75px;
+}
+.companyinfo h3{
+    margin-left: 5px;
+}
+header a{
+    margin-left: 10px;
+    text-decoration: none;
+}
+header .logo{
+    font-weight: bolder;
+    font-size: 25px;
+    color: white;
+}
+
+header .navbar ul{
+    list-style: none;
+}
+.navbar{
+    margin-top: 10px;
+}
+header .navbar ul li{
+    position: relative;
+    float: left;
+}
+header .navbar ul li a{
+    text-decoration: none;
+    font-size: 18px;
+    margin: 0 10px;
+    color: white;
+    display: block;
+}
+header .navbar ul li a:hover{
+    background-color: white;
+    color: #1c4e80;
+    padding: 5px;
+    border-radius: 15px;
+}
+header .navbar ul li ul{
+    position: absolute;
+    right: 0;
+    width: 200px;
+    background-color: #1c4e80;
+    display: none;
+
+}
+header .navbar ul li ul li{
+    width: 100%;
+    border-top: 1px solid rgba(255,255,255,0.2);
+
+}
+
+header .navbar ul li:hover > ul{
+    display: initial;
+}
+
+#menu-bar{
+    display: none;
+}
+header label{
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+    display: none;
+}
+#log{
+    background-color: #1c4e80;
+    border: none;
+    width: 100%;
+    color: white;
+    text-align: left;
+}
+#log:hover{
+    background-color: white;
+    border: none;
+    width: 100%;
+    color: #1c4e80;
+    text-align: left;
+}
+.carousel-inner img{
+    width: 100% !important;
+    height: 350px !important;
+}
+/* Slide show  */
+.slideshow-container {
+    position: relative;
+    max-width: 100%;
+    margin: auto;
+}
+.slideshow-container  img{
+    width: 100%;
+    height: 35vh;
+}
+.mySlides {
+    display: none;
+}
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 10px;
+    font-size: 18px;
+    cursor: pointer;
+}
+.prev {
+    left: 0;
+}
+.next {
+    right: 0;
+}
+/*Services*/
+.services{
+    margin: 15px;
+    text-align: center;
+}
+.services h1{
+    color: #1c4e80;
+}
+.allservice{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    grid-auto-rows: minmax(auto, auto);
+    justify-content: center;
+    align-items: center;
+    margin: 15px auto;
+    width: 60%;
+}
+.card_service{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border: #1c4e80 2px solid;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 15px;
+    height: 450px;
+    cursor: pointer;
+    background-color: white;
+}
+.card_service img{
+    width: 80%;
+    height: 50%;
+    padding-bottom: 7px;
+}
+.dis{
+    width: 100%;
+    height: 50%;
+    overflow: hidden;
+    padding-top: 7px;
+    border-top: rgba(0, 0, 0, 0.35) 1px solid;
+}
+.dis h5{
+    color: #1c4e80;
+}
+.card_service:hover{
+    transform: scale(1.1);
+}
+/* How we work */
+.how_we_work{
+    margin: 30px 0;
+    text-align: center;
+    background-color: #1c4e80;
+    color: white;
+    padding-bottom: 10px;
+}
+.how_we_work_cards{
+    margin: 10px;
+    padding-bottom: 10px;
+}
+.card_work{
+    background-color: white;
+    color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    margin: 15px auto;
+    border-radius: 15px 0 0 15px;
+    padding: 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.card_work h1{
+    display: inline-block;
+    background-color: #1c4e80;
+    border-radius: 50%;
+    padding: 10px 20px;
+    color: white;
+}
+.card_work p{
+    margin-left: 10px;
+    text-align: left;
+    border-radius: 20px;
+    padding: 10px;
+}
+.card1{
+    background-image: linear-gradient(to left, #ffafbd, #ffc3a0); 
+}
+.card2{
+    background-image: linear-gradient(to left, #0d0d0d, #434343);
+    color: white;
+}
+.card3{
+    background-image: linear-gradient(to left, #b5d0ff, #d7e1ff);
+}
+.card4{
+    background-image: linear-gradient(to left, #ffbe0b, #fb5607);
+}
+.card5{
+    background-image: linear-gradient(to left, #a8ff78, #78ffd6);
+}
+.card6{
+    background-image: linear-gradient(to left, #fdeff9, #ec38bc);
+}
+/* How i am */
+.mycv{
+    text-align: center;
+}
+.dicription{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.dicription .text{
+    width: 49%;
+    text-align: justify;
+    padding: 10px;
+    font-size: 17px;
+}
+.dicription .img{
+    width: 49%;
+    text-align: center;
+    background-image: linear-gradient(to left, #1c4e80, #d7e1ff);
+}
+/*my_portfolio*/
+.my_portfolio{
+    margin: 25px 0;
+    background-color: #1c4e80;
+    color: white;
+    text-align: center;
+}
+.portfolio_cards{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    grid-auto-rows: minmax(auto, auto);
+    justify-content: center;
+    align-items: center;
+    margin: 15px auto;
+    width: 60%;
+    padding-bottom: 15px;
+}
+.port_card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: white 1px solid;
+    padding: 10px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+.port_card img{
+    width: 80%;
+    height: 150px;
+}
+/*Contact us*/
+.contact_us{
+    margin: 15px;
+}
+.contact_us form{
+    width: 60%;
+    margin: 10px auto;
+    text-align: center;
+    background-image: linear-gradient(to left, #b5d0ff, #d7e1ff);
+    padding: 10px;
+    border-radius: 10px;
+}
+.forsend{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.forsend label{
+    text-align: left;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.personalinfo{
+    width: 48%;
+    display: flex;
+    flex-direction: column;
+}
+.message{
+    width: 48%;
+    display: flex;
+    flex-direction: column;
+}
+.contact_us button{
+    margin: 7px 0;
+    width: 150px;
+    padding: 7px;
+    background-color: #1c4e80;
+    color: white;
+    border: none;
+    border-radius: 20px;
+}
+/*footer*/
+footer{
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #b6b6b6;
+}
+.follow{
+    display: flex;
+    flex-direction: column;
+}
+.follow a{
+    color: black;
+}
+@media (max-width:1366px) {
+    .allservice{
+        grid-template-columns: repeat(3, 1fr);
+        width: 80%;
+    }
+    .card_work{
+        width: 85%;
+    }
+    .dicription{
+        flex-direction: row;
+    }
+    .dicription .text{
+        width: 49%;
+    }
+    .dicription .img{
+        width: 49%;
+    }
+    .dicription .img img{
+        width: 100%;
+    }
+    .portfolio_cards{
+        grid-template-columns: repeat(4, 1fr);
+        width: 80%;
+    }
+    .contact_us form{
+        width: 80%;
+    }
+    .forsend{
+        flex-direction: row;
+    }
+    .personalinfo{
+        width: 48%;
+    }
+    .message{
+        width: 48%;
+    }
+    .allservice{
+        grid-template-columns: repeat(3, 1fr);
+        width: 80%;
+    }
+    .card_work{
+        width: 85%;
+    }
+    .dicription{
+        flex-direction: row;
+    }
+    .dicription .text{
+        width: 49%;
+    }
+    .dicription .img{
+        width: 49%;
+    }
+    .dicription .img img{
+        width: 100%;
+    }
+    .portfolio_cards{
+        grid-template-columns: repeat(4, 1fr);
+        width: 80%;
+    }
+    .contact_us form{
+        width: 80%;
+    }
+    .forsend{
+        flex-direction: row;
+    }
+    .personalinfo{
+        width: 48%;
+    }
+    .message{
+        width: 48%;
+    }
+}
+@media (max-width:1279px) {
+    .slideshow {
+        height: 300px;
+    }
+    .allservice{
+        grid-template-columns: repeat(3, 1fr);
+        width: 100%;
+    }
+    .card_work{
+        width: 95%;
+    }
+    .dicription{
+        flex-direction: row;
+    }
+    .dicription .text{
+        width: 60%;
+    }
+    .dicription .img{
+        width: 35%;
+    }
+    .slideshow {
+        height: 300px;
+    }
+    .allservice{
+        grid-template-columns: repeat(3, 1fr);
+        width: 100%;
+    }
+    .card_work{
+        width: 95%;
+    }
+    .dicription{
+        flex-direction: row;
+    }
+    .dicription .text{
+        width: 60%;
+    }
+    .dicription .img{
+        width: 35%;
+    }
+}
+@media (max-width: 930px){
+    .navbar{
+        margin-top: 0;
+    }
+    header{
+        padding: 20px;
+    }
+    header label{
+        display: initial;
+    }
+    header .navbar{
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: #1c4e80;
+        border-top: 1px solid rgba(255,255,255,.1);
+        display: none;
+    }
+
+    header .navbar ul li{
+        width: 100%;
+    }
+
+    header .navbar ul li ul{
+        position: relative;
+        width: 100%;
+    }
+
+    header .navbar ul li ul li{
+        background-color: #1c4e80;
+    }
+
+    #menu-bar:checked ~ .navbar{
+        display: initial;
+    }
+    .dicription{
+        flex-direction: column;
+    }
+    .dicription .text{
+        width: 100%;
+    }
+    .dicription .img{
+        width: 100%;
+    }
+    .advertisement{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .ourpage{
+        flex-direction: column;
+    }
+    .box{
+        margin-top: 15%;
+    }
+    .imgourpage img{
+        width: 100%;
+    }
+    .dicription{
+        flex-direction: column;
+    }
+    .dicription .text{
+        width: 100%;
+    }
+    .dicription .img{
+        width: 100%;
+    }
+    .contact_us form{
+        width: 95%;
+    }
+    .forsend{
+        flex-direction: row;
+    }
+    .personalinfo{
+        width: 48%;
+    }
+    .message{
+        width: 48%;
+    }
+}
+@media (max-width:768px) {
+    .slideshow {
+        height: 250px;
+    }
+    .allservice{
+        grid-template-columns: repeat(1, 1fr);
+        width: 100%;
+    }
+    .portfolio_cards{
+        grid-template-columns: repeat(2, 1fr);
+        width: 80%;
+    }
+    .allservice{
+        grid-template-columns: repeat(1, 1fr);
+        width: 100%;
+    }
+    .portfolio_cards{
+        grid-template-columns: repeat(2, 1fr);
+        width: 80%;
+    }
+}
+@media (max-width:480px) {
+    .portfolio_cards{
+        grid-template-columns: repeat(1, 1fr);
+        width: 80%;
+    }
+    .forsend{
+        flex-direction:column;
+    }
+    .personalinfo{
+        width: 95%;
+    }
+    .message{
+        width: 95%;
+    }
+}
