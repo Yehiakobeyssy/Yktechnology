@@ -195,7 +195,7 @@
         </div>
     </footer>
     <?php include 'common/jslinks.php'?>
-    <script src="index/js"></script>
+    <script src="index.js"></script>
     <script>
         let slideIndex = 1; 
 
@@ -225,6 +225,6 @@
         showSlides(slideIndex);
         setInterval(function() {
             plusSlides(1); 
-        }, 4000);
+        }, 6000);
     </script>
 </body>
