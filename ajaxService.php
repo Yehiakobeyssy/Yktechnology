@@ -58,5 +58,8 @@
     jQuery('.btnorder').click(function(){
         let serID = jQuery(this).data('index');
         jQuery('.addcart').load('addtochart.php?serID='+serID);
+        jQuery('#count_cart').load('ajaxcountcart.php');
+        jQuery('#count_cart').load('ajaxcountcart.php');
+        jQuery("#count_cart").show();
     })
 </script>

@@ -26,6 +26,16 @@
     <link rel="stylesheet" href="services.css">
 </head>
 <body>
+    <header>
+        <div class="shopinfo">
+            <img src="images/logo.png" alt="">
+            <h2>YK-Technology</h2>
+        </div>
+        <div class="navbar">
+            <a href="index.php"><i class="fa-solid fa-house"></i></a>
+            <a href="user/index.php"><i class="fa-solid fa-cart-shopping"></i> <span id="count_cart"></span></a>
+        </div>
+    </header>
     <div class="service_container">
         <div class="service_title">
             <div class="info">

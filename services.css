@@ -1,6 +1,49 @@
 body{
     background-color: #1c4e80;
 }
+header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    padding: 7px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.shopinfo{
+    display: flex;
+    align-items: center;
+}
+.shopinfo img{
+    width: 75px;
+}
+.shopinfo h2{
+    margin-left: 10px;
+}
+.navbar a{
+    color: white;
+    font-size: 24px;
+    text-decoration: none;
+    margin: 0 10px;
+    padding: 5px;
+    border-radius: 10px;
+}
+.navbar a:hover{
+    background-color: white;
+    color: #1c4e80;
+}
+#count_cart{
+    position: absolute;
+    top: -5px;
+    right: 0;
+    width: 25px; /* Adjust the width and height as needed */
+    height: 25px; /* Should be the same value to make a perfect circle */
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    font-size: 16px;
+    text-align: center;
+}
 .service_container{
     background-color: white;
     padding: 15px;
