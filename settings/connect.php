@@ -1,7 +1,7 @@
 <?php
-	$websiteaddresse='http://localhost/RabbitRider/';
+	$websiteaddresse='http://localhost/YKtechnology/';
 	$domain='localhost';
-	$dbname='rapitrider';
+	$dbname='yktechnology';
 	$dsn = 'mysql:host='.$domain.';dbname='.$dbname;
 	$user = 'root';
 	$pass = '';
