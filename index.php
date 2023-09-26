@@ -126,7 +126,7 @@
                 foreach($portfolios as $port){
                     echo '
                         <div class="port_card" data-index="'.$port['portfolio_ID'].'">
-                            <img src="img/portfolio/'.$port['portfolio_Pic'].'" alt="">
+                            <img src="images/Profolio/'.$port['portfolio_Pic'].'" alt="">
                             <label for="" style="font-weight: bold;">'.$port['portfolio_Title'].'</label>
                         </div>
                     ';

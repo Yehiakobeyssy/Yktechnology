@@ -1,0 +1,155 @@
+body{
+    background-color: #1c4e80;
+
+}
+header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    padding: 7px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.shopinfo{
+    display: flex;
+    align-items: center;
+}
+.shopinfo img{
+    width: 75px;
+}
+.shopinfo h2{
+    margin-left: 10px;
+}
+.navbar a{
+    color: white;
+    font-size: 24px;
+    text-decoration: none;
+    margin: 0 10px;
+    padding: 5px;
+    border-radius: 10px;
+}
+.navbar a:hover{
+    background-color: white;
+    color: #1c4e80;
+}
+#count_cart{
+    position: absolute;
+    top: -5px;
+    right: 0;
+    width: 25px; 
+    height: 25px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    font-size: 16px;
+    text-align: center;
+}
+.container_port{
+    background-color: white;
+    padding: 15px;
+    width: 95%;
+    margin: 25px auto;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 15px;
+}
+.gernegal_info{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 15px 0;
+}
+.img_pro{
+    width: 40%;
+    text-align: center;
+}
+.img_pro img{
+    width: 40%;
+}
+.info_pro{
+    width: 40%;
+}
+.info_pro h2{
+    color: #1c4e80;
+}
+.info_pro p{
+    font-weight: bold;
+}
+.use{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.use span{
+    margin: 0 15px;
+    padding: 10px;
+
+}
+.circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    text-align: center;
+    margin: 10px;
+    width: 90px;
+    height: 90px;
+    background: conic-gradient(
+        red,
+        orange,
+        yellow,
+        green,
+        blue,
+        violet,
+        red
+    );
+}
+.circle span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    text-transform: uppercase;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    text-align: center;
+    background-color: white;
+}
+
+.discription{
+    width: 80%;
+    text-align: justify;
+    margin: 10px auto;
+}
+.go_to_website{
+    width: 90%;
+    margin: 10px auto;
+    text-align: right;
+}
+@media (max-width:1366px) {
+
+}
+@media (max-width:1279px) {
+
+}
+@media (max-width:768px) {
+    .gernegal_info{
+        display: flex;
+        flex-direction: column;
+    }
+    .img_pro{
+        width: 100%;
+        text-align: center;
+    }
+    .img_pro img{
+        width: 80%;
+    }
+    .info_pro{
+        width: 100%;
+        text-align: center;
+    }
+}
+@media (max-width:480px) {
+
+}
