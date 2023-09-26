@@ -1,4 +1,4 @@
-<header>
+<div class="headerup">
     <div class="title">
         <h3> Welcome <span> <?php echo $full_name ?> </span></h3>
     </div>
@@ -8,7 +8,7 @@
             <button type="submit" name="btnlogout"><i class="fa-solid fa-right-from-bracket"></i></button>
         </form>
     </div>
-</header>
+</div>
 <?php
     if(isset($_POST['btnlogout'])){
         setcookie("useradmin","",time()-3600);

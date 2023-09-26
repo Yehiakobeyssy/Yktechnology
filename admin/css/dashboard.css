@@ -1,0 +1,6 @@
+.mainform{
+    display: flex;
+}
+.contain{
+    margin-left: 25px !important;
+}

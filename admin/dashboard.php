@@ -28,10 +28,19 @@
 ?>
     <link rel="stylesheet" href="css/dashboard.css">
     <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/sidebar.css">
 </head>
 <body>
     <?php include 'include/navbar.php'?>
-
+    <div class="mainform">
+        <?php include 'include/sidebar.php'?>
+        <div class="contain">
+            <div class="title">
+                <h1>Dashboard</h1>
+            </div>
+        </div>
+    </div>
     <?php include '../common/jslinks.php'?>
     <script src="js/dashboard.js"></script>
+    <script src="js/sidebar.js"></script>
 </body>

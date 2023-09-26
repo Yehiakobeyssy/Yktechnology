@@ -1,0 +1,38 @@
+<link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+
+    <nav class="sidebar close">
+        <header>
+            <h3 style="color:white">YK Tech</h3>
+            <i class='bx bx-chevron-right toggle'></i>
+        </header>
+        <div class="menu-bar">
+            <div class="menu">
+                <ul class="menu-links">
+                    <li class="nav-link" >
+                        <a href="dashboard.php">
+                            <i class='bx bx-home-alt icon' ></i>
+                            <span class="text nav-text">Dashborad</span>
+                        </a>
+                    </li>
+                    <li class="nav-link" >
+                        <a href="">
+                        <i class="fa-solid fa-code icon"></i></i>
+                            <span class="text nav-text">Services</span>
+                        </a>
+                    </li>
+                    <li class="nav-link" >
+                        <a href="">
+                            <i class="fa-solid fa-panorama icon"></i>
+                            <span class="text nav-text">Portfolio</span>
+                        </a>
+                    </li>
+                    <li class="nav-link" >
+                        <a href="">
+                            <i class="fa-solid fa-gears icon"></i>
+                            <span class="text nav-text">Setting</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
