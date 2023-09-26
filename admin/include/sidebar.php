@@ -21,7 +21,7 @@
                         </a>
                     </li>
                     <li class="nav-link" >
-                        <a href="">
+                        <a href="Manageportfolio.php">
                             <i class="fa-solid fa-panorama icon"></i>
                             <span class="text nav-text">Portfolio</span>
                         </a>

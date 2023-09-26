@@ -1,0 +1,172 @@
+.mainform{
+    display: flex;
+}
+.contain{
+    width: 100%;
+    margin-left: 25px !important;
+}
+.title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px !important;
+}
+.result_manage{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    grid-auto-rows: minmax(auto, auto);
+    justify-content: center;
+    align-items: center;
+    margin: 15px auto !important;
+}
+.card_pro{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: #1c4e80 1px solid;
+    padding: 15px !important;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    height: 450px;
+    overflow: hidden;
+}
+#addnew{
+    width: 100%;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    border-radius: 15px;
+}
+.card_pro img{
+    width: 125px;
+    height: 125px;
+}
+.card_pro h3{
+    color: #1c4e80;
+    margin: 5px 0 !important;
+}
+.btnpro{
+    margin: 5px 0!important;
+    padding: 7px !important;
+    width: 80%;
+}
+.popupdiscription{
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.35);
+}
+.container_popup{
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: white;
+    width: 50%;
+    padding: 10px !important;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 10px;
+    height: 250px ;
+    overflow-y: scroll;
+}
+#showdiscription{
+    width: 95%;
+    padding: 10px !important;
+    text-align: justify;
+}
+.closepopup{
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 30px;
+    transform: rotate(-45deg);
+    font-weight: bold;
+    cursor: pointer;
+}
+.addform{
+    width: 60%;
+    margin: 20px auto !important;
+}
+.addtitle{
+    background-color: #1c4e80;
+    text-align: center;
+    padding: 10px!important;
+    color: white;
+    border-radius: 15px 15px 0 0 ;
+}
+.container_add{
+    width: 80%;
+    margin: 15px auto !important;
+}
+.container_add table{
+    width: 100%;
+}
+.container_add label{
+    font-weight: bold;
+    margin: 5px !important;
+}
+.container_add input,.container_add textarea{
+    width: 100%;
+}
+.btncontrol{
+    text-align: center;
+    background-color: #3383d4;
+    padding: 10px!important;
+    border-radius: 0 0 15px 15px;
+}
+.btn{
+    padding: 5px !important;
+    width: 150px;
+    border-radius: 15px;
+}
+@media (max-width:1366px) {
+    .result_manage{
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .container_popup{
+        width: 50%;
+    }
+    .addform{
+        width: 60%;
+    }
+}
+@media (max-width:1279px) {
+    .result_manage{
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .container_popup{
+        width: 60%;
+    }
+    .addform{
+        width: 70%;
+    }
+}
+@media (max-width:768px) {
+    .result_manage{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .container_popup{
+        width: 80%;
+    }
+    .addform{
+        width: 80%;
+    }
+}
+@media (max-width:480px) {
+    .result_manage{
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .container_popup{
+        width: 80%;
+    }
+    .addform{
+        width: 90%;
+    }
+}
