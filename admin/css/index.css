@@ -1,0 +1,105 @@
+body{
+    background-color: #3383d4;
+}
+.loginform{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: white;
+    padding: 10px;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    width: 40%;
+}
+.logo_login{
+    text-align: center;
+    margin-top: -40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.logo_login i{
+    background-color: #1c4e80;
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    color: white;
+    text-align: center;
+    font-size: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.formlogin{
+    width: 80%;
+    margin: 10px auto;
+
+}
+.username,.password{
+    margin: 5px;
+}
+.formlogin span{
+    width: 50px;
+    height: 50px;
+    background-color: #1c4e80;
+    color: white;
+    font-size: 20px;
+    padding: 8px;
+    margin: 7px 0;
+}
+.username input,.password input{
+    width: 90%;
+    font-size: 20px;
+    padding: 8px;
+    margin: 7px 0;
+    border: #1c4e80 1px solid;
+}
+.username input:focus,.password input:focus{
+    outline: none;
+}
+.remember_pass{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.remember_pass a{
+    text-decoration: none;
+    color: rgb(51, 50, 50);
+}
+.btncontrol{
+    margin: 25px ;
+    text-align: center;
+}
+.btncontrol button{
+    width: 50%;
+    padding: 8px;
+    background-color: transparent;
+    border: #1c4e80 2px solid;
+    border-radius: 15px;
+    color: #1c4e80;
+}
+.btncontrol button:hover{
+    background-color: #1c4e80;
+    border: #1c4e80 2px solid;
+    color: white;
+}
+
+@media (max-width:1366px) {
+
+}
+@media (max-width:1279px) {
+    .loginform{
+        width: 50%;
+    }
+}
+@media (max-width:768px) {
+    .loginform{
+        width: 70%;
+    }
+}
+@media (max-width:480px) {
+    .loginform{
+        width: 90%;
+    }
+}

@@ -1,5 +1,5 @@
 <?php
-	$websiteaddresse='http://localhost/YKtechnology/';
+	$websiteaddresse='http://localhost/work/YKtechnology/';
 	$domain='localhost';
 	$dbname='yktechnology';
 	$dsn = 'mysql:host='.$domain.';dbname='.$dbname;
