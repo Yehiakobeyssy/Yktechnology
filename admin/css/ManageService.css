@@ -1,0 +1,118 @@
+.mainform{
+    display: flex;
+}
+.contain{
+    width: 100%;
+    margin-left: 25px !important;
+}
+.title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px !important;
+}
+.btn{
+    padding: 7px !important;
+}
+.resultmanage{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 25px;
+    grid-auto-rows: minmax(auto, auto);
+    justify-content: center;
+    align-items: center;
+    margin: 15px auto !important;
+    width: 90%;
+}
+.card_cat{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    overflow: hidden;
+    margin: 10px !important;
+    border-radius: 10px;
+    border: #1c4e80 1px solid;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.card_cat img{
+    margin:  7px !important;
+    width: 100px;
+    height: 100px ;
+}
+.dis {
+    width: 70%;
+    overflow: hidden;
+    text-align: justify;
+}
+.dis h3{
+    color: #1c4e80;
+}
+.control_man{
+    width: 15%;
+    margin: 10px!important;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-around;
+    align-items: center;
+}
+.control_man a{
+    margin: 5px 0!important;
+    width: 100px;
+}
+.addform{
+    width: 60%;
+    margin: 20px auto !important;
+}
+.addtitle{
+    background-color: #1c4e80;
+    text-align: center;
+    padding: 10px!important;
+    color: white;
+    border-radius: 15px 15px 0 0 ;
+}
+.container_add{
+    width: 80%;
+    margin: 15px auto !important;
+}
+.container_add table{
+    width: 100%;
+}
+.container_add label{
+    font-weight: bold;
+    margin: 5px !important;
+}
+.container_add input,.container_add textarea{
+    width: 100%;
+}
+.btncontrol{
+    text-align: center;
+    background-color: #3383d4;
+    padding: 10px!important;
+    border-radius: 0 0 15px 15px;
+}
+@media (max-width:1366px) {
+
+}
+@media (max-width:1279px) {
+
+}
+@media (max-width:768px) {
+    .card_cat{
+        flex-direction: column;
+    }
+    .dis{
+        width: 100%;
+    }
+    .control_man{
+        width: 100%;
+    
+        display: flex;
+        flex-direction: row;
+        justify-content:space-around;
+        align-items: center;
+    }
+}
+@media (max-width:480px) {
+
+}

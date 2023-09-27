@@ -191,7 +191,7 @@
                         </form>
                         <?php
                             if(isset($_POST['btnEdid'])){
-                                if(!empty($_POST['portfoliopic'])){
+                                if(!empty($_FILES['portfoliopic']['name'])){
                                     $filename='../images/Profolio/'.$result_pro['portfolio_Pic'];
                                     unlink($filename);
                                     $temp=explode(".",$_FILES['portfoliopic']['name']);
