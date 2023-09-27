@@ -5,7 +5,7 @@
     $cat = (isset($_GET['cat']))?$_GET['cat']:0;
     $search = (isset($_GET['search']))?$_GET['search']:'';
 
-    $sql=$con->prepare('SELECT ServiceID,Service_Name,Service_Price,DurationName FROM  tblservices
+    $sql=$con->prepare('SELECT ServiceID,Service_Name,Service_Price,DurationName,old_Price FROM  tblservices
                         INNER JOIN tblduration ON tblservices.Duration=tblduration.DurationID 
                         WHERE Service_show = 1
                         AND   Active =1
@@ -32,7 +32,10 @@
                 <div class="card_service">
                     <div class="header_service">
                         <h4>'.$ser['Service_Name'].'</h4>
-                        <h2>'.number_format($ser['Service_Price'],2,'.','').' $</h2>
+                        <div class="prices">
+                            <span id="oldprice"><del>'.number_format($ser['old_Price'],2,'.','').'</del></span> 
+                            <h2>'.number_format($ser['Service_Price'],2,'.','').' $</h2>
+                        </div>
                         <p>'.$ser['DurationName'].'</p>
                     </div>
                     <div class="specfication_service">
