@@ -36,7 +36,7 @@
         <?php include 'include/sidebar.php'?>
         <div class="contain">
             <div class="title">
-                <h1>Manage Service</h1>
+                <h1>Manage Category</h1>
                 <a href="ManageService.php?do=add" class="btn btn-success">New Category</a>
             </div>
             <div class="result_container">
@@ -58,7 +58,7 @@
                                             <p>'.$card['Cat_Discription'].'</p>
                                         </div>
                                         <div class="control_man">
-                                            <a href="" class="btn btn-primary"> Services</a>
+                                            <a href="ManageItems.php?cat='.$card['Cat_ID'].'&do=manage" class="btn btn-primary"> Services</a>
                                             <a href="ManageService.php?do=edid&catID='.$card['Cat_ID'].'" class="btn btn-warning"> Edid</a>
                                             <a href="ManageService.php?do=delete&catID='.$card['Cat_ID'].'" class="btn btn-danger"> Delete</a>
                                         </div>
