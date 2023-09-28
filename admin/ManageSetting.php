@@ -39,6 +39,104 @@
                 <h1>Setting</h1>
             </div>
             <div class="result">
+                <div class="ourteam">
+                    <h4>Our team</h4>
+                    <div class="set_team">
+                    <?php
+                        $doworkers= (isset($_GET['doworker']))?$_GET['doworker']:'manage';
+
+                        if($doworkers == 'manage'){
+                            $sql=$con->prepare('SELECT * FROM tblourworkers');
+                            $sql->execute();
+                            $workers = $sql->fetchAll();
+                            foreach ($workers as $per){
+                                echo '
+                                <div class="card_person">
+                                    <div class="img_person">
+                                        <img src="../images/ourteam/'.$per['workerimg'].'" alt="">
+                                    </div>
+                                    <h3>'.$per['workerName'].'</h3>
+                                    <p>'.$per['workerDiscription'].'</p>
+                                    <a href="ManageSetting.php?doworker=delete&id='.$per['workerID'].'" class="btn btn-danger">Delete</a>
+                                </div>
+                                ';
+                            }
+                            echo '
+                                <div class="card_person">
+                                    <a href="ManageSetting.php?doworker=add" class="alert alert-success" id="newworker">New Worker</a>
+                                </div>
+                            ';
+                        }elseif($doworkers == 'add'){?>
+                            <div class="add_worker">
+                                <h3>Add a new Worker</h3>
+                                <form action="" method="post" enctype="multipart/form-data">
+                                    <table>
+                                        <tr>
+                                            <td><label for="">Name: </label></td>
+                                            <td><input type="text" name="workerName" id=""></td>
+                                        </tr>
+                                        <tr>
+                                            <td><label for="">Discription</label></td>
+                                            <td><input type="text" name="workerDiscription" id=""></td>
+                                        </tr>
+                                        <tr>
+                                            <td><label for="">E-mail</label></td>
+                                            <td><input type="email" name="Workeremail" id=""></td>
+                                        </tr>
+                                        <tr>
+                                            <td><label for="">Image</label></td>
+                                            <td><input type="file" name="workerimg" id=""></td>
+                                        </tr>
+                                    </table>
+                                    <div class="controladd">
+                                        <button type="submit" name="btnnewworker" class="btn btn-success">Add Worker</button>
+                                    </div>
+                                </form>
+                                <?php
+                                    if(isset($_POST['btnnewworker'])){
+                                        $temp=explode(".",$_FILES['workerimg']['name']);
+                                        $newfilename=round(microtime(true)).'.'.end($temp);
+                                        move_uploaded_file($_FILES['workerimg']['tmp_name'],'../images/ourteam/'.$newfilename);
+                                        $workerimg          = $newfilename;
+                                        $workerName         = $_POST['workerName'];
+                                        $workerDiscription  = $_POST['workerDiscription'] ;
+                                        $Workeremail        = $_POST['Workeremail'] ;
+
+                                        $sql=$con->prepare('INSERT INTO tblourworkers (workerimg,workerName,workerDiscription,Workeremail) 
+                                                            VALUES (:workerimg,:workerName,:workerDiscription,:Workeremail)');
+                                        $sql->execute(array(
+                                            'workerimg'         => $workerimg ,
+                                            'workerName'        => $workerName,
+                                            'workerDiscription' => $workerDiscription ,
+                                            'Workeremail'       => $Workeremail
+                                        ));
+                                        echo '<script> location.href= "ManageSetting.php" </script>';
+                                    }
+                                ?>
+                            </div>
+                        <?php
+                        }elseif($doworkers == 'delete'){
+                            $workerID = (isset($_GET['id']))?$_GET['id']:0;
+                            $checkworker = checkItem('workerID','tblourworkers',$workerID);
+
+                            if($checkworker == 1){
+                                $sql=$con->prepare('SELECT workerimg FROM tblourworkers WHERE workerID=?');
+                                $sql->execute(array($workerID));
+                                $pic = $sql->fetch();
+                                $filename='../images/ourteam/'.$pic['workerimg'];
+                                unlink($filename);
+                                $stat=$con->prepare('DELETE FROM tblourworkers WHERE workerID=?');
+                                $stat ->execute(array($workerID));
+                                echo '<script> location.href= "ManageSetting.php" </script>';
+                            }else{
+                                echo '<script> location.href= "ManageSetting.php" </script>';
+                            }
+                        }
+
+                    ?>
+
+                </div>
+                </div>
                 <div class="slideshow">
                     <h4>Slide show</h4>
                     <p>double click do delete the image in slide show </p>

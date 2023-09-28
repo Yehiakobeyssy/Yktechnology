@@ -134,6 +134,29 @@
             ?>
         </div>
     </div>
+    <div class="ourteam">
+        <h2>Our Team</h2>
+        <div class="set_team">
+            <?php
+                $sql=$con->prepare('SELECT * FROM tblourworkers');
+                $sql->execute();
+                $workers = $sql->fetchAll();
+                foreach ($workers as $per){
+                    echo '
+                    <div class="card_person">
+                        <div class="img_person">
+                            <img src="images/ourteam/'.$per['workerimg'].'" alt="">
+                        </div>
+                        <h3>'.$per['workerName'].'</h3>
+                        <p>'.$per['workerDiscription'].'</p>
+                        <a href="mailto:'.$per['Workeremail'].'" class="btn btn-secondary">contact Him/her</a>
+                    </div>
+                    ';
+                }
+            ?>
+
+        </div>
+    </div>
     <div class="contact_us">
         <h2>Contact US</h2>
         <p>Our team is always available to answer any questions or concerns you have via our website or email.</p>
