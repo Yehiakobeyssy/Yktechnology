@@ -27,7 +27,7 @@
                         </a>
                     </li>
                     <li class="nav-link" >
-                        <a href="">
+                        <a href="ManageSetting.php">
                             <i class="fa-solid fa-gears icon"></i>
                             <span class="text nav-text">Setting</span>
                         </a>
