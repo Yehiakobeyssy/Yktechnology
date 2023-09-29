@@ -26,6 +26,47 @@
 </head>
 <body>
     <?php include 'include/navbar.php' ?>
+    <div class="card_user">
+        <div class="userinfo">
+            <?php
+                $sql=$con->prepare('SELECT Client_FName,Client_LName,Client_addresse,Client_city,CountryName 
+                                    FROM  tblclients 
+                                    INNER JOIN  tblcountrys ON tblclients.Client_country = tblcountrys.CountryID
+                                    WHERE ClientID=?');
+                $sql->execute(array($clientId));
+                $result=$sql->fetch();
+            ?>
+            <h3><?php echo $clientName ?> <span>| <span id="user_Balance"></span></span></h3>
+            <h1>Your Dashboard</h1>
+            <label for=""><?php echo $result['Client_addresse'] ?></label><br>
+            <label for=""><?php echo $result['CountryName'] ?> <span>| <?php echo $result['Client_city'] ?></span></label> <a href=""><i class="fa-solid fa-pen"></i></a>
+        </div>
+        <div class="dashboradimg">
+            <img src="../images/synpoles/userDashboard.png" alt="" srcset="">
+        </div>
+    </div>
+    <div class="statistic">
+        <div class="card_satstic card1">
+            <img src="../images/synpoles/Services.png" alt="" srcset="">
+            <h4>Services</h4>
+            <h1>5</h1>
+        </div>
+        <div class="card_satstic card2">
+            <img src="../images/synpoles/Domain.png" alt="" srcset="">
+            <h4>Domains</h4>
+            <h1>5</h1>
+        </div>
+        <div class="card_satstic card3">
+            <img src="../images/synpoles/ticket.png" alt="" srcset="">
+            <h4>Tickets</h4>
+            <h1>5</h1>
+        </div>
+        <div class="card_satstic card4">
+            <img src="../images/synpoles/Invoices.png" alt="" srcset="">
+            <h4>Invoices</h4>
+            <h1>5</h1>
+        </div>
+    </div>
     <?php include '../common/jslinks.php' ?>
     <script src="js/dashboard.js"></script>
     <script src="js/navbar.js"></script>

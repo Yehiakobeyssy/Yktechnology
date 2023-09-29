@@ -1,0 +1,87 @@
+.card_user{
+    margin: 30px 15px 10px 15px;
+    background-image: linear-gradient(to right, #1c4e80, #3383d4);
+    border-radius: 15px;
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 98%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.userinfo{
+    color: white;
+    margin: 0 25px;
+}
+#user_Balance{
+    font-size: 16px;
+    background-color: #3383d4;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+.userinfo a{
+    color: orange;
+    margin-left: 10px;
+}
+
+.statistic{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    grid-auto-rows: minmax(auto, auto);
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+    padding-bottom: 15px;
+}
+.card_satstic{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border: #1c4e80 1px solid;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.card1{
+    background-image: linear-gradient(to left,#35d968,white);
+}
+.card2{
+    background-image: linear-gradient(to left,#ffba56,white);
+}
+.card3{
+    background-image: linear-gradient(to left,#499eff,white);
+}
+.card4{
+    background-image: linear-gradient(to left,#ff5c78,white);
+}
+.card_satstic img{
+    width: 150px;
+    height: 150px;
+}
+@media (max-width:1366px) {
+
+}
+@media (max-width:1279px) {
+    .statistic{
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+@media (max-width:768px) {
+    .card_user{
+        justify-content: center;
+    }
+    .dashboradimg{
+        display: none;
+    }
+    .statistic{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width:480px) {
+    .statistic{
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
