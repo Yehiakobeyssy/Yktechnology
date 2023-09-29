@@ -1,5 +1,12 @@
 <?php
     session_start();
+
+    if(isset($_COOKIE['user'])){
+        header('location:dashboard.php');
+    }elseif(isset($_SESSION['user'])){
+        header('location:dashboard.php');
+    }
+
     include '../settings/connect.php';
     include '../common/function.php';
     include '../common/head.php';
@@ -44,7 +51,7 @@
                             $password = sha1($_POST['txtpassword']);
                             $remember = (isset($_POST['txtrem']))?1:0;
 
-                            $sql=$con->prepare('SELECT ClientID FROM tblclients WHERE Client_email=? AND Client_Password=?');
+                            $sql=$con->prepare('SELECT ClientID FROM tblclients WHERE Client_email=? AND Client_Password=? AND client_active=1');
                             $sql->execute(array($username,$password));
                             $check_login=$sql->rowCount();
 
@@ -156,7 +163,7 @@
                                     'client_active'         =>$client_active 
                                 ));
                                 require_once '../mail.php';
-                                $mail->setFrom($applicationemail, 'Welcome to YK technology');
+                                $mail->setFrom($applicationemail, 'YK technology');
                                 $mail->addAddress($Client_email);
                                 $mail->Subject = 'Welcome to YK technology';
                                 $mail->Body    = 'Dear '.$Client_FName.',
