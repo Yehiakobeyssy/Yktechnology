@@ -134,62 +134,63 @@
                                 $temp=explode(".",$_FILES['attachment']['name']);
                                 $newfilename=round(microtime(true)).'.'.end($temp);
                                 move_uploaded_file($_FILES['attachment']['tmp_name'],'../Documents/'.$newfilename);
+                            }else{
+                                $newfilename='';
+                            }
+                            //add to ticket 
+                            $ticketDate     = date('Y-m-d');
+                            $ClientID       = $clientId;
+                            $ticketSection  = $_POST['ticketSection'];
+                            $TicketBelong   = $_POST['TicketBelong'];
+                            $ticketSubject  = $_POST['ticketSubject'];
+                            $ticketStatus   = 1;
 
-                                //add to ticket 
-                                $ticketDate     = date('Y-m-d');
-                                $ClientID       = $clientId;
-                                $ticketSection  = $_POST['ticketSection'];
-                                $TicketBelong   = $_POST['TicketBelong'];
-                                $ticketSubject  = $_POST['ticketSubject'];
-                                $ticketStatus   = 1;
+                            $sql=$con->prepare('INSERT INTO tblticket (ticketDate,ClientID,ticketSection,TicketBelong,ticketSubject,ticketStatus)
+                                                VALUES (:ticketDate,:ClientID,:ticketSection,:TicketBelong,:ticketSubject,:ticketStatus)');
+                            $sql->execute(array(
+                                'ticketDate'    => $ticketDate,
+                                'ClientID'      => $ClientID,
+                                'ticketSection' => $ticketSection,
+                                'TicketBelong'  => $TicketBelong,
+                                'ticketSubject' => $ticketSubject,
+                                'ticketStatus'  => $ticketStatus
+                            ));
 
-                                $sql=$con->prepare('INSERT INTO tblticket (ticketDate,ClientID,ticketSection,TicketBelong,ticketSubject,ticketStatus)
-                                                    VALUES (:ticketDate,:ClientID,:ticketSection,:TicketBelong,:ticketSubject,:ticketStatus)');
-                                $sql->execute(array(
-                                    'ticketDate'    => $ticketDate,
-                                    'ClientID'      => $ClientID,
-                                    'ticketSection' => $ticketSection,
-                                    'TicketBelong'  => $TicketBelong,
-                                    'ticketSubject' => $ticketSubject,
-                                    'ticketStatus'  => $ticketStatus
-                                ));
+                            //Insert Detail
+                            $TicketID       = get_last_ID('ticketID','tblticket');
+                            $Message        = $_POST['Message'];
+                            $Client_company = 1;
+                            $athment        = $newfilename;
 
-                                //Insert Detail
-                                $TicketID       = get_last_ID('ticketID','tblticket');
-                                $Message        = $_POST['Message'];
-                                $Client_company = 1;
-                                $athment        = $newfilename;
+                            $sql=$con->prepare('INSERT INTO tbldeiteilticket (TicketID,Message,Client_company,file)
+                                                VALUES (:TicketID,:Message,:Client_company,:file)');
+                            $sql->execute(array(
+                                'TicketID'          => $TicketID ,
+                                'Message'           => $Message,
+                                'Client_company'    => $Client_company,
+                                'file'              => $athment
+                            ));
 
-                                $sql=$con->prepare('INSERT INTO tbldeiteilticket (TicketID,Message,Client_company,file)
-                                                    VALUES (:TicketID,:Message,:Client_company,:file)');
-                                $sql->execute(array(
-                                    'TicketID'          => $TicketID ,
-                                    'Message'           => $Message,
-                                    'Client_company'    => $Client_company,
-                                    'file'              => $athment
-                                ));
-
-                                require_once '../mail.php';
-                                $mail->setFrom($applicationemail, 'YK technology');
-                                $mail->addAddress($clientinfo['Client_email']);
-                                $mail->Subject = 'Ticket Receipt Confirmation';
-                                $mail->Body    = '
-                                Dear '.$clientName.',<br>
-                                We hope this message finds you well.<br>
-                                We want to confirm that we have received your recent ticket submission. Your concern is important to us, and we appreciate your patience as we work to address it.<br>
-                                Our dedicated team is currently reviewing your ticket, and we are committed to resolving your issue as swiftly as possible. Rest assured that your request is in capable hands, and we will do our best to provide you with a timely and satisfactory resolution.<br>
-                                In the meantime, if you have any additional information or details that could assist us in expediting the process, please dont hesitate to reply to this email or include them in a follow-up message.<br>
-                                Thank you for choosing our services, and we appreciate your understanding as we work to meet your needs. We will keep you updated on the progress of your ticket and notify you as soon as it has been successfully resolved.<br>
-                                If you have any urgent concerns or require immediate assistance, please feel free to contact our customer support email at info@yktechnology.es.<br>
-                                Once again, thank you for reaching out to us. We value your business and look forward to assisting you promptly.<br>
-                                Best regards,<br>
-                                YK-technology <br>
-                                Customer Support Team
-                                ';
-                                $mail->send();
+                            require_once '../mail.php';
+                            $mail->setFrom($applicationemail, 'YK technology');
+                            $mail->addAddress($clientinfo['Client_email']);
+                            $mail->Subject = 'Ticket Receipt Confirmation';
+                            $mail->Body    = '
+                            Dear '.$clientName.',<br>
+                            We hope this message finds you well.<br>
+                            We want to confirm that we have received your recent ticket submission. Your concern is important to us, and we appreciate your patience as we work to address it.<br>
+                            Our dedicated team is currently reviewing your ticket, and we are committed to resolving your issue as swiftly as possible. Rest assured that your request is in capable hands, and we will do our best to provide you with a timely and satisfactory resolution.<br>
+                            In the meantime, if you have any additional information or details that could assist us in expediting the process, please dont hesitate to reply to this email or include them in a follow-up message.<br>
+                            Thank you for choosing our services, and we appreciate your understanding as we work to meet your needs. We will keep you updated on the progress of your ticket and notify you as soon as it has been successfully resolved.<br>
+                            If you have any urgent concerns or require immediate assistance, please feel free to contact our customer support email at info@yktechnology.es.<br>
+                            Once again, thank you for reaching out to us. We value your business and look forward to assisting you promptly.<br>
+                            Best regards,<br>
+                            YK-technology <br>
+                            Customer Support Team
+                            ';
+                            $mail->send();
                                 
-                                echo '<script> location.href="ManageTickets.php"</script>';
-                            }   
+                            echo '<script> location.href="ManageTickets.php"</script>';                            
                         }
                     ?>
                 </div>
