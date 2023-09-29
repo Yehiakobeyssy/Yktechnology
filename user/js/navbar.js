@@ -2,12 +2,15 @@ $(function(){
 
     $('#count_cart').load('../ajaxcountcart.php');
 
-    var countValue = $("#count_cart").text();
-    if (countValue === '') {
-        $("#count_cart").hide();
-    } else {
-        $("#count_cart").show();
-    }
+
+    setTimeout(function(){
+        var countValue = $("#count_cart").text();
+        if (countValue === '0') {
+            $("#count_cart").hide();
+        } else {
+            $("#count_cart").show();
+        }
+    },200);
     
     $('#btnDashboard').click(function(){
         location.href="dashboard.php";

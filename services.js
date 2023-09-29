@@ -7,10 +7,12 @@ $(function(){
         let txtsearch = $(this).val();
         $('.display_services').load('ajaxService.php?cat='+catValue+'&search='+txtsearch);
     })
-    var countValue = $("#count_cart").text();
-    if (countValue === '') {
-        $("#count_cart").hide();
-    } else {
-        $("#count_cart").show();
-    }
+    setTimeout(function(){
+        var countValue = $("#count_cart").text();
+        if (countValue === '0') {
+            $("#count_cart").hide();
+        } else {
+            $("#count_cart").show();
+        }
+    },200);
 });

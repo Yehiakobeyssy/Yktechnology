@@ -76,6 +76,7 @@
     border-radius: 50%;
     font-size: 16px;
     text-align: center;
+    display: none;
 }
 @media (max-width:1366px) {
 
