@@ -1,0 +1,48 @@
+body{
+    background-color: #1c4e80;
+}
+.contact_us_frm{
+    width: 80%;
+    margin: 10px auto;
+    padding: 7px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.contact_us_frm form label{
+    font-weight: bold;
+    width: 100%;
+    margin: 5px 10px;
+}
+.contact_us_frm form textarea , .contact_us_frm form input{
+    width: 95%;
+    margin: 3px 10px;
+}
+.corntrolbtn{
+    margin: 15px;
+    text-align: center;
+}
+.corntrolbtn button{
+    width: 70%;
+    background-color: orangered;
+    color: white;
+    padding: 5px;
+    border-radius: 7px;
+    border: transparent;
+}
+@media (max-width:1366px) {
+
+}
+@media (max-width:1279px) {
+
+}
+@media (max-width:768px) {
+    .contact_us_frm{
+        width: 90%;
+    }
+}
+@media (max-width:480px) {
+    .contact_us_frm{
+        width: 95%;
+    }
+}

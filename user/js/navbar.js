@@ -31,7 +31,7 @@ $(function(){
         location.href="";
     })
     $('#btnContactus').click(function(){
-        location.href="";
+        location.href="contactus.php";
     })
 
 })
