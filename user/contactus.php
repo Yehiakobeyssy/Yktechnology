@@ -49,6 +49,12 @@
                     $mail->Subject = $subject;
                     $mail->Body    = $message. '<br><span style="font-weight: bold;"> The clinet Email is</span> : '. $clientemail;
                     $mail->send();
+
+                    echo '
+                        <div class="alert alert-success" role="alert">
+                            The email was sent to us. We will respond as fast as possible.
+                        </div>
+                    ';
                 }
             ?>
         </form>

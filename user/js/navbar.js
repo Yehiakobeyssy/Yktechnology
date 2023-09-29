@@ -28,7 +28,7 @@ $(function(){
         location.href="";
     })
     $('#btnTickets').click(function(){
-        location.href="";
+        location.href="ManageTickets.php";
     })
     $('#btnContactus').click(function(){
         location.href="contactus.php";

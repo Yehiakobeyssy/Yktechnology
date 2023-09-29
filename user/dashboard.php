@@ -59,7 +59,12 @@
         <div class="card_satstic card3">
             <img src="../images/synpoles/ticket.png" alt="" srcset="">
             <h4>Tickets</h4>
-            <h1>5</h1>
+            <?php
+                $sql=$con->prepare('SELECT ticketID FROM  tblticket WHERE ticketStatus <> 4 AND ClientID = ?');
+                $sql->execute(array($clientId));
+                $countticket=$sql->rowCount();
+            ?>
+            <h1><?php echo $countticket ?></h1>
         </div>
         <div class="card_satstic card4">
             <img src="../images/synpoles/Invoices.png" alt="" srcset="">
