@@ -19,10 +19,10 @@
         <label for="menu-bar"><i class="fa-solid fa-list-ul"></i></label>
         <nav class="navbar">
             <ul>
-                <li> <a href=""> <i class="fa-solid fa-code"></i> Servicers</a></li>
-                <li><a href=""> <i class="fa-solid fa-briefcase"></i> How we Work</a></li>
-                <li><a href=""> <i class="fa-solid fa-phone"></i> Contact Us</a></li>
-                <li><a href=""> <i class="fa-solid fa-user-tie"></i> Login</a></li>
+                <li> <a href="#services"> <i class="fa-solid fa-code"></i> Servicers</a></li>
+                <li><a href="#how_we_work"> <i class="fa-solid fa-briefcase"></i> How we Work</a></li>
+                <li><a href="#contact_us"> <i class="fa-solid fa-phone"></i> Contact Us</a></li>
+                <li><a href="user/"> <i class="fa-solid fa-user-tie"></i> Login</a></li>
             </ul>
         </nav>
     </header>
@@ -45,7 +45,7 @@
         <a class="prev" onclick="prevSlides(1)">&#10094;</a>
         <a class="next" onclick="plusSlides(1)">&#10095;</a>
     </div>
-    <div class="services">
+    <div class="services" id="services">
         <h1>Our Services</h1>
         <p>Welcome to YK Technology, where we provide top-quality services tailored to your needs. Let us know what you require, and we'll take care of the rest.</p>
         <div class="allservice">
@@ -67,7 +67,7 @@
             ?>
         </div>
     </div>
-    <div class="how_we_work">
+    <div class="how_we_work" id="how_we_work">
         <h1>How We Work</h1>
         <p>We work by understanding your needs, planning and proposing a solution, and then designing and developing it.</p>
         <div class="how_we_work_cards">
@@ -157,7 +157,7 @@
 
         </div>
     </div>
-    <div class="contact_us">
+    <div class="contact_us" id="contact_us">
         <h2>Contact US</h2>
         <p>Our team is always available to answer any questions or concerns you have via our website or email.</p>
         <form action="" method="post">

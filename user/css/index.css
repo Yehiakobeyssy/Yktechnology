@@ -1,0 +1,187 @@
+body{
+    background-color: #1c4e80;
+}
+.login_frm{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    padding: 10px;
+}
+.login_title{
+    color: white ;
+    text-align: center;
+}
+.login_title img{
+    width: 225px;
+    height: 225px;
+    margin-bottom: 40px;
+}
+.input_deiteils{
+    margin: 30px 0 10px 0 ;
+    background-color: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    display: flex;
+    flex-direction: column;
+}
+.input_deiteils input{
+    margin: 10px 0;
+    border: #1c4e80 2px solid;
+    font-size: 18px;
+    padding: 5px;
+    border-radius: 0 5px 5px 0;
+    border-left: transparent;
+    width: 90%;
+}
+.input_deiteils i{
+    background-color: #1c4e80;
+    color: white;
+    padding: 7px;
+    font-size: 18px;
+    width: 7%;
+    text-align: center;
+}
+.input_deiteils input:focus{
+    outline: none;
+}
+.forget{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: white;
+}
+.forget a{
+    text-decoration: none;
+    color: white;
+}
+.control,.controllbtn{
+    text-align: center;
+    margin: 25px 0;
+}
+.control button{
+    width: 80%;
+    background-color: orangered;
+    color: white;
+    padding: 7px;
+    border-radius: 10px;
+}
+.controllbtn button{
+    width: 50%;
+    background-color: orangered;
+    color: white;
+    padding: 7px;
+    border-radius: 10px;
+}
+.register{
+    text-align: center;
+}
+.register a{
+    color: white;
+}
+.signup_form{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 100%;
+    text-align: center;
+}
+.signup_form h1{
+    color: white;
+}
+.form_add{
+    background-color: white;
+    padding: 15px;
+    border-radius: 18px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    width: 60%;
+    margin: 15px auto;
+}
+.personal_information,.invoiceAdd{
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 3px;
+    border-bottom: black 1px solid;
+}
+.personal_information input,.invoiceAdd input ,.invoiceAdd select{
+    width: 80%;
+    margin: 7px auto;
+    font-size: 16px;
+}
+.city{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    margin: 0 auto;
+}
+.city input{
+    width: 33%;
+}
+.sequrityinfo{
+    padding-bottom: 3px;
+    border-bottom: black 1px solid;
+}
+.sequrityinfo input{
+    width: 40%;
+}
+.signup_form a{
+    color: white;
+    font-weight: bold;
+}
+@media (max-width:1366px) {
+    .form_add{
+        width: 70%;
+    }
+    .controllbtn button{
+        width: 50%;
+    }
+}
+@media (max-width:1279px) {
+    .controllbtn button{
+        width: 60%;
+    }
+}
+@media (max-width:768px) {
+    .input_deiteils input{
+        width: 80%;
+    }
+    .input_deiteils i{
+        width: 15%;
+    }
+    .form_add{
+        width: 80%;
+    }
+    .city{
+        flex-direction: column;
+    }
+    .city input{
+        width: 100%;
+    }
+    .controllbtn button{
+        width: 70%;
+    }
+}
+@media (max-width:480px) {
+    .forget{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .form_add{
+        width: 90%;
+    }
+    .sequrityinfo{
+        display: flex;
+        flex-direction: column;
+    }
+    .sequrityinfo input{
+        width: 100%;
+    }
+    .controllbtn button{
+        width: 75%;
+    }
+}
