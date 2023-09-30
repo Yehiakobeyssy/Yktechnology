@@ -7,6 +7,7 @@
         <div class="usernotification">
             <a href=""><i class="fa-solid fa-bell"></i></a>
             <a href=""><i class="fa-solid fa-cart-shopping"></i> <span id="count_cart"></span></a>
+            <a href="ajaxuser/logout.php"><i class="fa-solid fa-power-off"></i></a>
         </div>
     </div>
     <div class="navbar">

@@ -1,0 +1,137 @@
+body{
+    background-color: #1c4e80;
+}
+.service_container{
+    background-color: white;
+    padding: 15px;
+    width: 95%;
+    margin: 25px auto;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 15px;
+}
+.service_title{
+    border-bottom: #1c4e80 2px solid;
+    padding-bottom: 7px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.search{
+    width: 50%;
+    text-align: right;
+}
+.service_title h5{
+    margin-left: 25px;
+    color: red;
+}
+.search label{
+    font-weight: bold;
+    margin-right: 5px;
+}
+.search input{
+    width: 80%;
+    padding: 5px;
+    border-radius: 10px;
+    border: #1c4e80 2px solid;
+}
+.search input:focus{
+    outline: none;
+    border: #1c4e80 2px solid;
+}
+.display_services{
+    margin: 25px auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    grid-auto-rows: minmax(100px, auto);
+    justify-content: center;
+    align-items: center;
+}
+.card_service{
+    
+    padding: 7px;
+    text-align: center;
+    border: #1c4e80 1px solid;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.header_service{
+    color: black;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 0px 5px 0px;
+    padding-bottom: 1px;
+}
+.header_service h4{
+    color:#1c4e80;
+}
+.header_service h2{
+    color:red;
+}
+.header_service p{
+    color: rgb(119, 116, 116);
+}
+.prices{
+    position: relative;
+}
+#oldprice{
+    position: absolute;
+    top: 0;
+    left: 20%;
+    width: 100%;
+    text-align: left !important;
+    color: rgb(156, 154, 154);
+    font-size: 18px;
+}
+.specfication_service{
+    text-align: left !important;
+    margin: 10px 0;
+    height: 250px;
+    overflow-y: scroll;
+}
+.fooder_service{
+    color: black;
+    border-top: black 1px solid;
+    padding:10px
+}
+.fooder_service button{
+    width: 40%;
+    background-color: transparent;
+    border: #1c4e80 1px solid;
+    color: #1c4e80;
+    padding: 5px;
+    border-radius: 10px;
+}
+.fooder_service button:hover{
+    width: 40%;
+    background-color: transparent;
+    border: #1c4e80 1px solid;
+    color:white;
+    background-color: #1c4e80;
+}
+
+@media (max-width:1366px) {
+    .display_services{
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+@media (max-width:1279px) {
+    .display_services{
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+@media (max-width:768px) {
+    .display_services{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .search{
+        width: 70%;
+    }
+    .search input{
+        width: 60%;
+    }
+}
+@media (max-width:480px) {
+    .display_services{
+        grid-template-columns: repeat(1, 1fr);
+    }
+}

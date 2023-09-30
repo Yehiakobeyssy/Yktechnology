@@ -3,7 +3,8 @@
     include 'common/function.php';
 
     $cat = (isset($_GET['cat']))?$_GET['cat']:0;
-    $search = (isset($_GET['search']))?$_GET['search']:'';
+    $searchtext = (isset($_GET['search']))?$_GET['search']:'';
+    $search = str_replace('_', ' ', $searchtext);
 
     $sql=$con->prepare('SELECT ServiceID,Service_Name,Service_Price,DurationName,old_Price FROM  tblservices
                         INNER JOIN tblduration ON tblservices.Duration=tblduration.DurationID 
@@ -63,6 +64,9 @@
         jQuery('.addcart').load('addtochart.php?serID='+serID);
         jQuery('#count_cart').load('ajaxcountcart.php');
         jQuery('#count_cart').load('ajaxcountcart.php');
+        jQuery('.addcart').load('../addtochart.php?serID='+serID);
+        jQuery('#count_cart').load('../ajaxcountcart.php');
+        jQuery('#count_cart').load('../ajaxcountcart.php');
         jQuery("#count_cart").show();
     })
 </script>

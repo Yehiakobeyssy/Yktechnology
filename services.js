@@ -5,7 +5,8 @@ $(function(){
     $('#count_cart').load('ajaxcountcart.php');
     $('#txtSearch').keyup(function(){
         let txtsearch = $(this).val();
-        $('.display_services').load('ajaxService.php?cat='+catValue+'&search='+txtsearch);
+        let search =  txtsearch.replace(/ /g, '_');
+        $('.display_services').load('ajaxService.php?cat='+catValue+'&search='+search);
     })
     setTimeout(function(){
         var countValue = $("#count_cart").text();

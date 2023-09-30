@@ -22,7 +22,7 @@ $(function(){
         location.href="";
     })
     $('#btnOrder').click(function(){
-        location.href="";
+        location.href="neworder.php";
     })
     $('#btnNews').click(function(){
         location.href="";
