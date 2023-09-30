@@ -1,0 +1,95 @@
+body{
+    background-color: #c4c4c4;
+}
+.conteinerinvoice{
+    width: 210mm;
+    height: 297mm; 
+    background-color: white;
+    margin: 15px auto;
+    padding: 15px
+}
+.title{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px ;
+    border-bottom: black 1px solid;
+}
+.companyInfo{
+    display: flex;
+    flex-direction: column;
+}
+.companyInfo h3{
+    color: #1c4e80;
+}
+.companyInfo label{
+    font-weight: bold;
+    font-size: 14px;
+}
+.invoiceTitle h2{
+    font-size: 100px;
+}
+.status_invoice{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.info_invoice label{
+    font-weight: bold;
+}
+.customerInfo{
+    margin: 10px 0;
+}
+.customer_title{
+    background-color: #c4c4c4;
+    padding: 4px;
+}
+.customerdeiteil{
+    display: flex;
+    flex-direction: column;
+    margin: 0 10px;
+}
+.deietil_invoice table{
+    width: 100%;
+    text-align: center;
+}
+.deietil_invoice table thead{
+    background-color: #c4c4c4;
+    font-weight: bold;
+}
+.deietil_invoice table td{
+    padding: 7px;
+}
+.deietil_invoice table thead td{
+    border-left: black 1px solid ;
+    border-right: black 1px solid;
+}
+.deietil_invoice table tbody td{
+    border: black 1px solid;
+}
+.invoiceamounts{
+    text-align: right;
+    font-weight: bold;
+}
+.amountfinish{
+    background-color: #dadada;
+    font-weight: bold;
+    border: black 1px solid;
+}
+.paymenttable{
+    margin-top: 25px;
+    bottom: 10px;
+    width: 100%;
+}
+.paymenttable table{
+    width: 100%;
+    text-align: center;
+}
+.paymenttable table td{
+    padding: 10px;
+    border-bottom: black 1px solid;
+}
+.paymenttable table thead td{
+    font-weight: bold;
+}

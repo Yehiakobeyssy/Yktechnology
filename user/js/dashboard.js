@@ -13,6 +13,6 @@ $(function(){
     });
 
     $('.card4').click(function(){
-        location.href=""
+        location.href="manageinvoice.php"
     });
 })

@@ -80,7 +80,7 @@
         }
 
         unset($_SESSION['dlinvoice']);
-
+        $expirationDate = date('Y-m-d', strtotime($InvoiceDate . ' + ' . 30 . ' days'));
         require_once '../mail.php';
         $mail->setFrom($applicationemail, 'YK technology');
         $mail->addAddress($clientemail);
@@ -92,9 +92,10 @@
 
                             Invoice Number: #'.$Invoice.'<br>
                             Invoice Date: '.$InvoiceDate.'<br>
-                            Due Date: '.$InvoiceDate.'<br>
+                            Due Date: '.$expirationDate.'<br>
                             Amount Due: $'.$TotalAmount+$TotalTax.'<br>
-                            Please review the invoice attached to this email for a breakdown of the charges. You can find the attached invoice as a PDF document. <br>
+                            Please review the invoice . You can find the  invoice  on the following link. <br>
+                            <a href="'.$websiteaddresse.'user/viewinvoice.php?id='.$Invoice.'">view Invoice </a>
                             If you have any questions or concerns regarding this invoice or need any additional information, please do not hesitate to reach out to our dedicated support team at info@yktechnology.es.<br>
                             We kindly request that you make the payment by the due date to ensure there are no disruptions to your Service. Your prompt attention to this matter is greatly appreciated.<br>
                             Thank you once again for choosing YK-technology. We value your business and are committed to providing you with the best Service experience.<br>

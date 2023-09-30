@@ -69,7 +69,12 @@
         <div class="card_satstic card4">
             <img src="../images/synpoles/Invoices.png" alt="" srcset="">
             <h4>Invoices</h4>
-            <h1>5</h1>
+            <?php
+                $sql=$con->prepare('SELECT InvoiceID FROM tblinvoice WHERE Invoice_Status=1 AND ClientID = ?');
+                $sql->execute(array($clientId));
+                $countInvoice=$sql->rowCount();
+            ?>
+            <h1><?php echo $countInvoice ?></h1>
         </div>
     </div>
     <?php include '../common/jslinks.php' ?>

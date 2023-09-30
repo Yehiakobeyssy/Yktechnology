@@ -1,0 +1,38 @@
+body{
+    background-color: #1c4e80;
+}
+.container_invoice{
+    width: 80%;
+    margin: 10px auto;
+    padding: 7px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.title{
+    margin: 15px;
+}
+.result{
+    margin: 10px;
+}
+.result table{
+    width: 100%;
+    text-align: center;
+}
+.result table thead{
+    background-color: #1c4e80;
+    color: white;
+}
+.result td{
+    padding: 10px;
+    font-size: 18px;
+}
+.result tbody td {
+    border-bottom: black 1px solid;
+}
+.result table tr:nth-child(even) {
+    background-color: lightgray;
+}
+.gotoinvoice{
+    cursor: pointer;
+}

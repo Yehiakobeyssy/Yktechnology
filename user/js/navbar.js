@@ -19,7 +19,7 @@ $(function(){
         location.href="";
     })
     $('#btninvoices').click(function(){
-        location.href="";
+        location.href="manageinvoice.php";
     })
     $('#btnOrder').click(function(){
         location.href="neworder.php";
