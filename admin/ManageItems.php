@@ -168,6 +168,15 @@
                                                 </td>
                                             </tr>
                                             <tr>
+                                                <td><label for="">With Commission</label></td>
+                                                <td>
+                                                    <select name="Service_Commission" id="" >
+                                                        <option value="0">No</option>
+                                                        <option value="1">Yes</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <tr>
                                                 <td><label for="">Service Show</label></td>
                                                 <td>
                                                     <select name="Service_show" id="" >
@@ -190,11 +199,12 @@
                                     $Service_Price  = $_POST['Service_Price'];
                                     $old_Price      = $_POST['old_Price'];
                                     $Form_use       = $_POST['Form_use'];
+                                    $Get_commission = $_POST['Service_Commission'];
                                     $Service_show   = $_POST['Service_show']; 
                                     $Active         = 1;
 
-                                    $sql=$con->prepare('INSERT INTO tblservices (CategoryID,Service_Name,Duration,Service_Price,old_Price,Form_use,Service_show,Active)
-                                                        VALUES (:CategoryID,:Service_Name,:Duration,:Service_Price,:old_Price,:Form_use,:Service_show,:Active)');
+                                    $sql=$con->prepare('INSERT INTO tblservices (CategoryID,Service_Name,Duration,Service_Price,old_Price,Form_use,Get_commission,Service_show,Active)
+                                                        VALUES (:CategoryID,:Service_Name,:Duration,:Service_Price,:old_Price,:Form_use,:Get_commission,:Service_show,:Active)');
                                     $sql->execute(array(
                                         'CategoryID'    => $CategoryID,
                                         'Service_Name'  => $Service_Name,
@@ -202,6 +212,7 @@
                                         'Service_Price' => $Service_Price,
                                         'old_Price'     => $old_Price,
                                         'Form_use'      => $Form_use,
+                                        'Get_commission'=> $Get_commission,
                                         'Service_show'  => $Service_show,
                                         'Active'        => $Active
                                     ));
@@ -278,14 +289,32 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
+                                                    <td><label for="">With Commission</label></td>
+                                                    <td>
+                                                        <select name="Service_Commission" id="" >
+                                                            <?php
+                                                                if($service_info['Get_commission'] ==1){
+                                                                    echo '<option value="1" selected>Yes</option>';
+                                                                    echo '<option value="0">no</option>';
+                                                                }else{
+                                                                    echo '<option value="0" selected>no</option>';
+                                                                    echo '<option value="1">Yes</option>';
+                                                                }
+                                                            ?>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
                                                     <td><label for="">Service Show</label></td>
                                                     <td>
                                                         <select name="Service_show" id="" >
                                                             <?php
                                                                 if($service_info['Service_show'] ==1){
                                                                     echo '<option value="1" selected>Yes</option>';
-                                                                }else{
                                                                     echo '<option value="0">no</option>';
+                                                                }else{
+                                                                    echo '<option value="0" selected>no</option>';
+                                                                    echo '<option value="1">Yes</option>';
                                                                 }
                                                             ?>
                                                         </select>
@@ -305,6 +334,7 @@
                                         $Service_Price  = $_POST['Service_Price'];
                                         $old_Price      = $_POST['old_Price'];
                                         $Form_use       = $_POST['Form_use'];
+                                        $Get_commission = $_POST['Service_Commission'];
                                         $Service_show   = $_POST['Service_show']; 
                                         $Active         = 1;
 
@@ -315,6 +345,7 @@
                                                                 Service_Price   = :Service_Price,
                                                                 old_Price       = :old_Price,
                                                                 Form_use        = :Form_use,
+                                                                Get_commission  = :Get_commission,
                                                                 Service_show    = :Service_show,
                                                                 Active          =  :Active
                                                             WHERE ServiceID     = :ServiceID');
@@ -325,6 +356,7 @@
                                             'Service_Price' => $Service_Price,
                                             'old_Price'     => $old_Price,
                                             'Form_use'      => $Form_use,
+                                            'Get_commission'=> $Get_commission,
                                             'Service_show'  => $Service_show,
                                             'Active'        => $Active,
                                             'ServiceID'     => $serviceID
