@@ -21,6 +21,12 @@
                         </a>
                     </li>
                     <li class="nav-link" >
+                        <a href="ManageTickets.php">
+                        <i class="fa-regular fa-calendar-check icon"></i></i>
+                            <span class="text nav-text">Tickets</span>
+                        </a>
+                    </li>
+                    <li class="nav-link" >
                         <a href="Manageportfolio.php">
                             <i class="fa-solid fa-panorama icon"></i>
                             <span class="text nav-text">Portfolio</span>
