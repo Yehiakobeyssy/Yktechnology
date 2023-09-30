@@ -99,13 +99,13 @@ body{
     width: 60%;
     margin: 15px auto;
 }
-.personal_information,.invoiceAdd{
+.personal_information,.invoiceAdd,.promo_code{
     display: flex;
     flex-direction: column;
     padding-bottom: 3px;
     border-bottom: black 1px solid;
 }
-.personal_information input,.invoiceAdd input ,.invoiceAdd select{
+.personal_information input,.invoiceAdd input ,.invoiceAdd select ,.promo_code input{
     width: 80%;
     margin: 7px auto;
     font-size: 16px;

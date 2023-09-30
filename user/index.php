@@ -118,6 +118,10 @@
                             <input type="password" name="Client_Password" id="txtnewpass" placeholder="Password" required>
                             <input type="password" name="Client_Password_conform" id="txtconform" placeholder="Conform Password" required>
                         </div>
+                        <div class="promo_code">
+                            <h3>Promo code</h3>
+                            <input type="text" name="txtpromocode" id="" placeholder="Promo Code">
+                        </div>
                         <div class="alert alert-danger error"></div>
                     </div>
                     <div class="controllbtn">
@@ -142,11 +146,12 @@
                                 $Client_zipcode        =$_POST['Client_zipcode'];
                                 $Client_country        =$_POST['Client_country'];
                                 $Client_Password       =$_POST['Client_Password']; 
-                                $Client_Acctivationcode=sha1('date'.$Client_FName);   
+                                $Client_Acctivationcode=sha1('date'.$Client_FName);
+                                $promo_Code            =$_POST['txtpromocode'];
                                 $client_active         =1;
 
-                                $sql=$con->prepare('INSERT INTO tblclients (Client_FName,Client_LName,Client_email,Client_Phonenumber,Client_companyName,Client_addresse,Client_city,Client_Region,Client_zipcode,Client_country,Client_Password,Client_Acctivationcode,client_active) 
-                                                    VALUES (:Client_FName,:Client_LName,:Client_email,:Client_Phonenumber,:Client_companyName,:Client_addresse,:Client_city,:Client_Region,:Client_zipcode,:Client_country,:Client_Password,:Client_Acctivationcode,:client_active)');
+                                $sql=$con->prepare('INSERT INTO tblclients (Client_FName,Client_LName,Client_email,Client_Phonenumber,Client_companyName,Client_addresse,Client_city,Client_Region,Client_zipcode,Client_country,Client_Password,Client_Acctivationcode,promo_Code,client_active) 
+                                                    VALUES (:Client_FName,:Client_LName,:Client_email,:Client_Phonenumber,:Client_companyName,:Client_addresse,:Client_city,:Client_Region,:Client_zipcode,:Client_country,:Client_Password,:Client_Acctivationcode,:promo_Code,:client_active)');
                                 $sql->execute(array(
                                     'Client_FName'          =>$Client_FName ,
                                     'Client_LName'          =>$Client_LName ,
@@ -160,7 +165,8 @@
                                     'Client_country'        =>$Client_country ,
                                     'Client_Password'       =>sha1($Client_Password) ,
                                     'Client_Acctivationcode'=>$Client_Acctivationcode ,
-                                    'client_active'         =>$client_active 
+                                    'promo_Code'            =>$promo_Code,
+                                    'client_active'         =>$client_active
                                 ));
                                 require_once '../mail.php';
                                 $mail->setFrom($applicationemail, 'YK technology');
