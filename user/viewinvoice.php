@@ -48,6 +48,7 @@
         <div class="title">
             <div class="companyInfo">
                 <h3>YK-Technology</h3>
+                <label for="">Y9954331Z</label>
                 <label for="">C/ SANT GERMA 6 </label>
                 <label for="">Barcelona 08004</label>
                 <label for="">www.yktechnology.es</label>
@@ -97,7 +98,7 @@
                                 <tr>
                                     <td>'.$row['ServiceID'].'</td>
                                     <td>'.$row['Service_Name'].'('.$row['Description'].')</td>
-                                    <td>'.number_format($row['UnitPrice'],2,'.','').'$</td>
+                                    <td>'.number_format($row['UnitPrice'],2,'.','').' $</td>
                                 </tr>
                             ';
                         }
@@ -106,15 +107,15 @@
                 <tfoot>
                     <tr>
                         <td colspan="2" class="invoiceamounts"><label for="">SUB TOTAL</label></td>
-                        <td class="amountfinish"><span><?php echo number_format($invoiceinfo['TotalAmount'],2,'.','').'$' ?></span></td>
+                        <td class="amountfinish"><span><?php echo number_format($invoiceinfo['TotalAmount'],2,'.','').' $' ?></span></td>
                     </tr>
                     <tr>
                         <td colspan="2" class="invoiceamounts"><label for="">Tax (21%)</label></td>
-                        <td class="amountfinish"><span><?php echo number_format($invoiceinfo['TotalTax'],2,'.','').'$' ?></span></td>
+                        <td class="amountfinish"><span><?php echo number_format($invoiceinfo['TotalTax'],2,'.','').' $' ?></span></td>
                     </tr>
                     <tr>
                         <td colspan="2" class="invoiceamounts"><label for="">GRAND TOTAL</label></td>
-                        <td class="amountfinish"><span><?php echo number_format($invoiceinfo['TotalAmount'] + $invoiceinfo['TotalTax'] ,2,'.','').'$' ?></span></td>
+                        <td class="amountfinish"><span><?php echo number_format($invoiceinfo['TotalAmount'] + $invoiceinfo['TotalTax'] ,2,'.','').' $' ?></span></td>
                     </tr>
                 </tfoot>
             </table>
@@ -128,13 +129,43 @@
                     <td>Deposit Amount</td>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>25/10/2023</td>
-                        <td>Pay pal</td>
-                        <td>521451</td>
-                        <td>25.25 $</td>
-                    </tr>
+                    <?php
+                        $sql=$con->prepare('SELECT Payment_Date,NoofDocument,Payment_Amount,methot
+                                            FROM tblpayments
+                                            INNER JOIN  tblpayment_method ON  tblpayment_method.paymentmethodD= tblpayments.paymentMethod
+                                            WHERE invoiceID = ?');
+                        $sql->execute(array($invoiceID));
+                        $checkpaymentcount= $sql->rowCount();
+                        if($checkpaymentcount > 0){
+                            $rows= $sql->fetchAll();
+                            $total_due = 0;
+                            foreach($rows as $row){
+                                $total_due += $row['Payment_Amount'];
+                                echo '
+                                    <tr>
+                                        <td>'.$row['Payment_Date'].'</td>
+                                        <td>'.$row['methot'].'</td>
+                                        <td>'.$row['NoofDocument'].'</td>
+                                        <td>'.number_format($row['Payment_Amount'] ,2,'.','').' $'.'</td>
+                                    </tr>
+                                ';
+                            }
+                        }else{
+                            $total_due = 0;
+                            echo '
+                                <tr>
+                                    <td colspan="4"> There are no previous deposits</td>
+                                </tr>
+                            ';
+                        }
+                    ?>
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <td class="totalpayment" colspan="3"><label for="">Total due: </label></td>
+                        <td><span><?php echo number_format($total_due ,2,'.','').' $' ?></span></td>
+                    </tr>
+                </tfoot>
             </table>
         </div>
     </div>

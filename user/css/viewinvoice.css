@@ -93,3 +93,10 @@ body{
 .paymenttable table thead td{
     font-weight: bold;
 }
+.totalpayment{
+    text-align: right !important;
+    font-weight: bold;
+}
+.paymenttable table tfoot td{
+    border: none;
+}
