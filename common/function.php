@@ -102,4 +102,50 @@
 
     }
 
+
+    function calculatePaymentDetails($invoiceAmount, $amountPaid = 0) {
+        if ($invoiceAmount < 150) {
+            $numberOfPayments = 1;
+            $paymentAmount = $invoiceAmount;
+        } elseif ($invoiceAmount >= 150 && $invoiceAmount <= 500) {
+            $numberOfPayments = 2;
+            $paymentAmount = $invoiceAmount / $numberOfPayments;
+        } elseif ($invoiceAmount > 500 && $invoiceAmount <= 1000) {
+            $numberOfPayments = 3;
+            $paymentAmount = $invoiceAmount / $numberOfPayments;
+        } elseif ($invoiceAmount > 1000 && $invoiceAmount <= 3000) {
+            $numberOfPayments = 4;
+            $paymentAmount = $invoiceAmount / $numberOfPayments;
+        } elseif ($invoiceAmount > 3000 && $invoiceAmount <= 6000) {
+            $numberOfPayments = 5;
+            $paymentAmount = $invoiceAmount / $numberOfPayments;
+        } elseif ($invoiceAmount > 6000 && $invoiceAmount <= 10000) {
+            $numberOfPayments = 6;
+            $paymentAmount = $invoiceAmount / $numberOfPayments;
+        } elseif ($invoiceAmount > 10000 && $invoiceAmount <= 15000) {
+            $numberOfPayments = 7;
+            $paymentAmount = $invoiceAmount / $numberOfPayments;
+        } elseif ($invoiceAmount > 15000 && $invoiceAmount <= 20000) {
+            $numberOfPayments = 8;
+            $paymentAmount = $invoiceAmount / $numberOfPayments;
+        } else {
+            $numberOfPayments = 10;
+            $paymentAmount = $invoiceAmount / $numberOfPayments;
+        }
+        
+        $paymentsMade = floor($amountPaid / $paymentAmount);
+        $remainingPayments = max(0, $numberOfPayments - $paymentsMade);
+    
+        $overpayment = $amountPaid - ($paymentsMade * $paymentAmount);
+    
+        $paymentDetails = array(
+            'numberOfPayments' => $numberOfPayments,
+            'paymentAmount' => $paymentAmount,
+            'overpayment' => $overpayment,
+            'paymentsMade' => $paymentsMade,
+            'remainingPayments' => $remainingPayments
+        );
+    
+        return $paymentDetails;
+    }
 ?>
