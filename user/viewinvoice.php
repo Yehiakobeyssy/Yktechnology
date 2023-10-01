@@ -1,4 +1,4 @@
-<?php
+<?php 
     session_start();
     if(!isset($_COOKIE['user'])){
         if(!isset($_SESSION['user'])){
@@ -10,7 +10,7 @@
     include '../common/function.php';
     include '../common/head.php';
 
-    $sql=$con->prepare('SELECT Client_FName,Client_LName,Client_companyName,Client_addresse,Client_city,Client_zipcode,client_active FROM  tblclients WHERE ClientID=?');
+    $sql=$con->prepare('SELECT Client_FName,Client_LName,Client_companyName,Client_addresse,Client_city,Client_zipcode,client_active,Client_country FROM  tblclients WHERE ClientID=?');
     $sql->execute(array($clientId));
     $clientinfo = $sql->fetch();
     $clientName = $clientinfo['Client_FName'].' '. $clientinfo['Client_LName'];
@@ -19,6 +19,16 @@
         setcookie("user","",time()-3600);
         unset($_SESSION['user']);
         echo '<script> location.href="index.php" </script>';
+    }
+
+    $sql=$con->prepare('SELECT CountryTVA FROM tblcountrys WHERE CountryID = ?');
+    $sql->execute(array($clientinfo['Client_country']));
+    $checkusercountry=$sql->rowCount();
+    if($checkusercountry==1){
+        $resulttva=$sql->fetch();
+        $tva = $resulttva['CountryTVA'];
+    }else{
+        $tva = 0;
     }
 
     $invoiceID= isset($_GET['id'])?$_GET['id']:0;
@@ -41,6 +51,7 @@
 ?>
     <link rel="stylesheet" href="css/viewinvoice.css">
     <link rel="stylesheet" type="text/css" href="css/print-styles.css" media="print">
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
 
 </head>
 <body>
@@ -69,7 +80,7 @@
         </div>
         <div class="customerInfo">
             <div class="customer_title">
-                <h4>BILL TO</h4>
+                <h4>BILL TO :</h4>
             </div>
             <div class="customerdeiteil">
                 <label for=""><?php echo  $clientName ?></label>
@@ -106,15 +117,18 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="2" class="invoiceamounts"><label for="">SUB TOTAL</label></td>
+                        <td rowspan="3">
+                            <div id="qrcode"></div>
+                        </td>
+                        <td  class="invoiceamounts"><label for="">SUB TOTAL</label></td>
                         <td class="amountfinish"><span><?php echo number_format($invoiceinfo['TotalAmount'],2,'.','').' $' ?></span></td>
                     </tr>
                     <tr>
-                        <td colspan="2" class="invoiceamounts"><label for="">Tax (21%)</label></td>
+                        <td  class="invoiceamounts"><label for="">Tax (<?php echo number_format($tva,2,'.','') ?>%)</label></td>
                         <td class="amountfinish"><span><?php echo number_format($invoiceinfo['TotalTax'],2,'.','').' $' ?></span></td>
                     </tr>
                     <tr>
-                        <td colspan="2" class="invoiceamounts"><label for="">GRAND TOTAL</label></td>
+                        <td  class="invoiceamounts"><label for="">GRAND TOTAL</label></td>
                         <td class="amountfinish"><span><?php echo number_format($invoiceinfo['TotalAmount'] + $invoiceinfo['TotalTax'] ,2,'.','').' $' ?></span></td>
                     </tr>
                 </tfoot>
@@ -168,9 +182,20 @@
                 </tfoot>
             </table>
         </div>
+        <label for="" style="font-weight:bold;">Print Date : <?php echo date('d/m/Y') ?></label>
     </div>
     <?php include '../common/jslinks.php' ?>
     <script src="js/viewinvoice.js"></script>
-    
+    <script>
+        function generateQRCode(link) {
+            var qrcode = new QRCode(document.getElementById("qrcode"), {
+                text: link,
+                width: 128,
+                height: 128
+            });
+        }
+        var link = window.location.href; 
+        generateQRCode(link);
+    </script>
 
 </body>

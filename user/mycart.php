@@ -10,7 +10,7 @@
     include '../common/function.php';
     include '../common/head.php';
 
-    $sql=$con->prepare('SELECT Client_FName,Client_LName,client_active,Client_email FROM  tblclients WHERE ClientID=?');
+    $sql=$con->prepare('SELECT Client_FName,Client_LName,client_active,Client_email,Client_country FROM  tblclients WHERE ClientID=?');
     $sql->execute(array($clientId));
     $clientinfo = $sql->fetch();
     $clientName = $clientinfo['Client_FName'].' '. $clientinfo['Client_LName'];
@@ -22,6 +22,15 @@
         echo '<script> location.href="index.php" </script>';
     }
 
+    $sql=$con->prepare('SELECT CountryTVA FROM tblcountrys WHERE CountryID = ?');
+    $sql->execute(array($clientinfo['Client_country']));
+    $checkusercountry=$sql->rowCount();
+    if($checkusercountry==1){
+        $resulttva=$sql->fetch();
+        $tva = $resulttva['CountryTVA'];
+    }else{
+        $tva = 0;
+    }
 
 
     if(isset($_POST['btncancelOrder'])){
@@ -47,7 +56,7 @@
         $InvoiceTime    = date("H:i:s");
         $ClientID       = $clientId;
         $TotalAmount    = $totalprice;
-        $TotalTax       = $totalprice * 21/100;
+        $TotalTax       = $totalprice * $tva/100;
         $Invoice_Status = 1;
 
         $sql=$con->prepare('INSERT INTO  tblinvoice (InvoiceDate,InvoiceTime,ClientID,TotalAmount,TotalTax,Invoice_Status)
@@ -239,7 +248,7 @@
                                                             </tr>
                                                         ';
                                                     }
-                                                    $tax = $totalprice * 21/100;
+                                                    $tax = $totalprice * $tva/100;
                                                     $totalinvoice = $totalprice + $tax;
                                                 }
                                             ?>
@@ -250,7 +259,7 @@
                                                 <td class="totalamount"><span><?php echo  number_format($totalprice,2,'.','') ?> $</span></td>
                                             </tr>
                                             <tr>
-                                                <td colspan="3"> <label for="">Tax (21.00%):</label></td>
+                                                <td colspan="3"> <label for="">Tax (<?php echo number_format($tva,2,'.','') ?>%):</label></td>
                                                 <td class="totalamount"><span><?php echo number_format($tax,2,'.','') ?> $</span></td>
                                             </tr>
                                             <tr>

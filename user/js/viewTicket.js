@@ -1,5 +1,6 @@
 $(function(){
 
+    
     $('.addnewcoment').click(function() {
         var newReplay = $('.newreplay');
         var openSpan = $('#open');
@@ -11,5 +12,7 @@ $(function(){
             openSpan.html('<i class="fa-solid fa-minus"></i>');
         }
     });
-    
+
+
+
 })
