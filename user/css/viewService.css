@@ -1,0 +1,87 @@
+body{
+    background-color: #1c4e80;
+}
+.containerService{
+    width: 80%;
+    margin: 10px auto;
+    padding: 7px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.titleService{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+    padding: 10px;
+    border-bottom: #1c4e80 1px solid;
+}
+.infoservice,.info_Price{
+    width: 49%;
+    text-align: center;
+}
+.general_info{
+    margin: 15px;
+}
+.general_info table{
+    width: 100%;
+}
+.genegalinfo tr{
+    margin: 5px 0;
+}
+.genegalinfo{
+    width: 20%;
+    font-weight: bold;
+}
+.result{
+    width: 75%;
+    border-bottom: black 1px solid;
+    text-align: left;
+}
+.discription{
+    margin: 10px ;
+    padding: 7px;
+}
+.discription label{
+    font-weight: bold;
+}
+.discription p{
+    text-align: justify;
+    text-decoration: underline;
+}
+.athathment{
+    margin: 10px;
+    text-align: right;
+}
+.athathment a{
+    color: #1c4e80;
+}
+.final{
+    display: flex;
+    justify-content: space-around;
+    margin: 15px;
+}
+@media (max-width:1366px) {
+
+}
+@media (max-width:1279px) {
+
+}
+@media (max-width:768px) {
+    .containerService{
+        width: 90%;
+    }
+}
+@media (max-width:480px) {
+    .containerService{
+        width: 95%;
+    }
+    .titleService{
+        flex-direction: column;
+        
+    }
+    .infoservice,.info_Price{
+        width: 100%;
+        text-align: center;
+    }
+}

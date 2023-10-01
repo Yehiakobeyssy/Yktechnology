@@ -1,7 +1,7 @@
 $(function(){
 
     $('.card1').click(function(){
-        location.href="";
+        location.href="ManageService.php";
     });
 
     $('.card2').click(function(){

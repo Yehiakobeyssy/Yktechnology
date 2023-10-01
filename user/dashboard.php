@@ -49,7 +49,12 @@
         <div class="card_satstic card1">
             <img src="../images/synpoles/Services.png" alt="" srcset="">
             <h4>Services</h4>
-            <h1>5</h1>
+            <?php
+                $sql=$con->prepare('SELECT ServicesID FROM tblclientservices WHERE serviceStatus<4 AND ClientID=?');
+                $sql->execute(array($clientId));
+                $countService= $sql->rowCount();
+            ?>
+            <h1><?php echo $countService ?></h1>
         </div>
         <div class="card_satstic card2">
             <img src="../images/synpoles/Domain.png" alt="" srcset="">

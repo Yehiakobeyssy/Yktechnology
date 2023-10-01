@@ -16,7 +16,7 @@ $(function(){
         location.href="dashboard.php";
     })
     $('#btnmyservices').click(function(){
-        location.href="";
+        location.href="ManageService.php";
     })
     $('#btninvoices').click(function(){
         location.href="manageinvoice.php";
