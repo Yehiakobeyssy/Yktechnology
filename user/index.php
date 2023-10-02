@@ -39,7 +39,7 @@
                             <label for="rememberme"> Remeber me</label>
                         </div>
                         <div class="forget_pass">
-                            <a href="">Forget Password? </a>
+                            <a href="forgetpass.php">Forget Password? </a>
                         </div>
                     </div>
                     <div class="control">
