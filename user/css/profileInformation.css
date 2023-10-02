@@ -1,0 +1,57 @@
+body{
+    background-color: #1c4e80;
+}
+.container_profile{
+    width: 80%;
+    margin: 10px auto;
+    padding: 7px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.title{
+    margin: 15px;
+}
+.container_profile form{
+    margin: 15px;
+}
+.personal_info,.invoiceAdd {
+    padding-bottom: 5px;
+    border-bottom: lightgray 1px solid;
+}
+.personal_info table{
+    width: 100%;
+}
+.personal_info table input{
+    width: 100%;
+    margin: 7px;
+}
+.personal_info table label{
+    font-weight: bold;
+}
+.invoiceAdd input ,.invoiceAdd select {
+    width: 100%;
+    margin: 7px auto;
+    font-size: 16px;
+}
+.city{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    margin: 0 auto;
+}
+.city input{
+    width: 33.33%;
+}
+.control{
+    margin: 10px;
+    text-align: center;
+}
+.control a{
+    margin: 0 10px;
+}
+.control button{
+    margin: 0 10px;
+}

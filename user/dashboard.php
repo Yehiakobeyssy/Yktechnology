@@ -94,7 +94,7 @@
             <h3><?php echo $clientName ?> <span>| <span id="user_Balance"><?php echo number_format($totalbalance,2,'.','').' $' ?></span> </span></h3>
             <h1>Your Dashboard</h1>
             <label for=""><?php echo $result['Client_addresse'] ?></label><br>
-            <label for=""><?php echo $result['CountryName'] ?> <span>| <?php echo $result['Client_city'] ?></span></label> <a href=""><i class="fa-solid fa-pen"></i></a>
+            <label for=""><?php echo $result['CountryName'] ?> <span>| <?php echo $result['Client_city'] ?></span></label> <a href="profileInformation.php"><i class="fa-solid fa-pen"></i></a>
         </div>
         <div class="dashboradimg">
             <img src="../images/synpoles/userDashboard.png" alt="" srcset="">
