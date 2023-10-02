@@ -35,8 +35,36 @@
                                     WHERE ClientID=?');
                 $sql->execute(array($clientId));
                 $result=$sql->fetch();
+
+                $stat=$con->prepare('SELECT
+                                        p.ClientID,
+                                        SUM(p.Payment_Amount) AS TotalPayments,
+                                        SUM(i.TotalAmount + i.TotalTax) AS TotalInvoiceAmount,
+                                        SUM(p.Payment_Amount) - SUM(i.TotalAmount + i.TotalTax) AS TotalBalance
+                                    FROM
+                                        tblpayments p
+                                    JOIN
+                                        tblinvoice i ON p.InvoiceID = i.InvoiceID
+                                    WHERE
+                                        p.ClientID = ?
+                                        AND i.Invoice_Status < 3
+                                    GROUP BY
+                                        p.ClientID;
+                                    ');
+                $stat->execute(array($clientId));
+                $checkresult=$stat->rowCount();
+                if($checkresult > 0){
+                    $resultbalance=$stat->fetch();
+                    $totalbalance = $resultbalance['TotalBalance'];
+                    if($totalbalance  < 0){
+                        $totalbalance = 0 ;
+                    }
+                }else{
+                    $totalbalance = 0 ;
+                }
+
             ?>
-            <h3><?php echo $clientName ?> <span>| <span id="user_Balance"></span></span></h3>
+            <h3><?php echo $clientName ?> <span>| <span id="user_Balance"><?php echo number_format($totalbalance,2,'.','').' $' ?></span> </span></h3>
             <h1>Your Dashboard</h1>
             <label for=""><?php echo $result['Client_addresse'] ?></label><br>
             <label for=""><?php echo $result['CountryName'] ?> <span>| <?php echo $result['Client_city'] ?></span></label> <a href=""><i class="fa-solid fa-pen"></i></a>
@@ -59,7 +87,13 @@
         <div class="card_satstic card2">
             <img src="../images/synpoles/Domain.png" alt="" srcset="">
             <h4>Domains</h4>
-            <h1>5</h1>
+            <?php
+                $sql=$con->prepare('SELECT DomeinID  FROM tbldomeinclients 
+                                    WHERE (Status =1 OR Status=2 ) AND Client=?');
+                $sql->execute(array($clientId));
+                $countDomains=$sql->rowCount();                    
+            ?>
+            <h1><?php echo $countDomains ?></h1>
         </div>
         <div class="card_satstic card3">
             <img src="../images/synpoles/ticket.png" alt="" srcset="">

@@ -5,7 +5,7 @@ $(function(){
     });
 
     $('.card2').click(function(){
-        location.href=""
+        location.href="ManageDomein.php"
     });
 
     $('.card3').click(function(){
