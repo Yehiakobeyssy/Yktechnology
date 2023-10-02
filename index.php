@@ -19,7 +19,7 @@
         <label for="menu-bar"><i class="fa-solid fa-list-ul"></i></label>
         <nav class="navbar">
             <ul>
-                <li> <a href="pricing.html"> <i class="fa-solid fa-money-bill-1"></i> Pricing</a></li>
+                <li> <a href="pricing.php"> <i class="fa-solid fa-money-bill-1"></i> Pricing</a></li>
                 <li> <a href="#services"> <i class="fa-solid fa-code"></i> Servicers</a></li>
                 <li><a href="#how_we_work"> <i class="fa-solid fa-briefcase"></i> How we Work</a></li>
                 <li><a href="#contact_us"> <i class="fa-solid fa-phone"></i> Contact Us</a></li>
