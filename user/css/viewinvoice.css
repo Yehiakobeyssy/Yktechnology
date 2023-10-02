@@ -19,7 +19,7 @@ body{
 .companyInfo{
     display: flex;
     flex-direction: column;
-}
+} 
 .companyInfo h3{
     color: #1c4e80;
 }
@@ -99,4 +99,183 @@ body{
 }
 .paymenttable table tfoot td{
     border: none;
+}
+
+.pay{
+    margin: 15px;
+    text-align: center;
+}
+.pay button{
+    border: transparent;
+    background-color: #1c4e80;
+    color: white;
+    padding: 10px;
+    width: 200px;
+    border-radius: 10px;
+
+}
+.popuppayment{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: none;
+}
+.containerpayment{
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    width: 50%;
+    padding: 10px;
+    border-radius: 10px;
+}
+.closePayment{
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    font-size: 26px;
+    font-weight: bold;
+    transform: rotate(-45deg);
+    cursor: pointer;
+}
+.titlepayment{
+    text-align: center;
+    padding: 10px;
+}
+.disription{
+    text-align: center;
+    font-size: larger;
+    font-weight: bold;
+    margin: 10px;
+}
+.pay_done{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.payment_dis{
+    display: flex;
+    flex-direction: column;
+    margin: 15px;
+    align-items: center;
+    justify-content: center;
+}
+
+.number_payment {
+    display: inline-block;
+    width: 50px; 
+    height: 50px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 40px; 
+    font-size: 24px;
+}
+
+.no_paid {
+    background-color: white;
+    border: 2px solid black;
+    color: black; 
+}
+
+.paid {
+    background-color: green;
+    color: white; 
+}
+.gonext{
+    margin: 10px;
+    text-align: center;
+}
+.gonext button{
+    padding: 10px 20px;
+    background-color: #1c4e80;
+    color: white;
+    border: transparent;
+    border-radius: 10px;
+}
+
+.page2{
+    display: none;
+}
+.payments {
+    text-align: center;
+    margin: 10px;
+}
+
+.payments select {
+    width: 80%;
+    padding: 10px; 
+    border: 2px solid #1c4e80;
+    border-radius: 5px; 
+    font-size: 16px;
+    background-color: #f7f7f7; 
+    color: #1c4e80; 
+    outline: none;
+    transition: border-color 0.3s ease-in-out;
+}
+
+.payments select:focus {
+    border-color: #3383d4;
+}
+
+.payments select::after {
+    content: '\25BC'; 
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    pointer-events: none; 
+}
+
+.payments select:focus::after {
+    color: #ff6600; 
+}
+.note_payment{
+    margin: 10px auto;
+    text-align: justify;
+    width: 80%;
+}
+.amout_to_pay{
+    text-align: center;
+    margin: 15px;
+}
+.conclution{
+    margin: 15px auto;
+    width: 80%;
+}
+.conclution p{
+    color: red;
+    text-align: justify;
+}
+.conclution a{
+    width: 100%;
+    padding: 10px 20px;
+    background-color: #1c4e80;
+    color: white;
+    border: transparent;
+    border-radius: 10px;
+    margin: 10px auto !important;
+}
+
+@media (max-width:1366px) {
+
+}
+@media (max-width:1279px) {
+    .containerpayment{
+        width: 60%;
+    }
+}
+@media (max-width:768px) {
+    .containerpayment{
+        width: 70%;
+    }
+}
+@media (max-width:480px) {
+    .containerpayment{
+        width: 90%;
+    }
 }

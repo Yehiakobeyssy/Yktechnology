@@ -37,17 +37,26 @@
     if($checkinvoiceID ==0){
         echo '<script> location.href="index.php" </script>';
     }else{
-        $sql=$con->prepare('SELECT InvoiceID,InvoiceDate,ClientID,TotalAmount,TotalTax,StatusInvoice,StatusInvoiceColor
+        $sql=$con->prepare('SELECT InvoiceID,InvoiceDate,ClientID,TotalAmount,TotalTax,StatusInvoice,StatusInvoiceColor,Invoice_Status
                             FROM  tblinvoice 
                             INNER JOIN tblstatusinvoice ON tblstatusinvoice.StatusInvoiceID = tblinvoice.Invoice_Status
                             WHERE InvoiceID = ?');
         $sql->execute(array($invoiceID));
         $invoiceinfo=$sql->fetch();
 
+        if($invoiceinfo['Invoice_Status'] == 1){
+            $displaypay='block';
+        }else{
+            $displaypay='none';
+        }
         if($invoiceinfo['ClientID'] != $clientId){
             echo '<script> location.href="index.php" </script>';
         }
     }
+
+    $sql = $con->prepare('SELECT paymentmethodD, methot FROM tblpayment_method WHERE method_active = 1');
+    $sql->execute();
+    $methodspay = $sql->fetchAll();
 ?>
     <link rel="stylesheet" href="css/viewinvoice.css">
     <link rel="stylesheet" type="text/css" href="css/print-styles.css" media="print">
@@ -182,10 +191,92 @@
                 </tfoot>
             </table>
         </div>
+
+        <div class="pay" style='display:<?php echo  $displaypay ?>'>
+            <button id="btnpaydeiteil"> Pay Now </button>
+        </div>
         <label for="" style="font-weight:bold;">Print Date : <?php echo date('d/m/Y') ?></label>
     </div>
+    <div class="popuppayment">
+        <div class="containerpayment">
+            <div class="closePayment">+</div>
+            <div class="page1">
+                <div class="titlepayment">
+                    <h3>Payment Plan Established</h3>
+                </div>
+                <div class="disription">
+                    <?php
+                        $invoiceAmount = $invoiceinfo['TotalAmount'] + $invoiceinfo['TotalTax'];
+
+                        $sql=$con->prepare('SELECT COALESCE(SUM(Payment_Amount), 0) AS TotalAmount
+                                            FROM tblpayments
+                                            WHERE invoiceID = ?;');
+                        $sql->execute(array($invoiceID));
+                        $result=$sql->fetch();
+
+                        $amountPaid = $result['TotalAmount'];
+                        $paymentDetails = calculatePaymentDetails($invoiceAmount,$amountPaid);
+                    ?>
+                    <p>This invoice will be divided into <?php echo $paymentDetails['numberOfPayments']?> equal payments as outlined below:</p>
+                </div>
+                <div class="pay_done">
+                    <?php
+                        for ($i = 1; $i <= $paymentDetails['numberOfPayments'] - 1; $i++) {
+                            echo '<div class="payment_dis">';
+                            if ($i <= $paymentDetails['paymentsMade']) {
+                                echo "<span class='number_payment paid'> $i </span> <h4>" . number_format($paymentDetails['paymentAmount'], 2) . " $</h4> (Paid)<br>";
+                            } else {
+                                echo "<span class='number_payment no_paid'> $i </span> <h4 class='amountpayment'>" . number_format($paymentDetails['paymentAmount'], 2) . " $</h4><br>";
+                            }
+                            echo '</div>';
+                        }
+                        
+                        $i = $paymentDetails['numberOfPayments'];
+                        $lastPaymentAmount = $paymentDetails['paymentAmount'] - $paymentDetails['overpayment'];
+                        echo '<div class="payment_dis">';
+                        if ($i <= $paymentDetails['paymentsMade']) {
+                            echo "<span class='number_payment paid'> $i </span>x <h4>" . number_format($lastPaymentAmount, 2) . " $</h4> (Paid)<br>";
+                        } else {
+                            echo "<span class='number_payment no_paid'> $i  </span> <h4 class='amountpayment'>" . number_format($lastPaymentAmount, 2) . " $</h4><br>";
+                        }
+                        echo '</div>';
+                    ?>
+                </div>
+                <div class="gonext">
+                    <button id="gotopage2">Next</button>
+                </div>
+            </div>
+            <div class="page2">
+                <div class="titlepayment">
+                    <h3>Payment Method</h3>
+                </div>
+                <div class="disription">
+                    <p>What method of payment would you prefer?</p>
+                </div>
+                <div class="payments">
+                    <select name="" id="txtpaymentmethod">
+                        <?php
+                            foreach ($methodspay as $type) {
+                                echo '<option value="' . $type['paymentmethodD'] . '">' . $type['methot'] . '</option>';
+                            }
+                        ?>
+                    </select>
+                </div>
+                <div class="note_payment">
+                    <p id="textnote"></p>
+                </div>
+                <div class="amout_to_pay">
+                    <h3>Amount To Pay: <span id="Nextamount"></span>$</h3>
+                </div>
+                <div class="conclution">
+                </div>
+            </div>
+        </div>
+    </div>
     <?php include '../common/jslinks.php' ?>
+    <script src="https://www.paypal.com/sdk/js?client-id=AY-CMfLiUS2VuombfG2u83bOq4fqNetZg9qor6flvV5kpgKxMDgAlGe2PNWUX-wKe6XVsuxs6Fzz6_sa&disable-funding=credit,card,sofort&locale=es_ES&currency=USD" data-sdk-integration-source="button-factory"></script>
     <script src="js/viewinvoice.js"></script>
+    
     <script>
         function generateQRCode(link) {
             var qrcode = new QRCode(document.getElementById("qrcode"), {
@@ -196,6 +287,7 @@
         }
         var link = window.location.href; 
         generateQRCode(link);
+
     </script>
 
 </body>
