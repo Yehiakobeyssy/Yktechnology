@@ -242,7 +242,7 @@
             </div>
         </div>
         <div class="right_site">
-            <div class="invoices_not_paid" tyle="display: <?php echo $dispalyinvoice?>;">
+            <div class="invoices_not_paid" style="display: <?php echo $dispalyinvoice?>;">
                 <div class="title_notification">
                     <h3>Overdue bills</h3>
                 </div>
