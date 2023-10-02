@@ -210,6 +210,7 @@
                     <a href="https://www.facebook.com/yehia.kobeyssy.7">Facebook</a>
                     <a href="https://www.linkedin.com/in/yehia-kobeyssy-818763243/">LinkedIn</a>
                     <a href="https://github.com/Yehiakobeyssy">GitHup</a>
+                    <a href="terms.php">Policy and Terms of Service</a>
                 </div>
                 <div class="col-md-3">
                     <h3>Languge:</h3>
