@@ -30,6 +30,7 @@
                             cs.ClientID = ?
                             AND (ts.Service_Name LIKE ? OR cs.ServiceTitle LIKE ? OR d.DurationName LIKE ? OR ss.Status LIKE ?)
                         ORDER BY
+                            cs.serviceStatus ASC,
                             cs.Dateend DESC;');
 
     if(!empty($search)){

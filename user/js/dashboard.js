@@ -15,4 +15,14 @@ $(function(){
     $('.card4').click(function(){
         location.href="manageinvoice.php"
     });
+
+    $('.single_service').click(function(){
+        let serviceid = $(this).attr('data-index');
+        location.href='viewService.php?id='+serviceid
+    })
+
+    $('.one_ticket').click(function(){
+        let ticketID = $(this).attr('data-index');
+        location.href='viewTicket.php?id='+ticketID;
+    })
 })

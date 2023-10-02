@@ -73,18 +73,20 @@
         $InvoiceID = get_last_ID('InvoiceID','tblinvoice');
 
         foreach ($_SESSION['dlinvoice'] as $key => $item){
-            $Invoice     = $InvoiceID;
-            $Service     = $item['Service'];
-            $Description = $item['serviceTitle'];
-            $UnitPrice   = $item['Price'];
+            $Invoice         = $InvoiceID;
+            $Service         = $item['Service'];
+            $Description     = $item['serviceTitle'];
+            $UnitPrice       = $item['Price'];
+            $ClientServiceID = $item['clientserviceID'];
 
-            $stat = $con->prepare('INSERT INTO  tbldetailinvoice (Invoice,Service,Description,UnitPrice)
-                                    VALUES (:Invoice,:Service,:Description,:UnitPrice)');
+            $stat = $con->prepare('INSERT INTO  tbldetailinvoice (Invoice,Service,Description,UnitPrice,ClientServiceID)
+                                    VALUES (:Invoice,:Service,:Description,:UnitPrice,:ClientServiceID)');
             $stat->execute(array(
-                'Invoice'     => $Invoice,
-                'Service'     => $Service ,
-                'Description' => $Description,
-                'UnitPrice'   => $UnitPrice
+                'Invoice'          => $Invoice,
+                'Service'          => $Service ,
+                'Description'      => $Description,
+                'UnitPrice'        => $UnitPrice,
+                'ClientServiceID'  => $ClientServiceID
             ));
         }
 

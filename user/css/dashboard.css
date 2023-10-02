@@ -1,3 +1,6 @@
+body{
+    background-color: lightgray;
+}
 .card_user{
     margin: 30px 15px 10px 15px;
     background-image: linear-gradient(to right, #1c4e80, #3383d4);
@@ -62,6 +65,88 @@
     width: 150px;
     height: 150px;
 }
+.active_services{
+    margin: 15px;
+    padding: 10px;
+    background-color: white;
+    border-radius: 10px;
+    width: 98%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.active_services h3{
+    padding-bottom: 15px;
+    border-bottom: lightgray 1px solid;
+}
+.deiteil_service{
+    margin: 17px 0;
+}
+.single_service{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-around;
+    align-items: center;
+    padding: 4px;
+    border-bottom: black 1px solid;
+    cursor: pointer;
+}
+.showall{
+    margin: 5px 0;
+    text-align: right;
+}
+.notifications{
+    display: flex;
+    justify-content: space-between;
+    margin: 15px;
+    width: 98%;
+}
+.left_site,.right_site{
+    width: 48%;
+}
+.Domeins_expiring,.invoices_not_paid,.tickets{
+    padding: 10px;
+    background-color: white;
+    margin: 10px 0;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.title_notification{
+    padding: 10px 5px 15px 5px;
+    border-bottom: lightgray 1px solid;
+}
+.textnotification{
+    padding: 10px;
+    text-align: justify;
+}
+.btngotodeiteil{
+    margin: 10px 0;
+    text-align: right;
+    padding-right: 10px;
+    padding-top: 10px;
+    border-top: lightgray 1px solid;
+}
+.all_tickets{
+    height: 300px;
+    overflow-y: scroll;
+}
+.one_ticket{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px;
+    padding: 5px 20px;
+    border-bottom: lightgray 1px solid;
+    cursor: pointer;
+}
+.info_ticket label{
+    margin-left: 15px;
+    
+}
+.status_ticket span{
+    padding: 10px;
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+}
 @media (max-width:1366px) {
 
 }
@@ -79,6 +164,12 @@
     }
     .statistic{
         grid-template-columns: repeat(2, 1fr);
+    }
+    .notifications{
+        flex-direction: column;
+    }
+    .left_site,.right_site{
+        width: 100%;
     }
 }
 @media (max-width:480px) {

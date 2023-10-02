@@ -17,7 +17,7 @@
     $colors = $_POST['colors'];
     $description = $_POST['description'];
     $filename = $_FILES['filename']['name'];
-
+ 
 
     if(!empty($_FILES['filename']['name'])){
         $temp=explode(".",$_FILES['filename']['name']);
