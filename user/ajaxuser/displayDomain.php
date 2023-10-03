@@ -14,6 +14,7 @@
                             dc.DomeinName AS DomeinName,
                             dc.DateBegin AS DateBegin,
                             dc.RenewDate AS RenewDate,
+                            dc.Note AS DomeinNote,
                             dc.Price_Renew AS Price_Renew,
                             sd.StatusDomein AS StatusDomein,
                             sd.StatusColor AS StatusColor,
@@ -26,7 +27,7 @@
                             tblstatusdomein sd ON dc.Status = sd.StatusDomeinID
                         WHERE
                             dc.Client = ?
-                            AND (dt.ServiceName LIKE ? OR sd.StatusDomein LIKE ? OR dc.DomeinName LIKE ?)
+                            AND (dt.ServiceName LIKE ? OR sd.StatusDomein LIKE ? OR dc.DomeinName LIKE ? OR dc.Note LIKE ?)
                         ORDER BY
                             dc.RenewDate DESC;
                         ');
@@ -36,7 +37,7 @@
     }else{
         $search="%"." "."%";  
     }
-    $sql->execute(array($clientId,$search,$search,$search));
+    $sql->execute(array($clientId,$search,$search,$search,$search));
     $count=$sql->rowCount();
     $rows = $sql->fetchAll();
 
@@ -52,8 +53,8 @@
                     <td>' . $row['DateBegin'] . ' </td>
                     <td>' . $row['RenewDate'] . '</td>
                     <td>'.number_format($row['Price_Renew'] ,2,'.','').' $'.'</td>
+                    <td>' . $row['DomeinNote'] . '</td>
                     <td style="color:'.$row['StatusColor'].'">' . $row['StatusDomein'] . '</td>
-                    <td></td>
                 </tr>
             ';
         }

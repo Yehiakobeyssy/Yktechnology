@@ -47,8 +47,8 @@
                             <td>Date</td>
                             <td>Renewal Date</td>
                             <td>Renewal Price</td>
+                            <td>Note</td>
                             <td>Status</td>
-                            <td>Renew Now</td>
                         </thead>
                         <tbody class="bodyService">
                         </tbody>
