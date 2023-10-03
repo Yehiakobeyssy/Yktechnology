@@ -51,7 +51,7 @@
                         </a>
                     </li>
                     <li class="nav-link" >
-                        <a href="">
+                        <a href="ManageExpensis.php">
                             <i class="fa-solid fa-receipt icon"></i>
                             <span class="text nav-text">Expensis</span>
                         </a>

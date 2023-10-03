@@ -1,0 +1,124 @@
+.mainform{
+    display: flex;
+}
+.contain{
+    width: 100%;
+    margin-left: 25px !important;
+}
+.title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px !important;
+}
+
+    #manageExpeniss {
+        padding: 20px !important;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f0f0f0;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    #manageExpeniss h2 {
+        font-size: 24px;
+        margin-bottom: 20px !important;
+    }
+
+    #manageExpeniss form {
+        margin-bottom: 20px !important;
+    }
+
+    #manageExpeniss label {
+        font-weight: bold;
+        margin-right: 10px !important;
+    }
+
+    #manageExpeniss input[type="date"],
+    #manageExpeniss select {
+        padding: 5px !important;
+        margin-right: 10px !important;
+    }
+
+    #manageExpeniss button[type="submit"] {
+        background-color: #007bff;
+        color: #fff;
+        padding: 5px 10px !important;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    #manageExpeniss table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    #manageExpeniss th, #manageExpeniss td {
+        border: 1px solid #ccc;
+        padding: 8px !important;
+        text-align: center;
+    }
+
+    #manageExpeniss th {
+        background-color: #f0f0f0;
+    }
+
+    #manageExpeniss a {
+        text-decoration: none;
+        color: #007bff;
+    }
+
+    #manageExpeniss a:hover {
+        text-decoration: underline;
+    }
+    #manageExpeniss p{
+        font-size: 20px;
+        margin: 20px !important;
+        text-align: right;
+        font-weight: bold;
+    }
+
+
+#addExpeniss {
+    padding: 20px !important;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 20px !important;
+}
+
+label {
+    font-weight: bold;
+}
+
+input[type="date"],
+select,
+input[type="text"],
+input[type="number"],
+textarea {
+    width: 100%;
+    padding: 5px !important;
+    margin-bottom: 10px !important;
+}
+
+button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px !important;
+
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
