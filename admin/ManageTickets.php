@@ -43,18 +43,17 @@
 
                 if($do=='manage'){?>
                     <div class="containertable">
-                        <div class="searchsection">
-                            <label for="">Search :</label>
-                            <input type="text" name="" id="txtsearch">
+                        <div class="search-container">
+                            <input type="text" class="search-input" placeholder="Search ..." id="txtsearch">
                         </div>
-                        <div class="table">
+                        <div class="table-container">
                             <table>
                                 <thead>
-                                    <td>Client Name</td>
-                                    <td>Section</td>
-                                    <td>Subject</td>
-                                    <td>Status</td>
-                                    <td>Last Update</td>
+                                    <th>Client Name</th>
+                                    <th>Section</th>
+                                    <th>Subject</th>
+                                    <th>Status</th>
+                                    <th>Last Update</th>
                                 </thead>
                                 <tbody class="bodyticket">
                                 </tbody>
