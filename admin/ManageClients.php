@@ -44,7 +44,6 @@
                 <div class="mangebox">
                     <div class="search-container">
                         <input type="text" class="search-input" placeholder="Search ..." id="txtsearch">
-                        <button class="search-button">Search</button>
                     </div>
                     <div class="table-container">
                         <table>

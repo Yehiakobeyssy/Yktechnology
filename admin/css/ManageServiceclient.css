@@ -1,0 +1,137 @@
+.mainform{
+    display: flex;
+}
+.contain{
+    width: 100%;
+    margin-left: 25px !important;
+}
+.title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px !important;
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.search-input {
+    padding: 10px !important;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 80%;
+    font-size: 16px;
+    outline: none;
+}
+.search-button {
+    background-color: #1c4e80;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px !important;
+    margin-left: 10px !;
+    cursor: pointer;
+    font-size: 16px;
+}
+.search-button:hover {
+    background-color:#1c4e80;
+}
+.table-container {
+    max-width: 100%;
+    margin: 0 auto !important;
+    padding: 20px !important;
+}
+
+/* Style for the table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+/* Style for table headers */
+th {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px !important;
+}
+
+/* Style for table rows */
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+/* Style for table cells */
+td {
+    padding: 10px !important;
+    border: 1px solid #ccc;
+}
+
+/* Style for control buttons */
+.control-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px !important;
+    cursor: pointer;
+}
+
+/* Hover effect for control buttons */
+.control-button:hover {
+    background-color: #0056b3;
+}
+.btnyehia{
+    padding: 5px !important;
+    width: 80%;
+    margin: 5px auto !important;
+}
+.ctlyehia {
+    text-decoration: none; /* Remove underlines from links */
+    margin-right: 15px !important; /* Add spacing between links */
+    display: inline-block; /* Make links inline-block to stay in a single line */
+}
+
+/* Style for the icons */
+.ctlyehia i {
+    display: block; /* Place the icons in a block layout */
+}
+
+/* Style for the spans */
+.ctlyehia span {
+    display: block; /* Place the spans in a block layout */
+}
+.rowService{
+    cursor: pointer;
+}
+.container_detail input,.container_detail select{
+    width: 80%;
+}
+.container_detail p,.container_detail textarea{
+    width: 100%;
+    margin: 10px 0 !important;
+    padding: 10px !important;
+    border: #0056b3 1px solid;
+    text-align: justify;
+}
+.attachment{
+    text-align: right;
+    color: black;
+    margin: 10px  !important;
+}
+.attachment a{
+    color: black;
+}
+.cotrollbtn{
+    margin: 10px !important;
+    text-align: center;
+}
+.btn{
+    padding: 7px !important;
+}

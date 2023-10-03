@@ -69,8 +69,8 @@
             $filename       = $newfilename ;
             $serviceStatus  = 1 ;
 
-            $sql=$con->prepare('INSERT INTO tblclientservices (ClientID,Date_service,ServiceID,Price,Dateend,ServiceTitle,ServiceDomain,ServiceTransfer,CodeTransfer,forwhat,Colors,Discription,filename,serviceStatus)
-                                VALUES (:ClientID,:Date_service,:ServiceID,:Price,:Dateend,:ServiceTitle,:ServiceDomain,:ServiceTransfer,:CodeTransfer,:forwhat,:Colors,:Discription,:filename,:serviceStatus)');
+            $sql=$con->prepare('INSERT INTO tblclientservices (ClientID,Date_service,ServiceID,Price,Dateend,ServiceTitle,ServiceDomain,ServiceTransfer,CodeTransfer,forwhat,Colors,Discription,filename,ServiceDone,serviceStatus)
+                                VALUES (:ClientID,:Date_service,:ServiceID,:Price,:Dateend,:ServiceTitle,:ServiceDomain,:ServiceTransfer,:CodeTransfer,:forwhat,:Colors,:Discription,:filename,:ServiceDone,:serviceStatus)');
             $sql->execute(array(
                 'ClientID'          => $ClientID,
                 'Date_service'      => $Date_service,
@@ -85,6 +85,7 @@
                 'Colors'            => $Colors,
                 'Discription'       => $Discription,
                 'filename'          => $filename,
+                'ServiceDone'       => 0,
                 'serviceStatus'     => $serviceStatus
             ));
 

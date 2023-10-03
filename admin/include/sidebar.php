@@ -27,7 +27,7 @@
                         </a>
                     </li>
                     <li class="nav-link" >
-                        <a href="">
+                        <a href="ManageServiceclient.php">
                             <i class="fa-brands fa-usps icon"></i>
                             <span class="text nav-text">Service Clients</span>
                         </a>
