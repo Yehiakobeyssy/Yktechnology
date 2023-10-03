@@ -1,0 +1,175 @@
+.mainform{
+    display: flex;
+}
+.contain{
+    width: 100%;
+    margin-left: 25px !important;
+}
+.title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px !important;
+}
+.btn{
+    padding: 5px 10px !important;
+}
+#btnNew{
+    margin-right: 10px !important ;
+}
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.search-input {
+    padding: 10px !important;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 80%;
+    font-size: 16px;
+    outline: none;
+}
+.search-button {
+    background-color: #1c4e80;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px !important;
+    margin-left: 10px !;
+    cursor: pointer;
+    font-size: 16px;
+}
+.search-button:hover {
+    background-color:#1c4e80;
+}
+.table-container {
+    max-width: 100%;
+    margin: 0 auto !important;
+    padding: 20px !important;
+}
+
+/* Style for the table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+/* Style for table headers */
+th {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px !important;
+}
+
+/* Style for table rows */
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+/* Style for table cells */
+td {
+    padding: 10px !important;
+    border: 1px solid #ccc;
+    position: relative;
+}
+/* Style for the icon */
+td .fa-ellipsis-vertical {
+    cursor: pointer; /* Add this to indicate it's clickable */
+}
+
+/* Style for the hover content */
+.hover-content {
+    display: none; /* Initially hide the content */
+    position: absolute;
+    top: 100%; /* Position it below the icon */
+    left: 0;
+    background-color: #fff; /* Background color for the content */
+    border: 1px solid #ccc;
+    padding: 10px;
+    z-index: 1; /* Ensure it's above other content */
+}
+
+/* Show the content on hover */
+td:hover .hover-content {
+    display: block;
+    width: 100%;
+}
+
+/* Style for the links inside the hover content */
+.hover-content a {
+    display: block;
+    margin-bottom: 5px !important;
+    text-decoration: none;
+    color: #007bff;
+}
+.addform {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 20px   !important;
+    font-family: Arial, sans-serif;
+}
+
+.addform h1 {
+    text-align: center;
+}
+
+.addform form {
+    background-color: #f9f9f9;
+    padding: 20px !important;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.addform label {
+    display: block;
+    margin-bottom: 5px !important;
+    font-weight: bold;
+}
+
+.addform select,
+.addform input[type="date"],
+.addform input[type="number"],
+.addform textarea {
+    width: 100%;
+    padding: 10px !important;
+    margin-bottom: 15px !important;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.addform #domain {
+    width: 100%;
+    padding: 10px !important;
+    margin-bottom: 15px !important;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+
+.addform button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px !important;
+    border: none;
+    border-radius: 5px !important;
+    cursor: pointer;
+}
+
+.addform button:hover {
+    background-color: #0056b3;
+}
+.btncontrol{
+    text-align: center;
+    margin: 10px !important;
+}
+
+
+
+
+
+

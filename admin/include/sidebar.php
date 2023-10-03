@@ -39,7 +39,7 @@
                         </a>
                     </li>
                     <li class="nav-link" >
-                        <a href="">
+                        <a href="ManageDomein.php">
                             <i class="fa-solid fa-server icon"></i>
                             <span class="text nav-text">Domain & Host</span>
                         </a>
