@@ -36,7 +36,7 @@
             <p>YK Technology offers a range of IT services, including web development, bug fixes, IT management, and social media management. The specific terms and conditions for each service may vary and will be communicated separately.</p>
 
             <h3>3. Privacy Policy</h3>
-            <p>Your use of our services is also governed by our Privacy Policy, which can be found at [link to your Privacy Policy]. By using our services, you consent to the collection and use of your personal information as described in the Privacy Policy.</p>
+            <p>Your use of our services is also governed by our Privacy Policy. By using our services, you consent to the collection and use of your personal information as described in the Privacy Policy.</p>
 
             <h3>4. User Responsibilities</h3>
             <p>You agree to use our services in compliance with applicable laws and regulations. You are responsible for maintaining the confidentiality of your account and password and for all activities that occur under your account.</p>

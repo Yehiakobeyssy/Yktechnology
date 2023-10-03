@@ -16,14 +16,50 @@
                     </li>
                     <li class="nav-link" >
                         <a href="ManageService.php">
-                        <i class="fa-solid fa-code icon"></i></i>
+                            <i class="fa-solid fa-code icon"></i>
                             <span class="text nav-text">Services</span>
                         </a>
                     </li>
                     <li class="nav-link" >
+                        <a href="ManageClients.php">
+                            <i class="fa-solid fa-user icon"></i>
+                            <span class="text nav-text">Clients</span>
+                        </a>
+                    </li>
+                    <li class="nav-link" >
+                        <a href="">
+                            <i class="fa-brands fa-usps icon"></i>
+                            <span class="text nav-text">Service Clients</span>
+                        </a>
+                    </li>
+                    <li class="nav-link" >
+                        <a href="">
+                            <i class="fa-solid fa-file-invoice-dollar icon"></i>
+                            <span class="text nav-text">Invoices</span>
+                        </a>
+                    </li>
+                    <li class="nav-link" >
+                        <a href="">
+                            <i class="fa-solid fa-server icon"></i>
+                            <span class="text nav-text">Domain & Host</span>
+                        </a>
+                    </li>
+                    <li class="nav-link" >
                         <a href="ManageTickets.php">
-                        <i class="fa-regular fa-calendar-check icon"></i></i>
+                            <i class="fa-regular fa-calendar-check icon"></i></i>
                             <span class="text nav-text">Tickets</span>
+                        </a>
+                    </li>
+                    <li class="nav-link" >
+                        <a href="">
+                            <i class="fa-solid fa-receipt icon"></i>
+                            <span class="text nav-text">Expensis</span>
+                        </a>
+                    </li>
+                    <li class="nav-link" >
+                        <a href="">
+                            <i class="fa-solid fa-list-check icon"></i>
+                            <span class="text nav-text">Do-to list</span>
                         </a>
                     </li>
                     <li class="nav-link" >
