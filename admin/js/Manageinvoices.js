@@ -7,5 +7,5 @@ $(function(){
         $('.bodyticket').load('ajaxadmin/displayinvoice.php?search='+search);
     })
 
-    
+
 })

@@ -299,3 +299,112 @@ td:hover .hover-content {
     border: transparent;
 }
 
+/* Style for the form container */
+.add-service-invoice {
+    width: 90%;
+    margin: 0 auto !important;
+    padding: 20px !important;
+    background-color: #f7f7f7;
+    border: 1px solid #ddd;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Style for form headings */
+.add-service-invoice h2 {
+    font-size: 24px;
+    margin-bottom: 20px !important;
+    color: #333;
+}
+
+/* Style for form labels */
+.add-service-invoice label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px !important;
+    color: #555;
+}
+
+/* Style for form input fields and select */
+.add-service-invoice input[type="text"],
+.add-service-invoice input[type="number"],
+.add-service-invoice select,
+.add-service-invoice textarea {
+    width: 100%;
+    padding: 10px!important;
+    margin-bottom: 15px!important;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #444;
+}
+
+/* Style for textarea */
+.add-service-invoice textarea {
+    height: 100px;
+}
+
+/* Style for form submit button */
+.add-service-invoice button {
+    color: #fff;
+    border: none;
+    padding: 10px 20px !important;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.add-service-invoice button[type="submit"]{
+    background-color: #007bff;
+}
+.add-service-invoice button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.add-service-invoice button[type="reset"]{
+    background-color: #680a0a;
+}
+.add-service-invoice button[type="reset"]:hover {
+    background-color: #e02020;
+}
+
+
+/* Additional styling for date input fields */
+.add-service-invoice input[type="date"] {
+    width: 100%;
+    padding: 10px!important;
+    margin-bottom: 15px!important;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #444;
+}
+
+/* Clearfix for form container */
+.add-service-invoice::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+.controlbtn{
+    text-align: center;
+    margin: 15px !important;
+}
+
+.finish{
+    text-align: right;
+
+}
+.finish a {
+    background-color: #007BFF; 
+    color: #fff; 
+    padding: 10px 20px !important; 
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold; 
+    transition: background-color 0.3s ease; 
+}
+
+.finish a:hover {
+    background-color: #0056b3; 
+}

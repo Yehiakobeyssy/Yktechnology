@@ -71,10 +71,190 @@
                 </div>
                 <?php
                 }elseif($do=='addservice'){?>
+                    <div class="add-service-invoice">
+                        <h2>Add Service Invoice</h2>
+                        <form action="" method="post">
+                            <div class="form-group">
+                                <label for="service-select">Service:</label>
+                                <select id="service-select" name="service" >
+                                    <?php
+                                        $sql=$con->prepare('SELECT ServiceID,Service_Name,Service_Price FROM tblservices WHERE Active=1');
+                                        $sql->execute();
+                                        $services=$sql->fetchAll();
+                                        foreach($services as $service){
+                                            echo '<option value="'.$service['ServiceID'].'">'.$service['Service_Name'].' ('.$service['Service_Price'].' $) </option>';
+                                        }
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="title">Title:</label>
+                                <input type="text" id="title" name="title" >
+                            </div>
+                            <div class="form-group">
+                                <label for="for-what">For What:</label>
+                                <input type="text" id="for-what" name="for-what" >
+                            </div>
+                            <div class="form-group">
+                                <label for="color">Color:</label>
+                                <input type="text" id="color" name="color" >
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Description:</label>
+                                <textarea id="description" name="description" rows="4" ></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="price">Price:</label>
+                                <input type="number" id="price" name="price" step="0.01" >
+                            </div>
+                            <div class="form-group">
+                                <label for="start-date">Start Date:</label>
+                                <input type="date" id="start-date" name="start-date" >
+                            </div>
+                            <div class="form-group">
+                                <label for="end-date">End Date:</label>
+                                <input type="date" id="end-date" name="end-date" >
+                            </div>
+                            <div class="form-group controlbtn">
+                                <button type="reset">Clear</button>
+                                <button type="submit" name="add-service">Add Service</button>
+                            </div>
+                            <div class="finish">
+                                <a href="makeainvoice.php?do=ser">Make a invoice</a>
+                            </div>
+                        </form>
+                        <?php
+                            if(isset($_POST['add-service'])){
+                                $service = $_POST['service'];
+                                $title = $_POST['title'];
+                                $forwhat = $_POST['for-what'];
+                                $color = $_POST['color'];
+                                $description = $_POST['description'];
+                                $price = $_POST['price'];
+                                $dateBegin = $_POST['start-date'];
+                                $endDate = $_POST['end-date'];
 
+                                if(isset($_SESSION['AD_Service'])){
+                                    $itemarray=array(
+                                        'service'   => $service,
+                                        'title'     => $title,
+                                        'forwhat'   => $forwhat,
+                                        'color'     => $color,
+                                        'description'   => $description,
+                                        'price'     => $price,
+                                        'dateBegin' => $dateBegin,
+                                        'endDate'   => $endDate
+
+                                    );
+                                    array_push($_SESSION['AD_Service'],$itemarray);
+                                }else{
+                                    $itemarray=array(
+                                        'service'   => $service,
+                                        'title'     => $title,
+                                        'forwhat'   => $forwhat,
+                                        'color'     => $color,
+                                        'description'   => $description,
+                                        'price'     => $price,
+                                        'dateBegin' => $dateBegin,
+                                        'endDate'   => $endDate
+                                    );
+                                    $_SESSION['AD_Service'][0]= $itemarray;
+                                };
+                            }
+                        ?>
+                    </div>
+                    
                 <?php
-                }elseif($do=='addDomeinSer'){
+                }elseif($do=='addDomeinSer'){?>
+                <div class="add-service-invoice">
+                    <h2>Add Domein Invoice</h2>
+                    <form action="" method="post">
+                        <div class="form-group">
+                            <label for="service-select">Service Type:</label>
+                            <select id="service-type-select" name="service-type">
+                                <?php
+                                    $sql = $con->prepare('SELECT DomainTypeID, ServiceName FROM tbldomaintype ');
+                                    $sql->execute();
+                                    $services = $sql->fetchAll();
+                                    foreach ($services as $service) {
+                                        echo '<option value="' . $service['DomainTypeID'] . '">' . $service['ServiceName'] . ' </option>';
+                                    }
+                                ?>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="service-select">Service:</label>
+                            <select id="service-select" name="service">
+                                <?php
+                                    $sql = $con->prepare('SELECT ServiceID, Service_Name, Service_Price FROM tblservices WHERE Active = 1');
+                                    $sql->execute();
+                                    $services = $sql->fetchAll();
+                                    foreach ($services as $service) {
+                                        echo '<option value="' . $service['ServiceID'] . '">' . $service['Service_Name'] . ' (' . $service['Service_Price'] . ' $) </option>';
+                                    }
+                                ?>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="domain-name">Domain Name:</label>
+                            <input type="text" id="domain-name" name="domain-name">
+                        </div>
+                        <div class="form-group">
+                            <label for="renewal-price">Renewal Price:</label>
+                            <input type="number" id="renewal-price" name="renewal-price" step="0.01">
+                        </div>
+                        <div class="form-group">
+                            <label for="end-date">End Date:</label>
+                            <input type="date" id="end-date" name="end-date">
+                        </div>
+                        <div class="form-group">
+                            <label for="note">Note:</label>
+                            <textarea id="note" name="note" rows="4"></textarea>
+                        </div>
+                        <div class="form-group controlbtn">
+                            <button type="reset">Clear</button>
+                            <button type="submit" name="add-domein-service">Add Domein Service</button>
+                        </div>
+                        <div class="finish">
+                            <a href="makeainvoice.php?do=domein">Make a invoice</a>
+                        </div>
+                    </form>
+                    <?php
+                        if (isset($_POST['add-domein-service'])) {
+                            $serviceType = $_POST['service-type'];
+                            $service = $_POST['service'];
+                            $domainName = $_POST['domain-name'];
+                            $renewalPrice = $_POST['renewal-price'];
+                            $endDate = $_POST['end-date'];
+                            $note = $_POST['note'];
 
+                            if (isset($_SESSION['AD_Domein'])) {
+                                $itemarray = array(
+                                    'serviceType' => $serviceType,
+                                    'service' => $service,
+                                    'domainName' => $domainName,
+                                    'renewalPrice' => $renewalPrice,
+                                    'endDate' => $endDate,
+                                    'note' => $note
+                                );
+                                array_push($_SESSION['AD_Domein'], $itemarray);
+                            } else {
+                                $itemarray = array(
+                                    'serviceType' => $serviceType,
+                                    'service' => $service,
+                                    'domainName' => $domainName,
+                                    'renewalPrice' => $renewalPrice,
+                                    'endDate' => $endDate,
+                                    'note' => $note
+                                );
+                                $_SESSION['AD_Domein'][0] = $itemarray;
+                            };
+                            
+                        }
+                    ?>
+                </div>
+                
+                <?php
                 }elseif($do=='detail'){
                     $invoiceID = (isset($_GET['id']))?$_GET['id']:0;
                     $sql=$con->prepare('SELECT InvoiceID,InvoiceDate,TotalAmount,TotalTax,Client_FName,Client_LName,Client_companyName,Client_addresse,Client_city,Client_zipcode,StatusInvoice,StatusInvoiceColor
