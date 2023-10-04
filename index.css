@@ -293,17 +293,22 @@ header label{
 .set_team{
     display: flex;
     flex-direction: row;
-    overflow-x: scroll;
+    overflow-x: auto;
     width: 90%;
     margin: 10px auto;
+    height: 275px;
 }
 .card_person{
     margin: 0 15px;
     padding: 10px;
     border-radius: 15px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    background-image: linear-gradient(to left, #1c4e80, #3383d4);
     text-align: center;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center ;
+    position: relative;
+    height: 250px;
 }
 .img_person img{
     width: 200px;
@@ -318,16 +323,25 @@ header label{
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    border: orange 2px solid;
+    border:#1c4e80 2px solid;
+}
+.workerinfo{
+    position: absolute;
+    top: 160px;
+    background-image: linear-gradient(to left, #1c4e80, #3383d4);
+    padding: 10px 20px;
+    width: 100%;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-.card_person h3{
-    margin: 5px;
-    color: white;
-}
-.card_person p{
-    color: white;
-    font-weight: bold;
+.workerinfo label{
+    text-transform: uppercase;
 }
 
 

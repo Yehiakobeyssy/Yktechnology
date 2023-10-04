@@ -148,9 +148,10 @@
                         <div class="img_person">
                             <img src="images/ourteam/'.$per['workerimg'].'" alt="">
                         </div>
-                        <h3>'.$per['workerName'].'</h3>
-                        <p>'.$per['workerDiscription'].'</p>
-                        <a href="mailto:'.$per['Workeremail'].'" class="btn btn-secondary">contact Him/her</a>
+                        <div class="workerinfo">
+                            <h3>'.$per['workerName'].'</h3>
+                            <label>'.$per['workerDiscription'].'</label>
+                        </div>
                     </div>
                     ';
                 }
