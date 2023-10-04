@@ -1,0 +1,147 @@
+.mainform{
+    display: flex;
+}
+.contain{
+    width: 100%;
+    margin-left: 25px !important;
+}
+.title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px !important;
+}
+.btnadd{
+    margin: 0 10px !important;
+    padding: 5px 15px !important;
+}
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.search-input {
+    padding: 10px !important;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 80%;
+    font-size: 16px;
+    outline: none;
+}
+.search-button {
+    background-color: #1c4e80;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px !important;
+    margin-left: 10px !;
+    cursor: pointer;
+    font-size: 16px;
+}
+.cards_payments{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    grid-auto-rows: minmax(auto, auto);
+    justify-content: center;
+    align-items: center;
+    margin: 15px auto !important;
+}
+.cardPay{
+    padding: 10px !important;
+    border: #1c4e80 2px solid;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.dis{
+    margin: 10px !important;
+    height: 150px;
+    overflow-y: scroll;
+}
+.dis p{
+    text-align: justify;
+}
+.control{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.control a{
+    padding: 5px 15px !important;
+    margin: 3px !important;
+    width: 100%;
+}
+/* Style the form container */
+.frmadd {
+    max-width: 80%;
+    margin: 0 auto !important;
+    padding: 20px !important;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Style the form labels */
+  .frmadd label {
+    display: block;
+    margin-bottom: 5px !important;
+    font-weight: bold;
+  }
+  
+  /* Style the text input */
+  .frmadd input[type="text"],
+  .frmadd textarea {
+    width: 100%;
+    padding: 10px !important;
+    margin-bottom: 15px !important;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  /* Style the submit button */
+  .frmadd button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px !important;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 18px;
+  }
+  
+  .frmadd button[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Add some spacing to the button */
+  .frmadd .btncontrol {
+    text-align: center;
+    margin-top: 10px !important;
+  }
+  
+
+  
+@media (max-width:1366px) {
+    .cards_payments{
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+@media (max-width:1279px) {
+    .cards_payments{
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+@media (max-width:768px) {
+    .cards_payments{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width:480px) {
+    .cards_payments{
+        grid-template-columns: repeat(1, 1fr);
+    }
+}

@@ -9,7 +9,7 @@ $(function(){
         location.href="ManageCountry.php";
     })
     $('.card2').click(function(){
-        location.href="";
+        location.href="managePaymentMethod.php";
     })
     $('.card3').click(function(){
         location.href="";
