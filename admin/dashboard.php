@@ -25,6 +25,65 @@
         unset($_SESSION['useradmin']);
         echo '<script> location.href="index.php" </script>';
     }
+
+    
+    $currentDate = date('Y-m-d');
+    $endDate45Days = date('Y-m-d', strtotime('+45 days'));
+
+    $updateQuery1 = "   UPDATE tbldomeinclients 
+                        SET Status = 2
+                        WHERE Status = 1 
+                        AND RenewDate BETWEEN '$currentDate' AND '$endDate45Days' 
+                        AND Status NOT IN (4, 5)";
+    
+    $yesterday = date('Y-m-d', strtotime('-1 day'));
+    
+
+    $updateQuery2 = "   UPDATE tbldomeinclients 
+                        SET Status = 3
+                        WHERE Status = 1 
+                        AND RenewDate = '$yesterday' 
+                        AND Status NOT IN (4, 5)";
+    
+    try {
+        $stmt1 = $con->prepare($updateQuery1);
+        $stmt1->execute();
+    
+        $stmt2 = $con->prepare($updateQuery2);
+        $stmt2->execute();
+    
+    } catch (PDOException $e) {
+
+    }
+    
+
+    $currentDate = date('Y-m-d');
+    $endDate15Days = date('Y-m-d', strtotime('+15 days'));
+
+    $updateQuery3 = "   UPDATE tblclientservices 
+                        SET serviceStatus = 2
+                        WHERE serviceStatus = 1 
+                        AND Dateend BETWEEN '$currentDate' AND '$endDate15Days' 
+                        AND serviceStatus != 4";
+
+
+    $yesterday = date('Y-m-d', strtotime('-1 day'));
+
+    $updateQuery4 = "   UPDATE tblclientservices 
+                        SET serviceStatus = 3
+                        WHERE serviceStatus = 1 
+                        AND Dateend = '$yesterday' 
+                        AND serviceStatus != 4";
+
+    try {
+        $stmt3 = $con->prepare($updateQuery3);
+        $stmt3->execute();
+        $stmt4= $con->prepare($updateQuery4);
+        $stmt4->execute();
+
+    } catch (PDOException $e) {
+        
+    }
 ?>
     <link rel="stylesheet" href="css/dashboard.css">
     <link rel="stylesheet" href="css/navbar.css">
@@ -39,36 +98,19 @@
                 <h1>Dashboard</h1>
             </div>
             <?php
-                function getCount($con, $table, $condition = '') {
-                    $sql = "SELECT COUNT(*) AS count FROM $table $condition";
-                    $stmt = $con->prepare($sql);
-                    $stmt->execute();
-                    $result = $stmt->fetch(PDO::FETCH_ASSOC);
-                    return $result['count'];
-                }
-                
-                // Clients Card
                 $clientsCount = getCount($con, 'tblclients', 'WHERE client_active = 1');
-                
-                // Services Card
                 $servicesCount = getCount($con, 'tblclientservices');
                 $inProcessCount = getCount($con, 'tblclientservices', 'WHERE ServiceDone = 0');
                 $expireSoonCount = getCount($con, 'tblclientservices', 'WHERE serviceStatus = 2');
                 $cancelCount = getCount($con, 'tblclientservices', 'WHERE serviceStatus = 4');
-                
-                // Domains Card
                 $domainsCount = getCount($con, 'tbldomeinclients');
                 $activeCount = getCount($con, 'tbldomeinclients', 'WHERE Status = 1');
                 $expireSoonDomainsCount = getCount($con, 'tbldomeinclients', 'WHERE Status = 2');
                 $cancelDomainsCount = getCount($con, 'tbldomeinclients', 'WHERE Status = 5');
-                
-                // Invoices Card
                 $invoicesCount = getCount($con, 'tblinvoice');
                 $deoCount = getCount($con, 'tblinvoice', 'WHERE Invoice_Status = 1');
                 $paidCount = getCount($con, 'tblinvoice', 'WHERE Invoice_Status = 2');
                 $cancelInvoicesCount = getCount($con, 'tblinvoice', 'WHERE Invoice_Status = 3');
-                
-                // Tickets Card
                 $ticketsCount = getCount($con, 'tblticket');
                 $openTicketsCount = getCount($con, 'tblticket', 'WHERE ticketStatus = 1');
                 $clientRespondCount = getCount($con, 'tblticket', 'WHERE ticketStatus = 2');
@@ -161,11 +203,10 @@
                     <h2 class="card-title">Amount Invoices</h2>
                     <p class="card-count">
                         <?php
-                        // Calculate the total amount of invoices with Invoice_Status < 3
                         $sql = $con->prepare('SELECT SUM(TotalAmount + TotalTax) AS totalAmount FROM tblinvoice WHERE Invoice_Status < 3');
                         $sql->execute();
                         $result = $sql->fetch();
-                        $formattedAmount = number_format($result['totalAmount'], 2); // Format with 2 decimal places
+                        $formattedAmount = number_format($result['totalAmount'], 2);
                         echo '$' . $formattedAmount;
                         ?>
                     </p>
@@ -175,12 +216,11 @@
                     <h2 class="card-title">Payments</h2>
                     <p class="card-count">
                         <?php
-                        // Calculate the total payments where Invoice_Status < 3
                         $sql = $con->prepare('SELECT SUM(Payment_Amount) AS totalPayments FROM tblpayments 
                                             WHERE invoiceID IN (SELECT InvoiceID FROM tblinvoice WHERE Invoice_Status < 3)');
                         $sql->execute();
                         $result = $sql->fetch();
-                        $formattedPayments = number_format($result['totalPayments'], 2); // Format with 2 decimal places
+                        $formattedPayments = number_format($result['totalPayments'], 2);
                         echo '$' . $formattedPayments;
                         ?>
                     </p>
@@ -190,11 +230,10 @@
                     <h2 class="card-title">Expenses</h2>
                     <p class="card-count">
                         <?php
-                        // Calculate the total expenses
                         $sql = $con->prepare('SELECT SUM(Expensis_Amount) AS totalExpenses FROM tblexpensis');
                         $sql->execute();
                         $result = $sql->fetch();
-                        $formattedExpenses = number_format($result['totalExpenses'], 2); // Format with 2 decimal places
+                        $formattedExpenses = number_format($result['totalExpenses'], 2);
                         echo '$' . $formattedExpenses;
                         ?>
                     </p>
@@ -207,7 +246,7 @@
                     <thead>
                         <tr>
                             <th>Client</th>
-                            <th>Date</th> <!-- Fixed the closing tag -->
+                            <th>Date</th>
                             <th>Service</th>
                             <th>Price</th>
                             <th>Status</th>
@@ -216,7 +255,6 @@
                     </thead>
                     <tbody>
                         <?php
-                        // Query to fetch data from the database
                         $sql = $con->prepare('SELECT CONCAT(c.Client_FName, " ", c.Client_LName) AS FullName,
                                                 s.Service_Name,
                                                 FORMAT(cs.Price, 2) AS FormattedPrice,
@@ -251,7 +289,6 @@
             </div>
 
             <?php
-            // SQL query to fetch ticket information with order by and formatted date
             $sql = $con->prepare('SELECT CONCAT(c.Client_FName, " ", c.Client_LName) AS Client,
                                     tt.TypeTicket AS Section,
                                     t.ticketSubject AS Subject,
@@ -265,8 +302,6 @@
                                     GROUP BY t.ticketID
                                     ORDER BY MAX(dt.Date) DESC');
             $sql->execute();
-
-            // Fetch and display ticket data in HTML table
             echo '<div class="table-container">';
             echo '<h2>Tickets</h2>';
             echo '<table class="tickets-table">';
@@ -299,11 +334,8 @@
 
             <div class="container_div">
                 <?php
-                    // Get the current date and date after 45 days
                     $currentDate = date('Y-m-d');
                     $dateAfter45Days = date('Y-m-d', strtotime('+45 days'));
-
-                    // SQL query to fetch domains that expire after 45 days
                     $sql = $con->prepare('SELECT CONCAT(dt.ServiceName, " (", dc.DomeinName, ")") AS Plan,
                                             CONCAT(c.Client_FName, " ", c.Client_LName) AS Client,
                                             CONCAT("$", FORMAT(dc.Price_Renew, 2)) AS Price,
@@ -318,7 +350,7 @@
                     $sql->bindParam(':dateAfter45Days', $dateAfter45Days);
                     $sql->execute();
 
-                    // Fetch and display domain data in HTML table
+
                     echo '<div class="left-div">';
                     echo '<h2>Domains End After 45 Days</h2>';
                     echo '<table class="domains-table">';
@@ -363,14 +395,12 @@
             </div>
             <div class="container_expenis">
                 <?php
-                    // SQL query to fetch expenses data sorted by Date in descending order
                     $sql = $con->prepare('SELECT ExpensisDate, Discription, CONCAT("$", FORMAT(Expensis_Amount, 2)) AS Amount
                                             FROM tblexpensis
                                             ORDER BY ExpensisDate DESC');
 
                     $sql->execute();
 
-                    // Fetch and display expenses data in HTML table
                     echo '<div class="left-div">';
                     echo '<h2>Expenses</h2>';
                     echo '<table class="expenses-table">';
@@ -397,7 +427,7 @@
 
                 ?>
                 <?php
-                    // SQL query to fetch payments data
+
                     $sql = $con->prepare('SELECT CONCAT(tblclients.Client_FName, " ", tblclients.Client_LName) AS Client,
                     tblpayment_method.methot AS Method,
                     CONCAT("$", FORMAT(tblpayments.Payment_Amount, 2)) AS Amount
@@ -408,7 +438,6 @@
 
                     $sql->execute();
 
-                    // Fetch and display payments data in HTML table
                     echo '<div class="right-div">';
                     echo '<h2>Payments</h2>';
                     echo '<table class="payments-table">';

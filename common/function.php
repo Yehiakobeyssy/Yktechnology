@@ -7,6 +7,14 @@
         $count = $statement->rowCount();
         return $count;
     }
+    
+    function getCount($con, $table, $condition = '') {
+        $sql = "SELECT COUNT(*) AS count FROM $table $condition";
+        $stmt = $con->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['count'];
+    }
 
     function countItems($item, $table) {
 		global $con;
