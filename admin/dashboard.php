@@ -259,6 +259,7 @@
                                                 s.Service_Name,
                                                 FORMAT(cs.Price, 2) AS FormattedPrice,
                                                 ss.Status,
+                                                ss.Status_Color,
                                                 CASE
                                                     WHEN cs.ServiceDone = 0 THEN "In Progress"
                                                     WHEN cs.ServiceDone = 1 THEN "Completed"
@@ -279,7 +280,7 @@
                             echo '<td>' . date("d/m/Y", strtotime($service['Date_service'])) . '</td>';
                             echo '<td>' . $service['Service_Name'] . '</td>';
                             echo '<td>' . '$' . $service['FormattedPrice'] . '</td>';
-                            echo '<td>' . $service['Status'] . '</td>';
+                            echo '<td style="color:'.$service['Status_Color'].'">' . $service['Status'] . '</td>';
                             echo '<td>' . $service['ServiceStatus'] . '</td>';
                             echo '</tr>';
                         }
@@ -293,6 +294,7 @@
                                     tt.TypeTicket AS Section,
                                     t.ticketSubject AS Subject,
                                     st.Status AS Status,
+                                    st.fontColor,
                                     DATE_FORMAT(MAX(dt.Date), "%d/%m/%Y (%H:%i:%s)") AS LastUpdate
                                     FROM tblticket t
                                     INNER JOIN tblclients c ON t.ClientID = c.ClientID
@@ -321,7 +323,7 @@
                 echo '<td>' . $row['Client'] . '</td>';
                 echo '<td>' . $row['Section'] . '</td>';
                 echo '<td>' . $row['Subject'] . '</td>';
-                echo '<td>' . $row['Status'] . '</td>';
+                echo '<td style="color:'.$row['fontColor'].'">' . $row['Status'] . '</td>';
                 echo '<td>' . $row['LastUpdate'] . '</td>';
                 echo '</tr>';
             }
