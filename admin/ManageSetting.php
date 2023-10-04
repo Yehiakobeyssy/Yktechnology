@@ -53,18 +53,6 @@
                     <div class="card_staus card4">
                         <h1>Ticket Types</h1>
                     </div>
-                    <div class="card_staus card5">
-                        <h1>Status Domein</h1>
-                    </div>
-                    <div class="card_staus card6">
-                        <h1>Status Invoice</h1>
-                    </div>
-                    <div class="card_staus card7">
-                        <h1>Status Invoices</h1>
-                    </div>
-                    <div class="card_staus card8">
-                        <h1>Status Tickets</h1>
-                    </div>
                 </div>
                 <div class="ourteam">
                     <h4>Our team</h4>

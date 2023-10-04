@@ -12,21 +12,10 @@ $(function(){
         location.href="managePaymentMethod.php";
     })
     $('.card3').click(function(){
-        location.href="";
+        location.href="manageDomeinTypes.php";
     })
     $('.card4').click(function(){
         location.href="";
     })
-    $('.card5').click(function(){
-        location.href="";
-    })
-    $('.card6').click(function(){
-        location.href="";
-    })
-    $('.card7').click(function(){
-        location.href="";
-    })
-    $('.card8').click(function(){
-        location.href="";
-    })
+
 })
