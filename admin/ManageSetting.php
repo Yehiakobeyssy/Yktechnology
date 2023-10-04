@@ -39,6 +39,33 @@
                 <h1>Setting</h1>
             </div>
             <div class="result">
+                <h4>Setting Status</h4>
+                <div class="cards_Services">
+                    <div class="card_staus card1">
+                        <h1>Countris</h1>
+                    </div>
+                    <div class="card_staus card2">
+                        <h1>Payment Method</h1>
+                    </div>
+                    <div class="card_staus card3">
+                        <h1>Domein Types</h1>
+                    </div>
+                    <div class="card_staus card4">
+                        <h1>Ticket Types</h1>
+                    </div>
+                    <div class="card_staus card5">
+                        <h1>Status Domein</h1>
+                    </div>
+                    <div class="card_staus card6">
+                        <h1>Status Invoice</h1>
+                    </div>
+                    <div class="card_staus card7">
+                        <h1>Status Invoices</h1>
+                    </div>
+                    <div class="card_staus card8">
+                        <h1>Status Tickets</h1>
+                    </div>
+                </div>
                 <div class="ourteam">
                     <h4>Our team</h4>
                     <div class="set_team">

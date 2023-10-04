@@ -52,6 +52,9 @@
                             <label for="filterDateEnd">Date End:</label>
                             <input type="date" id="filterDateEnd" name="filterDateEnd">
                             
+                            <label for="filterDescription">Filter by Description:</label>
+                            <input type="text" id="filterDescription" name="filterDescription">
+
                             <label for="filterType">Filter by Type:</label>
                             <select id="filterType" name="filterType">
                                 <option value="">All</option>
@@ -72,6 +75,7 @@
                                 <tr>
                                     <th>Date</th>
                                     <th>Expense Type</th>
+                                    <th>Discription</th>
                                     <th>Total Amount</th>
                                     <th>Attachment</th>
                                     <th>control</th>
@@ -79,21 +83,33 @@
                             </thead>
                             <tbody>
                                 <?php
-                                // Filter expenses based on date and type if submitted
-                                $filterDateBegin = isset($_POST['filterDateBegin']) ? $_POST['filterDateBegin'] : '';
-                                $filterDateEnd = isset($_POST['filterDateEnd']) ? $_POST['filterDateEnd'] : '';
-                                $filterType = isset($_POST['filterType']) ? $_POST['filterType'] : '';
+                                    $filterDateBegin = '';
+                                    $filterDateEnd = '';
+                                    $filterType = '';
+                                    $filterDescription = '%' . ''. '%' ;
 
-                                $sql = $con->prepare('SELECT ExpenisisID,ExpensisDate, Type_Expensis, Expensis_Amount, attached FROM tblexpensis
+                                    // Check if the filter form has been submitted
+                                    if (isset($_POST['btnFilter'])) {
+                                        // Set filter values if form has been submitted
+                                        $filterDateBegin = isset($_POST['filterDateBegin']) ? $_POST['filterDateBegin'] : '';
+                                        $filterDateEnd = isset($_POST['filterDateEnd']) ? $_POST['filterDateEnd'] : '';
+                                        $filterType = isset($_POST['filterType']) ? $_POST['filterType'] : '';
+                                        $filterDescription = isset($_POST['filterDescription']) ? '%' . $_POST['filterDescription'] . '%' : '';
+                                    }
+
+                                $sql = $con->prepare('SELECT ExpenisisID, ExpensisDate, Type_Expensis, Discription, Expensis_Amount, attached FROM tblexpensis
                                                     INNER JOIN tbltypeexpensis ON tblexpensis.ExpenisType = tbltypeexpensis.TypeexpensisID
                                                     WHERE ((:filterDateBegin = "" OR ExpensisDate >= :filterDateBegin)
                                                     AND (:filterDateEnd = "" OR ExpensisDate <= :filterDateEnd))
-                                                    AND (:filterType = "" OR ExpenisType = :filterType)');
+                                                    AND (:filterType = "" OR ExpenisType = :filterType)
+                                                    AND (Discription LIKE :filterDescription)');
                                 $sql->bindParam(':filterDateBegin', $filterDateBegin);
                                 $sql->bindParam(':filterDateEnd', $filterDateEnd);
                                 $sql->bindParam(':filterType', $filterType);
+                                $sql->bindParam(':filterDescription', $filterDescription);
                                 $sql->execute();
                                 $expenses = $sql->fetchAll();
+
 
                                 $totalExpenses = 0; // Initialize total expenses
 
@@ -101,6 +117,7 @@
                                     echo '<tr>';
                                     echo '<td>' . $expense['ExpensisDate'] . '</td>';
                                     echo '<td>' . $expense['Type_Expensis'] . '</td>';
+                                    echo '<td>' . $expense['Discription'] . '</td>'; // Added description field
                                     echo '<td>' . number_format($expense['Expensis_Amount'], 2, '.', '') . ' $</td>';
                                     echo '<td><a href="../Documents/' . $expense['attached'] . '" download><i class="fa-solid fa-paperclip"></i></a></td>';
                                     echo '<td><a href="?do=delete&id=' . $expense['ExpenisisID'] . '" class="delete-link"><i class="fa-solid fa-trash"></i></a></td>';
