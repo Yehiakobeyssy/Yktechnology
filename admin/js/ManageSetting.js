@@ -15,7 +15,7 @@ $(function(){
         location.href="manageDomeinTypes.php";
     })
     $('.card4').click(function(){
-        location.href="";
+        location.href="manageTickettype.php";
     })
 
 })
