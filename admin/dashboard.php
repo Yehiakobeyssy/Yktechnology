@@ -38,84 +38,120 @@
             <div class="title">
                 <h1>Dashboard</h1>
             </div>
+            <?php
+                function getCount($con, $table, $condition = '') {
+                    $sql = "SELECT COUNT(*) AS count FROM $table $condition";
+                    $stmt = $con->prepare($sql);
+                    $stmt->execute();
+                    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                    return $result['count'];
+                }
+                
+                // Clients Card
+                $clientsCount = getCount($con, 'tblclients', 'WHERE client_active = 1');
+                
+                // Services Card
+                $servicesCount = getCount($con, 'tblclientservices');
+                $inProcessCount = getCount($con, 'tblclientservices', 'WHERE ServiceDone = 0');
+                $expireSoonCount = getCount($con, 'tblclientservices', 'WHERE serviceStatus = 2');
+                $cancelCount = getCount($con, 'tblclientservices', 'WHERE serviceStatus = 4');
+                
+                // Domains Card
+                $domainsCount = getCount($con, 'tbldomeinclients');
+                $activeCount = getCount($con, 'tbldomeinclients', 'WHERE Status = 1');
+                $expireSoonDomainsCount = getCount($con, 'tbldomeinclients', 'WHERE Status = 2');
+                $cancelDomainsCount = getCount($con, 'tbldomeinclients', 'WHERE Status = 5');
+                
+                // Invoices Card
+                $invoicesCount = getCount($con, 'tblinvoice');
+                $deoCount = getCount($con, 'tblinvoice', 'WHERE Invoice_Status = 1');
+                $paidCount = getCount($con, 'tblinvoice', 'WHERE Invoice_Status = 2');
+                $cancelInvoicesCount = getCount($con, 'tblinvoice', 'WHERE Invoice_Status = 3');
+                
+                // Tickets Card
+                $ticketsCount = getCount($con, 'tblticket');
+                $openTicketsCount = getCount($con, 'tblticket', 'WHERE ticketStatus = 1');
+                $clientRespondCount = getCount($con, 'tblticket', 'WHERE ticketStatus = 2');
+                $operatorTicketsCount = getCount($con, 'tblticket', 'WHERE ticketStatus = 3');
+            ?>
             <div class="card-grid">
                 <div class="card card-primary">
                     <h2 class="card-title">Clients</h2>
-                    <p class="card-count">General Count: 5</p>
+                    <p class="card-count">General Count: <?php echo $clientsCount; ?></p>
                 </div>
 
                 <div class="card card-secondary">
                     <h2 class="card-title">Services</h2>
-                    <p class="card-count">General Count: 0</p>
+                    <p class="card-count">General Count: <?php echo $servicesCount; ?></p>
                     <div class="card-subtitles">
                         <div class="subtitle">
                             <h3>In Process</h3>
-                            <p>2</p>
+                            <p><?php echo $inProcessCount; ?></p>
                         </div>
                         <div class="subtitle">
                             <h3>Expire Soon</h3>
-                            <p>0</p>
+                            <p><?php echo $expireSoonCount; ?></p>
                         </div>
                         <div class="subtitle">
                             <h3>Cancel</h3>
-                            <p>0</p>
+                            <p><?php echo $cancelCount; ?></p>
                         </div>
                     </div>
                 </div>
 
                 <div class="card card-primary">
                     <h2 class="card-title">Domains</h2>
-                    <p class="card-count">General Count: 0</p>
+                    <p class="card-count">General Count: <?php echo $domainsCount; ?></p>
                     <div class="card-subtitles">
                         <div class="subtitle">
                             <h3>Active</h3>
-                            <p>0</p>
+                            <p><?php echo $activeCount; ?></p>
                         </div>
                         <div class="subtitle">
                             <h3>Expire Soon</h3>
-                            <p>0</p>
+                            <p><?php echo $expireSoonDomainsCount; ?></p>
                         </div>
                         <div class="subtitle">
                             <h3>Cancel</h3>
-                            <p>0</p>
+                            <p><?php echo $cancelDomainsCount; ?></p>
                         </div>
                     </div>
                 </div>
 
                 <div class="card card-secondary">
                     <h2 class="card-title">Invoices</h2>
-                    <p class="card-count">General Count: 5</p>
+                    <p class="card-count">General Count: <?php echo $invoicesCount; ?></p>
                     <div class="card-subtitles">
                         <div class="subtitle">
-                            <h3>Deo</h3>
-                            <p>2</p>
+                            <h3>Due</h3>
+                            <p><?php echo $deoCount; ?></p>
                         </div>
                         <div class="subtitle">
                             <h3>Paid</h3>
-                            <p>2</p>
+                            <p><?php echo $paidCount; ?></p>
                         </div>
                         <div class="subtitle">
                             <h3>Cancel</h3>
-                            <p>1</p>
+                            <p><?php echo $cancelInvoicesCount; ?></p>
                         </div>
                     </div>
                 </div>
 
                 <div class="card card-primary">
                     <h2 class="card-title">Tickets</h2>
-                    <p class="card-count">General Count: 0</p>
+                    <p class="card-count">General Count: <?php echo $ticketsCount; ?></p>
                     <div class="card-subtitles">
                         <div class="subtitle">
                             <h3>Open</h3>
-                            <p>0</p>
+                            <p><?php echo $openTicketsCount; ?></p>
                         </div>
                         <div class="subtitle">
                             <h3>Client Respond</h3>
-                            <p>0</p>
+                            <p><?php echo $clientRespondCount; ?></p>
                         </div>
                         <div class="subtitle">
                             <h3>Operator</h3>
-                            <p>0</p>
+                            <p><?php echo $operatorTicketsCount; ?></p>
                         </div>
                     </div>
                 </div>
@@ -123,25 +159,55 @@
             <div class="card-grids">
                 <div class="card card-special">
                     <h2 class="card-title">Amount Invoices</h2>
-                    <p class="card-count">1000</p>
+                    <p class="card-count">
+                        <?php
+                        // Calculate the total amount of invoices with Invoice_Status < 3
+                        $sql = $con->prepare('SELECT SUM(TotalAmount + TotalTax) AS totalAmount FROM tblinvoice WHERE Invoice_Status < 3');
+                        $sql->execute();
+                        $result = $sql->fetch();
+                        $formattedAmount = number_format($result['totalAmount'], 2); // Format with 2 decimal places
+                        echo '$' . $formattedAmount;
+                        ?>
+                    </p>
                 </div>
 
                 <div class="card card-special">
                     <h2 class="card-title">Payments</h2>
-                    <p class="card-count">500</p>
+                    <p class="card-count">
+                        <?php
+                        // Calculate the total payments where Invoice_Status < 3
+                        $sql = $con->prepare('SELECT SUM(Payment_Amount) AS totalPayments FROM tblpayments 
+                                            WHERE invoiceID IN (SELECT InvoiceID FROM tblinvoice WHERE Invoice_Status < 3)');
+                        $sql->execute();
+                        $result = $sql->fetch();
+                        $formattedPayments = number_format($result['totalPayments'], 2); // Format with 2 decimal places
+                        echo '$' . $formattedPayments;
+                        ?>
+                    </p>
                 </div>
 
                 <div class="card card-special">
                     <h2 class="card-title">Expenses</h2>
-                    <p class="card-count">300</p>
+                    <p class="card-count">
+                        <?php
+                        // Calculate the total expenses
+                        $sql = $con->prepare('SELECT SUM(Expensis_Amount) AS totalExpenses FROM tblexpensis');
+                        $sql->execute();
+                        $result = $sql->fetch();
+                        $formattedExpenses = number_format($result['totalExpenses'], 2); // Format with 2 decimal places
+                        echo '$' . $formattedExpenses;
+                        ?>
+                    </p>
                 </div>
             </div>
+
             <div class="table-container">
                 <h2>Services</h2>
                 <table class="services-table">
                     <thead>
                         <tr>
                             <th>Client</th>
+                            <th>Date</th> <!-- Fixed the closing tag -->
                             <th>Service</th>
                             <th>Price</th>
                             <th>Status</th>
@@ -149,98 +215,137 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Add your table rows here -->
-                        <tr>
-                            <td>Client 1</td>
-                            <td>Service A</td>
-                            <td>$100</td>
-                            <td>In Progress</td>
-                            <td><input type="checkbox"></td>
-                        </tr>
-                        <tr>
-                            <td>Client 2</td>
-                            <td>Service B</td>
-                            <td>$200</td>
-                            <td>Completed</td>
-                            <td><input type="checkbox" checked></td>
-                        </tr>
-                        <tr>
-                            <td>Client 3</td>
-                            <td>Service C</td>
-                            <td>$150</td>
-                            <td>In Progress</td>
-                            <td><input type="checkbox"></td>
-                        </tr>
-                        <!-- Add more rows as needed -->
+                        <?php
+                        // Query to fetch data from the database
+                        $sql = $con->prepare('SELECT CONCAT(c.Client_FName, " ", c.Client_LName) AS FullName,
+                                                s.Service_Name,
+                                                FORMAT(cs.Price, 2) AS FormattedPrice,
+                                                ss.Status,
+                                                CASE
+                                                    WHEN cs.ServiceDone = 0 THEN "In Progress"
+                                                    WHEN cs.ServiceDone = 1 THEN "Completed"
+                                                END AS ServiceStatus,
+                                                cs.Date_service
+                                                FROM tblclientservices cs
+                                                INNER JOIN tblclients c ON cs.ClientID = c.ClientID
+                                                INNER JOIN tblservices s ON cs.ServiceID = s.ServiceID
+                                                INNER JOIN tblstatusservices ss ON cs.serviceStatus = ss.StatusSerID
+                                                ORDER BY cs.ServiceDone ASC');
+
+                        $sql->execute();
+                        $services = $sql->fetchAll(PDO::FETCH_ASSOC);
+
+                        foreach ($services as $service) {
+                            echo '<tr>';
+                            echo '<td>' . $service['FullName'] . '</td>';
+                            echo '<td>' . $service['Date_service'] . '</td>';
+                            echo '<td>' . $service['Service_Name'] . '</td>';
+                            echo '<td>' . '$' . $service['FormattedPrice'] . '</td>';
+                            echo '<td>' . $service['Status'] . '</td>';
+                            echo '<td>' . $service['ServiceStatus'] . '</td>';
+                            echo '</tr>';
+                        }
+                        ?>
                     </tbody>
                 </table>
             </div>
-            <div class="table-container">
-                <h2>Tickets</h2>
-                <table class="tickets-table">
-                    <thead>
-                        <tr>
-                            <th>Client</th>
-                            <th>Section</th>
-                            <th>Subject</th>
-                            <th>Status</th>
-                            <th>Last Update</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Add your table rows here -->
-                        <tr>
-                            <td>Client 1</td>
-                            <td>Support</td>
-                            <td>Issue with product</td>
-                            <td>Open</td>
-                            <td>2023-10-10</td>
-                        </tr>
-                        <tr>
-                            <td>Client 2</td>
-                            <td>Sales</td>
-                            <td>Order inquiry</td>
-                            <td>Closed</td>
-                            <td>2023-10-09</td>
-                        </tr>
-                        <tr>
-                            <td>Client 3</td>
-                            <td>Technical</td>
-                            <td>Software bug</td>
-                            <td>In Progress</td>
-                            <td>2023-10-08</td>
-                        </tr>
-                        <!-- Add more rows as needed -->
-                    </tbody>
-                </table>
-            </div>
+
+            <?php
+            // SQL query to fetch ticket information with order by and formatted date
+            $sql = $con->prepare('SELECT CONCAT(c.Client_FName, " ", c.Client_LName) AS Client,
+                                    tt.TypeTicket AS Section,
+                                    t.ticketSubject AS Subject,
+                                    st.Status AS Status,
+                                    DATE_FORMAT(MAX(dt.Date), "%d/%m/%Y (%H:%i:%s)") AS LastUpdate
+                                    FROM tblticket t
+                                    INNER JOIN tblclients c ON t.ClientID = c.ClientID
+                                    INNER JOIN tbltypeoftickets tt ON t.ticketSection = tt.TypeTicketID
+                                    INNER JOIN tblstatusticket st ON t.ticketStatus = st.StatusTicketID
+                                    LEFT JOIN tbldeiteilticket dt ON t.ticketID = dt.TicketID
+                                    GROUP BY t.ticketID
+                                    ORDER BY MAX(dt.Date) DESC');
+            $sql->execute();
+
+            // Fetch and display ticket data in HTML table
+            echo '<div class="table-container">';
+            echo '<h2>Tickets</h2>';
+            echo '<table class="tickets-table">';
+            echo '<thead>';
+            echo '<tr>';
+            echo '<th>Client</th>';
+            echo '<th>Section</th>';
+            echo '<th>Subject</th>';
+            echo '<th>Status</th>';
+            echo '<th>Last Update</th>';
+            echo '</tr>';
+            echo '</thead>';
+            echo '<tbody>';
+
+            while ($row = $sql->fetch(PDO::FETCH_ASSOC)) {
+                echo '<tr>';
+                echo '<td>' . $row['Client'] . '</td>';
+                echo '<td>' . $row['Section'] . '</td>';
+                echo '<td>' . $row['Subject'] . '</td>';
+                echo '<td>' . $row['Status'] . '</td>';
+                echo '<td>' . $row['LastUpdate'] . '</td>';
+                echo '</tr>';
+            }
+
+            echo '</tbody>';
+            echo '</table>';
+            echo '</div>';
+
+            ?>
+
             <div class="container_div">
-                <div class="left-div">
-                    <h2>Domains End After 45 Days</h2>
-                    <table class="domains-table">
-                        <thead>
-                            <tr>
-                                <th>Plan</th>
-                                <th>Client</th>
-                                <th>Price</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- Add your table rows here -->
-                            <tr>
-                                <td>Basic</td>
-                                <td>Client A</td>
-                                <td>$50</td>
-                            </tr>
-                            <tr>
-                                <td>Premium</td>
-                                <td>Client B</td>
-                                <td>$100</td>
-                            </tr>
-                            <!-- Add more rows as needed -->
-                        </tbody>
-                    </table>
-                </div>
+                <?php
+                    // Get the current date and date after 45 days
+                    $currentDate = date('Y-m-d');
+                    $dateAfter45Days = date('Y-m-d', strtotime('+45 days'));
+
+                    // SQL query to fetch domains that expire after 45 days
+                    $sql = $con->prepare('SELECT CONCAT(dt.ServiceName, " (", dc.DomeinName, ")") AS Plan,
+                                            CONCAT(c.Client_FName, " ", c.Client_LName) AS Client,
+                                            CONCAT("$", FORMAT(dc.Price_Renew, 2)) AS Price,
+                                            dc.RenewDate AS RenewDate
+                                            FROM tbldomeinclients dc
+                                            INNER JOIN tblclients c ON dc.Client = c.ClientID
+                                            INNER JOIN tbldomaintype dt ON dc.ServiceType = dt.DomainTypeID
+                                            WHERE dc.RenewDate BETWEEN :currentDate AND :dateAfter45Days
+                                            AND dc.Status < 4
+                                            ORDER BY dc.RenewDate DESC');
+                    $sql->bindParam(':currentDate', $currentDate);
+                    $sql->bindParam(':dateAfter45Days', $dateAfter45Days);
+                    $sql->execute();
+
+                    // Fetch and display domain data in HTML table
+                    echo '<div class="left-div">';
+                    echo '<h2>Domains End After 45 Days</h2>';
+                    echo '<table class="domains-table">';
+                    echo '<thead>';
+                    echo '<tr>';
+                    echo '<th>Plan</th>';
+                    echo '<th>Client</th>';
+                    echo '<th>Price</th>';
+                    echo '<th>Date Renew</th>';
+                    echo '</tr>';
+                    echo '</thead>';
+                    echo '<tbody>';
+
+                    while ($row = $sql->fetch(PDO::FETCH_ASSOC)) {
+                        echo '<tr>';
+                        echo '<td>' . $row['Plan'] . '</td>';
+                        echo '<td>' . $row['Client'] . '</td>';
+                        echo '<td>' . $row['Price'] . '</td>';
+                        echo '<td>' . $row['RenewDate'] . '</td>';
+                        echo '</tr>';
+                    }
+
+                    echo '</tbody>';
+                    echo '</table>';
+                    echo '</div>';
+
+                ?>
                 <div class="right-div">
                     <h2>To-Do List</h2>
                     <table class="todo-table">
@@ -252,77 +357,84 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- Add your table rows here -->
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td>Task 1</td>
-                                <td>2023-11-15</td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td>Task 2</td>
-                                <td>2023-11-20</td>
-                            </tr>
-                            <!-- Add more rows as needed -->
                         </tbody>
                     </table>
                 </div>
             </div>
             <div class="container_expenis">
-                <div class="left-div">
-                    <h2>Expenses</h2>
-                    <table class="expenses-table">
-                        <thead>
-                            <tr>
-                                <th>Date</th>
-                                <th>Description</th>
-                                <th>Amount</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- Add your table rows here -->
-                            <tr>
-                                <td>2023-11-01</td>
-                                <td>Office Supplies</td>
-                                <td>$100</td>
-                            </tr>
-                            <tr>
-                                <td>2023-11-05</td>
-                                <td>Utilities</td>
-                                <td>$150</td>
-                            </tr>
-                            <!-- Add more rows as needed -->
-                        </tbody>
-                    </table>
-                </div>
-                <div class="right-div">
-                    <h2>Payments</h2>
-                    <table class="payments-table">
-                        <thead>
-                            <tr>
-                                <th>Client</th>
-                                <th>Method</th>
-                                <th>Amount</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- Add your table rows here -->
-                            <tr>
-                                <td>Client A</td>
-                                <td>Credit Card</td>
-                                <td>$200</td>
-                            </tr>
-                            <tr>
-                                <td>Client B</td>
-                                <td>PayPal</td>
-                                <td>$150</td>
-                            </tr>
-                            <!-- Add more rows as needed -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+                <?php
+                    // SQL query to fetch expenses data sorted by Date in descending order
+                    $sql = $con->prepare('SELECT ExpensisDate, Discription, CONCAT("$", FORMAT(Expensis_Amount, 2)) AS Amount
+                                            FROM tblexpensis
+                                            ORDER BY ExpensisDate DESC');
 
+                    $sql->execute();
+
+                    // Fetch and display expenses data in HTML table
+                    echo '<div class="left-div">';
+                    echo '<h2>Expenses</h2>';
+                    echo '<table class="expenses-table">';
+                    echo '<thead>';
+                    echo '<tr>';
+                    echo '<th>Date</th>';
+                    echo '<th>Description</th>';
+                    echo '<th>Amount</th>';
+                    echo '</tr>';
+                    echo '</thead>';
+                    echo '<tbody>';
+
+                    while ($row = $sql->fetch(PDO::FETCH_ASSOC)) {
+                        echo '<tr>';
+                        echo '<td>' . $row['ExpensisDate'] . '</td>';
+                        echo '<td>' . $row['Discription'] . '</td>';
+                        echo '<td>' . $row['Amount'] . '</td>';
+                        echo '</tr>';
+                    }
+
+                    echo '</tbody>';
+                    echo '</table>';
+                    echo '</div>';
+
+                ?>
+                <?php
+                    // SQL query to fetch payments data
+                    $sql = $con->prepare('SELECT CONCAT(tblclients.Client_FName, " ", tblclients.Client_LName) AS Client,
+                    tblpayment_method.methot AS Method,
+                    CONCAT("$", FORMAT(tblpayments.Payment_Amount, 2)) AS Amount
+                    FROM tblpayments
+                    INNER JOIN tblclients ON tblpayments.ClientID = tblclients.ClientID
+                    INNER JOIN tblpayment_method ON tblpayments.paymentMethod = tblpayment_method.paymentmethodD
+                    ORDER BY tblpayments.Payment_Date DESC');
+
+                    $sql->execute();
+
+                    // Fetch and display payments data in HTML table
+                    echo '<div class="right-div">';
+                    echo '<h2>Payments</h2>';
+                    echo '<table class="payments-table">';
+                    echo '<thead>';
+                    echo '<tr>';
+                    echo '<th>Client</th>';
+                    echo '<th>Method</th>';
+                    echo '<th>Amount</th>';
+                    echo '</tr>';
+                    echo '</thead>';
+                    echo '<tbody>';
+
+                    while ($row = $sql->fetch(PDO::FETCH_ASSOC)) {
+                    echo '<tr>';
+                    echo '<td>' . $row['Client'] . '</td>';
+                    echo '<td>' . $row['Method'] . '</td>';
+                    echo '<td>' . $row['Amount'] . '</td>';
+                    echo '</tr>';
+                    }
+
+                    echo '</tbody>';
+                    echo '</table>';
+                    echo '</div>';
+
+                ?>
+            </div>
         </div>
     </div>
     <?php include '../common/jslinks.php'?>
