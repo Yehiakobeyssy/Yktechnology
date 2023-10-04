@@ -3,4 +3,289 @@
 }
 .contain{
     margin-left: 25px !important;
+    width: 100%;
+}
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px !important;
+    margin: 20px !important;
+}
+.card-grids{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px !important;
+    margin: 20px !important;
+}
+
+
+.card {
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    padding: 20px !important;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+    font-size: 24px;
+    margin: 0 !important;
+}
+
+.card-count {
+    font-size: 18px;
+    color: #888;
+    margin-top: 10px !important;
+}
+
+.card-subtitles {
+    margin-top: 10px !important;
+}
+
+.subtitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 5px !important;
+}
+
+.subtitle h3 {
+    font-size: 16px;
+    margin: 0 !important;
+}
+
+.subtitle p {
+    font-size: 14px;
+    color: #888;
+    margin: 0 !important;
+}
+
+.card-special {
+    background-color: #ecf0f1; /* Light gray background color for special cards */
+    color: #333; /* Dark text color for special cards */
+}
+/* Table Container */
+.table-container {
+    max-height: 300px;
+    overflow-y: auto;
+    margin: 10px !important;
+    padding: 10px !important;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Table Title */
+.table-container h2 {
+    font-size: 24px;
+    margin: 0 0 10px 0 !important;
+}
+
+/* Table Styling */
+.services-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+}
+
+/* Table Header */
+.services-table th {
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+    padding: 10px !important;
+    text-align: left;
+}
+
+/* Table Rows */
+.services-table td {
+    border: 1px solid #ddd;
+    padding: 10px !important;
+}
+
+/* Alternating Row Background Color */
+.services-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Checkbox Styling */
+.services-table input[type="checkbox"] {
+    margin: 0;
+}
+/* Table Container */
+.table-container {
+    max-height: 300px;
+    overflow-y: auto;
+    margin: 10px !important;
+    padding: 10px !important;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Table Title */
+.table-container h2 {
+    font-size: 24px;
+    margin: 0 0 10px 0;
+}
+
+/* Table Styling */
+.tickets-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+}
+
+/* Table Header */
+.tickets-table th {
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+    padding: 10px !important;
+    text-align: left;
+}
+
+/* Table Rows */
+.tickets-table td {
+    border: 1px solid #ddd;
+    padding: 10px !important;
+}
+
+/* Alternating Row Background Color */
+.tickets-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+.container_div {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px !important;
+    padding: 10px !important;
+}
+
+.left-div, .right-div {
+    width: 48%;
+}
+
+/* Table Styling */
+.domains-table, .todo-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    margin-top: 10px;
+}
+
+/* Table Header */
+.domains-table th, .todo-table th {
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+    padding: 10px !important;
+    text-align: left;
+}
+
+/* Table Rows */
+.domains-table td, .todo-table td {
+    border: 1px solid #ddd;
+    padding: 10px !important;
+}
+
+/* Alternating Row Background Color */
+.domains-table tbody tr:nth-child(even), .todo-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Checkbox Styling */
+.todo-table input[type="checkbox"] {
+    margin: 0;
+}
+
+.container_expenis {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px !important;
+    padding: 10px !important;
+}
+
+.left-div, .right-div {
+    width: 48%;
+}
+
+/* Table Styling */
+.expenses-table, .payments-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    margin-top: 10px;
+}
+
+/* Table Header */
+.expenses-table th, .payments-table th {
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+    padding: 10px !important;
+    text-align: left;
+}
+
+/* Table Rows */
+.expenses-table td, .payments-table td {
+    border: 1px solid #ddd;
+    padding: 10px !important;
+}
+
+/* Alternating Row Background Color */
+.expenses-table tbody tr:nth-child(even), .payments-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Media Queries */
+
+/* For screens with a maximum width of 1366px */
+@media (max-width: 1366px) {
+    .card-grid {
+        grid-template-columns: repeat(5, 1fr);
+    }
+    .card-grids {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* For screens with a maximum width of 1279px */
+@media (max-width: 1279px) {
+    .card-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .card-grids {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+/* For screens with a maximum width of 768px */
+@media (max-width: 768px) {
+    .card-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .card-grids {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .container_div {
+        display: flex;
+        flex-direction: column; /* Flex direction set to column */
+        width: 100%; /* Width set to 100% on small screens */
+    }
+
+    /* Style for left-div and right-div within container_div on small screens */
+    .left-div, .right-div {
+        width: 100%;
+    }
+}
+
+/* For screens with a maximum width of 480px */
+@media (max-width: 480px) {
+    .card-grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .card-grids {
+        grid-template-columns: repeat(1, 1fr);
+    }
 }
