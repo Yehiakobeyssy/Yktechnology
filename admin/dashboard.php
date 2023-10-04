@@ -276,7 +276,7 @@
                         foreach ($services as $service) {
                             echo '<tr>';
                             echo '<td>' . $service['FullName'] . '</td>';
-                            echo '<td>' . $service['Date_service'] . '</td>';
+                            echo '<td>' . date("d/m/Y", strtotime($service['Date_service'])) . '</td>';
                             echo '<td>' . $service['Service_Name'] . '</td>';
                             echo '<td>' . '$' . $service['FormattedPrice'] . '</td>';
                             echo '<td>' . $service['Status'] . '</td>';
@@ -369,7 +369,7 @@
                         echo '<td>' . $row['Plan'] . '</td>';
                         echo '<td>' . $row['Client'] . '</td>';
                         echo '<td>' . $row['Price'] . '</td>';
-                        echo '<td>' . $row['RenewDate'] . '</td>';
+                        echo '<td>' . date("d/m/Y", strtotime($row['RenewDate'])). '</td>';
                         echo '</tr>';
                     }
 
@@ -415,7 +415,7 @@
 
                     while ($row = $sql->fetch(PDO::FETCH_ASSOC)) {
                         echo '<tr>';
-                        echo '<td>' . $row['ExpensisDate'] . '</td>';
+                        echo '<td>' .date("d/m/Y", strtotime( $row['ExpensisDate'])) . '</td>';
                         echo '<td>' . $row['Discription'] . '</td>';
                         echo '<td>' . $row['Amount'] . '</td>';
                         echo '</tr>';
