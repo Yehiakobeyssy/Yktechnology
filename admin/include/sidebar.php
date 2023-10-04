@@ -33,7 +33,7 @@
                         </a>
                     </li>
                     <li class="nav-link" >
-                        <a href="">
+                        <a href="ManageInvoices.php">
                             <i class="fa-solid fa-file-invoice-dollar icon"></i>
                             <span class="text nav-text">Invoices</span>
                         </a>

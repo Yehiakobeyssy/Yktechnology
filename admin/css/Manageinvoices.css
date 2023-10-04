@@ -1,0 +1,301 @@
+.mainform{
+    display: flex;
+}
+.contain{
+    width: 100%;
+    margin-left: 25px !important;
+}
+.title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px !important;
+}
+.btn{
+    padding: 5px 10px !important;
+}
+#btnNew{
+    margin-right: 10px !important ;
+}
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.search-input {
+    padding: 10px !important;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 80%;
+    font-size: 16px;
+    outline: none;
+}
+.search-button {
+    background-color: #1c4e80;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px !important;
+    margin-left: 10px !;
+    cursor: pointer;
+    font-size: 16px;
+}
+.search-button:hover {
+    background-color:#1c4e80;
+}
+.table-container {
+    max-width: 100%;
+    margin: 0 auto !important;
+    padding: 20px !important;
+}
+
+/* Style for the table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+/* Style for table headers */
+th {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px !important;
+}
+
+/* Style for table rows */
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+/* Style for table cells */
+td {
+    padding: 10px !important;
+    border: 1px solid #ccc;
+    position: relative;
+}
+/* Style for the icon */
+td .fa-ellipsis-vertical {
+    cursor: pointer; /* Add this to indicate it's clickable */
+}
+
+/* Style for the hover content */
+.hover-content {
+    display: none; /* Initially hide the content */
+    position: absolute;
+    top: 100%; /* Position it below the icon */
+    left: 0;
+    background-color: #fff; /* Background color for the content */
+    border: 1px solid #ccc;
+    padding: 10px;
+    z-index: 1; /* Ensure it's above other content */
+}
+
+/* Show the content on hover */
+td:hover .hover-content {
+    display: block;
+    width: 100%;
+}
+.hover-content a {
+    display: block;
+    margin-bottom: 5px !important;
+    text-decoration: none;
+    color: #007bff;
+}
+.deiteilinvoice{
+    padding: 20px !important;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    max-width: 80%;
+    margin: 0 auto !important;
+}
+.deiteilinvoice .title{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px !important ;
+    border-bottom: black 1px solid;
+}
+.deiteilinvoice .companyInfo{
+    display: flex;
+    flex-direction: column;
+} 
+.deiteilinvoice .companyInfo h3{
+    color: #1c4e80;
+}
+.deiteilinvoice .companyInfo label{
+    font-weight: bold;
+    font-size: 14px;
+}
+.deiteilinvoice .invoiceTitle h2{
+    font-size: 100px;
+}
+.deiteilinvoice .status_invoice{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.deiteilinvoice .info_invoice label{
+    font-weight: bold;
+}
+.deiteilinvoice .customerInfo{
+    margin: 10px 0 !important;
+}
+.deiteilinvoice .customer_title{
+    background-color: #c4c4c4;
+    padding: 4px !important;
+}
+.deiteilinvoice .customerdeiteil{
+    display: flex;
+    flex-direction: column;
+    margin: 0 10px !important;
+}
+.deiteilinvoice .deietil_invoice table{
+    width: 100%;
+    text-align: center;
+    background-color: #c4c4c4
+}
+.deiteilinvoice .deietil_invoice table thead{
+    background-color: #c4c4c4;
+    font-weight: bold;
+}
+.deiteilinvoice .deietil_invoice table td{
+    padding: 7px !important;
+}
+.deiteilinvoice .deietil_invoice table thead td{
+    border-left: black 1px solid ;
+    border-right: black 1px solid;
+}
+.deiteilinvoice .deietil_invoice table tbody td{
+    border: black 1px solid;
+}
+.deiteilinvoice .invoiceamounts{
+    text-align: right;
+    font-weight: bold;
+}
+.deiteilinvoice .amountfinish{
+    background-color: #dadada;
+    font-weight: bold;
+    border: black 1px solid;
+}
+.deiteilinvoice .paymenttable{
+    margin-top: 25px !important;
+    bottom: 10px;
+    width: 100%;
+}
+.deiteilinvoice .paymenttable table{
+    width: 100%;
+    text-align: center;
+}
+.deiteilinvoice .paymenttable table td{
+    padding: 10px !important;
+    border-bottom: black 1px solid;
+}
+.deiteilinvoice .paymenttable table thead td{
+    font-weight: bold;
+}
+.deiteilinvoice .totalpayment{
+    text-align: right !important;
+    font-weight: bold;
+}
+.deiteilinvoice .paymenttable table tfoot td{
+    border: none;
+}
+.pay_done{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.payment_dis{
+    display: flex;
+    flex-direction: column;
+    margin: 15px !important;
+    align-items: center;
+    justify-content: center;
+}
+
+.number_payment {
+    display: inline-block;
+    width: 50px; 
+    height: 50px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 40px; 
+    font-size: 24px;
+}
+
+.no_paid {
+    background-color: white;
+    border: 2px solid black;
+    color: black; 
+}
+
+.paid {
+    background-color: green;
+    color: white; 
+}
+.frmaddpayment{
+    margin: 15px auto !important;
+    width: 70%;
+    background-color: #f9f9f9;
+    padding: 10px !important;
+    border: black 1px solid;
+}
+.linepayment{
+    display: flex;
+    flex-direction: column;
+    margin: 5px !important;
+}
+.linepayment label{
+    font-size: 18px;
+    font-weight: bold;
+    margin: 5px !important;
+}
+.linepayment input,.linepayment select{
+    width: 100%;
+    padding: 10px !important;
+    margin-bottom: 15px !important;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.btncontrol_pay{
+    text-align: center;
+    margin: 10px !important;
+}
+.btncontrol_pay button{
+    border: transparent;
+    background-color: #1c4e80;
+    color: white;
+    padding: 10px 20px !important;
+}
+.conform_cancel_invoice{
+    margin: 10px auto!important;
+    width: 70%;
+    padding: 25px !important;
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+}
+.btncontrol{
+    margin: 15px !important;
+}
+.btncontrol a {
+    background-color: red;
+    color: white;
+    padding: 5px 15px !important;
+    border: transparent;
+    text-decoration: none;
+}
+.btncontrol button{
+    background-color: green;
+    color: white;
+    padding: 5px 15px !important;
+    border: transparent;
+}
+
