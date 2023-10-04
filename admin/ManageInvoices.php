@@ -56,7 +56,6 @@
                                     <th>#</th>
                                     <th>Client Name</th>
                                     <th>Date</th>
-                                    <th>Num of Payments</th>
                                     <th>Total Amount</th>
                                     <th>Payments</th>
                                     <th>Remain</th>
@@ -76,7 +75,7 @@
                         <form action="" method="post">
                             <div class="form-group">
                                 <label for="service-select">Service:</label>
-                                <select id="service-select" name="service" >
+                                <select id="service-select" name="service" required >
                                     <?php
                                         $sql=$con->prepare('SELECT ServiceID,Service_Name,Service_Price FROM tblservices WHERE Active=1');
                                         $sql->execute();
@@ -89,7 +88,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="title">Title:</label>
-                                <input type="text" id="title" name="title" >
+                                <input type="text" id="title" name="title" required >
                             </div>
                             <div class="form-group">
                                 <label for="for-what">For What:</label>
@@ -105,15 +104,15 @@
                             </div>
                             <div class="form-group">
                                 <label for="price">Price:</label>
-                                <input type="number" id="price" name="price" step="0.01" >
+                                <input type="number" id="price" name="price" step="0.01" required>
                             </div>
                             <div class="form-group">
                                 <label for="start-date">Start Date:</label>
-                                <input type="date" id="start-date" name="start-date" >
+                                <input type="date" id="start-date" name="start-date" required>
                             </div>
                             <div class="form-group">
                                 <label for="end-date">End Date:</label>
-                                <input type="date" id="end-date" name="end-date" >
+                                <input type="date" id="end-date" name="end-date" required>
                             </div>
                             <div class="form-group controlbtn">
                                 <button type="reset">Clear</button>
@@ -171,7 +170,7 @@
                     <form action="" method="post">
                         <div class="form-group">
                             <label for="service-select">Service Type:</label>
-                            <select id="service-type-select" name="service-type">
+                            <select id="service-type-select" name="service-type" required>
                                 <?php
                                     $sql = $con->prepare('SELECT DomainTypeID, ServiceName FROM tbldomaintype ');
                                     $sql->execute();
@@ -184,7 +183,7 @@
                         </div>
                         <div class="form-group">
                             <label for="service-select">Service:</label>
-                            <select id="service-select" name="service">
+                            <select id="service-select" name="service" required>
                                 <?php
                                     $sql = $con->prepare('SELECT ServiceID, Service_Name, Service_Price FROM tblservices WHERE Active = 1');
                                     $sql->execute();
@@ -197,15 +196,15 @@
                         </div>
                         <div class="form-group">
                             <label for="domain-name">Domain Name:</label>
-                            <input type="text" id="domain-name" name="domain-name">
+                            <input type="text" id="domain-name" name="domain-name" required>
                         </div>
                         <div class="form-group">
                             <label for="renewal-price">Renewal Price:</label>
-                            <input type="number" id="renewal-price" name="renewal-price" step="0.01">
+                            <input type="number" id="renewal-price" name="renewal-price" step="0.01" required>
                         </div>
                         <div class="form-group">
                             <label for="end-date">End Date:</label>
-                            <input type="date" id="end-date" name="end-date">
+                            <input type="date" id="end-date" name="end-date" required>
                         </div>
                         <div class="form-group">
                             <label for="note">Note:</label>

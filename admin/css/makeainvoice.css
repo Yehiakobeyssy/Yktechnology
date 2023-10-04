@@ -81,3 +81,24 @@ tr:hover {
     background-color: #d1d1d1;
 }
 
+.finish_Invoice{
+    margin: 10px !important;
+    text-align: center;
+}
+.total-amount{
+    text-align: right;
+    margin: 15px !important;
+}
+.finish_Invoice button {
+    background-color: #4CAF50; /* Green background color */
+    color: white; /* White text color */
+    padding: 10px 20px !important; /* Padding for the button */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Cursor style on hover */
+}
+
+/* Style the button on hover */
+.finish_Invoice button:hover {
+    background-color: #45a049; /* Slightly darker green */
+}
