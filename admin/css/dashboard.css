@@ -173,7 +173,7 @@ body {
     width: 100%;
     border-collapse: collapse;
     background-color: #fff;
-    margin-top: 10px;
+    margin-top: 10px !important;
 }
 
 /* Table Header */

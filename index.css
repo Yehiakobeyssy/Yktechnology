@@ -252,8 +252,11 @@ header label{
 }
 .dicription .img{
     width: 49%;
-    text-align: center;
+    text-align: right;
     background-image: linear-gradient(to left, #1c4e80, #d7e1ff);
+}
+.img img{
+    width: 70%;
 }
 /*my_portfolio*/
 .my_portfolio{
