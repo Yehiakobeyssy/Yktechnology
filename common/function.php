@@ -156,4 +156,90 @@
     
         return $paymentDetails;
     }
+
+    function calculateCommission($invoiceID, $userPayment, $con) {
+        $result = array(
+            'commission' => 0,
+            'SalemanID' => null
+        );
+    
+        // Get the total amount, total tax, client ID, and promo_Code from tblinvoice
+        $invoiceQuery = "SELECT TotalAmount, TotalTax, ClientID FROM tblinvoice WHERE InvoiceID = :invoiceID";
+        $invoiceStmt = $con->prepare($invoiceQuery);
+        $invoiceStmt->bindParam(':invoiceID', $invoiceID);
+        $invoiceStmt->execute();
+        $invoiceRow = $invoiceStmt->fetch();
+    
+        if ($invoiceRow) {
+            $totalAmount = $invoiceRow['TotalAmount'];
+            $totalTax = $invoiceRow['TotalTax'];
+            $clientID = $invoiceRow['ClientID'];
+    
+            // Calculate the total invoice amount
+            $totalInvoiceAmount = $totalAmount + $totalTax;
+    
+            // Get the promo_Code associated with the client
+            $clientQuery = "SELECT promo_Code FROM tblclients WHERE ClientID = :clientID";
+            $clientStmt = $con->prepare($clientQuery);
+            $clientStmt->bindParam(':clientID', $clientID);
+            $clientStmt->execute();
+            $clientRow = $clientStmt->fetch();
+    
+            if ($clientRow) {
+                $promoCode = $clientRow['promo_Code'];
+    
+                // Get the SalemanID and commission rate based on the promo code
+                $salesmanData = getSalesmanDataByPromoCode($promoCode, $con);
+    
+                if ($salesmanData) {
+                    $SalemanID = $salesmanData['SalePersonID'];
+                    $commissionRate = $salesmanData['ComitionRate'];
+    
+                    // Check if the service allows commission based on Get_commission
+                    $detailInvoiceQuery = "SELECT Service FROM tbldetailinvoice WHERE Invoice = :invoiceID";
+                    $detailInvoiceStmt = $con->prepare($detailInvoiceQuery);
+                    $detailInvoiceStmt->bindParam(':invoiceID', $invoiceID);
+                    $detailInvoiceStmt->execute();
+    
+                    while ($detailInvoiceRow = $detailInvoiceStmt->fetch()) {
+                        $serviceID = $detailInvoiceRow['Service'];
+    
+                        // Check if the service allows commission based on Get_commission
+                        $serviceQuery = "SELECT Get_commission FROM tblservices WHERE ServiceID = :serviceID";
+                        $serviceStmt = $con->prepare($serviceQuery);
+                        $serviceStmt->bindParam(':serviceID', $serviceID);
+                        $serviceStmt->execute();
+                        $serviceRow = $serviceStmt->fetch();
+    
+                        if ($serviceRow) {
+                            // Convert Get_commission to boolean
+                            $allowsCommission = ($serviceRow['Get_commission']==1)?1:0;
+    
+                            if ($allowsCommission == 1) {
+                                // Calculate commission for the item based on user's payment and total invoice amount
+                                $itemCommission = ($totalInvoiceAmount / $userPayment) * ($totalInvoiceAmount * ($commissionRate / 100));
+    
+                                // Add the item's commission to the total commission
+                                $result['commission'] += $itemCommission;
+                            }
+                        }
+                    }
+    
+                    // Set the SalemanID in the result array
+                    $result['SalemanID'] = $SalemanID;
+                }
+            }
+        }
+    
+        return $result;
+    }
+    
+    // Function to get SalemanID and commission rate based on the promo code
+    function getSalesmanDataByPromoCode($promoCode, $con) {
+        $salesmanQuery = "SELECT SalePersonID,ComitionRate FROM tblsalesperson WHERE saleActive = 1 AND  PromoCode = :promoCode";
+        $salesmanStmt = $con->prepare($salesmanQuery);
+        $salesmanStmt->bindParam(':promoCode', $promoCode);
+        $salesmanStmt->execute();
+        return $salesmanStmt->fetch(PDO::FETCH_ASSOC);
+    }
 ?>
