@@ -546,7 +546,7 @@ CREATE TABLE `tblpayment_method` (
 
 INSERT INTO `tblpayment_method` (`paymentmethodD`, `methot`, `note`, `method_active`) VALUES
 (1, 'PayPal ', '', 1),
-(2, 'Bank Transfer', '', 1);
+(2, 'From Old Balance', '', 0);
 
 -- --------------------------------------------------------
 

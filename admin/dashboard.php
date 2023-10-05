@@ -229,8 +229,14 @@
                     <h2 class="card-title">Payments</h2>
                     <p class="card-count">
                         <?php
-                        $sql = $con->prepare('SELECT SUM(Payment_Amount) AS totalPayments FROM tblpayments 
-                                            WHERE invoiceID IN (SELECT InvoiceID FROM tblinvoice WHERE Invoice_Status < 3)');
+                        $sql = $con->prepare('SELECT SUM(Payment_Amount) AS totalPayments
+                                                FROM tblpayments
+                                                WHERE invoiceID IN (
+                                                    SELECT InvoiceID
+                                                    FROM tblinvoice
+                                                    WHERE Invoice_Status < 3
+                                                )
+                                            AND PaymentMethod != 2;');
                         $sql->execute();
                         $result = $sql->fetch();
                         $formattedPayments = number_format($result['totalPayments'], 2);
@@ -475,7 +481,8 @@
                     FROM tblpayments
                     INNER JOIN tblclients ON tblpayments.ClientID = tblclients.ClientID
                     INNER JOIN tblpayment_method ON tblpayments.paymentMethod = tblpayment_method.paymentmethodD
-                    ORDER BY tblpayments.Payment_Date DESC');
+                    WHERE PaymentMethod != 2
+                    ORDER BY tblpayments.paymentID DESC');
 
                     $sql->execute();
 
