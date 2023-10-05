@@ -1,0 +1,161 @@
+.mainform{
+    display: flex;
+}
+.contain{
+    width: 100%;
+    margin-left: 25px !important;
+}
+.title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px !important;
+}
+.btnnewAgent{
+    margin: 0 15px !important;
+    padding: 7px 15px !important;
+}
+.manageAgent {
+    max-width: 95%;
+    margin: 0 auto !important;
+    padding: 20px !important;
+}
+
+.manageAgent  h1 {
+    text-align: center;
+}
+
+
+.manageAgent .search-box{
+    margin: 20px !important;
+    display: flex;
+    align-items: center;
+}
+
+.manageAgent .search-box input {
+    flex-grow: 1;
+    padding: 10px !important;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px !important;
+}
+
+
+.manageAgent  table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.manageAgent  th, td {
+    border: 1px solid #ddd;
+    padding: 8px !important;
+    text-align: center;
+}
+
+.manageAgent th {
+    background-color: #3383d4;
+    color: white;
+}
+
+.manageAgent  tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+.newagent {
+    max-width: 95%;
+    margin: 0 auto !important;
+    padding: 20px !important;
+    border: 1px solid #ccc;
+    border-radius: 5px !important;
+    box-shadow: 0px 0px 5px #ccc;
+}
+
+.newagent label {
+    display: block;
+    margin-bottom: 10px !important;
+    font-weight: bold;
+}
+
+.newagent input[type="text"],
+.newagent input[type="email"],
+.newagent select,
+.newagent textarea,
+.newagent input[type="number"] {
+    width: 100%;
+    padding: 10px !important;
+    margin-bottom: 15px !important;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.newagent input[type="number"] {
+    width: 100%;
+    padding: 10px !important;
+    margin-bottom: 15px !important;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.newagent button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px !important;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.newagent button:hover {
+    background-color: #0056b3;
+}
+.btnstable{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.btnstable a{
+    margin: 4px !important;
+    width: 90%;
+}
+.accounttable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px !important;
+}
+
+.accounttable table{
+    width: 100%;
+   
+}
+.accounttable th,
+.accounttable td {
+    border: 1px solid #ddd;
+    padding: 8px !important;
+    text-align: center;
+}
+
+.accounttable th {
+    background-color: #3383d4;
+    color: white;
+}
+
+.accounttable tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+.information {
+    background-color: #f2f2f2;
+    padding: 20px;
+    margin-top: 20px !important;
+    border-radius: 5px;
+}
+
+.information p {
+    margin: 0 !important;
+    font-size: 16px;
+}
+#acountagentinfo{
+    width: 50%;
+    margin: 10px !important;
+}
+#acountagentinfo label{
+    font-weight: bold;
+}

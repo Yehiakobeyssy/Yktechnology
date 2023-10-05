@@ -27,6 +27,12 @@
                         </a>
                     </li>
                     <li class="nav-link" >
+                        <a href="ManageSaleAgent.php">
+                            <i class="fa-solid fa-user-secret icon"></i>
+                            <span class="text nav-text">Sales Agent</span>
+                        </a>
+                    </li>
+                    <li class="nav-link" >
                         <a href="ManageServiceclient.php">
                             <i class="fa-brands fa-usps icon"></i>
                             <span class="text nav-text">Service Clients</span>

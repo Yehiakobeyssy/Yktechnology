@@ -186,7 +186,7 @@
             $clientRow = $clientStmt->fetch();
     
             if ($clientRow) {
-                $promoCode = $clientRow['promo_Code'];
+                $promoCode = strtolower($clientRow['promo_Code']); // Convert promoCode to lowercase
     
                 // Get the SalemanID and commission rate based on the promo code
                 $salesmanData = getSalesmanDataByPromoCode($promoCode, $con);
@@ -213,7 +213,7 @@
     
                         if ($serviceRow) {
                             // Convert Get_commission to boolean
-                            $allowsCommission = ($serviceRow['Get_commission']==1)?1:0;
+                            $allowsCommission = ($serviceRow['Get_commission'] == 1) ? 1 : 0;
     
                             if ($allowsCommission == 1) {
                                 // Calculate commission for the item based on user's payment and total invoice amount
@@ -236,10 +236,24 @@
     
     // Function to get SalemanID and commission rate based on the promo code
     function getSalesmanDataByPromoCode($promoCode, $con) {
-        $salesmanQuery = "SELECT SalePersonID,ComitionRate FROM tblsalesperson WHERE saleActive = 1 AND  PromoCode = :promoCode";
+        $promoCode = strtolower($promoCode); // Convert promoCode to lowercase
+        $salesmanQuery = "SELECT SalePersonID,ComitionRate FROM tblsalesperson WHERE saleActive = 1 AND  LOWER(PromoCode) = :promoCode";
         $salesmanStmt = $con->prepare($salesmanQuery);
         $salesmanStmt->bindParam(':promoCode', $promoCode);
         $salesmanStmt->execute();
         return $salesmanStmt->fetch(PDO::FETCH_ASSOC);
     }
+    
+    function generateRandomPassword($length = 12) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()-_+=';
+        $password = '';
+        
+        for ($i = 0; $i < $length; $i++) {
+            $password .= $characters[rand(0, strlen($characters) - 1)];
+        }
+        
+        return $password;
+    }
+    
+    
 ?>
