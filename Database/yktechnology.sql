@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 05, 2023 at 12:02 AM
+-- Generation Time: Oct 05, 2023 at 03:45 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -626,10 +626,10 @@ CREATE TABLE `tblstatusdomein` (
 
 INSERT INTO `tblstatusdomein` (`StatusDomeinID`, `StatusDomein`, `StatusColor`) VALUES
 (1, 'Active', ' #009933'),
-(2, 'Expire soon', ''),
-(3, 'Expired', ''),
-(4, 'Transferred ', ''),
-(5, 'Cancel', '');
+(2, 'Expire soon', '#8B8000'),
+(3, 'Expired', ' #ff8c00 '),
+(4, 'Transferred ', '#2a2727'),
+(5, 'Cancel', ' #8b0000');
 
 -- --------------------------------------------------------
 
@@ -670,9 +670,9 @@ CREATE TABLE `tblstatusservices` (
 
 INSERT INTO `tblstatusservices` (`StatusSerID`, `Status`, `Status_Color`) VALUES
 (1, 'Active', ' #009933'),
-(2, 'Expirer soon', ''),
-(3, 'Expired', ''),
-(4, 'Canceled', '');
+(2, 'Expirer soon', '#8B8000'),
+(3, 'Expired', ' #ff8c00 '),
+(4, 'Canceled', ' #8b0000');
 
 -- --------------------------------------------------------
 
@@ -695,6 +695,48 @@ INSERT INTO `tblstatusticket` (`StatusTicketID`, `Status`, `fontColor`) VALUES
 (2, 'Client Responded', '#ff4500'),
 (3, 'Operator Responded', '#1c4e80'),
 (4, 'Close', '#8b0000');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbltaskadmin`
+--
+
+CREATE TABLE `tbltaskadmin` (
+  `taskID` int(11) NOT NULL,
+  `adminID` int(11) NOT NULL,
+  `priorityID` int(11) NOT NULL,
+  `Datetask` date NOT NULL,
+  `Task_subject` varchar(255) NOT NULL,
+  `Discription` text DEFAULT NULL,
+  `Datend` date DEFAULT NULL,
+  `done` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbltaskpriority`
+--
+
+CREATE TABLE `tbltaskpriority` (
+  `priority_id` int(11) NOT NULL,
+  `priority_name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tbltaskpriority`
+--
+
+INSERT INTO `tbltaskpriority` (`priority_id`, `priority_name`) VALUES
+(1, 'High Priority'),
+(2, 'Critical'),
+(3, 'Top Priority'),
+(4, 'Urgent'),
+(5, 'Important'),
+(6, 'Medium Priority'),
+(7, 'Low Priority'),
+(8, 'Non-Essential');
 
 -- --------------------------------------------------------
 
@@ -904,6 +946,18 @@ ALTER TABLE `tblstatusticket`
   ADD PRIMARY KEY (`StatusTicketID`);
 
 --
+-- Indexes for table `tbltaskadmin`
+--
+ALTER TABLE `tbltaskadmin`
+  ADD PRIMARY KEY (`taskID`);
+
+--
+-- Indexes for table `tbltaskpriority`
+--
+ALTER TABLE `tbltaskpriority`
+  ADD PRIMARY KEY (`priority_id`);
+
+--
 -- Indexes for table `tblticket`
 --
 ALTER TABLE `tblticket`
@@ -1068,6 +1122,18 @@ ALTER TABLE `tblstatusservices`
 --
 ALTER TABLE `tblstatusticket`
   MODIFY `StatusTicketID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `tbltaskadmin`
+--
+ALTER TABLE `tbltaskadmin`
+  MODIFY `taskID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tbltaskpriority`
+--
+ALTER TABLE `tbltaskpriority`
+  MODIFY `priority_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `tblticket`
