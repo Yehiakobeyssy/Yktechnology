@@ -47,6 +47,19 @@
                         AND Client = ?;
                         ');
     $sql->execute(array($clientId));
+
+    $sql=$con->prepare('UPDATE tblinvoice AS i
+                        JOIN (
+                            SELECT p.InvoiceID, SUM(p.Payment_Amount) AS TotalPayments
+                            FROM tblpayments AS p
+                            GROUP BY p.InvoiceID
+                        ) AS payments ON i.InvoiceID = payments.InvoiceID
+                        SET i.Invoice_Status = CASE
+                            WHEN i.Invoice_Status != 3 AND payments.TotalPayments >= (i.TotalAmount + i.TotalTax) THEN 2
+                            ELSE i.Invoice_Status
+                        END
+                        WHERE i.ClientID = ?');
+    $sql->execute(array($clientId));
 ?>
     <link rel="stylesheet" href="css/dashboard.css">
     <link rel="stylesheet" href="css/navbar.css">
@@ -64,19 +77,19 @@
                 $result=$sql->fetch();
 
                 $stat=$con->prepare('SELECT
-                                        p.ClientID,
-                                        SUM(p.Payment_Amount) AS TotalPayments,
+                                        i.ClientID,
+                                        SUM(CASE WHEN p.PaymentMethod != 2 THEN p.Payment_Amount ELSE 0 END) AS TotalPayments,
                                         SUM(i.TotalAmount + i.TotalTax) AS TotalInvoiceAmount,
-                                        SUM(p.Payment_Amount) - SUM(i.TotalAmount + i.TotalTax) AS TotalBalance
+                                        COALESCE(SUM(CASE WHEN p.PaymentMethod != 2 THEN p.Payment_Amount ELSE 0 END), 0) - SUM(i.TotalAmount + i.TotalTax) AS TotalBalance
                                     FROM
-                                        tblpayments p
-                                    JOIN
-                                        tblinvoice i ON p.InvoiceID = i.InvoiceID
+                                        tblinvoice i
+                                    LEFT JOIN
+                                        tblpayments p ON i.InvoiceID = p.InvoiceID
                                     WHERE
-                                        p.ClientID = ?
+                                        i.ClientID = ?
                                         AND i.Invoice_Status < 3
                                     GROUP BY
-                                        p.ClientID;
+                                        i.ClientID;
                                     ');
                 $stat->execute(array($clientId));
                 $checkresult=$stat->rowCount();

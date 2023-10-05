@@ -19,7 +19,6 @@
         $sql->execute();
         $result = $sql->fetch();
         if($result['paymentmethodD']== 1){
-            echo $invoiceid;
             echo '<div id="paypal-button-container"></div> ';
         }else{
             echo '

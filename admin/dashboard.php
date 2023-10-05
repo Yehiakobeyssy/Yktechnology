@@ -84,6 +84,19 @@
     } catch (PDOException $e) {
         
     }
+
+    $sql=$con->prepare('UPDATE tblinvoice AS i
+                        JOIN (
+                            SELECT p.InvoiceID, SUM(p.Payment_Amount) AS TotalPayments
+                            FROM tblpayments AS p
+                            GROUP BY p.InvoiceID
+                        ) AS payments ON i.InvoiceID = payments.InvoiceID
+                        SET i.Invoice_Status = CASE
+                            WHEN i.Invoice_Status != 3 AND payments.TotalPayments >= (i.TotalAmount + i.TotalTax) THEN 2
+                            ELSE i.Invoice_Status
+                        END
+                        ');
+    $sql->execute();    
 ?>
     <link rel="stylesheet" href="css/dashboard.css">
     <link rel="stylesheet" href="css/navbar.css">

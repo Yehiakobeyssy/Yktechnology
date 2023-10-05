@@ -113,6 +113,78 @@
                             Best Regards,
                         ';
         $mail->send();
+
+        $stat=$con->prepare('SELECT
+                                i.ClientID,
+                                SUM(CASE WHEN p.PaymentMethod != 2 THEN p.Payment_Amount ELSE 0 END) AS TotalPayments,
+                                SUM(i.TotalAmount + i.TotalTax) AS TotalInvoiceAmount,
+                                COALESCE(SUM(CASE WHEN p.PaymentMethod != 2 THEN p.Payment_Amount ELSE 0 END), 0) - SUM(i.TotalAmount + i.TotalTax) AS TotalBalance
+                            FROM
+                                tblinvoice i
+                            JOIN
+                                tblpayments p ON i.InvoiceID = p.InvoiceID
+                            WHERE
+                                i.ClientID = ?
+                                AND i.Invoice_Status < 3
+                            GROUP BY
+                                i.ClientID;');
+        $stat->execute(array($clientId));
+        $checkresult=$stat->rowCount();
+        if($checkresult > 0){
+            $resultbalance=$stat->fetch();
+            $totalbalance = $resultbalance['TotalBalance'];
+            if($totalbalance  < 0){
+                $totalbalance = 0 ;
+            }
+        }else{
+            $totalbalance = 0 ;
+        }
+
+        if($totalbalance > 0 ){
+            $ClientID           = $clientId ;
+            $invoiceID          = $InvoiceID;
+            $paymentMethod      = 2;
+            $NoofDocument       = 'Remove from old balance';
+            $Payment_Amount     = $totalbalance;
+            $Payment_Date       = date('Y-m-d');
+
+            $sql=$con->prepare('INSERT INTO tblpayments (ClientID,invoiceID,paymentMethod,NoofDocument,Payment_Amount,Payment_Date)
+                                VALUES (:ClientID,:invoiceID,:paymentMethod,:NoofDocument,:Payment_Amount,:Payment_Date)');
+            $sql->execute(array(
+                'ClientID'          =>$ClientID,
+                'invoiceID'         =>$invoiceID,
+                'paymentMethod'     =>$paymentMethod,
+                'NoofDocument'      =>$NoofDocument,
+                'Payment_Amount'    =>$Payment_Amount,
+                'Payment_Date'      =>$Payment_Date
+            ));
+
+            $mail->setFrom($applicationemail, 'YK technology');
+            $mail->addAddress($clientemail);
+            $mail->Subject = 'Confirmation of Successful Payment';
+            $mail->Body    = '
+                                Dear '.$clientName.'<br>
+                                I hope this message finds you well. I am writing to inform you that your 
+                                recent payment has been successfully processed, and we have received the funds.
+                                We greatly appreciate your prompt payment, and it helps us to continue providing
+                                you with our services/products without interruption.<br>
+                                Here are the details of the payment: <br>
+                                Invoice/Reference Number: '.$invoiceID.' <br>
+                                Payment Amount: '.$Payment_Amount.' $ <br>
+                                Payment Date: '.$Payment_Date.' <br>
+                                Payment Method: from old balance <br>
+                                If you have any questions or concerns regarding this payment or any other matter 
+                                related to our services/products, please feel free to contact our customer support
+                                team at info@yktechnology.es. We are here to assist you with any inquiries you may
+                                have.<br>
+                                Once again, thank you for your timely payment. We value your business and look 
+                                forward to serving you in the future. If you require any further documentation or 
+                                receipts for your records, please dont hesitate to let us know, and we will be 
+                                happy to provide them.<br>
+                                Best regards,
+            ';
+            $mail->send();
+        }
         header('location:manageinvoice.php');
     }
 ?>
