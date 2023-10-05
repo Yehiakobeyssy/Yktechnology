@@ -3,6 +3,10 @@
     include 'common/function.php';
     include 'common/head.php';
 ?>
+    <meta name="description" content="'Web Development,''IT Management,' and 'Technology Solutions' are examples of the services you offer.">
+    <meta name="keywords" content="web development, IT management, technology solutions, responsive web design, database management, software development, desktop applications, IT support, technology consulting, web developer, IT services, Austria, YK-Technology, social media, graphic design">
+    <meta property="og:image" content="URL_of_your_image">
+    
     <link rel="shortcut icon" href="images/logo.png" type="image/x-icon">
     <link href="common/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="common/fcss/all.min.css">
