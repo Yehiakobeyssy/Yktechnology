@@ -1,11 +1,11 @@
 <?php
     include '../../settings/connect.php';
 
-    $url = "http://localhost/work/YKtechnology/user/viewinvoice.php?id=1";
-    $query = parse_url($url, PHP_URL_QUERY);
+    $currentUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+    $query = parse_url($currentUrl, PHP_URL_QUERY);
     parse_str($query, $params);
-    if (isset($params['id'])) {
-        $invoiceid = $params['id'];
+    if (isset($params['invID'])) {
+        $invoiceid = $params['invID'];
     }else{
         $invoiceid = 0;
     }
@@ -19,7 +19,7 @@
         $sql->execute();
         $result = $sql->fetch();
         if($result['paymentmethodD']== 1){
-            
+            echo $invoiceid;
             echo '<div id="paypal-button-container"></div> ';
         }else{
             echo '
