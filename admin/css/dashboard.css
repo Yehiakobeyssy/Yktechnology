@@ -237,6 +237,9 @@ body {
 .expenses-table tbody tr:nth-child(even), .payments-table tbody tr:nth-child(even) {
     background-color: #f9f9f9;
 }
+.completed {
+    text-decoration: line-through;
+}
 
 /* Media Queries */
 

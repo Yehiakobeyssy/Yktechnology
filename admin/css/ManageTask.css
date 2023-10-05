@@ -1,0 +1,103 @@
+.mainform{
+    display: flex;
+}
+.contain{
+    width: 100%;
+    margin-left: 25px !important;
+}
+.title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px !important;
+}
+.btnnewtask{
+    margin-right: 10px !important;
+    padding: 5px 10px !important;
+}
+.newtask {
+    margin: 20px !important;
+    padding: 20px !important;
+    border: 1px solid #ccc;
+    background-color: #f7f7f7;
+    border-radius: 5px;
+}
+
+/* Style other form elements as needed */
+#priorityID,
+#Datetask,
+#Task_subject,
+#Discription,
+#Datend,
+#File {
+    width: 100%;
+    padding: 10px !important;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+input[type="submit"] {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 10px 20px !important;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+.controlbutn{
+    text-align: center;
+}
+
+.manage_container {
+    margin: 20px !important;
+    padding: 20px !important;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f5f5f5;
+}
+
+#searchBox {
+    margin-bottom: 10px;
+    padding: 5px !important;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.todo-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+}
+
+.todo-table th,
+.todo-table td {
+    padding: 10px !important;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+}
+
+.todo-table th {
+    background-color: #f0f0f0;
+}
+
+.todo-table .completed {
+    text-decoration: line-through;
+    color: #888;
+}
+
+.task-description {
+    display: none;
+    background-color: #f9f9f9;
+    padding: 10px !important;
+    border-top: 1px solid #ccc;
+}
+
+.hidden {
+    display: none;
+}

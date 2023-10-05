@@ -386,11 +386,37 @@
                         <thead>
                             <tr>
                                 <th>Done</th>
+                                <th>Importance</th>
                                 <th>Task</th>
                                 <th>Date to Finish</th>
                             </tr>
                         </thead>
                         <tbody>
+                        <?php
+                            $sql = "SELECT a.done, p.priority_name, a.Task_subject, a.Datend,taskID
+                                    FROM tbltaskadmin a
+                                    JOIN tbltaskpriority p ON a.priorityID = p.priority_id
+                                    WHERE a.done = 0
+                                    ORDER BY a.Datend";
+                            $stmt = $con->prepare($sql);
+                            if ($stmt->execute()) {
+                                $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                                if (count($rows) > 0) {
+                                    foreach ($rows as $row) {
+                                        echo '<tr>';
+                                        echo '<td><input type="checkbox" class="task-checkbox" data-task-id="' . $row['taskID'] . '" value="' . $row['taskID'] . '"></td>';
+                                        echo '<td>' . $row['priority_name'] . '</td>';
+                                        echo '<td>' . $row['Task_subject'] . '</td>';
+                                        echo '<td>' . $row['Datend'] . '</td>';
+                                        echo '</tr>';
+                                    }
+                                } else {
+                                    echo '<tr><td colspan="4">No tasks found.</td></tr>';
+                                }
+                            } else {
+                                echo '<tr><td colspan="4">Error fetching tasks.</td></tr>';
+                            }
+                            ?>
                         </tbody>
                     </table>
                 </div>
