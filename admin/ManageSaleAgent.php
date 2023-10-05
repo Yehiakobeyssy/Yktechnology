@@ -25,6 +25,48 @@
         unset($_SESSION['useradmin']);
         echo '<script> location.href="index.php" </script>';
     }
+
+    if(isset($_POST['btnpaynow'])){
+        $Account_Date = date('Y-m-d');
+        $agent        = $_POST['agent'];
+        $Discription  = $_POST['Discription'];
+        $Depit        = 0;
+        $Crieted      = $_POST['amount'];
+        
+        $sql=$con->prepare('INSERT INTO tblaccountstatment_saleperson (Account_Date,SaleManID,Discription,Depit,Crieted) 
+                            VALUES (:Account_Date,:SaleManID,:Discription,:Depit,:Crieted)');
+        $sql->execute(array(
+            'Account_Date'  =>$Account_Date,
+            'SaleManID'     =>$agent,
+            'Discription'   =>$Discription,
+            'Depit'         =>$Depit ,
+            'Crieted'       =>$Crieted
+        ));
+
+        $sql=$con->prepare('SELECT Sale_FName,Sale_LName FROM tblsalesperson WHERE SalePersonID =?');
+        $sql->execute(array($agent));
+        $result=$sql->fetch();
+        $saleMan_name = $result['Sale_FName'].' '.$result['Sale_LName'];
+
+        $ExpensisDate       =date('Y-m-d');
+        $ExpenisType        =3;
+        $Discription        ='Payment Commition To the agent : ' . $saleMan_name;
+        $Expensis_Amount    =$Crieted;
+        $Expensis_Note      ='';
+        $attached           ='';
+
+        $sql=$con->prepare('INSERT INTO tblexpensis (ExpensisDate,ExpenisType,Discription,Expensis_Amount,Expensis_Note,attached)
+                            VALUES (:ExpensisDate,:ExpenisType,:Discription,:Expensis_Amount,:Expensis_Note,:attached)');
+        $sql->execute(array(
+            'ExpensisDate'      =>$ExpensisDate,
+            'ExpenisType'       =>$ExpenisType,
+            'Discription'       =>$Discription,
+            'Expensis_Amount'   =>$Expensis_Amount,
+            'Expensis_Note'     =>$Expensis_Note,
+            'attached'          =>$attached
+        ));
+    }
+
 ?>
     <link rel="stylesheet" href="css/ManageSaleAgent.css">
     <link rel="stylesheet" href="css/navbar.css">
@@ -363,6 +405,25 @@
                         </tr>
                     </tbody>
                 </table>
+                <div class="btnPay">
+                    <button id="opendialog">Pay</button>
+                </div>
+            </div>
+            <div class="popupmesseage">
+                <div class="containermessage">
+                    <div class="closemessage">+</div>
+                    <h2> Make a Payment</h2>
+                    <form action="" method="post">
+                        <input type="text" name="agent" id="" value="<?php echo $agentID ?>" hidden>
+                        <label for="">Discription</label>
+                        <input type="text" name="Discription" id="" value="payment from the account">
+                        <label for="">Amount</label>
+                        <input type="number" name="amount" id="" step="0.01" value="<?php echo $balance?>">
+                        <div class="btnpayconsole">
+                            <button type="submit" name="btnpaynow">Pay Now</button>
+                        </div>
+                    </form>
+                </div>
             </div>
             <?php
             }elseif($do=='block'){
