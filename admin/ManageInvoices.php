@@ -38,6 +38,7 @@
             <div class="title">
                 <h1>Manage Invoices</h1>
                 <div class="addinvoice">
+                    <a href="ManageInvoices.php?do=allPayments" class="btn btn-light btnnewinv">Show all payments</a>
                     <a href="ManageInvoices.php?do=addservice"  class="btn btn-primary btnnewinv"> + Service Invoice</a>
                     <a href="ManageInvoices.php?do=addDomeinSer" class="btn btn-secondary btnnewinv"> + Domein Invoice</a>
                 </div>
@@ -634,6 +635,15 @@
                             }
                         ?>
                     </div>
+                <?php
+                }elseif($do=='allPayments'){?>
+                <div class="allpaymentdiv">
+                    <div class="searchpaymenttype">
+                        <input type="text" id="search" placeholder="Search Payments">
+                    </div>
+                    <div id="payments-list"></div>
+                    <div id="total-amount"></div>
+                </div>
                 <?php
                 }else{
                     header('location:index.php');

@@ -408,3 +408,21 @@ td:hover .hover-content {
 .finish a:hover {
     background-color: #0056b3; 
 }
+.searchpaymenttype {
+    width: 80%;
+    margin: 10px auto!important;
+}
+
+.searchpaymenttype input[type="text"] {
+    width: 100%;
+    padding: 10px !important;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.searchpaymenttype input[type="text"]:focus {
+    border-color: #007bff; /* Change border color on focus */
+}
