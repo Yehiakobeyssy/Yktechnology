@@ -196,13 +196,14 @@
                     $commissionRate = $salesmanData['ComitionRate'];
     
                     // Check if the service allows commission based on Get_commission
-                    $detailInvoiceQuery = "SELECT Service FROM tbldetailinvoice WHERE Invoice = :invoiceID";
+                    $detailInvoiceQuery = "SELECT Service,UnitPrice FROM tbldetailinvoice WHERE Invoice = :invoiceID";
                     $detailInvoiceStmt = $con->prepare($detailInvoiceQuery);
                     $detailInvoiceStmt->bindParam(':invoiceID', $invoiceID);
                     $detailInvoiceStmt->execute();
     
                     while ($detailInvoiceRow = $detailInvoiceStmt->fetch()) {
                         $serviceID = $detailInvoiceRow['Service'];
+                        $servicePrice = $detailInvoiceRow['UnitPrice'];
     
                         // Check if the service allows commission based on Get_commission
                         $serviceQuery = "SELECT Get_commission FROM tblservices WHERE ServiceID = :serviceID";
@@ -212,13 +213,19 @@
                         $serviceRow = $serviceStmt->fetch();
     
                         if ($serviceRow) {
-                            // Convert Get_commission to boolean
                             $allowsCommission = ($serviceRow['Get_commission'] == 1) ? 1 : 0;
-    
+
+                            if($userPayment > $totalInvoiceAmount){
+                                $percentofpayment = 100;
+                            }else{
+                                $percentofpayment = $userPayment *100 /$totalInvoiceAmount;
+                            }
+                            
                             if ($allowsCommission == 1) {
+                                $itemnewprice = $commissionRate * $servicePrice /100;
                                 // Calculate commission for the item based on user's payment and total invoice amount
-                                $itemCommission = ($totalInvoiceAmount / $userPayment) * ($totalInvoiceAmount * ($commissionRate / 100));
-    
+                                $itemCommission = $percentofpayment * $itemnewprice / 100;
+
                                 // Add the item's commission to the total commission
                                 $result['commission'] += $itemCommission;
                             }

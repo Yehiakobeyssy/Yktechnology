@@ -32,6 +32,7 @@
         'Payment_Date'      => $Payment_Date
     ));
 
+    $comition =calculateCommission($invoiceID,$Payment_Amount,$con);
     //send email for payment conformation
 
     $sql=$con->prepare('SELECT Client_FName,Client_LName,Client_email FROM tblclients WHERE ClientID= ?');
@@ -98,6 +99,48 @@
                             If you have any questions or need further clarification regarding this payment, please do not hesitate to contact 
                             our accounts department at info@yktechnology.es.<br>
                             Once again, thank you for your prompt attention to this matter, and we look forward to continuing our business relationship.<br>
+                            Best regards,
+                        ';
+        $mail->send();
+    }
+
+//add to the saleman 
+    if($comition['SalemanID'] > 0){
+        $sql=$con->prepare('SELECT email_Sale,Sale_FName,Sale_LName FROM tblsalesperson WHERE SalePersonID =?');
+        $sql->execute(array($comition['SalemanID']));
+        $result=$sql->fetch();
+        $saleMan_email = $result['email_Sale'];
+        $saleMan_name = $result['Sale_FName'].' '.$result['Sale_LName'];
+    
+        $Account_Date = date('Y-m-d');
+        $agent        = $comition['SalemanID'];
+        $Discription  = 'commission from invoice no '. $invoiceID . '( '. $client_Name .' )';
+        $Depit        = number_format($comition['commission'], 2);
+        $Crieted      = 0;
+                                        
+        $sql=$con->prepare('INSERT INTO tblaccountstatment_saleperson (Account_Date,SaleManID,Discription,Depit,Crieted) 
+                            VALUES (:Account_Date,:SaleManID,:Discription,:Depit,:Crieted)');
+        $sql->execute(array(
+                        'Account_Date'  =>$Account_Date,
+                        'SaleManID'     =>$agent,
+                        'Discription'   =>$Discription,
+                        'Depit'         =>$Depit ,
+                        'Crieted'       =>$Crieted
+                    ));
+    
+        $mail->setFrom($applicationemail, 'YK technology');
+        $mail->addAddress($saleMan_email);
+        $mail->Subject = 'Commission Notification';
+        $mail->Body    = '
+                            Dear '.$saleMan_name.',<br>
+                            We are pleased to inform you that you have received a commission of 
+                            $'.$Depit .' for your recent sales efforts. Your hard work and dedication are 
+                            greatly appreciated, and we want to acknowledge your contribution to our teams success.<br>
+                            <strong>Commission Amount: $'.$Depit .'</strong> <br>
+                            Thank you for your outstanding performance and commitment to achieving our sales goals.
+                            We look forward to continued success together.<br>
+                            If you have any questions or need further information, 
+                            please dont hesitate to reach out to us.<br>
                             Best regards,
                         ';
         $mail->send();
