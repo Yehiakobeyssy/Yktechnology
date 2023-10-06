@@ -131,3 +131,20 @@ td {
 .btn{
     padding: 7px !important;
 }
+@media (max-width:1366px) {
+
+}
+@media (max-width:1279px) {
+
+}
+@media (max-width:768px) {
+    .table-container {
+        overflow-x: scroll;
+    }
+    .includebody{
+        margin-bottom: 100px;
+    }
+}
+@media (max-width:480px) {
+
+}

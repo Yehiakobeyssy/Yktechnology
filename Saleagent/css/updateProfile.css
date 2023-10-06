@@ -58,3 +58,24 @@ button[type="submit"]:hover {
     text-align: center;
     margin: 15px;
 }
+
+@media (max-width:1366px) {
+
+}
+@media (max-width:1279px) {
+
+}
+@media (max-width:768px) {
+
+    .includebody{
+        margin-bottom: 100px;
+        width: 95%;
+    }
+    .container{
+        width: 95%;
+    }
+
+}
+@media (max-width:480px) {
+
+}

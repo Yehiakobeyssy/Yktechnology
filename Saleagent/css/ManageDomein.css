@@ -48,6 +48,7 @@ body{
 }
 .table-container {
     max-width: 100%;
+    overflow-x: scroll;
     margin: 0 auto !important;
     padding: 20px !important;
 }
@@ -102,6 +103,7 @@ td .fa-ellipsis-vertical {
 td:hover .hover-content {
     display: block;
     width: 100%;
+
 }
 
 /* Style for the links inside the hover content */
@@ -173,6 +175,17 @@ td:hover .hover-content {
 
 
 
+@media (max-width:1366px) {
 
+}
+@media (max-width:1279px) {
+
+}
+@media (max-width:768px) {
+
+}
+@media (max-width:480px) {
+
+}
 
 

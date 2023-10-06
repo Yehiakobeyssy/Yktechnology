@@ -44,3 +44,37 @@ hr{
     font-size: 16px;
     font-weight: bold;
 }
+
+
+@media (max-width:1366px) {
+
+}
+@media (max-width:1279px) {
+
+}
+@media (max-width:768px) {
+
+}
+@media (max-width:550px) {
+    aside{
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        height: 100px;
+        overflow-x: scroll;
+        display: flex;
+        flex-direction: row;
+        z-index: 5;
+    }
+    aside:hover{
+        width:100%;
+    }
+    .item {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .item .text{
+        opacity: 1;
+    }
+}

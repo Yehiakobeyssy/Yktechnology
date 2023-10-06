@@ -184,3 +184,17 @@ a:hover {
     background-color: #123b6e; /* Darker shade of your favorite color */
   }
   
+  @media (max-width:1366px) {
+
+  }
+  @media (max-width:1279px) {
+    .table-container{
+        overflow-x: scroll;
+    }
+  }
+  @media (max-width:768px) {
+  
+  }
+  @media (max-width:480px) {
+  
+  }

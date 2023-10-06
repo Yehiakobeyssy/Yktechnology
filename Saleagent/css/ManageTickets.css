@@ -230,6 +230,9 @@ td {
     .conatiner_Ticket{
         width: 90%;
     }
+    .table-container {
+        overflow-x: scroll;
+    }
 }
 @media (max-width:480px) {
     .conatiner_Ticket{

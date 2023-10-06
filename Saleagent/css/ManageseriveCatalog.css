@@ -120,3 +120,22 @@ body{
     text-align: center;
     margin: 10px !important;
 }
+
+@media (max-width:1366px) {
+
+}
+@media (max-width:1279px) {
+    .result_cards{
+        grid-template-columns: repeat(2, 1fr);
+
+    }
+}
+@media (max-width:768px) {
+
+}
+@media (max-width:480px) {
+    .result_cards{
+        grid-template-columns: repeat(1, 1fr);
+
+    }
+}
