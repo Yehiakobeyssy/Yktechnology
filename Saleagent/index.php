@@ -22,7 +22,7 @@
                     <label for="remember">Remember Me:</label>
                 </div>
                 <div>
-                    <a href="forgot-password.html">Forgot Password?</a>
+                    <a href="forgetpass.php">Forgot Password?</a>
                 </div>
             </div>
             <button type="submit" name="btnlogin">Login</button>
