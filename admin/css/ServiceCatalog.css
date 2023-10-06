@@ -1,0 +1,125 @@
+.mainform{
+    display: flex;
+}
+.contain{
+    width: 100%;
+    margin-left: 25px !important;
+}
+.title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px !important;
+}
+.btnmewservice{
+    padding: 7px 15px !important;
+
+}
+
+.searchbox {
+    width: 80%;
+    margin: 10px auto!important;
+}
+
+.searchbox input[type="text"] {
+    width: 100%;
+    padding: 10px !important;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+.result_cards{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px !important;
+    margin: 20px !important;
+}
+.cardserivce{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px !important;
+    border-radius: 15px;
+    height: 300;
+    border: #ccc 1px solid;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.placeimage{
+    margin: 10px !important;
+    height: auto;
+    width: 50%;
+    cursor: pointer;
+}
+.placeimage img{
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto !important;
+    border: 1px solid #ccc;
+}
+.discription{
+    margin: 10px !important;
+}
+.discription h3{
+    color: #1c4e80;
+    font-size: 42px;
+}
+.functioncard {
+    margin: 5px !important;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+.functioncard a{
+    padding: 7px 15px !important;
+}
+.addnewdiscription {
+    width: 80%;
+    margin: 0 auto !important;
+    
+    padding: 10px!important;
+
+}
+
+.addnewdiscription h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px !important;
+}
+
+.addnewdiscription label {
+    display: block;
+    margin-bottom: 10px !important;
+    font-weight: bold;
+}
+
+.addnewdiscription input[type="text"],
+.addnewdiscription input[type="file"] {
+    width: 100%;
+    padding: 10px !important;
+    margin-bottom: 15px !important;
+}
+.addnewdiscription input[type="file"]{
+    border: black 1px solid;
+    padding: 5px !important;
+}
+.addnewdiscription textarea {
+    width: 100%;
+    padding: 10px !important;
+    margin-bottom: 15px !important;
+    resize: vertical;
+}
+
+.addnewdiscription button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px !important;
+    border: none;
+    cursor: pointer;
+}
+.btnsubmit{
+    text-align: center;
+    margin: 10px !important;
+}

@@ -69,6 +69,12 @@
                         </a>
                     </li>
                     <li class="nav-link" >
+                        <a href="ServiceCatalog.php">
+                            <i class="fa-solid fa-images icon"></i>
+                            <span class="text nav-text">Service Catalog</span>
+                        </a>
+                    </li>
+                    <li class="nav-link" >
                         <a href="Manageportfolio.php">
                             <i class="fa-solid fa-panorama icon"></i>
                             <span class="text nav-text">Portfolio</span>
