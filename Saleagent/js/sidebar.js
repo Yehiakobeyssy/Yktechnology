@@ -20,19 +20,9 @@ $(function(){
         location.href="ManageDomein.php";
     })
 
-    $('#').click(function(){
-        location.href="";
+    $('#tickets').click(function(){
+        location.href="ManageTickets.php";
     })
 
-    $('#').click(function(){
-        location.href="";
-    })
 
-    $('#').click(function(){
-        location.href="";
-    })
-
-    $('#').click(function(){
-        location.href="";
-    })
 })

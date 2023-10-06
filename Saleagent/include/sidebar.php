@@ -23,21 +23,16 @@
         <i class="fa-solid fa-server icon"></i>
         <div class="text">Domeins</div>
     </div>
-    <div class="item" id="new_service">
-        <i class="fa-solid fa-laptop-code icon"></i>
-        <div class="text">New Service</div>
-    </div>
     <div class="item" id="tickets">
         <i class="fa-regular fa-calendar-check icon"></i>
         <div class="text">Tickets</div>
+    </div>
+    <div class="item" id="new_service">
+        <i class="fa-solid fa-laptop-code icon"></i>
+        <div class="text">New Service</div>
     </div>
     <div class="item" id="accountstatment">
         <i class="fa-solid fa-file-invoice-dollar icon"></i>
         <div class="text">Account Statment</div>
     </div>
-    <div class="item" id="task">
-        <i class="fa-solid fa-list-check icon"></i>
-        <div class="text">Task</div>
-    </div>
-
 </aside>

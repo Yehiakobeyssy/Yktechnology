@@ -36,7 +36,7 @@
         <?php include 'include/sidebar.php' ?>
         <div class="includebody">
         <div class="title">
-                <h1>Mange Domeins</h1>
+                <h1>Manage Domeins</h1>
             </div>
             <?php
                 $do = (isset($_GET['do']))?$_GET['do']:'manage';
