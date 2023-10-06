@@ -216,6 +216,8 @@
                                             correctly.<br>
                                             Here is the code you should share with your clients for payments:<br>
                                             <h1>'.$PromoCode.'</h1>
+                                            Please click the following link to open your dashboard:<br>
+                                            <a href="'.$websiteaddresse.'Saleagent/">Your dashboard</a>.<br>
                                             Please instruct your clients to include this code when making payments to ensure that their 
                                             transactions are associated with your account. This will help us accurately calculate your 
                                             commission. <br>

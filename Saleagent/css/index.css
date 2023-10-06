@@ -1,0 +1,86 @@
+body {
+    background-color: #1c4e80;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.login-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: #ffffff;
+    width: 60%;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.login-container h2 {
+    color: #1c4e80;
+}
+
+.login-form {
+    margin-top: 20px;
+}
+
+.login-form label {
+    display: block;
+    margin-bottom: 5px;
+    text-align: left;
+    color: #333;
+    font-weight: bold;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+.remember-forgot label{
+    display: inline;
+
+}
+.remember-forgot input{
+    width: 50px;
+}
+
+.login-form button[type="submit"] {
+    background-color: #1c4e80;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.remember-forgot {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 10px;
+}
+
+@media (max-width:1366px) {
+    .login-container {
+        width: 60%;
+    }
+}
+@media (max-width:1279px) {
+    .login-container {
+        width: 70%;
+    }
+}
+@media (max-width:768px) {
+    .login-container {
+        width: 85%;
+    }
+}
+@media (max-width:480px) {
+    .login-container {
+        width: 95%;
+    }
+}
