@@ -1,5 +1,12 @@
 <?php
     session_start();
+
+    if(isset($_COOKIE['AgentID'])){
+        header('location:dashboard.php');
+    }elseif(isset($_SESSION['AgentID'])){
+        header('location:dashboard.php');
+    }
+
     include '../settings/connect.php';
     include '../common/function.php';
     include '../common/head.php';
@@ -45,7 +52,7 @@
                     } else {
                         $_SESSION["AgentID"] = $result["SalePersonID"];
                     }
-                    //header("Location: dashboard.php");
+                    header("Location: dashboard.php");
                     exit();
                 } else {
                     $error_message = "Invalid email or password.";

@@ -263,4 +263,86 @@
     }
     
     
+
+    function countCard($con, $promocode) {
+        // Initialize an array to store the counts
+        $counts = array();
+    
+        // Count Clients
+        $clientQuery = "SELECT COUNT(ClientID) FROM tblclients WHERE promo_Code = :promocode";
+        $clientStmt = $con->prepare($clientQuery);
+        $clientStmt->bindParam(':promocode', $promocode);
+        $clientStmt->execute();
+        $counts['clients'] = $clientStmt->fetchColumn();
+    
+        // Count Services
+        $servicesQuery = "SELECT COUNT(ServicesID) FROM tblclientservices WHERE ClientID IN (SELECT ClientID FROM tblclients WHERE promo_Code = :promocode)";
+        $servicesStmt = $con->prepare($servicesQuery);
+        $servicesStmt->bindParam(':promocode', $promocode);
+        $servicesStmt->execute();
+        $counts['services'] = $servicesStmt->fetchColumn();
+    
+        // Count Services - In Process
+        $inProcessQuery = "SELECT COUNT(ServicesID) FROM tblclientservices WHERE ClientID IN (SELECT ClientID FROM tblclients WHERE promo_Code = :promocode) AND ServiceDone = 1";
+        $inProcessStmt = $con->prepare($inProcessQuery);
+        $inProcessStmt->bindParam(':promocode', $promocode);
+        $inProcessStmt->execute();
+        $counts['in_process_services'] = $inProcessStmt->fetchColumn();
+    
+        // Count Services - Expire Soon
+        $expireSoonQuery = "SELECT COUNT(ServicesID) FROM tblclientservices WHERE ClientID IN (SELECT ClientID FROM tblclients WHERE promo_Code = :promocode) AND serviceStatus = 2";
+        $expireSoonStmt = $con->prepare($expireSoonQuery);
+        $expireSoonStmt->bindParam(':promocode', $promocode);
+        $expireSoonStmt->execute();
+        $counts['expire_soon_services'] = $expireSoonStmt->fetchColumn();
+    
+        // Add counting logic for Domein and Tickets here
+        // Count Domein
+        $domeinQuery = "SELECT COUNT(DomeinID) FROM tbldomeinclients WHERE Client IN (SELECT ClientID FROM tblclients WHERE promo_Code = :promocode)";
+        $domeinStmt = $con->prepare($domeinQuery);
+        $domeinStmt->bindParam(':promocode', $promocode);
+        $domeinStmt->execute();
+        $counts['domein'] = $domeinStmt->fetchColumn();
+    
+        // Count Domein - In Process
+        $inProcessDomeinQuery = "SELECT COUNT(DomeinID) FROM tbldomeinclients WHERE Client IN (SELECT ClientID FROM tblclients WHERE promo_Code = :promocode) AND Status = 1";
+        $inProcessDomeinStmt = $con->prepare($inProcessDomeinQuery);
+        $inProcessDomeinStmt->bindParam(':promocode', $promocode);
+        $inProcessDomeinStmt->execute();
+        $counts['in_process_domein'] = $inProcessDomeinStmt->fetchColumn();
+    
+        // Count Domein - Expire Soon
+        $expireSoonDomeinQuery = "SELECT COUNT(DomeinID) FROM tbldomeinclients WHERE Client IN (SELECT ClientID FROM tblclients WHERE promo_Code = :promocode) AND Status = 2";
+        $expireSoonDomeinStmt = $con->prepare($expireSoonDomeinQuery);
+        $expireSoonDomeinStmt->bindParam(':promocode', $promocode);
+        $expireSoonDomeinStmt->execute();
+        $counts['expire_soon_domein'] = $expireSoonDomeinStmt->fetchColumn();
+    
+        // Count Tickets
+        $ticketsQuery = "SELECT COUNT(ticketID) FROM tblticket WHERE ClientID IN (SELECT ClientID FROM tblclients WHERE promo_Code = :promocode)";
+        $ticketsStmt = $con->prepare($ticketsQuery);
+        $ticketsStmt->bindParam(':promocode', $promocode);
+        $ticketsStmt->execute();
+        $counts['tickets'] = $ticketsStmt->fetchColumn();
+    
+        // Count Tickets - Open
+        $openTicketsQuery = "SELECT COUNT(ticketID) FROM tblticket WHERE ClientID IN (SELECT ClientID FROM tblclients WHERE promo_Code = :promocode) AND ticketStatus = 1";
+        $openTicketsStmt = $con->prepare($openTicketsQuery);
+        $openTicketsStmt->bindParam(':promocode', $promocode);
+        $openTicketsStmt->execute();
+        $counts['open_tickets'] = $openTicketsStmt->fetchColumn();
+    
+        // Count Tickets - Client Respond
+        $clientRespondTicketsQuery = "SELECT COUNT(ticketID) FROM tblticket WHERE ClientID IN (SELECT ClientID FROM tblclients WHERE promo_Code = :promocode) AND ticketStatus = 2";
+        $clientRespondTicketsStmt = $con->prepare($clientRespondTicketsQuery);
+        $clientRespondTicketsStmt->bindParam(':promocode', $promocode);
+        $clientRespondTicketsStmt->execute();
+        $counts['client_respond_tickets'] = $clientRespondTicketsStmt->fetchColumn();
+    
+        return $counts;
+    }
+    
+    // Retrieve promo code from your result
+
+
 ?>

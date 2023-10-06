@@ -1,0 +1,46 @@
+aside{
+    background-color: #3383d4;
+    color: #ffffff;
+    height: 100vh;
+    width: 60px;
+    padding: 10px;
+    transition: ease-in-out 0.3s;
+    overflow: hidden;
+}
+aside:hover{
+    width: 200px;
+}
+aside:hover > .item > .text {
+    opacity: 1;
+}
+
+hr{
+    height: 3px;
+    color: #1c4e80;
+    margin: 15px 0;
+}
+
+.item {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 20px 0;
+    cursor: pointer;
+}
+
+.item .icon{
+    width: 60px;
+    height: 35px;
+    flex-shrink: 1;
+    fill: #424242;
+    font-size: 24px;
+}
+.item .text{
+    opacity: 0;
+    transition:  ease-in-out 0.3s;
+    transition-delay: .2s;
+    margin-left: 15px;
+    white-space: nowrap;
+    font-size: 16px;
+    font-weight: bold;
+}
