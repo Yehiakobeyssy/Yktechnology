@@ -16,8 +16,8 @@ $(function(){
         location.href="ManageServices.php";
     })
 
-    $('#').click(function(){
-        location.href="";
+    $('#domein').click(function(){
+        location.href="ManageDomein.php";
     })
 
     $('#').click(function(){
