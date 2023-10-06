@@ -8,8 +8,8 @@ $(function(){
         location.href="ManageseriveCatalog.php";
     })
 
-    $('#').click(function(){
-        location.href="";
+    $('#user').click(function(){
+        location.href="ManageClients.php";
     })
 
     $('#').click(function(){

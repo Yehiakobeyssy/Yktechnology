@@ -217,9 +217,10 @@
                     <a href="https://github.com/Yehiakobeyssy">GitHup</a>
                     <a href="terms.php">Policy and Terms of Service</a>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3 follow">
                     <h3>Languge:</h3>
                     <span id="google_element"></span>
+                    <a href="Saleagent/index.php">Sale Agent</a>
                 </div>
             </div>
         </div>

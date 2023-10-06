@@ -1,0 +1,186 @@
+
+body{
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+.containerbody{
+    display: flex;
+}
+.includebody{
+    width: 100%;
+}
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    margin: 10px auto;
+}
+.search-input {
+    padding: 10px !important;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 80%;
+    font-size: 16px;
+    outline: none;
+}
+.search-button {
+    background-color: #1c4e80;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px !important;
+    margin-left: 10px !;
+    cursor: pointer;
+    font-size: 16px;
+}
+.search-button:hover {
+    background-color:#1c4e80;
+}
+.table-container {
+    max-width: 100%;
+    margin: 0 auto !important;
+    padding: 20px !important;
+}
+
+/* Style for the table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+/* Style for table headers */
+th {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px !important;
+}
+
+/* Style for table rows */
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+/* Style for table cells */
+td {
+    padding: 10px !important;
+    border: 1px solid #ccc;
+}
+
+/* Style for control buttons */
+.control-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px !important;
+    cursor: pointer;
+}
+
+/* Hover effect for control buttons */
+.control-button:hover {
+    background-color: #0056b3;
+}
+.btnyehia{
+    padding: 5px !important;
+    width: 80%;
+    margin: 5px auto !important;
+}
+/* Container for the client information */
+.container_detail {
+    padding: 20px !important;
+    border-radius: 5px;
+    box-shadow: 0 15px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Title */
+.title h3 {
+    font-size: 24px;
+    margin: 0;
+}
+
+/* Section headings */
+h4 {
+    font-size: 18px;
+    margin-top: 20px !important;
+}
+
+/* Labels */
+label {
+    font-weight: bold;
+}
+
+/* Table styles */
+table {
+    width: 100%;
+    margin-top: 10px !important;
+}
+
+/* Table cell styles */
+td {
+    padding: 5px !important;
+    vertical-align: top;
+}
+
+/* Hyperlinks */
+a {
+    color: #ff6600; /* You can use a complementary color for hyperlinks */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Hyperlink hover effect */
+a:hover {
+    text-decoration: underline;
+}
+/* Container for the email form */
+.container_email {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 20px !important;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Form label style */
+  label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px !important;
+    color: #1c4e80; /* Your favorite color */
+  }
+  
+  /* Form input and textarea styles */
+  input[type="text"],
+  textarea {
+    width: 100%;
+    padding: 10px !important;
+    margin-bottom: 15px !important;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .btncontroler{
+    text-align: center;
+  }
+  /* Button style */
+  button[type="submit"] {
+    background-color: #1c4e80; /* Your favorite color */
+    color: #fff;
+    padding: 10px 20px !important;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  /* Button hover effect */
+  button[type="submit"]:hover {
+    background-color: #123b6e; /* Darker shade of your favorite color */
+  }
+  
