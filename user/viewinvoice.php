@@ -274,9 +274,12 @@
         </div>
     </div>
     <?php include '../common/jslinks.php' ?>
-    <script src="https://www.paypal.com/sdk/js?client-id=AY-CMfLiUS2VuombfG2u83bOq4fqNetZg9qor6flvV5kpgKxMDgAlGe2PNWUX-wKe6XVsuxs6Fzz6_sa&disable-funding=credit,card,sofort&locale=es_ES&currency=USD" data-sdk-integration-source="button-factory"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=AesUzW12lpAZ-DmxpH5WPJqADzBR7ws6dtOP4Qd8UvExBXFr0lRt4SAswocUVy7d31FpyLBeE19Jh7yd&disable-funding=credit,card,sofort&locale=es_ES&currency=USD" data-sdk-integration-source="button-factory"></script>
     <script src="js/viewinvoice.js"></script>
-    
+    <?php
+        /*  AesUzW12lpAZ-DmxpH5WPJqADzBR7ws6dtOP4Qd8UvExBXFr0lRt4SAswocUVy7d31FpyLBeE19Jh7yd  real*/
+        /* AY-CMfLiUS2VuombfG2u83bOq4fqNetZg9qor6flvV5kpgKxMDgAlGe2PNWUX-wKe6XVsuxs6Fzz6_sa sandbox*/
+    ?>
     <script>
         function generateQRCode(link) {
             var qrcode = new QRCode(document.getElementById("qrcode"), {
