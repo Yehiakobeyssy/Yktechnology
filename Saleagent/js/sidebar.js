@@ -24,5 +24,10 @@ $(function(){
         location.href="ManageTickets.php";
     })
 
+    $('#accountstatment').click(function(){
+        location.href="ManageAccountStatment.php";
+    })
+    
+
 
 })
