@@ -4,8 +4,8 @@ $(function(){
         location.href="dashboard.php";
     })
 
-    $('#').click(function(){
-        location.href="";
+    $('#serviceCatalog').click(function(){
+        location.href="ManageseriveCatalog.php";
     })
 
     $('#').click(function(){
