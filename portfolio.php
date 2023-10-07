@@ -58,7 +58,7 @@
             </div>
         </div>
         <div class="discription">
-            <p><?php echo $portfolio['Discription'] ?></p>
+            <p><?php echo nl2br($portfolio['Discription']) ?></p>
         </div>
         <div class="go_to_website">
             <?php

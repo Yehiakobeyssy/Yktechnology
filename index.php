@@ -207,7 +207,7 @@
                 </div>
                 <div class="col-md-3">
                     <h3>Contact Us</h3>
-                    <p>Email: info@innovate.com</p>
+                    <p>Email: info@ykinnovate.com</p>
                     <p>Phone: +34 680764789</p>
                 </div>
                 <div class="col-md-3 follow">
