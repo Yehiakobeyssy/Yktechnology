@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 05, 2023 at 03:45 AM
+-- Generation Time: Oct 07, 2023 at 12:08 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -20,6 +20,21 @@ SET time_zone = "+00:00";
 --
 -- Database: `yktechnology`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tblaccountstatment_saleperson`
+--
+
+CREATE TABLE `tblaccountstatment_saleperson` (
+  `AccountID` int(11) NOT NULL,
+  `Account_Date` date NOT NULL,
+  `SaleManID` int(11) NOT NULL,
+  `Discription` varchar(50) NOT NULL,
+  `Depit` float NOT NULL,
+  `Crieted` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -449,7 +464,7 @@ CREATE TABLE `tblduration` (
 --
 
 INSERT INTO `tblduration` (`DurationID`, `DurationName`, `days`) VALUES
-(1, 'One Time', 0),
+(1, 'One Time', 600),
 (2, 'Monthly', 30),
 (3, 'Annaually', 365);
 
@@ -463,7 +478,7 @@ CREATE TABLE `tblexpensis` (
   `ExpenisisID` int(11) NOT NULL,
   `ExpensisDate` date NOT NULL,
   `ExpenisType` int(11) NOT NULL,
-  `Discription` varchar(30) NOT NULL,
+  `Discription` varchar(75) NOT NULL,
   `Expensis_Amount` float NOT NULL,
   `Expensis_Note` varchar(255) NOT NULL,
   `attached` varchar(100) NOT NULL
@@ -495,6 +510,20 @@ CREATE TABLE `tblinvoice` (
   `TotalAmount` float NOT NULL,
   `TotalTax` float NOT NULL,
   `Invoice_Status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbllibrary`
+--
+
+CREATE TABLE `tbllibrary` (
+  `imageID` int(11) NOT NULL,
+  `image` varchar(100) NOT NULL,
+  `file` varchar(100) NOT NULL,
+  `Subject` varchar(50) NOT NULL,
+  `discription` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -546,7 +575,8 @@ CREATE TABLE `tblpayment_method` (
 
 INSERT INTO `tblpayment_method` (`paymentmethodD`, `methot`, `note`, `method_active`) VALUES
 (1, 'PayPal ', '', 1),
-(2, 'From Old Balance', '', 0);
+(2, 'From Old Balance', '', 0),
+(3, 'Bank Transfer', '', 1);
 
 -- --------------------------------------------------------
 
@@ -563,6 +593,28 @@ CREATE TABLE `tblportfolio` (
   `Discription` longtext NOT NULL,
   `linkWebsite` varchar(50) NOT NULL,
   `portfolio_Active` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tblsalesperson`
+--
+
+CREATE TABLE `tblsalesperson` (
+  `SalePersonID` int(11) NOT NULL,
+  `Sale_FName` varchar(30) NOT NULL,
+  `Sale_LName` varchar(30) NOT NULL,
+  `email_Sale` varchar(50) NOT NULL,
+  `password_sale` varchar(100) NOT NULL,
+  `Country` int(11) NOT NULL,
+  `City` varchar(20) NOT NULL,
+  `Addresse` varchar(100) NOT NULL,
+  `PromoCode` varchar(100) NOT NULL,
+  `ComitionRate` float NOT NULL,
+  `PaymentType` int(11) NOT NULL,
+  `Note` longtext NOT NULL,
+  `saleActive` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -773,7 +825,7 @@ CREATE TABLE `tbltypeexpensis` (
 INSERT INTO `tbltypeexpensis` (`TypeexpensisID`, `Type_Expensis`) VALUES
 (1, 'Hosting'),
 (2, 'Employee '),
-(3, 'Other');
+(3, 'Sellers');
 
 -- --------------------------------------------------------
 
@@ -800,6 +852,12 @@ INSERT INTO `tbltypeoftickets` (`TypeTicketID`, `TypeTicket`) VALUES
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `tblaccountstatment_saleperson`
+--
+ALTER TABLE `tblaccountstatment_saleperson`
+  ADD PRIMARY KEY (`AccountID`);
 
 --
 -- Indexes for table `tbladmin`
@@ -880,6 +938,12 @@ ALTER TABLE `tblinvoice`
   ADD PRIMARY KEY (`InvoiceID`);
 
 --
+-- Indexes for table `tbllibrary`
+--
+ALTER TABLE `tbllibrary`
+  ADD PRIMARY KEY (`imageID`);
+
+--
 -- Indexes for table `tblourworkers`
 --
 ALTER TABLE `tblourworkers`
@@ -902,6 +966,12 @@ ALTER TABLE `tblpayment_method`
 --
 ALTER TABLE `tblportfolio`
   ADD PRIMARY KEY (`portfolio_ID`);
+
+--
+-- Indexes for table `tblsalesperson`
+--
+ALTER TABLE `tblsalesperson`
+  ADD PRIMARY KEY (`SalePersonID`);
 
 --
 -- Indexes for table `tblservices`
@@ -978,6 +1048,12 @@ ALTER TABLE `tbltypeoftickets`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `tblaccountstatment_saleperson`
+--
+ALTER TABLE `tblaccountstatment_saleperson`
+  MODIFY `AccountID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tbladmin`
@@ -1058,6 +1134,12 @@ ALTER TABLE `tblinvoice`
   MODIFY `InvoiceID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `tbllibrary`
+--
+ALTER TABLE `tbllibrary`
+  MODIFY `imageID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `tblourworkers`
 --
 ALTER TABLE `tblourworkers`
@@ -1073,13 +1155,19 @@ ALTER TABLE `tblpayments`
 -- AUTO_INCREMENT for table `tblpayment_method`
 --
 ALTER TABLE `tblpayment_method`
-  MODIFY `paymentmethodD` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `paymentmethodD` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tblportfolio`
 --
 ALTER TABLE `tblportfolio`
   MODIFY `portfolio_ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tblsalesperson`
+--
+ALTER TABLE `tblsalesperson`
+  MODIFY `SalePersonID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tblservices`
