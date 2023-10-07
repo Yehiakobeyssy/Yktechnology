@@ -59,7 +59,7 @@
                         Payment Method: PayPal <br>
                         If you have any questions or concerns regarding this payment or any other matter 
                         related to our services/products, please feel free to contact our customer support
-                        team at info@yktechnology.es. We are here to assist you with any inquiries you may
+                        team at info@ykinnovate.com. We are here to assist you with any inquiries you may
                         have.<br>
                         Once again, thank you for your timely payment. We value your business and look 
                         forward to serving you in the future. If you require any further documentation or 
@@ -97,7 +97,7 @@
                             We would like to express our sincere appreciation for your prompt payment. Your commitment to fulfilling your 
                             financial obligations is greatly valued, and it helps us maintain the smooth operation of our business.<br>
                             If you have any questions or need further clarification regarding this payment, please do not hesitate to contact 
-                            our accounts department at info@yktechnology.es.<br>
+                            our accounts department at info@ykinnovate.com.<br>
                             Once again, thank you for your prompt attention to this matter, and we look forward to continuing our business relationship.<br>
                             Best regards,
                         ';

@@ -71,7 +71,7 @@
                 <label for="">Y9954331Z</label>
                 <label for="">C/ SANT GERMA 6 </label>
                 <label for="">Barcelona 08004</label>
-                <label for="">www.yktechnology.es</label>
+                <label for="">www.ykinnovate.com</label>
             </div>
             <div class="invoiceTitle">
                 <h2>INVOICE</h2>

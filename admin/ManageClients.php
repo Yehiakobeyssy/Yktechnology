@@ -163,8 +163,8 @@
                                         - New Password: '.$password.' <br>
                                         Please make sure to keep your login credentials secure and do not share them with anyone. 
                                         If you did not request this password reset or have any concerns about the security of your account,
-                                        please contact our support team immediately at info@yktechnology.es .<br>
-                                        To access your account, please visit our website at www.yktechnology.es/user and use the provided login credentials.<br>
+                                        please contact our support team immediately at info@ykinnovate.com .<br>
+                                        To access your account, please visit our website at www.ykinnovate.com/user and use the provided login credentials.<br>
                                         Thank you for choosing Yk-technology. We are committed to providing you with a secure and reliable service.<br>
                                         If you have any questions or need further assistance, feel free to reach out to our support team. We are here to help.<br>
                                         Best regards,

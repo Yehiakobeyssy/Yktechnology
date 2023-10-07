@@ -54,12 +54,12 @@
             <p>We may update these Terms from time to time. Any changes will be posted on our website, and your continued use of our services constitutes acceptance of the revised Terms.</p>
 
             <h3>9. Contact Us</h3>
-            <p>If you have any questions or concerns about these Terms, please contact us at <a href="mailto:info@yktechnology.es">info@yktechnology.es</a>.</p>
+            <p>If you have any questions or concerns about these Terms, please contact us at <a href="mailto:info@ykinnovate.com">info@ykinnovate.com</a>.</p>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2023 YK Technology | <a href="mailto:info@yktechnology.es">info@yktechnology.es</a></p>
+        <p>&copy; 2023 YK Technology | <a href="mailto:info@ykinnovate.com">info@ykinnovate.com</a></p>
     </footer>
     <?php include 'common/jslinks.php'?>
 </body>

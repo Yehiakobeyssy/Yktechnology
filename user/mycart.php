@@ -107,7 +107,7 @@
                             Amount Due: $'.$TotalAmount+$TotalTax.'<br>
                             Please review the invoice . You can find the  invoice  on the following link. <br>
                             <a href="'.$websiteaddresse.'user/viewinvoice.php?id='.$Invoice.'">view Invoice </a>
-                            If you have any questions or concerns regarding this invoice or need any additional information, please do not hesitate to reach out to our dedicated support team at info@yktechnology.es.<br>
+                            If you have any questions or concerns regarding this invoice or need any additional information, please do not hesitate to reach out to our dedicated support team at info@ykinnovate.com.<br>
                             We kindly request that you make the payment by the due date to ensure there are no disruptions to your Service. Your prompt attention to this matter is greatly appreciated.<br>
                             Thank you once again for choosing YK-technology. We value your business and are committed to providing you with the best Service experience.<br>
                             Best Regards,
@@ -175,7 +175,7 @@
                                 Payment Method: from old balance <br>
                                 If you have any questions or concerns regarding this payment or any other matter 
                                 related to our services/products, please feel free to contact our customer support
-                                team at info@yktechnology.es. We are here to assist you with any inquiries you may
+                                team at info@ykinnovate.com. We are here to assist you with any inquiries you may
                                 have.<br>
                                 Once again, thank you for your timely payment. We value your business and look 
                                 forward to serving you in the future. If you require any further documentation or 

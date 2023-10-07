@@ -272,7 +272,7 @@
                             <label for="">Y9954331Z</label>
                             <label for="">C/ SANT GERMA 6 </label>
                             <label for="">Barcelona 08004</label>
-                            <label for="">www.yktechnology.es</label>
+                            <label for="">www.ykinnovate.com</label>
                         </div>
                         <div class="invoiceTitle">
                             <h2>INVOICE</h2>
@@ -535,7 +535,7 @@
                                                     Payment Method: '.$paymentnameMethod.'  <br>
                                                     If you have any questions or concerns regarding this payment or any other matter 
                                                     related to our services/products, please feel free to contact our customer support
-                                                    team at info@yktechnology.es. We are here to assist you with any inquiries you may
+                                                    team at info@ykinnovate.com. We are here to assist you with any inquiries you may
                                                     have.<br>
                                                     Once again, thank you for your timely payment. We value your business and look 
                                                     forward to serving you in the future. If you require any further documentation or 
@@ -573,7 +573,7 @@
                                             We would like to express our sincere appreciation for your prompt payment. Your commitment to fulfilling your 
                                             financial obligations is greatly valued, and it helps us maintain the smooth operation of our business.<br>
                                             If you have any questions or need further clarification regarding this payment, please do not hesitate to contact 
-                                            our accounts department at info@yktechnology.es.<br>
+                                            our accounts department at info@ykinnovate.com.<br>
                                             Once again, thank you for your prompt attention to this matter, and we look forward to continuing our business relationship.<br>
                                             Best regards,
                                         ';
@@ -668,7 +668,7 @@
                                 The decision to cancel this invoice is based on not paid or User request or dublicated invoice or changing service
                                 We understand that this may cause inconvenience, and we sincerely apologize for any inconvenience this may have caused you.<br>
                                 If you have any questions or concerns regarding this cancellation, or if you require any further clarification, 
-                                please do not hesitate to reach out to our Accounts Department at info@yktechnology.es .<br>
+                                please do not hesitate to reach out to our Accounts Department at info@ykinnovate.com .<br>
                                 Once again, we apologize for any inconvenience this may have caused, and we appreciate your understanding in this matter. 
                                 We value your business and look forward to continuing our positive business relationship.<br>
                                 Thank you for your attention to this matter.<br>
