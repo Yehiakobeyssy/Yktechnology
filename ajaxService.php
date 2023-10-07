@@ -34,7 +34,6 @@
                     <div class="header_service">
                         <h4>'.$ser['Service_Name'].'</h4>
                         <div class="prices">
-                            <span id="oldprice"><del>'.number_format($ser['old_Price'],2,'.','').'</del></span> 
                             <h2>'.number_format($ser['Service_Price'],2,'.','').' $</h2>
                         </div>
                         <p>'.$ser['DurationName'].'</p>
@@ -61,7 +60,6 @@
 <script>
     jQuery('.btnorder').click(function(){
         let serID = jQuery(this).data('index');
-        jQuery('.addcart').load('addtochart.php?serID='+serID);
         jQuery('#count_cart').load('ajaxcountcart.php');
         jQuery('#count_cart').load('ajaxcountcart.php');
         jQuery('.addcart').load('../addtochart.php?serID='+serID);

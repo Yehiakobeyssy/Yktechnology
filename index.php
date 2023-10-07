@@ -3,9 +3,9 @@
     include 'common/function.php';
     include 'common/head.php';
 ?>
-    <meta name="description" content="'Web Development,''IT Management,' and 'Technology Solutions' are examples of the services you offer.">
+    <meta property="og:image" content="/images/synpoles/seo.png">
+    <meta name="description" content="'Web Development,''IT Management,' 'Technology Solutions , ' are examples of the services we offer.">
     <meta name="keywords" content="web development, IT management, technology solutions, responsive web design, database management, software development, desktop applications, IT support, technology consulting, web developer, IT services, Austria, YK-Technology, social media, graphic design">
-    <meta property="og:image" content="URL_of_your_image">
     
     <link rel="shortcut icon" href="images/logo.png" type="image/x-icon">
     <link href="common/css/bootstrap.min.css" rel="stylesheet">
@@ -207,8 +207,8 @@
                 </div>
                 <div class="col-md-3">
                     <h3>Contact Us</h3>
-                    <p>Email: info@yktechnology.net</p>
-                    <p>Phone: +34 613194204</p>
+                    <p>Email: info@innovate.com</p>
+                    <p>Phone: +34 680764789</p>
                 </div>
                 <div class="col-md-3 follow">
                     <h3>Follow Us</h3>
@@ -220,7 +220,7 @@
                 <div class="col-md-3 follow">
                     <h3>Languge:</h3>
                     <span id="google_element"></span>
-                    <a href="Saleagent/index.php">Sale Agent</a>
+                    <a href="Saleagent/index.php">Sale Agent section</a>
                 </div>
             </div>
         </div>
