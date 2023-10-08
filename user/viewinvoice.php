@@ -274,7 +274,13 @@
         </div>
     </div>
     <?php include '../common/jslinks.php' ?>
-    <script src="https://www.paypal.com/sdk/js?client-id=AesUzW12lpAZ-DmxpH5WPJqADzBR7ws6dtOP4Qd8UvExBXFr0lRt4SAswocUVy7d31FpyLBeE19Jh7yd&disable-funding=credit,card,sofort&locale=es_ES&currency=USD" data-sdk-integration-source="button-factory"></script>
+    <?php
+        $sql=$con->prepare('SELECT key_payPal FROM  tblsetting WHERE SettingID =1');
+        $sql->execute();
+        $paypalresult=$sql->fetch();
+        $paypalKey=$paypalresult['key_payPal'];
+    ?>
+    <script src="https://www.paypal.com/sdk/js?client-id=<?php echo $paypalKey?>&disable-funding=credit,card,sofort&locale=es_ES&currency=USD" data-sdk-integration-source="button-factory"></script>
     <script src="js/viewinvoice.js"></script>
     <?php
         /*  AesUzW12lpAZ-DmxpH5WPJqADzBR7ws6dtOP4Qd8UvExBXFr0lRt4SAswocUVy7d31FpyLBeE19Jh7yd  real*/

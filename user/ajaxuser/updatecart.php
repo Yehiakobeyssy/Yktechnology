@@ -10,9 +10,9 @@
     $id = $_POST['btnsave'];
     $serviceID =$_POST['serviceID'];
     $titlename = $_POST['titlename'];
-    $domain = $_POST['domain'];
+    $domain = (isset($_POST['domain']))?$_POST['domain']:'';
     $transfer = (isset($_POST['transfer']))?$_POST['transfer']:0;
-    $code = $_POST['code'];
+    $code = isset($_POST['code'])?$_POST['code']:'';
     $forwhat = $_POST['forwhat'];
     $colors = $_POST['colors'];
     $description = $_POST['description'];
