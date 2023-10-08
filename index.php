@@ -13,7 +13,7 @@
     <link href="common/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="common/fcss/all.min.css">
     <link rel="stylesheet" href="common/fcss/fontawesome.min.css">
-    <link rel="stylesheet" href="index.css?v=1.1">
+    <link rel="stylesheet" href="index.css?v=1.2">
 </head>
 <body>
     <header>
@@ -233,7 +233,7 @@
                     <a href="terms.php">Policy and Terms of Service</a>
                 </div>
                 <div class="col-md-3 follow">
-                    <h3>Languge:</h3>
+                    <h3>Language:</h3>
                     <span id="google_element"></span>
                     <a href="Saleagent/index.php">Sale Agent section</a>
                 </div>

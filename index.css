@@ -252,11 +252,11 @@ header label{
 }
 .dicription .img{
     width: 49%;
-    text-align: right;
+    text-align: center;
     background-image: linear-gradient(to left, #1c4e80, #d7e1ff);
 }
 .img img{
-    width: 70%;
+    width: 80%;
 }
 /*my_portfolio*/
 .my_portfolio{
@@ -350,13 +350,13 @@ header label{
 
 /*Contact us*/
 .contact_us{
-    margin: 15px;
+    padding: 15px;
+    background-color: #dddada;
 }
 .contact_us form{
     width: 60%;
     margin: 10px auto;
     text-align: center;
-    background-image: linear-gradient(to left, #b5d0ff, #d7e1ff);
     padding: 10px;
     border-radius: 10px;
 }
@@ -380,6 +380,9 @@ header label{
     display: flex;
     flex-direction: column;
 }
+.forsend input,.forsend textarea{
+    padding: 7px;
+}
 .contact_us button{
     margin: 7px 0;
     width: 150px;
@@ -391,16 +394,16 @@ header label{
 }
 /*footer*/
 footer{
-    margin-top: 15px;
     padding: 10px;
-    background-color: #b6b6b6;
+    background-image: linear-gradient(to left, #0d0d0d, #434343);
+    color: white;
 }
 .follow{
     display: flex;
     flex-direction: column;
 }
 .follow a{
-    color: black;
+    color: white;
 }
 @media (max-width:1366px) {
     .allservice{
