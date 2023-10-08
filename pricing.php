@@ -1,3 +1,6 @@
+<?php
+    include 'settings/connect.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -224,8 +227,18 @@
             <h2>Accepted Payment Methods</h2>
             <p>We offer various secure payment options:</p>
             <ul>
-                <li><strong>1. PayPal:</strong> A convenient and widely-used online payment method.</li>
-                <li><strong>2. Bank Transfer:</strong> Transfer funds directly from your bank account. </li>
+                <?php
+                    $sql=$con->prepare('SELECT methot,note FROM  tblpayment_method WHERE paymentmethodD !=2 AND method_active=1');
+                    $sql->execute();
+                    $rows=$sql->fetchAll();
+                    $i=1; 
+                    foreach($rows as $row){
+                        echo '
+                            <li><strong>'.$i.'. '.$row['methot'].':</strong> <br>'.nl2br($row['note']).' <br></li>
+                        ';  
+                        $i++;
+                    }
+                ?>
             </ul>
         </div>
         <p>Our goal is to make our services accessible to all clients, and these payment options are designed to cater to your financial needs. Please be aware that once a payment is made, it is non-refundable, and we have a strict no-return policy. If you have any inquiries or need further clarification regarding our pricing, payment options, or our refund policy, please do not hesitate to contact us for assistance.</p>
