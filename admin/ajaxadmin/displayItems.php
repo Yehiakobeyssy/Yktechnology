@@ -68,19 +68,18 @@
                                     ';
                             }
 ?>
+<div class="runajax"></div>
 <script>
-        let currentURL = window.location.href
-
 jQuery('.btnaddspe').click(function(){
     let serviceID = jQuery(this).attr('data-index');
     let txttext =jQuery('#txt'+serviceID).val();
     let newtext = txttext.replace(/ /g, '_');
     jQuery('.runajax').load('ajaxadmin/insertspeafications.php?serviceID='+serviceID+'&text='+newtext);
-    location.href= currentURL;
+    location.href="ManageItems.php?cat="+<?php echo  $catID?>;
 })
 jQuery('.btndeletespe').click(function(){
     let speaficID = jQuery(this).attr('data-index');
     jQuery('.runajax').load('ajaxadmin/deleteonespafication.php?spaID='+speaficID);
-    location.href= currentURL;
+    location.href="ManageItems.php?cat="+<?php echo  $catID?>;
 })
 </script>
