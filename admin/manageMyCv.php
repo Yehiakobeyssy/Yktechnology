@@ -71,7 +71,7 @@
                         $sql=$con->prepare('UPDATE tblsetting SET Cv_text = ? , Cv_pic = ? WHERE SettingID = 1');
                         $sql->execute(array($cvtext,$cvpic));
 
-                        echo '<script> location.href.reload() </script>';
+                        echo '<script> location.href="ManageSetting.php" </script>';
                     }
                 ?>
             </div>

@@ -60,7 +60,7 @@
                         <h1>My CV</h1>
                     </div>
                     <div class="card_staus card7">
-                        <h1>Edit Fooder </h1>
+                        <h1>Edit Footer</h1>
                     </div>
                     <div class="card_staus card8">
                         <h1>Change Paypal Key</h1>

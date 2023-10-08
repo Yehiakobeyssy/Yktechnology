@@ -1,0 +1,80 @@
+.mainform{
+    display: flex;
+}
+.contain{
+    width: 100%;
+    margin-left: 25px !important;
+}
+.title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px !important;
+}
+/* Style for the form container */
+.frmeditfooter {
+    max-width: 80% !important;
+    margin: 0 auto !important;
+    padding: 20px !important;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for section headings */
+h4 {
+    font-size: 1.2em;
+    margin-bottom: 10px !important;
+}
+
+/* Style for labels */
+label {
+    font-weight: bold;
+    display: inline-block;
+    width: 150px;
+}
+
+/* Style for select inputs */
+select, input[type="text"] {
+    width: 100%;
+    padding: 8px !important;
+    margin-bottom: 10px !important;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Style for text area */
+textarea {
+    width: 100%;
+    padding: 8px !important;
+    margin-bottom: 10px !important;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Style for the submit button */
+button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px !important;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Hover effect for the submit button */
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Optional: Add some spacing to improve visual separation */
+.showsection, .aboutus, .socialmedia, .btncontrol {
+    margin-bottom: 20px !important;
+}
+
+.socialmedia input{
+    width: 500px;
+}
+.btncontrol{
+    text-align: center;
+}

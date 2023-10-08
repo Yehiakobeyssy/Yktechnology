@@ -23,6 +23,9 @@ $(function(){
     $('.card6').click(function(){
         location.href="manageMyCv.php";
     })
+    $('.card7').click(function(){
+        location.href="managefooder.php";
+    })
 
 
 })
