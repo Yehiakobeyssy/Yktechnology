@@ -20,5 +20,9 @@ $(function(){
     $('.card5').click(function(){
         location.href="managehowwework.php";
     })
+    $('.card6').click(function(){
+        location.href="manageMyCv.php";
+    })
+
 
 })

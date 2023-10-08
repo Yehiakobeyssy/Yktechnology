@@ -1,0 +1,75 @@
+.mainform{
+    display: flex;
+}
+.contain{
+    width: 100%;
+    margin-left: 25px !important;
+}
+.title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px !important;
+}
+/* Styling for the form container */
+.frmCV {
+    max-width: 80%;
+    margin: 0 auto !important;
+    padding: 20px !important;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for labels */
+label {
+    font-weight: bold;
+    margin-top: 10px !important;
+    display: block;
+}
+
+/* Style for text area */
+textarea {
+    width: 100%;
+    padding: 10px !important;
+    margin-bottom: 10px !important;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Style for file input */
+input[type="file"] {
+    width: 100%;
+    margin-bottom: 10px !important;
+}
+
+/* Style for the submit button */
+button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px !important;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Hover effect for the submit button */
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Style for the form container */
+.btncotrol {
+    text-align: center;
+}
+
+/* Optional: Add some spacing to improve visual separation */
+.btncotrol button {
+    margin-top: 10px !important;
+}
+
+#myphoto{
+    margin: 5px !important;
+    padding: 5px !important;
+    border: #0056b3 1px solid;
+}
