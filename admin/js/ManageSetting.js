@@ -17,5 +17,8 @@ $(function(){
     $('.card4').click(function(){
         location.href="manageTickettype.php";
     })
+    $('.card5').click(function(){
+        location.href="managehowwework.php";
+    })
 
 })
