@@ -1,6 +1,6 @@
 .mainform{
     display: flex;
-}
+} 
 .contain{
     width: 100%;
     margin-left: 25px !important;
@@ -13,6 +13,19 @@
 }
 .btn{
     padding: 10px !important;
+}
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.search-input {
+    padding: 10px !important;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 80%;
+    font-size: 16px;
+    outline: none;
 }
 .manage_services{
     display: grid;

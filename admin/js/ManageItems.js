@@ -1,17 +1,14 @@
 $(function(){
 
     let currentURL = window.location.href
+    var urlParams = new URLSearchParams(currentURL.split('?')[1]);
+    var catValue = urlParams.get('cat');
 
-    $('.btnaddspe').click(function(){
-        let serviceID = $(this).attr('data-index');
-        let txttext =$('#txt'+serviceID).val();
-        let newtext = txttext.replace(/ /g, '_');
-        $('.runajax').load('ajaxadmin/insertspeafications.php?serviceID='+serviceID+'&text='+newtext);
-        location.href= currentURL;
+    $('.manage_services').load('ajaxadmin/displayItems.php?catid='+catValue);
+
+    $('#txtsearch').keyup(function(){
+        let textsearch = $(this).val();
+        let search = textsearch.replace(/ /g, '_');
+        $('.manage_services').load('ajaxadmin/displayItems.php?catid='+catValue+'&search='+search);
     })
-    $('.btndeletespe').click(function(){
-        let speaficID = $(this).attr('data-index');
-        $('.runajax').load('ajaxadmin/deleteonespafication.php?spaID='+speaficID);
-        location.href= currentURL;
-    })
-})
+}) 
