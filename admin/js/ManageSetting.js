@@ -26,6 +26,9 @@ $(function(){
     $('.card7').click(function(){
         location.href="managefooder.php";
     })
+    $('.card8').click(function(){
+        location.href="mangepaypal.php";
+    })
 
 
 })
