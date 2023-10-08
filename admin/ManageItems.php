@@ -352,6 +352,6 @@
         </div>
     </div>
     <?php include '../common/jslinks.php'?>
-    <script src="js/ManageItems.js"></script>
+    <script src="js/ManageItems.js?v=1.0"></script>
     <script src="js/sidebar.js"></script>
 </body>

@@ -15,7 +15,7 @@
                                                     INNER JOIN  tblduration ON tblservices.Duration = tblduration.DurationID
                                                     WHERE Active =1 AND CategoryID=? AND 
                                                     (Service_Name LIKE ? )
-                                                    ORDER BY Service_show DESC');
+                                                    ORDER BY ServiceID , Service_show DESC');
                                 $sql->execute(array($catID,$searchParam));
                                 $cards= $sql->fetchAll();
                                 foreach($cards as $card){
