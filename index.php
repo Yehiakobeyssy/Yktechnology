@@ -3,11 +3,15 @@
     include 'common/function.php';
     include 'common/head.php';
 ?>
-    <meta property="og:image" content="www.ykinnovate.com/images/synpoles/seo.png">
+    <meta property="og:image" content="https://ykinnovate.com/images/seo.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta name="description" content="'Web Development,''IT Management,' 'Technology Solutions,' 'social media,' and  graphic design are examples of the services we offer.">
     <meta name="keywords" content="web development, IT management, technology solutions, responsive web design, database management, software development, desktop applications, IT support, technology consulting, web developer, IT services, Austria, YK-Technology, social media, graphic design">
     <meta property="og:title" content="YK-technology">
     <meta property="og:url" content="https://www.ykinnovate.com">
+    <meta property="og:description" content="'Web Development,''IT Management,' 'Technology Solutions,' 'social media,' and  graphic design are examples of the services we offer.">
+    <meta property="og:type" content="website">
     
     <link rel="shortcut icon" href="images/logo.png" type="image/x-icon">
     <link href="common/css/bootstrap.min.css" rel="stylesheet">
