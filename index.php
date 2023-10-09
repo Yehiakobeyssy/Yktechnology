@@ -13,7 +13,7 @@
     <link href="common/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="common/fcss/all.min.css">
     <link rel="stylesheet" href="common/fcss/fontawesome.min.css">
-    <link rel="stylesheet" href="index.css?v=1.4">
+    <link rel="stylesheet" href="index.css?v=1.5">
 </head>
 <body>
     <header>

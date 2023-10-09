@@ -188,7 +188,10 @@ header label{
 .how_we_work_cards{
     margin: 10px;
     padding-bottom: 10px;
+    opacity: 0;
+    animation: cardAnimation 7s ease-out forwards;
 }
+
 .card_work{
     background-color: white;
     color: black;
@@ -200,6 +203,16 @@ header label{
     border-radius: 15px 0 0 15px;
     padding: 15px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+@keyframes cardAnimation {
+    0% {
+        opacity: 0;
+        transform: translateY(-100px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 .card_work h1{
     display: inline-block;
