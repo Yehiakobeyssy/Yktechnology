@@ -13,7 +13,7 @@
     <link href="common/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="common/fcss/all.min.css">
     <link rel="stylesheet" href="common/fcss/fontawesome.min.css">
-    <link rel="stylesheet" href="index.css?v=1.2">
+    <link rel="stylesheet" href="index.css?v=1.4">
 </head>
 <body>
     <header>
@@ -34,23 +34,29 @@
         </nav>
     </header>
     <div class="slideshow-container">
-        <?php
-            $sql=$con->prepare('SELECT slideimg FROM tblslideshow WHERE slideactive = 1');
-            $sql->execute();
-            $count = $sql->rowCount();
-            $result=$sql->fetchAll();
-            $i=1;
-            foreach($result as $slide){
-                echo '
-                    <div class="mySlides">
-                        <img src="images/slideshow/'.$slide['slideimg'].'" alt="Image '.$i.'">
-                    </div>
-                ';
-                $i++;
-            }
-        ?>
-        <a class="prev" onclick="prevSlides(1)">&#10094;</a>
-        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        <div class="slideshow-content" id="slideshow">
+            <?php
+                $sql = $con->prepare('SELECT slideimg FROM tblslideshow WHERE slideactive = 1');
+                $sql->execute();
+                $count = $sql->rowCount();
+                $result = $sql->fetchAll();
+                foreach($result as $slide){
+                    echo '
+                        <div class="mySlides">
+                            <img src="images/slideshow/'.$slide['slideimg'].'" alt="Image">
+                        </div>
+                    ';
+                }
+                // Duplicate the images to ensure continuous circular looping
+                foreach($result as $slide){
+                    echo '
+                        <div class="mySlides">
+                            <img src="images/slideshow/'.$slide['slideimg'].'" alt="Image">
+                        </div>
+                    ';
+                }
+            ?>
+        </div>
     </div>
     <div class="services" id="services">
         <h1>Our Services</h1>
@@ -243,34 +249,48 @@
     <?php include 'common/jslinks.php'?>
     <script src="index.js"></script>
     <script>
-        let slideIndex = 1; 
+        var slideshow = document.getElementById("slideshow");
+        var slides = document.querySelectorAll(".mySlides");
+        var slideIndex = 0;
+        var transitionInProgress = false;
+        var direction = 1; 
 
-        function showSlides(n) {
-            let i;
-            const slides = document.querySelectorAll('.mySlides');
-            if (n > slides.length) {
-                slideIndex = 1; 
+        showSlides();
+
+        function showSlides() {
+            if (!transitionInProgress) {
+                var translateValue = -slideIndex * 100;
+                slideshow.style.transition = "transform 4s ease-in-out"; 
+                slideshow.style.transform = `translateX(${translateValue}%)`;
+
+                
+                setTimeout(function () {
+                    transitionInProgress = true;
+
+                    slideIndex += direction;
+
+                    if (slideIndex >= slides.length) {
+                        slideIndex = slides.length - 1;
+                        direction = -1;
+                    } else if (slideIndex < 0) {
+                        slideIndex = 0;
+                        direction = 1;
+                    }
+
+                    slideshow.style.transition = "none";
+
+                    
+                    setTimeout(function () {
+                        transitionInProgress = false;
+                        showSlides();
+                    }, 0);
+                }, 6000); 
             }
-            if (n < 1) {
-                slideIndex = slides.length; 
-            }
-            for (i = 0; i < slides.length; i++) {
-                slides[i].style.display = 'none';
-            }
-            slides[slideIndex - 1].style.display = 'block';
         }
 
-        function plusSlides(n) {
-            showSlides(slideIndex += n);
-        }
-
-        function prevSlides() {
-            plusSlides(-1); 
-        }
-
-        showSlides(slideIndex);
-        setInterval(function() {
-            plusSlides(1); 
-        }, 6000);
+        
+        slideshow.addEventListener("transitionend", function () {
+            transitionInProgress = false;
+        });
     </script>
 </body>

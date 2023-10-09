@@ -107,30 +107,28 @@ header label{
 /* Slide show  */
 .slideshow-container {
     position: relative;
-    max-width: 100%;
-    margin: auto;
-}
-.slideshow-container  img{
     width: 100%;
+    overflow: hidden;
+}
+
+.slideshow-content {
+    display: flex;
+    transition: transform 4s ease-in-out; 
+    
+}
+
+.mySlides {
+    width: 100%;
+    flex: 0 0 auto;
+    
+}
+
+.slideshow-container img {
+    width: 100%; 
     height: 50vh;
 }
-.mySlides {
-    display: none;
-}
-.prev, .next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    padding: 10px;
-    font-size: 18px;
-    cursor: pointer;
-}
-.prev {
-    left: 0;
-}
-.next {
-    right: 0;
-}
+
+
 /*Services*/
 .services{
     margin: 15px;
