@@ -1,4 +1,4 @@
-<?php
+<?php 
     include 'settings/connect.php';
     include 'common/function.php';
     include 'common/head.php';
@@ -25,12 +25,14 @@
             <img src="images/logo.png" alt="">
             <h3>YK-Technology</h3>
         </div>
+
         <input type="checkbox" id="menu-bar">
         <label for="menu-bar"><i class="fa-solid fa-list-ul"></i></label>
         <nav class="navbar">
             <ul>
-                <li> <a href="pricing.php"> <i class="fa-solid fa-money-bill-1"></i> Pricing</a></li>
-                <li> <a href="#services"> <i class="fa-solid fa-code"></i> Servicers</a></li>
+                <li><span id="google_element"></span></li>
+                <li><a href="pricing.php"> <i class="fa-solid fa-money-bill-1"></i> Pricing</a></li>
+                <li><a href="#services"> <i class="fa-solid fa-code"></i> Servicers</a></li>
                 <li><a href="#how_we_work"> <i class="fa-solid fa-briefcase"></i> How we Work</a></li>
                 <li><a href="#contact_us"> <i class="fa-solid fa-phone"></i> Contact Us</a></li>
                 <li><a href="user/"> <i class="fa-solid fa-user-tie"></i> Login</a></li>
@@ -44,14 +46,6 @@
                 $sql->execute();
                 $count = $sql->rowCount();
                 $result = $sql->fetchAll();
-                foreach($result as $slide){
-                    echo '
-                        <div class="mySlides">
-                            <img src="images/slideshow/'.$slide['slideimg'].'" alt="Image">
-                        </div>
-                    ';
-                }
-                // Duplicate the images to ensure continuous circular looping
                 foreach($result as $slide){
                     echo '
                         <div class="mySlides">
@@ -243,8 +237,8 @@
                     <a href="terms.php">Policy and Terms of Service</a>
                 </div>
                 <div class="col-md-3 follow">
-                    <h3>Language:</h3>
-                    <span id="google_element"></span>
+                    <h3>Sections</h3>
+                    <a href="user/index.php">Login</a>
                     <a href="Saleagent/index.php">Sale Agent section</a>
                 </div>
             </div>

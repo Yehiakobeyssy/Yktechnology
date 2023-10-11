@@ -6,8 +6,12 @@
         integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
         crossorigin="anonymous"></script>
 <script>
-        function loadGoogletranslate(){
-            new google.translate.TranslateElement("google_element");
-        }
-        window.onload = loadGoogletranslate()
+    function loadGoogletranslate() {
+        new google.translate.TranslateElement({
+            pageLanguage: 'en',
+            includedLanguages: 'en,es,ar,de,fr',
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+        }, 'google_element');
+    }
+    window.onload = loadGoogletranslate;
 </script>
