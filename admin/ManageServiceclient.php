@@ -126,7 +126,7 @@
                             </tr>
                         </table>
                         <h4>Description</h4>
-                        <p><?php echo $serviceInfo['Discription'] ?></p>
+                        <p><?php echo  nl2br($serviceInfo['Discription']) ?></p>
                     </div>
                     <div class="attachment">
                         <a href="../Documents/<?php echo $serviceInfo['filename'] ?>" download=""><i class="fa-solid fa-paperclip"></i> <?php echo $serviceInfo['filename'] ?></a>
