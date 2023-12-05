@@ -29,7 +29,7 @@
                             INNER JOIN tblstatusservices ON tblstatusservices.StatusSerID = tblclientservices.serviceStatus
                             WHERE ServicesID=?');
         $sql->execute(array($serviseID));
-        $serviceInfo =$sql->fetch();
+        $serviceInfo =$sql->fetch(); 
     }else{
         echo '<script> location.href="index.php" </script>';
     }
@@ -79,7 +79,7 @@
         </div>
         <div class="discription">
             <label for="">Discription</label>
-            <p><?php echo $serviceInfo['Discription'] ?></p>
+            <p style="text-decoration:none"><?php echo nl2br($serviceInfo['Discription']) ?></p>
         </div>
         <div class="athathment">
             <a href="../Documents/<?php echo $serviceInfo['filename'] ?>" download=""><i class="fa-solid fa-paperclip"></i>  <?php echo $serviceInfo['filename'] ?></a>

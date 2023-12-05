@@ -1,0 +1,45 @@
+.mainform{
+    display: flex;
+}
+.contain{
+    margin-left: 25px !important;
+    width: 100%;
+}
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+.title{
+    margin: 15px !important ;
+}
+.contain form {
+    background-color: #fff;
+    padding: 20px !important;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.contain label {
+    display: block;
+    margin-bottom: 8px !important;
+}
+
+.contain select,.contain  input {
+    width: 100%;
+    padding: 8px !important;
+    margin-bottom: 16px !important;
+    box-sizing: border-box;
+}
+
+.contain button {
+    background-color:  #1c4e80;
+    color: #fff;
+    padding: 10px 20px !important;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.contain button:hover {
+    background-color: #1c4e80;
+}

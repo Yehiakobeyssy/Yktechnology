@@ -33,6 +33,12 @@
                         </a>
                     </li>
                     <li class="nav-link" >
+                        <a href="activationPOS.php">
+                            <i class="fa-solid fa-check icon"></i>
+                            <span class="text nav-text">Activation POS</span>
+                        </a>
+                    </li>
+                    <li class="nav-link" >
                         <a href="ManageServiceclient.php">
                             <i class="fa-brands fa-usps icon"></i>
                             <span class="text nav-text">Service Clients</span>

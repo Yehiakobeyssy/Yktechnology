@@ -444,7 +444,8 @@
                 <?php
                     $sql = $con->prepare('SELECT ExpensisDate, Discription, CONCAT("$", FORMAT(Expensis_Amount, 2)) AS Amount
                                             FROM tblexpensis
-                                            ORDER BY ExpensisDate DESC');
+                                            ORDER BY ExpensisDate DESC
+                                            LIMIT 5');
 
                     $sql->execute();
 
@@ -482,7 +483,8 @@
                     INNER JOIN tblclients ON tblpayments.ClientID = tblclients.ClientID
                     INNER JOIN tblpayment_method ON tblpayments.paymentMethod = tblpayment_method.paymentmethodD
                     WHERE PaymentMethod != 2
-                    ORDER BY tblpayments.paymentID DESC');
+                    ORDER BY tblpayments.paymentID DESC
+                    LIMIT 5');
 
                     $sql->execute();
 
