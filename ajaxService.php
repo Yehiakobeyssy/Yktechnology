@@ -52,7 +52,7 @@
                         <button class="btnorder" data-index="'.$ser['ServiceID'].'">Order Now </button>
                     </div>
                 </div>
-            ';
+            '; 
         }
     }
 ?>
@@ -63,6 +63,7 @@
         jQuery('#count_cart').load('ajaxcountcart.php');
         jQuery('#count_cart').load('ajaxcountcart.php');
         jQuery('.addcart').load('../addtochart.php?serID='+serID);
+        jQuery('.addcart').load('addtochart.php?serID='+serID);
         jQuery('#count_cart').load('../ajaxcountcart.php');
         jQuery('#count_cart').load('../ajaxcountcart.php');
         jQuery("#count_cart").show();
