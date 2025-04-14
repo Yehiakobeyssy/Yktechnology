@@ -41,12 +41,19 @@ a {
 }
 
 /* Style for the text input */
-input[type="text"] {
+input[type="text"],input[type="email"] {
     width: 100%;
     padding: 8px !important;
     margin-bottom: 10px !important;
     border: 1px solid #ccc;
     border-radius: 5px;
+}
+
+.mainform label{
+    width: 100%;
+    text-align: left;
+    font-weight: bold;
+    margin-bottom: 7px !important;
 }
 
 /* Style for the submit button */

@@ -63,7 +63,7 @@
                         <h1>Edit Footer</h1>
                     </div>
                     <div class="card_staus card8">
-                        <h1>Change Paypal Key</h1>
+                        <h1>Change Pay Keys</h1>
                     </div>
                 </div>
                 <div class="ourteam">

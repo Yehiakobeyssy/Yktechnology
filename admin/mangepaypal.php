@@ -25,10 +25,14 @@
         unset($_SESSION['useradmin']);
         echo '<script> location.href="index.php" </script>';
     }
-    $sql=$con->prepare('SELECT key_payPal FROM tblsetting WHERE SettingID = 1');
+    $sql=$con->prepare('SELECT key_payPal,Sumup_AccessToken,Sumup_merchat_code,Sumup_Email FROM tblsetting WHERE SettingID = 1');
     $sql->execute();
     $result= $sql->fetch();
     $paypalKey = $result['key_payPal'];
+    $accessToken = $result['Sumup_AccessToken'];
+    $merchatCode = $result['Sumup_merchat_code'];
+    $email = $result['Sumup_Email'];
+
 
 
 ?>
@@ -38,7 +42,7 @@
 </head>
 <body>
     <?php include 'include/navbar.php'?>
-    <div class="mainform">
+    <div class="mainform"> 
         <?php include 'include/sidebar.php'?>
         <div class="contain">
             <div class="title">
@@ -46,24 +50,53 @@
             </div>
             <form action="" method="post">
                 <a href="https://www.paypal.com/commercesetup/APICredentials?guided=true" target="_blank">get your Key</a>
-                <input type="text" name="txtkey" id="" value="<?php echo $paypalKey ?>">
+                <input type="text" name="txtkey" id="" value="<?php echo $paypalKey ?>" placeholder="Paypal Key">
                 <div class="btncontrol">
                     <button type="submit" name="btnedit">Edit</button>
                 </div>
             </form>
             <?php
-                    if(isset($_POST['btnedit'])){
-                        $newKey = $_POST['txtkey'];
+                if(isset($_POST['btnedit'])){
+                    $newKey = $_POST['txtkey'];
 
                 
-                        if($adminId == 1){
-                            $sql=$con->prepare('UPDATE  tblsetting  SET key_payPal = ? WHERE SettingID = 1 ');
-                            $sql->execute(array($newKey));
-                            echo '<script> location.href="ManageSetting.php" </script>';
-                        }else{
-                            echo 'You dont have permition to change';
-                        }
+                    if($adminId == 1){
+                        $sql=$con->prepare('UPDATE  tblsetting  SET key_payPal = ? WHERE SettingID = 1 ');
+                        $sql->execute(array($newKey));
+                        echo '<script> location.href="mangepaypal.php" </script>';
+                    }else{
+                        echo 'You dont have permition to change';
                     }
+                }
+            ?>
+            <div class="title">
+                <h1>SumUp key</h1>
+            </div>
+            <form action="" method="post">
+                <label for="">Sumup Access Token</label>
+                <input type="text" name="newAccess" id="" placeholder="Access Token" value="<?php echo $accessToken ?>">
+                <label for="">Sumup Merchat code</label>
+                <input type="text" name="newMerchat" id="" placeholder="Merchat Code" value="<?php echo $merchatCode ?>">
+                <label for="">Sumup Email</label>
+                <input type="email" name="newEmail" id="" placeholder="Email user" value="<?php echo $email ?>">
+                <div class="btncontrol">
+                    <button type="submit" name="btneditSumup">Edit</button>
+                </div>
+            </form>
+            <?php
+                if(isset($_POST['btneditSumup'])){
+                    $newAccesscode = $_POST['newAccess'];
+                    $newMerchate = $_POST['newMerchat'];
+                    $newemail = $_POST['newEmail'];
+
+                    if($adminId == 1){
+                        $sql=$con->prepare('UPDATE  tblsetting  SET Sumup_AccessToken = ? ,Sumup_merchat_code = ?,Sumup_Email = ? WHERE SettingID = 1 ');
+                        $sql->execute(array($newAccesscode,$newMerchate,$newemail));
+                        echo '<script> location.href="mangepaypal.php" </script>';
+                    }else{
+                        echo 'You dont have permition to change';
+                    }
+                }
             ?>
         </div>
     </div>
