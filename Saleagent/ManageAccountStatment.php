@@ -87,7 +87,7 @@
 
                         if ($cech == 1) {
                         $result_old = $stat->fetch();
-                        $oldBalance = $result_old['oldBalance'];
+                        $oldBalance = $result_old['oldBalance']; 
                         } else {
                         $oldBalance = 0;
                         }

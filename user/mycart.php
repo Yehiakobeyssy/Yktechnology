@@ -143,8 +143,8 @@
         if($totalbalance > 0 ){
             $ClientID           = $clientId ;
             $invoiceID          = $InvoiceID;
-            $paymentMethod      = 2;
-            $NoofDocument       = 'Remove from old balance';
+            $paymentMethod      = 3;
+            $NoofDocument       = 'Remove from old balance'; 
             $Payment_Amount     = $totalbalance;
             $Payment_Date       = date('Y-m-d');
 
