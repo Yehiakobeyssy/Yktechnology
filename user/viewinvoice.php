@@ -75,7 +75,6 @@
                     $info=$sql->fetch();
 
                 ?>
-                <h3>YK-Technology</h3>
                 <label for=""><?php echo $info['tax_number'] ?></label>
                 <label for=""><?php echo $info['addresse'] ?></label>
                 <label for=""><?php echo $info['zip_code'].' - '. $info['region'] ?></label>
@@ -150,6 +149,7 @@
                     </tr>
                 </tfoot>
             </table>
+            <?php  $grandTotal = $invoiceinfo['TotalAmount'] + $invoiceinfo['TotalTax'] ?>
         </div>
         
         <div class="paymenttable">
@@ -201,87 +201,98 @@
             </table>
         </div>
 
-        <div class="pay" style='display:<?php echo  $displaypay ?>'>
-            <button id="btnpaydeiteil"> Pay Now </button>
-        </div>
+        
         <label for="" style="font-weight:bold;">Print Date : <?php echo date('d/m/Y') ?></label>
-    </div>
-    <div class="popuppayment">
-        <div class="containerpayment">
-            <div class="closePayment">+</div>
-            <div class="page1">
-                <div class="titlepayment">
-                    <h3>Payment Plan Established</h3>
-                </div>
-                <div class="disription">
-                    <?php
-                        $invoiceAmount = $invoiceinfo['TotalAmount'] + $invoiceinfo['TotalTax'];
+        <?php 
+            //Calacute Payment 
+            $invoiceAmount = $invoiceinfo['TotalAmount'] + $invoiceinfo['TotalTax'];
 
-                        $sql=$con->prepare('SELECT COALESCE(SUM(Payment_Amount), 0) AS TotalAmount
-                                            FROM tblpayments
-                                            WHERE invoiceID = ?;');
-                        $sql->execute(array($invoiceID));
-                        $result=$sql->fetch();
+            $sql=$con->prepare('SELECT COALESCE(SUM(Payment_Amount), 0) AS TotalAmount
+                                FROM tblpayments
+                                WHERE invoiceID = ?;');
+            $sql->execute(array($invoiceID));
+            $result=$sql->fetch();
 
-                        $amountPaid = $result['TotalAmount'];
-                        $paymentDetails = calculatePaymentDetails($invoiceAmount,$amountPaid);
-                    ?>
-                    <p>This invoice will be divided into <?php echo $paymentDetails['numberOfPayments']?> equal payments as outlined below:</p>
-                </div>
-                <div class="pay_done">
-                    <?php
-                        for ($i = 1; $i <= $paymentDetails['numberOfPayments'] - 1; $i++) {
-                            echo '<div class="payment_dis">';
-                            if ($i <= $paymentDetails['paymentsMade']) {
-                                echo "<span class='number_payment paid'> $i </span> <h4>" . number_format($paymentDetails['paymentAmount'], 2) . " $</h4> (Paid)<br>";
-                            } else {
-                                echo "<span class='number_payment no_paid'> $i </span> <h4 class='amountpayment'>" . number_format($paymentDetails['paymentAmount'], 2) . " $</h4><br>";
-                            }
-                            echo '</div>';
-                        }
-                        
-                        $i = $paymentDetails['numberOfPayments'];
-                        $lastPaymentAmount = $paymentDetails['paymentAmount'] - $paymentDetails['overpayment'];
-                        echo '<div class="payment_dis">';
-                        if ($i <= $paymentDetails['paymentsMade']) {
-                            echo "<span class='number_payment paid'> $i </span>x <h4>" . number_format($lastPaymentAmount, 2) . " $</h4> (Paid)<br>";
-                        } else {
-                            echo "<span class='number_payment no_paid'> $i  </span> <h4 class='amountpayment'>" . number_format($lastPaymentAmount, 2) . " $</h4><br>";
-                        }
-                        echo '</div>';
-                    ?>
-                </div>
-                <div class="gonext">
-                    <button id="gotopage2">Next</button>
-                </div>
-            </div>
-            <div class="page2">
-                <div class="titlepayment">
-                    <h3>Payment Method</h3>
-                </div>
-                <div class="disription">
-                    <p>What method of payment would you prefer?</p>
-                </div>
-                <div class="payments">
-                    <select name="" id="txtpaymentmethod">
-                        <?php
-                            foreach ($methodspay as $type) {
-                                echo '<option value="' . $type['paymentmethodD'] . '">' . $type['methot'] . '</option>';
-                            }
-                        ?>
-                    </select>
-                </div>
-                <div class="note_payment">
-                    <p id="textnote"></p>
-                </div>
-                <div class="amout_to_pay">
-                    <h3>Amount To Pay: <span id="Nextamount"></span>$</h3>
-                </div>
-                <div class="conclution">
-                </div>
-            </div>
+            $amountPaid = $result['TotalAmount'];
+            $paymentDetails = calculatePaymentDetails($invoiceAmount,$amountPaid);
+            
+            $Amounttopay=$paymentDetails['paymentAmount']
+        ?>
+        <table id="dlpay">
+            <tr>
+                <th>Payment </th>
+                <td><?php echo $paymentDetails['paymentsMade']+1  .' of '.$paymentDetails['numberOfPayments']  ?></td>
+            </tr>
+            <tr>
+                <th>Amount Due </th>
+                <td id="thisAmount"><?php echo number_format($paymentDetails['paymentAmount'],2)  ?></td>
+            </tr>
+            <tr>
+                <th>Remaining After This Payment </th>
+                <td><?php echo number_format($grandTotal - $paymentDetails['paymentAmount']   ,2)  ?></td>
+            </tr>
+        </table>
+        <?php
+            if($paymentDetails['remainingPayments'] == 0){
+                $displaypements = 'none';
+            }else{
+                $displaypements = 'block';
+            }
+        ?>
+        <div class="paymentTyps" style="display:<?php echo $displaypements ?>">
+            <h3>Payment Method </h3>
+            
+            <?php
+                $sql=$con->prepare('SELECT paymentmethodD,methot,note FROM tblpayment_method WHERE paymentmethodD != 3 AND method_active = 1');
+                $sql->execute();
+                $payments=$sql->fetchAll();
+
+                foreach($payments as $payment){
+
+                    if($payment['paymentmethodD'] == 1){
+                        echo '
+                        <div class="card_pay">
+                            <div class="title_pay">
+                                <h3>'.$payment['methot'].'</h3>
+                            </div>
+                            <div class="dis">
+                                <label for="">'.$payment['note'].'</label>
+                                <div id="paypal-button-container"></div>
+                            </div>
+                        </div>
+                    ';
+                    }elseif($payment['paymentmethodD'] == 2){
+                        echo '
+                        <div class="card_pay">
+                            <div class="title_pay">
+                                <h3>'.$payment['methot'].'</h3>
+                            </div>
+                            <div class="dis">
+                                <label for="">'.$payment['note'].'</label>
+                                <div id="sumup-card" class="sumupcontainer"></div>
+                            </div>
+                        </div>
+                    ';
+                    $checkout_id = create_checkout($Amounttopay,'Payment for Invoice no.'. $invoiceID , $invoiceID);
+                    }else{
+                        echo '
+                        <div class="card_pay">
+                            <div class="title_pay">
+                                <h3>'.$payment['methot'].'</h3>
+                            </div>
+                            <div class="dis">
+                                <label for="">'.$payment['note'].'</label>
+                            </div>
+                        </div>
+                    ';
+                    }
+                    
+                }
+            ?>
+            
         </div>
     </div>
+
     <?php include '../common/jslinks.php' ?>
     <?php
         $sql=$con->prepare('SELECT key_payPal FROM  tblsetting WHERE SettingID =1');
@@ -294,8 +305,16 @@
     <?php
         /*  AesUzW12lpAZ-DmxpH5WPJqADzBR7ws6dtOP4Qd8UvExBXFr0lRt4SAswocUVy7d31FpyLBeE19Jh7yd  real*/
         /* AY-CMfLiUS2VuombfG2u83bOq4fqNetZg9qor6flvV5kpgKxMDgAlGe2PNWUX-wKe6XVsuxs6Fzz6_sa sandbox*/
+        // <?php echo $paypalKey
     ?>
     <script>
+        //let amount_pay = 
+        let amountText = document.getElementById("thisAmount").innerText;
+        let amountInvoice = parseFloat(amountText).toFixed(2);
+
+        var url = window.location.href;
+        var urlParams = new URLSearchParams(url.split('?')[1]); // Extract the query parameters from the URL
+        var invid = urlParams.get('id');
         function generateQRCode(link) {
             var qrcode = new QRCode(document.getElementById("qrcode"), {
                 text: link,
@@ -306,6 +325,63 @@
         var link = window.location.href; 
         generateQRCode(link);
 
+        paypal.Buttons({
+            createOrder: function(data, actions) {
+            return actions.order.create({
+                purchase_units: [{
+                amount: {
+                    value: amountInvoice
+                }
+                }],
+                application_context: {
+                shipping_preference: 'NO_SHIPPING'
+                }
+            });
+            },
+            onApprove: function(data, actions) {
+            return actions.order.capture().then(function(details) {
+                let tras=details.id
+                location.href = "paymentpaypal.php?id="+tras+"&invoiceID="+invid+"&amountpay="+ encodeURIComponent(amountInvoice);
+            });
+            }
+        }).render('#paypal-button-container');
+
+        const checkoutId = '<?php echo $checkout_id; ?>';
+        
+        SumUpCard.mount({
+            id: 'sumup-card',
+            checkoutId: checkoutId,
+            currency: 'EUR',
+            onResponse: function (type, data) {
+                switch (type) {
+                    case 'sent':
+                        console.log('Form sent to the server for processing.');
+                        console.log('Card details:', data);
+                        break;
+                    case 'invalid':
+                        console.error('Form has validation errors.');
+                        break;
+                    case 'auth-screen':
+                        console.log('User is prompted to authenticate the payment.');
+                        break;
+                    case 'error':
+                        console.error('Server responded with an error:', data);
+                        break;
+                    case 'success':
+                        console.log('Payment successful. Response:', data);
+                        tras=data.id;
+                        location.href = "paymentCard.php?id="+tras+"&invoiceID="+invid+"&amountpay="+ encodeURIComponent(amountInvoice);
+                        break;
+                    case 'fail':
+                        console.error('Payment failed:', data);
+                        break;
+                    default:
+                        console.warn('Unknown status:', type);
+                }
+                console.log('Type:', type);
+                console.log('Body:', data);
+            }
+        });
     </script>
 
 </body>

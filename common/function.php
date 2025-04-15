@@ -345,4 +345,66 @@
     // Retrieve promo code from your result
 
 
+    function create_checkout($amount,$discription,$invoiceID){
+        global $con;
+        $sql=$con->prepare('SELECT Sumup_AccessToken,Sumup_merchat_code,Sumup_Email FROM tblsetting LIMIT 1');
+        $sql->execute();
+        $result = $sql->fetch();
+        
+        $api_endpoint = 'https://api.sumup.com/v0.1/checkouts';
+        $access_token = $result['Sumup_AccessToken']; 
+        $merchant_code = $result['Sumup_merchat_code'];
+        $invoiceID = $invoiceID;
+        $myemail = $result['Sumup_Email'];
+        $amount = $amount;
+        $discription = $discription;
+    
+        // Data to be sent in the request body
+        $data = [
+            'amount'             => $amount,
+            'checkout_reference' => $invoiceID . time(),
+            'currency'           => 'EUR',
+            'description'        => $discription,
+            'merchant_code'      => $merchant_code,
+            'pay_to_email'       => $myemail,
+            'status'             => 'PENDING',
+            'valid_until'        => date('Y-m-d\TH:i:s\Z', strtotime('+5 minutes'))
+        ];
+     
+        // Initialize cURL session
+        $ch = curl_init($api_endpoint);
+    
+        // Set cURL options
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            'Authorization: Bearer ' . $access_token,
+            'Content-Type: application/json'
+        ]);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+    
+        // Execute cURL session
+        $response = curl_exec($ch);
+    
+        // Check for errors
+        if ($response === false) {
+            echo 'Error: ' . curl_error($ch);
+            curl_close($ch);
+            exit;
+        }
+    
+        // Close cURL session
+        curl_close($ch);
+    
+        // Decode JSON response
+        $response_data = json_decode($response, true);
+    
+        // Check response status
+        if (isset($response_data['id'])) {
+            $checkout_id = $response_data['id'];
+            return $checkout_id;
+        } else {
+            echo 'Failed to create checkout. Response: ' . $response;
+        }
+    }
 ?>

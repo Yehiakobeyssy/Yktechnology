@@ -17,7 +17,7 @@
     //insert to payment 
     $ClientID       = $clientID;
     $invoiceID      = $invoiceID;
-    $paymentMethod  = 1;
+    $paymentMethod  = 2;
     $NoofDocument   = $transacction;
     $Payment_Amount = $amount;
     $Payment_Date   = date('Y-m-d');
@@ -57,7 +57,7 @@
                         Invoice/Reference Number: '.$invoiceID.' <br>
                         Payment Amount: '.$amount.' $ <br>
                         Payment Date: '.$Payment_Date.' <br>
-                        Payment Method: PayPal <br>
+                        Payment Method: Depit/Crited Card <br>
                         If you have any questions or concerns regarding this payment or any other matter 
                         related to our services/products, please feel free to contact our customer support
                         team at info@ykinnovate.com. We are here to assist you with any inquiries you may

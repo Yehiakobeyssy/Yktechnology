@@ -14,7 +14,7 @@ body{
     justify-content: space-between;
     align-items: center;
     margin: 5px ;
-    border-bottom: black 1px solid;
+    border-bottom: black 1px solid; 
 }
 .companyInfo{
     display: flex;
@@ -261,6 +261,38 @@ body{
     margin: 10px auto !important;
 }
 
+.paymentTyps{
+    margin-top: 15px;
+}
+.paymentTyps h3{
+    color: var(--Text2, #000);
+    font-family: Outfit;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px; 
+    letter-spacing: 0.72px;
+}
+.card_pay{
+    border-radius: 12px;
+    background: #F3F3F3;
+    margin: 10px 0;
+    padding: 25px;
+}
+.title_pay{
+    cursor: pointer;
+}
+.title_pay h3{
+    color: #3C4242;
+    font-family: Outfit;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+.dis{
+    display: none;
+}
 @media (max-width:1366px) {
 
 }
@@ -277,5 +309,14 @@ body{
 @media (max-width:480px) {
     .containerpayment{
         width: 90%;
+    }
+}
+
+@media print {
+    .paymentTyps {
+        display: none !important;
+    }
+    #dlpay{
+        display: none !important;
     }
 }

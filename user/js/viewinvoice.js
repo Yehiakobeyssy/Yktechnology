@@ -4,6 +4,7 @@ $(function(){
     var url = window.location.href;
     var urlParams = new URLSearchParams(url.split('?')[1]); // Extract the query parameters from the URL
     var invid = urlParams.get('id');
+    $(".dis").hide();
 
 
     $('#textnote').load('ajaxuser/display_note_payment.php');
@@ -37,4 +38,15 @@ $(function(){
     jQuery('.btnclosepayment').click(function(){
         jQuery('.popuppayment').hide();
     })
-});
+
+    $(".title_pay h3").click(function(){
+        let dis = $(this).closest(".card_pay").find(".dis");
+
+        if(dis.is(":visible")) {
+            dis.slideUp();
+        } else {
+            $(".dis").slideUp(); // hide all first
+            dis.slideDown();     // show clicked one
+        }
+    });
+}); 
