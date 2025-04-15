@@ -218,7 +218,14 @@
             
             $Amounttopay=$paymentDetails['paymentAmount']
         ?>
-        <table id="dlpay">
+        <?php
+            if($paymentDetails['remainingPayments'] == 0){
+                $displaypements = 'none';
+            }else{
+                $displaypements = 'block';
+            }
+        ?>
+        <table id="dlpay" style="display:<?php echo $displaypements ?>">
             <tr>
                 <th>Payment </th>
                 <td><?php echo $paymentDetails['paymentsMade']+1  .' of '.$paymentDetails['numberOfPayments']  ?></td>
@@ -232,13 +239,7 @@
                 <td><?php echo number_format($grandTotal - $paymentDetails['paymentAmount']   ,2)  ?></td>
             </tr>
         </table>
-        <?php
-            if($paymentDetails['remainingPayments'] == 0){
-                $displaypements = 'none';
-            }else{
-                $displaypements = 'block';
-            }
-        ?>
+        
         <div class="paymentTyps" style="display:<?php echo $displaypements ?>">
             <h3>Payment Method </h3>
             
@@ -325,63 +326,74 @@
         var link = window.location.href; 
         generateQRCode(link);
 
-        paypal.Buttons({
-            createOrder: function(data, actions) {
-            return actions.order.create({
-                purchase_units: [{
-                amount: {
-                    value: amountInvoice
+        try{
+            paypal.Buttons({
+                createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                    amount: {
+                        value: amountInvoice
+                    }
+                    }],
+                    application_context: {
+                    shipping_preference: 'NO_SHIPPING'
+                    }
+                });
+                },
+                onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    let tras=details.id
+                    location.href = "paymentpaypal.php?id="+tras+"&invoiceID="+invid+"&amountpay="+ encodeURIComponent(amountInvoice);
+                });
                 }
-                }],
-                application_context: {
-                shipping_preference: 'NO_SHIPPING'
-                }
-            });
-            },
-            onApprove: function(data, actions) {
-            return actions.order.capture().then(function(details) {
-                let tras=details.id
-                location.href = "paymentpaypal.php?id="+tras+"&invoiceID="+invid+"&amountpay="+ encodeURIComponent(amountInvoice);
-            });
-            }
-        }).render('#paypal-button-container');
-
-        const checkoutId = '<?php echo $checkout_id; ?>';
+            }).render('#paypal-button-container');
+        } catch (e) {
+            console.warn("PayPal Button failed to render or initialize:", e);
+            // Continue with other scripts or show a fallback UI
+        }
         
-        SumUpCard.mount({
-            id: 'sumup-card',
-            checkoutId: checkoutId,
-            currency: 'EUR',
-            onResponse: function (type, data) {
-                switch (type) {
-                    case 'sent':
-                        console.log('Form sent to the server for processing.');
-                        console.log('Card details:', data);
-                        break;
-                    case 'invalid':
-                        console.error('Form has validation errors.');
-                        break;
-                    case 'auth-screen':
-                        console.log('User is prompted to authenticate the payment.');
-                        break;
-                    case 'error':
-                        console.error('Server responded with an error:', data);
-                        break;
-                    case 'success':
-                        console.log('Payment successful. Response:', data);
-                        tras=data.id;
-                        location.href = "paymentCard.php?id="+tras+"&invoiceID="+invid+"&amountpay="+ encodeURIComponent(amountInvoice);
-                        break;
-                    case 'fail':
-                        console.error('Payment failed:', data);
-                        break;
-                    default:
-                        console.warn('Unknown status:', type);
+
+        try{
+            const checkoutId = '<?php echo $checkout_id; ?>';
+        
+            SumUpCard.mount({
+                id: 'sumup-card',
+                checkoutId: checkoutId,
+                currency: 'EUR',
+                onResponse: function (type, data) {
+                    switch (type) {
+                        case 'sent':
+                            console.log('Form sent to the server for processing.');
+                            console.log('Card details:', data);
+                            break;
+                        case 'invalid':
+                            console.error('Form has validation errors.');
+                            break;
+                        case 'auth-screen':
+                            console.log('User is prompted to authenticate the payment.');
+                            break;
+                        case 'error':
+                            console.error('Server responded with an error:', data);
+                            break;
+                        case 'success':
+                            console.log('Payment successful. Response:', data);
+                            tras=data.id;
+                            location.href = "paymentCard.php?id="+tras+"&invoiceID="+invid+"&amountpay="+ encodeURIComponent(amountInvoice);
+                            break;
+                        case 'fail':
+                            console.error('Payment failed:', data);
+                            break;
+                        default:
+                            console.warn('Unknown status:', type);
+                    }
+                    console.log('Type:', type);
+                    console.log('Body:', data);
                 }
-                console.log('Type:', type);
-                console.log('Body:', data);
-            }
-        });
+            });
+        }catch(e){
+            console.warn("Sumup Button failed to render or initialize:", e);
+        }
+        
     </script>
 
 </body>

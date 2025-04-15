@@ -482,7 +482,7 @@
                     FROM tblpayments
                     INNER JOIN tblclients ON tblpayments.ClientID = tblclients.ClientID
                     INNER JOIN tblpayment_method ON tblpayments.paymentMethod = tblpayment_method.paymentmethodD
-                    WHERE PaymentMethod != 2
+                    WHERE PaymentMethod != 3
                     ORDER BY tblpayments.paymentID DESC
                     LIMIT 5');
 
