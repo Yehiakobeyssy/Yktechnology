@@ -268,11 +268,17 @@
                 <div class="deiteilinvoice">
                     <div class="title">
                         <div class="companyInfo">
+                            <?php
+                                $sql=$con->prepare('SELECT tax_number,addresse,zip_code,region,website FROM tblsetting WHERE SettingID=1');
+                                $sql->execute();
+                                $info=$sql->fetch();
+
+                            ?>
                             <h3>YK-Technology</h3>
-                            <label for="">Y9954331Z</label>
-                            <label for="">C/ SANT GERMA 6 </label>
-                            <label for="">Barcelona 08004</label>
-                            <label for="">www.ykinnovate.com</label>
+                            <label for=""><?php echo $info['tax_number'] ?></label>
+                            <label for=""><?php echo $info['addresse'] ?></label>
+                            <label for=""><?php echo $info['zip_code'].' - '. $info['region'] ?></label>
+                            <label for=""><?php echo $info['website'] ?></label> 
                         </div>
                         <div class="invoiceTitle">
                             <h2>INVOICE</h2>
