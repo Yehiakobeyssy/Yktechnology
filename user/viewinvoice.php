@@ -61,6 +61,7 @@
     <link rel="stylesheet" href="css/viewinvoice.css">
     <link rel="stylesheet" type="text/css" href="css/print-styles.css" media="print">
     <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <script src="https://gateway.sumup.com/gateway/ecom/card/v2/sdk.js"></script>
 
 </head>
 <body>
@@ -150,6 +151,7 @@
                 </tfoot>
             </table>
         </div>
+        
         <div class="paymenttable">
             <table>
                 <thead>
@@ -287,7 +289,7 @@
         $paypalresult=$sql->fetch();
         $paypalKey=$paypalresult['key_payPal'];
     ?>
-    <script src="https://www.paypal.com/sdk/js?client-id=<?php echo $paypalKey?>&disable-funding=credit,card,sofort&locale=es_ES&currency=USD" data-sdk-integration-source="button-factory"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=<?php echo $paypalKey?>&disable-funding=credit,card,sofort&locale=es_ES&currency=EUR" data-sdk-integration-source="button-factory"></script>
     <script src="js/viewinvoice.js"></script>
     <?php
         /*  AesUzW12lpAZ-DmxpH5WPJqADzBR7ws6dtOP4Qd8UvExBXFr0lRt4SAswocUVy7d31FpyLBeE19Jh7yd  real*/

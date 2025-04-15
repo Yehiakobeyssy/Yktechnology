@@ -228,7 +228,7 @@
             <p>We offer various secure payment options:</p>
             <ul>
                 <?php
-                    $sql=$con->prepare('SELECT methot,note FROM  tblpayment_method WHERE paymentmethodD !=2 AND method_active=1');
+                    $sql=$con->prepare('SELECT methot,note FROM  tblpayment_method WHERE paymentmethodD !=3 AND method_active=1');
                     $sql->execute();
                     $rows=$sql->fetchAll();
                     $i=1; 
