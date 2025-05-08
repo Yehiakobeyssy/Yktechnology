@@ -91,7 +91,7 @@
                     <select id="paymentType" name="paymentType">
                         <option value="">[select One]</option>
                         <?php
-                            $sql=$con->prepare('SELECT paymentmethodD,methot FROM  tblpayment_method  WHERE paymentmethodD != 2');
+                            $sql=$con->prepare('SELECT paymentmethodD,methot FROM  tblpayment_method  WHERE paymentmethodD != 3');
                             $sql->execute();
                             $rows=$sql->fetchAll();
                             foreach($rows as $row){
