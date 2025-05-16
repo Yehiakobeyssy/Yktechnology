@@ -24,10 +24,14 @@ $(function(){
         location.href="ManageTickets.php";
     })
 
+    $('#new_service').click(function(){
+        location.href="ManageAddService.php";
+    })
+
     $('#accountstatment').click(function(){
         location.href="ManageAccountStatment.php";
     })
     
 
-
+ 
 })
