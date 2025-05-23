@@ -407,4 +407,27 @@
             echo 'Failed to create checkout. Response: ' . $response;
         }
     }
+
+    function uploadFile($file, $targetDir) {
+        if (!isset($file['name']) || $file['error'] !== UPLOAD_ERR_OK) {
+            return 'No Document'; // or handle error
+        }
+
+        $temp = explode(".", $file['name']);
+        $extension = strtolower(end($temp));
+        $allowedExt = ['pdf', 'doc', 'docx', 'jpg', 'jpeg', 'png']; // Optional: security
+
+        if (!in_array($extension, $allowedExt)) {
+            return 'No Document'; // or handle invalid extension
+        }
+
+        $newfilename = round(microtime(true)) . '.' . $extension;
+        $destination = $targetDir . $newfilename;
+
+        if (move_uploaded_file($file['tmp_name'], $destination)) {
+            return $newfilename;
+        } else {
+            return 'No Document'; // or handle move failure
+        }
+    }
 ?>
