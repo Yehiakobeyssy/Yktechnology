@@ -32,6 +32,18 @@
                             <span class="text nav-text">Sales Agent</span>
                         </a>
                     </li>
+                    <li class="nav-link">
+                        <a href="ManageFreelancer.php">
+                            <i class="fa-solid fa-user-tie icon"></i>
+                            <span class="text nav-text">Freelancers</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="">
+                            <i class="fa-solid fa-diagram-project icon"></i>
+                            <span class="text nav-text">Project Managment</span>
+                        </a>
+                    </li>
                     <li class="nav-link" >
                         <a href="activationPOS.php">
                             <i class="fa-solid fa-check icon"></i>
