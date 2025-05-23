@@ -25,7 +25,7 @@
         unset($_SESSION['useradmin']);
         echo '<script> location.href="index.php" </script>';
     }
-    $sql=$con->prepare('SELECT key_payPal,Sumup_AccessToken,Sumup_merchat_code,Sumup_Email,tax_number,addresse,zip_code,region,website FROM tblsetting WHERE SettingID = 1');
+    $sql=$con->prepare('SELECT key_payPal,Sumup_AccessToken,Sumup_merchat_code,Sumup_Email,tax_number,addresse,zip_code,region,website,Company_Email,Company_Phone FROM tblsetting WHERE SettingID = 1');
     $sql->execute();
     $result= $sql->fetch();
     $paypalKey = $result['key_payPal'];
@@ -64,6 +64,10 @@
                 <input type="text" name="newZip" id="" placeholder="Zip" value="<?php echo $region ?>">
                 <label for="">Website</label>
                 <input type="text" name="newWebsite" id="" placeholder="website" value="<?php echo $website ?>">
+                <label for="">Phone Number</label>
+                <input type="text" name="newphoneNumber"  placeholder="Phone Number" id="" value="<?php echo $result['Company_Phone'] ?>">
+                <label for="">E-mail</label>
+                <input type="email" name="newemail" id="" placeholder="E-Mail" value="<?php echo $result['Company_Email'] ?>">
                 <div class="btncontrol">
                     <button type="submit" name="btnedit_peson">Edit</button>
                 </div>
@@ -74,10 +78,13 @@
                         $newrejion = $_POST['newRejion'];
                         $newzip = $_POST['newZip'];
                         $newweb = $_POST['newWebsite'];
+                        $newphone = $_POST['newphoneNumber'];
+                        $neweemail = $_POST['newemail'];
+
 
                         if($adminId == 1){
-                            $sql= $con->prepare('UPDATE tblsetting SET tax_number=?,addresse=?,zip_code=?,region=?,website=? WHERE SettingID = 1');
-                            $sql->execute(array($newtaxNumber,$newaddresse,$newzip,$newrejion,$newweb));
+                            $sql= $con->prepare('UPDATE tblsetting SET tax_number=?,addresse=?,zip_code=?,region=?,website=?,Company_Email=?,Company_Phone=? WHERE SettingID = 1');
+                            $sql->execute(array($newtaxNumber,$newaddresse,$newzip,$newrejion,$newweb,$neweemail,$newphone));
                             echo '<script> location.href="mangepaypal.php" </script>';
                         }else{
                             echo 'You dont have permition to change';

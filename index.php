@@ -214,7 +214,7 @@
     </div>
     <footer>
         <?php
-            $sql=$con->prepare('SELECT textaboutus,link_facebook,link_github,link_linkin FROM tblsetting WHERE  SettingID=1');
+            $sql=$con->prepare('SELECT textaboutus,link_facebook,link_github,link_linkin,Company_Email,Company_Phone FROM tblsetting WHERE  SettingID=1');
             $sql->execute();
             $aboutus=$sql->fetch();
         ?>
@@ -226,8 +226,8 @@
                 </div>
                 <div class="col-md-3">
                     <h3>Contact Us</h3>
-                    <p>Email: info@ykinnovate.com</p>
-                    <p>Phone: +34 680764789</p>
+                    <p>Email: <?php echo $aboutus['Company_Email'] ?></p>
+                    <p>Phone: <?php echo $aboutus['Company_Phone'] ?></p>
                 </div>
                 <div class="col-md-3 follow">
                     <h3>Follow Us</h3>
