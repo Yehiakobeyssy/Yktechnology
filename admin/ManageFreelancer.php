@@ -27,6 +27,13 @@
     }
 
     $do=isset($_GET['do'])?$_GET['do']:'manage';
+
+    if(isset($_POST['btnnewpostion'])){
+        $newpostion = $_POST['newpostion'];
+
+        $sql=$con->prepare('INSERT INTO  tblpossition_request (Possition_Name,active_postion) VALUES (?,?)');
+        $sql->execute(array($newpostion,1));
+    }
 ?>
     <link rel="stylesheet" href="css/ManageFreelancer.css">
     <link rel="stylesheet" href="css/navbar.css">
@@ -151,6 +158,16 @@
                                         $staff_github = $result['link_github'];
                                         $staff_protfolio= $result['link_experinace'];
 
+                                        function ensure_url_protocol($url) {
+                                            if (!preg_match('~^(http|https)://~i', $url)) {
+                                                return 'https://' . $url;
+                                            }
+                                            return $url;
+                                        }
+
+                                        $staff_github = ensure_url_protocol($staff_github);
+                                        $staff_protfolio = ensure_url_protocol($staff_protfolio);
+
                                         $birthDate = new DateTime($birthday);
                                         $today = new DateTime();
                                         $age = $today->diff($birthDate);
@@ -182,7 +199,7 @@
                                     <a href="../Documents/<?php echo $staff_cv  ?>" target="_blank"> link CV</a>
                                     <a href="../Documents/<?php echo $staff_ID  ?>" target="_blank"> link ID</a>
                                     <a href="<?php echo $staff_github  ?>" target="_blank"> link github</a>
-                                    <a href="<?php echo $$staff_protfolio  ?>" target="_blank"> link Protfolio</a>
+                                    <a href="<?php echo $staff_protfolio  ?>" target="_blank"> link Protfolio</a>
 
 
                                 </div>
@@ -356,6 +373,28 @@
                 }
             ?>
             
+        </div>
+    </div>
+    <div class="popup">
+        <div class="containerpopup">
+            <div class="closepopup">+</div>
+            <h4>Postions request</h4>
+            <form action="" method="post">
+                <input type="text" name="newpostion" id="" placeholder="New Posstion" required>
+                <button type="submit" class="btn btn-success" name="btnnewpostion"><i class="fa-solid fa-check"></i></button>
+            </form>
+            <div class="fetchposstion">
+                <table>
+                    <thead>
+                        <th>Postion</th>
+                        <th>Active</th>
+                    </thead>
+                    <tbody class="datafech">
+
+                    </tbody>
+                    
+                </table>
+            </div>
         </div>
     </div>
     <?php include '../common/jslinks.php'?>

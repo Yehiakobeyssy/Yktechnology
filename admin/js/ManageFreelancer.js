@@ -91,4 +91,72 @@ $(document).ready(function() {
         location.href="ManageFreelancer.php";
         return false
     })
+
+    function fetchPositions() {
+        $.ajax({
+            url: 'ajaxadmin/fetchpositions.php',
+            method: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                let tbody = $('.datafech');
+                tbody.empty();
+
+                data.forEach(function (row) {
+                    let checked = row.active_postion == 1 ? 'checked' : '';
+                    tbody.append(`
+                        <tr data-id="${row.Possition_ID}">
+                            <td>
+                                <input type="text" class="position-name" value="${row.Possition_Name}">
+                            </td>
+                            <td>
+                                <input type="checkbox" class="active-checkbox" ${checked}>
+                            </td>
+                        </tr>
+                    `);
+                });
+            },
+            error: function () {
+                alert('Failed to fetch data.');
+            }
+        });
+    }
+
+    // Load data initially
+    fetchPositions();
+
+    // Update on input/checkbox change
+    $(document).on('change', '.position-name, .active-checkbox', function () {
+        let row = $(this).closest('tr');
+        let id = row.data('id');
+        let name = row.find('.position-name').val();
+        let active = row.find('.active-checkbox').is(':checked') ? 1 : 0;
+
+        $.ajax({
+            url: 'ajaxadmin/updatepostion.php',
+            method: 'POST',
+            data: {
+                Possition_ID: id,
+                Possition_Name: name,
+                active_postion: active
+            },
+            success: function (res) {
+                if (res.trim() === 'success') {
+                    console.log('Updated successfully');
+                } else {
+                    alert('Update failed');
+                }
+            },
+            error: function () {
+                alert('Error updating record');
+            }
+        });
+    });
+
+    $('.btnPosstion').click(function(){
+        $('.popup').show()
+    })
+
+    $('.closepopup').click(function(){
+        $('.popup').hide()
+    })
 });
