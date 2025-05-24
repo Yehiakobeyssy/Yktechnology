@@ -34,11 +34,12 @@ $(document).ready(function() {
                         </td>
                         <td>${staff.Possition_Name}</td>
                         <td>$${staff.expected_sallary}</td>
+                        <td>${staff.DatewillBegin}</td>
                         <td><div class="${statusClass} statusfre">${statusText}</div></td>
                         <td>
-                            <button class="btncotrol_staff btn btn-primary">View</button>
+                            <button class="btncotrol_staff btn btn-primary btnview" data-index="${staff.staffID}">View</button>
                             <button class="btncotrol_staff btn btn-success">Whatsup</button><br>
-                            <button class="btncotrol_staff btn btn-danger">Block</button>
+                            <button class="btncotrol_staff btn btn-danger btnblock" data-index="${staff.staffID}">Block</button>
                             <button class="btncotrol_staff btn btn-secondary">Send Task</button>
                         </td>
                     </tr>
@@ -65,4 +66,29 @@ $(document).ready(function() {
             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
         });
     });
+
+    $('.viewFrelancer').on('click', '.btnview', function() {
+        let freid = $(this).data("index");
+        location.href="ManageFreelancer.php?do=view&id="+ freid
+    });
+
+
+    $('.btnaccepted').click(function(){
+        let freid = $(this).data("index");
+        location.href="ManageFreelancer.php?do=accepted&id="+ freid
+    }) 
+
+    $('.btnblock').click(function(){
+        let freid = $(this).data("index");
+        location.href="ManageFreelancer.php?do=blocked&id="+ freid
+    })
+    $('.viewFrelancer').on('click', '.btnblock', function() {
+        let freid = $(this).data("index");
+        location.href="ManageFreelancer.php?do=blocked&id="+ freid
+    });
+
+    $('.btncalcelblock').click(function(){
+        location.href="ManageFreelancer.php";
+        return false
+    })
 });

@@ -35,13 +35,15 @@
                         <input type="text" name="Fname" id="" placeholder=" First Name" class="trible" required>
                         <input type="text" name="MidelName" id="" placeholder=" Mitel Name" class="trible">
                         <input type="text" name="LName" id="" placeholder=" Last Name " class="trible" required><br>
+                        <label for="">Date of Birth</label>
+                        <input type="date" name="DOB" id="" class="trible" required>
                         <label for="">Gender</label>
                         <select name="Gender" id="" class="trible">
                             <option value="1">Male</option>
                             <option value="2">Female</option>
-                        </select>
+                        </select><br>
                         <label for="">Nationality</label>
-                        <select name="Nationality" id="" class="double">
+                        <select name="Nationality" id="" class="full">
                             <?php
                                 $sql = $con->prepare('SELECT CountryID,CountryName FROM tblcountrys ORDER BY CountryName');
                                 $sql->execute();
@@ -226,18 +228,19 @@
                                 
                                 
                                 $sql = $con->prepare('INSERT INTO tblstaff 
-                                                        (Fname, MidelName, LName, Gender, Nationality, Staff_Phone, Staff_email, Staff_Country, Region, Staff_address,
+                                                        (Fname, MidelName, LName, Gender,DOB, Nationality, Staff_Phone, Staff_email, Staff_Country, Region, Staff_address,
                                                         Posstion, Start_date, expected_sallary, Work_hours, now_work, Notice_Period, Experiance_years, Programing_lang, 
                                                         Framworks, link_experinace, link_github, Comunication_Lang, staff_CV, Staff_Photo, Front_ID, Back_ID, 
                                                         Transfer_Money, Transfer_Note, Password, block, accepted) 
                                                     VALUES 
-                                                        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
+                                                        (?, ?, ?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
 
                                 $sql->execute([
                                                 $_POST['Fname'],
                                                 $_POST['MidelName'],
                                                 $_POST['LName'],
                                                 $_POST['Gender'],
+                                                $_POST['DOB'],
                                                 $_POST['Nationality'],
                                                 $_POST['Staff_Phone'],
                                                 $_POST['Staff_email'],

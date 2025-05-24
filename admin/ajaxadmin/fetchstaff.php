@@ -10,6 +10,7 @@ $sql = "SELECT
             Staff_address,
             Possition_Name,
             expected_sallary,
+            DatewillBegin,
             block,
             accepted,
             CASE 

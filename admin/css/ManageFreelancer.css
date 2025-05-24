@@ -79,11 +79,122 @@
     width: 200px;
     border-radius: 15px !important;
 }
-tbody  td{
+.tableview tbody  td{
     padding: 10px !important;
     border-bottom: 1px solid rgba(0, 0, 0, 0.4);
 }
-tbody button{
+.tableview tbody button{
     padding: 7px !important;
     margin: 5px !important;
+}
+.personalinfo{
+    display: flex;
+    justify-content: space-between;
+    margin: 23px !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    padding-bottom: 15px !important;
+}
+.data_free{
+    width: 48%;
+}
+.data_free label{
+    font-weight: bold;
+
+}
+.data_free table td{
+    padding: 12px !important;
+}
+.data_free a{
+    margin: 15px !important;
+    color: #7F8291;
+}
+.photofree{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    text-align: center;
+}
+.photofree img{
+    width: 170px;
+    height:227px;
+    border: 1px solid black;
+}
+.photofree span{
+    margin-top: 15px !important;
+    width: 170px;
+    background-color:  #3383d4;
+    color: white;
+    font-weight: bold;
+    padding: 15px !important;
+    border-radius: 15px;
+}
+.technicalinfo,.money_transfer,.addnote{
+    margin: 23px !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    padding-bottom: 15px !important;
+}
+.technicalinfo label{
+    font-weight: bold;
+    width: 250px;
+}
+.technicalinfo span{
+    width: 300px !important;
+}
+.onepair{
+    display: flex;
+    justify-content: flex-start;
+}
+.pair{
+    width: 48%;
+    margin: 10px 0 !important;
+}
+.other_info{
+    display: flex;
+    flex-direction: column;
+}
+.other_info label,.other_info span{
+    margin: 5px 0 !important;
+}
+.money_transfer label{
+    font-weight: bold;
+    width: 250px;
+}
+.addnote label{
+    font-weight: bold;
+    width: 250px;
+}
+.addnote textarea{
+    width: 100%;
+    margin: 7px 0 !important;
+    padding: 7px !important;
+}
+.btncotrl,.btncontrol{
+    text-align: right;
+}
+.btncontrol{
+    margin: 20px!important;
+}
+.btncontrol button{
+    padding: 10px !important;
+    margin: 0 7px !important;
+}
+.btncotrl button{
+        margin-top: 15px !important;
+    width: 170px;
+    background-color:  #3383d4;
+    color: white;
+    font-weight: bold;
+    padding: 15px !important;
+    border-radius: 15px;
+}
+.blocksection{
+    width: 50%;
+    margin: 20px auto !important;
+    text-align: center;
+    padding: 20px !important;
+}
+.blocksection  button{
+    padding: 10px !important;
+    width: 150px;
+    margin-top: 20px !important;
 }
