@@ -44,6 +44,12 @@
                             <span class="text nav-text">Project Managment</span>
                         </a>
                     </li>
+                    <li class="nav-link">
+                        <a href="ManageFreelancerTask.php">
+                            <i class="fa-solid fa-calendar-check icon"></i>
+                            <span class="text nav-text">Tasks Managment</span>
+                        </a>
+                    </li>
                     <li class="nav-link" >
                         <a href="activationPOS.php">
                             <i class="fa-solid fa-check icon"></i>

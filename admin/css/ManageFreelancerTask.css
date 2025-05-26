@@ -1,0 +1,69 @@
+.mainform{
+    display: flex;
+}
+.contain{
+    width: 100%;
+    margin-left: 25px !important;
+}
+.title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px !important;
+}
+.btnnewtask{
+    margin-right: 10px !important;
+    padding: 5px 10px !important;
+}
+.newform{
+    background-color: #f0f0f0;
+    width: 90%;
+    margin: 10px auto !important;
+    padding: 20px !important;
+    border-radius: 20px;
+}
+.title_form{
+    text-align: center;
+    margin: 15px !important;
+}
+.tiletaske,.task_discription,.budget,.Communication,.Freelancer_Report{
+    display: flex;
+    flex-direction: column;
+}
+.tiletaske label,.newassgiment label,.task_discription label,.newdate label,.budget label,.Communication label,.Freelancer_Report label{
+    font-weight: bold;
+    margin-bottom: 4px!important;
+}
+.tiletaske input,.tiletaske select,.newassgiment select,.task_discription textarea,.newdate input,.budget textarea,.Communication input,.Freelancer_Report textarea{
+    width: 100%;
+    padding: 10px !important;
+    margin-bottom: 15px !important;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.assginment{
+    display: flex;
+    justify-content: space-between;
+}
+.newassgiment{
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+}
+.dates{
+    display: flex;
+    justify-content: space-around;
+}
+.newdate{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+}
+.ctrl{
+    text-align: right;
+    margin: 10px !important;
+}
+.ctrl button{
+    padding: 10px !important;
+    margin: 0 5px !important;
+}
