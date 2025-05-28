@@ -21,6 +21,7 @@ $sql = "SELECT
             CONCAT(s.Fname, ' ', s.LName) AS assignTo,
 
             -- Task details
+            t.taskID,
             t.taskTitle,
             t.StartDate,
             t.DueDate,

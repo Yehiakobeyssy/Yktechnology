@@ -99,7 +99,131 @@
                     </div>
                 <?php
                 }elseif($do=='view'){
+                    $taskID = isset($_GET['task'])?$_GET['task']:0;
+                    $checkTask= checkItem('taskID','tbltask',$taskID);
 
+                    if($checkTask == 1){
+                        $sql=$con->prepare('SELECT taskTitle,taskDiscription,BudjectTerms,notes FROM tbltask WHERE taskID = ?');
+                        $sql->execute(array($taskID));
+                        $task_info = $sql->fetch();
+                    ?>
+                        <div class="newform">
+                            <div class="title_form">
+                                <h3><?= $task_info['taskTitle']?></h3>
+                            </div>
+                            <?php
+                            
+
+                            try {
+                                $sql = "SELECT
+                                            CONCAT(a.admin_FName, ' ', a.admin_LName) AS assignFrom,
+                                            CONCAT(s.Fname, ' ', s.LName) AS assignTo,
+                                            t.StartDate,
+                                            t.DueDate,
+                                            t.ProjectID,
+                                            t.communicationChannel,
+                                            t.taskID,
+                                            st.Status_name AS status,
+                                            t.taskTitle,
+                                            t.Status,
+                                            t.ProjectID,
+                                            p.project_Name,
+                                            CASE 
+                                                WHEN t.ProjectID = 0 THEN 'Not Related Project' 
+                                                ELSE p.project_Name 
+                                            END AS project_name,
+                                            CASE 
+                                                WHEN t.ProjectID = 0 THEN '' 
+                                                ELSE CONCAT(c.Client_FName, ' ', c.Client_LName) 
+                                            END AS client_name
+                                        FROM tbltask t
+                                        LEFT JOIN tbladmin a ON a.admin_ID = t.assignFrom
+                                        LEFT JOIN tblstaff s ON s.staffID = t.Assign_to
+                                        LEFT JOIN tblprojects p ON p.ProjectID = t.ProjectID
+                                        LEFT JOIN tblclients c ON c.ClientID = p.ClientID
+                                        LEFT JOIN tblstatus_task_freelancer st ON st.StatusID = t.Status
+                                        WHERE t.taskID = :taskID
+                                        LIMIT 1";
+
+                                $stmt = $con->prepare($sql);
+                                $stmt->bindParam(':taskID', $taskID, PDO::PARAM_INT);
+                                $stmt->execute();
+
+                                $task = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                                if ($task) {
+                                    // Output example
+                                    echo '<div class="generaglinfo">
+                                            <div class="oneline">
+                                                <div class="data_one">
+                                                    <label>Assign From :</label>
+                                                    <span>' . htmlspecialchars($task['assignFrom']) . '</span>
+                                                </div>
+                                                <div class="data_one">
+                                                    <label>Start Date</label>
+                                                    <span>' . htmlspecialchars($task['StartDate']) . '</span>
+                                                </div>
+                                            </div>
+                                            <div class="oneline">
+                                                <div class="data_one">
+                                                    <label>Assign To :</label>
+                                                    <span>' . htmlspecialchars($task['assignTo']) . '</span>
+                                                </div>
+                                                <div class="data_one">
+                                                    <label>Due Date</label>
+                                                    <span>' . htmlspecialchars($task['DueDate']) . '</span>
+                                                </div>
+                                            </div>
+                                            <div class="oneline">
+                                                <div class="data_one">
+                                                    <label>Project</label>
+                                                    <span>' . htmlspecialchars($task['project_name']) . '</span>
+                                                </div>
+                                                <div class="data_one">
+                                                    <label>Finish Date:</label>
+                                                    <span>' . htmlspecialchars($task['DueDate']) . '</span>
+                                                </div>
+                                            </div>
+                                            <div class="oneline">
+                                                <div class="data_one">
+                                                    <label>Commmunicat.</label>
+                                                    <span>' . htmlspecialchars($task['communicationChannel']) . '</span>
+                                                </div>
+                                                <div class="data_one">
+                                                    <label>Status</label>
+                                                    <span>' . htmlspecialchars($task['status']) . '</span>
+                                                </div>
+                                            </div>
+                                        </div>';
+                                } else {
+                                    echo "No task found.";
+                                }
+
+                            } catch (PDOException $e) {
+                                echo "Error: " . $e->getMessage();
+                            }
+                            ?>
+                            <div class="longtext">
+                                <label for="">Discription</label>
+                                <p><?php echo nl2br($task_info['taskDiscription']) ?></p>
+                            </div>
+                            <div class="longtext">
+                                <label for="">Budget & Payment Terms</label>
+                                <p><?php echo nl2br($task_info['BudjectTerms']) ?></p>
+                            </div>
+                            <div class="longtext">
+                                <label for="">Freelancer Report</label>
+                                <p><?php echo nl2br($task_info['notes']) ?></p>
+                            </div>
+                            <div class="btncontrol">
+                                <button class="btn btn-danger btncanceltask" data-index="<?=$taskID?>">Cancel Task</button>
+                            </div>
+                        </div>
+                        
+                    <?php
+                    }else{
+                        echo '<script> location.href="ManageFreelancerTask.php" </script>';
+                    }
                 }elseif($do=='add'){
                     $freeID = isset($_GET['freeID'])?$_GET['freeID']:0;
                 ?>
@@ -216,7 +340,25 @@
                 </div>
                 <?php
                 }elseif($do=='cancel'){
-
+                    $taskID = isset($_GET['task'])?$_GET['task']:0;
+                    $checkTask= checkItem('taskID','tbltask',$taskID);
+                    if($checkTask == 1){?>
+                        <div class="blocksection alert alert-danger">
+                            <h3>Are You shure to Cancel task (<?= $taskID ?>)</h3>
+                            <form action="" method="post">
+                                <button class="btn btn-danger btntaskno">No</button>
+                                <button class="btn btn-success" type="submit" name="btntaskyes">yes</button>
+                            </form>
+                        </div>
+                    <?php
+                        if(isset($_POST['btntaskyes'])){
+                            $sql=$con->prepare('UPDATE  tbltask SET Status = 5 WHERE taskID = ?');
+                            $sql->execute(array($taskID));
+                            echo '<script> location.href="ManageFreelancerTask.php" </script>';
+                        }
+                    }else{
+                        echo '<script> location.href="ManageFreelancerTask.php" </script>';
+                    }
                 }else{
                     echo '<script> location.href="ManageFreelancerTask.php" </script>';
                 }

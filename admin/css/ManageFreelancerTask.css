@@ -136,3 +136,80 @@
     padding: 7px !important;
     margin: 5px !important;
 }
+.generaglinfo {
+    width: 100%;
+    margin: 20px auto !important;
+    padding: 20px !important;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.oneline {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px !important;
+    flex-wrap: wrap;
+}
+.longtext{
+    display: flex;
+    flex-direction: column;
+    margin: 20px auto !important;
+    padding: 20px !important;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+.longtext label{
+    font-weight: bold;
+    color: #333;
+    margin-right: 10px !important;
+    margin-bottom: 15px !important;
+    min-width: 100px; /* Adjust for alignment */
+    text-decoration: underline;
+}
+.data_one {
+    flex: 1 1 45%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px !important;
+    width: 48%;
+}
+
+.data_one label {
+    font-weight: bold;
+    color: #333;
+    margin-right: 10px !important;
+    min-width: 100px; /* Adjust for alignment */
+    width: 150px;
+}
+
+.data_one span {
+    flex-grow: 1;
+    padding: 6px 10px !important;
+    border-radius: 6px;
+    color: #444;
+}
+.btncontrol{
+    margin: 15px !important;
+    text-align: right;
+}
+.btncontrol button{
+    width: 150px ;
+    padding: 10px!important;
+}
+.blocksection{
+    width: 50%;
+    margin: 20px auto !important;
+    text-align: center;
+    padding: 20px !important;
+}
+.blocksection  button{
+    padding: 10px !important;
+    width: 150px;
+    margin-top: 20px !important;
+}

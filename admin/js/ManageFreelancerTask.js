@@ -53,8 +53,8 @@ $(document).ready(function () {
                             <span class="alert ${statusClass} p-2 m-2 d-block text-center">${task.status}</span>
                         </td>
                         <td>
-                            <button class="btn btn-sm btn-outline-primary mb-1">Show</button><br>
-                            <button class="btn btn-sm btn-outline-danger">Cancel</button>
+                            <button class="btn btn-sm btn-outline-primary mb-1 btnviewtask" data-index="${task.taskID}">Show</button><br>
+                            <button class="btn btn-sm btn-outline-danger btncanceltask"  data-index="${task.taskID}">Cancel</button>
                         </td>
                     </tr>
                 `;
@@ -74,4 +74,18 @@ $(document).ready(function () {
             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
         });
     });
+
+    $('.viewtask').on('click','.btnviewtask',function(){
+        let taskId = $(this).data("index");
+        location.href="ManageFreelancerTask.php?do=view&task="+ taskId
+    })
+    $(document).on('click','.btncanceltask',function(){
+        let taskId = $(this).data("index");
+        location.href="ManageFreelancerTask.php?do=cancel&task="+ taskId
+    })
+
+    $('.btntaskno').click(function(){
+        location.href="ManageFreelancerTask.php";
+        return false
+    })
 });
