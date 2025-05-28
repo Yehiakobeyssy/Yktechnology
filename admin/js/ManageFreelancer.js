@@ -38,9 +38,9 @@ $(document).ready(function() {
                         <td><div class="${statusClass} statusfre">${statusText}</div></td>
                         <td>
                             <button class="btncotrol_staff btn btn-primary btnview" data-index="${staff.staffID}">View</button>
-                            <button class="btncotrol_staff btn btn-success">Whatsup</button><br>
+                            <button class="btncotrol_staff btn btn-success" >Whatsup</button><br>
                             <button class="btncotrol_staff btn btn-danger btnblock" data-index="${staff.staffID}">Block</button>
-                            <button class="btncotrol_staff btn btn-secondary">Send Task</button>
+                            <button class="btncotrol_staff btn btn-secondary btngotask" data-index="${staff.staffID}">Send Task</button>
                         </td>
                     </tr>
                 `;
@@ -71,6 +71,11 @@ $(document).ready(function() {
         let freid = $(this).data("index");
         location.href="ManageFreelancer.php?do=view&id="+ freid
     });
+
+    $('.viewFrelancer').on('click','.btngotask',function(){
+        let freid = $(this).data("index");
+        location.href="ManageFreelancerTask.php?do=add&freeID="+ freid
+    })
 
 
     $('.btnaccepted').click(function(){

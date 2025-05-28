@@ -42,11 +42,67 @@
                 <a href="ManageFreelancerTask.php?do=add" class="btn btn-success btnnewtask"> + New Task </a>
             </div>
             <?php
-                if($do=='manage'){
+                if($do=='manage'){?>
+                    <div class="statistic">
+                        <?php
+                            $sql = $con->prepare('SELECT 
+                                                    COUNT(taskID) AS total,
+                                                    SUM(Status = 4) AS finished,
+                                                    SUM(Status BETWEEN 1 AND 3) AS working,
+                                                    SUM(Status = 5) AS canceled
+                                                FROM tbltask');
+                            $sql->execute();
+                            $stats = $sql->fetch();
+                        ?>
 
+                        <i class="fa-solid fa-calendar-check icon"></i>
+                        <h4>All Tasks</h4>
+                        <span><?= $stats['total'] ?></span>
+
+                        <div class="numbers">
+                            <div class="number_display">
+                                <label>Finished</label>
+                                <span><?= $stats['finished'] ?></span>
+                            </div>
+                            <div class="number_display">
+                                <label>Working</label>
+                                <span><?= $stats['working'] ?></span>
+                            </div>
+                            <div class="number_display">
+                                <label>Canceled</label>
+                                <span><?= $stats['canceled'] ?></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tableview">
+                        <div class="searchbox">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+                                <circle cx="10.3054" cy="10.3055" r="7.49047" stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M15.5151 15.9043L18.4518 18.8333" stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <input type="text" name="" id="txtSearchTask" placeholder="Search tasks..." >
+                        </div>
+                        <table>
+                            <thead>
+                                <th>Project</th>
+                                <th>Assginment</th>
+                                <th>Title</th>
+                                <th>Dates</th>
+                                <th>Communication</th>
+                                <th>Status</th>
+                                <th>Control</th>
+                            </thead>
+                            <tbody class="viewtask">
+
+                            </tbody>
+                        </table>
+                    </div>
+                <?php
                 }elseif($do=='view'){
 
-                }elseif($do=='add'){?>
+                }elseif($do=='add'){
+                    $freeID = isset($_GET['freeID'])?$_GET['freeID']:0;
+                ?>
                 <div class="newform">
                     <form action="" method="post">
                         <div class="title_form">
@@ -87,7 +143,8 @@
                                         $sql->execute();
                                         $freelancers =$sql->fetchAll();
                                         foreach($freelancers as $free){
-                                            echo '<option value="' . $free['staffID'] . '" >'
+                                            $selected = ($free['staffID'] == $freeID) ? 'selected' : '';
+                                            echo '<option value="' . $free['staffID'] . '"  ' . $selected . ' >'
                                                     . $free['Fname'] . ' ' . $free['MidelName'] . ' '.$free['LName'].
                                                     '</option>';
                                         }
@@ -158,7 +215,7 @@
                     ?>
                 </div>
                 <?php
-                }elseif($do=='edid'){
+                }elseif($do=='cancel'){
 
                 }else{
                     echo '<script> location.href="ManageFreelancerTask.php" </script>';
