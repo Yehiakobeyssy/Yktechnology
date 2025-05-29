@@ -39,7 +39,7 @@
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="">
+                        <a href="ManageProject.php">
                             <i class="fa-solid fa-diagram-project icon"></i>
                             <span class="text nav-text">Project Managment</span>
                         </a>
