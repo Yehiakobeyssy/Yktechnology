@@ -415,10 +415,10 @@
                             $sql = "SELECT a.done, p.priority_name, a.Task_subject, a.Datend,taskID
                                     FROM tbltaskadmin a
                                     JOIN tbltaskpriority p ON a.priorityID = p.priority_id
-                                    WHERE a.done = 0
+                                    WHERE a.done = 0 AND a.adminID = ?
                                     ORDER BY a.Datend";
                             $stmt = $con->prepare($sql);
-                            if ($stmt->execute()) {
+                            if ($stmt->execute(array($adminId))) {
                                 $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 if (count($rows) > 0) {
                                     foreach ($rows as $row) {

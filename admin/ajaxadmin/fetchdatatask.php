@@ -1,16 +1,27 @@
 <?php
+session_start();
+
 include '../../settings/connect.php';
+
+$adminId = 0;
+if (isset($_COOKIE['useradmin'])) {
+    $adminId = $_COOKIE['useradmin'];
+} elseif (isset($_SESSION['useradmin'])) {
+    $adminId = $_SESSION['useradmin'];
+}
+
 
 $sql = "SELECT a.taskID, a.done, p.priority_name, a.Task_subject, a.Datend, a.Discription
         FROM tbltaskadmin a
         JOIN tbltaskpriority p ON a.priorityID = p.priority_id
+        WHERE a.adminID=?
         ORDER BY a.done, a.Datend";
 
 // Prepare the SQL statement
 $stmt = $con->prepare($sql);
 
 // Execute the query
-if ($stmt->execute()) {
+if ($stmt->execute(array($adminId))) {
     // Fetch the rows as an associative array
     $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 

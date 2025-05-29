@@ -74,6 +74,7 @@
                             <thead>
                                 <tr>
                                     <th>Date</th>
+                                    <th>Admin name</th>
                                     <th>Expense Type</th>
                                     <th>Discription</th>
                                     <th>Total Amount</th>
@@ -97,8 +98,9 @@
                                         $filterDescription = isset($_POST['filterDescription']) ? '%' . $_POST['filterDescription'] . '%' : '';
                                     }
 
-                                $sql = $con->prepare('SELECT ExpenisisID, ExpensisDate, Type_Expensis, Discription, Expensis_Amount, attached FROM tblexpensis
+                                $sql = $con->prepare('SELECT ExpenisisID, ExpensisDate, Type_Expensis, Discription, Expensis_Amount, attached ,admin_FName,admin_LName FROM tblexpensis
                                                     INNER JOIN tbltypeexpensis ON tblexpensis.ExpenisType = tbltypeexpensis.TypeexpensisID
+                                                    INNER JOIN tbladmin ON tbladmin.admin_ID  = tblexpensis.adminID
                                                     WHERE ((:filterDateBegin = "" OR ExpensisDate >= :filterDateBegin)
                                                     AND (:filterDateEnd = "" OR ExpensisDate <= :filterDateEnd))
                                                     AND (:filterType = "" OR ExpenisType = :filterType)
@@ -116,6 +118,7 @@
                                 foreach ($expenses as $expense) {
                                     echo '<tr>';
                                     echo '<td>' . $expense['ExpensisDate'] . '</td>';
+                                    echo '<td>' . $expense['admin_FName'] . ' '. $expense['admin_LName'].'</td>';
                                     echo '<td>' . $expense['Type_Expensis'] . '</td>';
                                     echo '<td>' . $expense['Discription'] . '</td>'; // Added description field
                                     echo '<td>' . number_format($expense['Expensis_Amount'], 2, '.', '') . ' $</td>';
@@ -165,6 +168,7 @@
                                 $newfilename=round(microtime(true)).'.'.end($temp);
                                 move_uploaded_file($_FILES['attached']['tmp_name'],'../Documents/'.$newfilename);
 
+
                                 $ExpensisDate       =$_POST['ExpensisDate'];
                                 $ExpenisType        =$_POST['ExpenisType'];
                                 $Discription        =$_POST['Discription'];
@@ -172,9 +176,10 @@
                                 $Expensis_Note      =$_POST['Expensis_Note'];
                                 $attached           =$newfilename;
 
-                                $sql=$con->prepare('INSERT INTO tblexpensis (ExpensisDate,ExpenisType,Discription,Expensis_Amount,Expensis_Note,attached)
-                                                    VALUES (:ExpensisDate,:ExpenisType,:Discription,:Expensis_Amount,:Expensis_Note,:attached)');
+                                $sql=$con->prepare('INSERT INTO tblexpensis (adminID,ExpensisDate,ExpenisType,Discription,Expensis_Amount,Expensis_Note,attached)
+                                                    VALUES (:adminID,:ExpensisDate,:ExpenisType,:Discription,:Expensis_Amount,:Expensis_Note,:attached)');
                                 $sql->execute(array(
+                                    'adminID'           =>$adminId,
                                     'ExpensisDate'      =>$ExpensisDate,
                                     'ExpenisType'       =>$ExpenisType,
                                     'Discription'       =>$Discription,
