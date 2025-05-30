@@ -2,6 +2,7 @@
 include '../../settings/connect.php';
 
 $sql = "SELECT 
+            p.ProjectID,
             p.project_Name,
             CONCAT(c.Client_FName, ' ', c.Client_LName) AS ClientName,
             c.Client_email,

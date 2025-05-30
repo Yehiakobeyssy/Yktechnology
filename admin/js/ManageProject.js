@@ -55,7 +55,7 @@ response.forEach(project => {
                             </div>
                         </td>
                         <td>
-                            <button class="btn btn-sm btn-primary">View</button>
+                            <button class="btn btn-sm btn-primary btnviewProject" data-index="${project.ProjectID}">View</button>
                             <button class="btn btn-sm btn-secondary">Edit</button>
                         </td>
                     </tr>
@@ -284,6 +284,11 @@ response.forEach(project => {
         return false
     });
 
+    $(document).on('click','.btnviewProject',function(){
+        const ProID = $(this).data('index');
+        location.href= "ManageProject.php?do=view&proid="+ProID;
+    })
+
 
     // Update when user finishes typing (blur)
     $(document).on('blur', '.freelancerInput', function () {
@@ -434,6 +439,10 @@ response.forEach(project => {
     $(document).on('blur', '.freelancerInput[type="number"], #txtsharemanagment, #txtsharereserve', function () {
         normalizeSharesTo100();
     });
+
+    $('.btnbacktomanage').click(function(){
+        location.href="ManageProject.php"
+    })
 
 });
 

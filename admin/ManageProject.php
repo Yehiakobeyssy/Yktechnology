@@ -99,6 +99,155 @@
                     </div>
                 <?php
                 }elseif($do=='view'){
+                    $projectID = (isset($_GET['proid']))?$_GET['proid']:0;
+                    $checkProjectID = checkItem('ProjectID','tblprojects',$projectID);
+
+                    if($checkProjectID == 1){
+                            $sql=$con->prepare('SELECT project_Name,admin_FName,admin_LName,Client_FName,Client_LName,Client_addresse,Client_Phonenumber,
+                                                        StartTime,ExpectedDate,EndDate,Discription,shareManagement,shareReserve,note
+                                                FROM tblprojects 
+                                                INNER JOIN  tbladmin ON  tbladmin.admin_ID  = tblprojects.Project_Manager
+                                                INNER JOIN tblclients ON tblclients.ClientID = tblprojects.ClientID
+                                                WHERE ProjectID = ?');
+                            $sql->execute(array($projectID));
+                            $info = $sql->fetch();
+                        ?>
+                        <div class="newForm">
+                            <div class="formtitle">
+                                <h3>Project Form</h3>
+                            </div>
+                            <div class="long">
+                                <label for="">Project Name : </label>
+                                <span> <?=$info['project_Name']?></span>
+                            </div>
+                            <div class="long">
+                                <label for="">Project Manager :</label>
+                                <span><?= $info['admin_FName'].' ' . $info['admin_LName']?></span>
+                            </div>
+                            <div class="colmdata">
+                                <div class="left">
+                                    <div class="double">
+                                        <label for="">Client Name :</label>
+                                        <span> <?= $info['Client_FName'].' '.$info['Client_LName']?></span>
+                                    </div>
+                                    <div class="double">
+                                        <span><?php echo $info['Client_addresse'] ?></span>
+                                    </div>
+                                    <div class="double">
+                                        <span><?= $info['Client_Phonenumber']?></span>
+                                    </div>
+                                </div>
+                                <div class="right">
+                                    <div class="double">
+                                        <label for="">Start Date</label>
+                                        <span><?php echo $info['StartTime'] ?></span>
+                                    </div>
+                                    <div class="double">
+                                        <label for="">Expected Delvery</label>
+                                        <span><?php echo $info['ExpectedDate'] ?></span>
+                                    </div>
+                                    <div class="double">
+                                        <label for="">Actual End Date</label>
+                                        <span><?php echo $info['EndDate'] ?></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="longtextdata viewprojectServices">
+                                <label for="">Discription</label>
+                                <p><?php echo nl2br($info['Discription']) ?></p>
+                            </div>
+                            <div class="projectServices viewprojectServices">
+                                <h4>Project Services</h4>
+                                <div class="selectService">
+                                    <table>
+                                        <thead>
+                                            <th>Service ID</th>
+                                            <th>Service Name</th>
+                                            <th>Budjet</th>
+                                            <th>Notes</th>
+                                        </thead>
+                                        <tbody >
+                                            <?php
+                                                $sql=$con->prepare('SELECT tblserviceproject.ServiceID,Note,ServiceTitle,Price 
+                                                                    FROM tblserviceproject
+                                                                    INNER JOIN tblclientservices ON tblclientservices.ServicesID = tblserviceproject.ServiceID
+                                                                    WHERE ProjectID=?');
+                                                $sql->execute(array($projectID));
+                                                $services = $sql->fetchAll();
+                                                $totalBuget = 0;
+                                                foreach($services as $ser){
+                                                    echo '
+                                                        <tr>
+                                                            <td>'.$ser['ServiceID'].'</td>
+                                                            <td>'.$ser['ServiceTitle'].'</td>
+                                                            <td>'.$ser['Price'].'</td>
+                                                            <td>'.$ser['Note'].'</td>
+                                                        </tr>
+                                                    ';
+                                                    $totalBuget+=$ser['Price'];
+                                                }
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="Developers viewDevelopers">
+                                <h4>Developers & Shares</h4>
+                                <div class="input_schare ">
+                                    <div class="double left">
+                                        <label for="">% Managment</label>
+                                        <span><?= $info['shareManagement']?> %</span>
+                                    </div>
+                                    <div class="double right">
+                                        <label for="">% Reserve</label>
+                                        <span><?= $info['shareReserve']?> %</span>
+                                    </div>
+                                </div>
+                                
+                                <table>
+                                    <thead>
+                                        <th>Name</th>
+                                        <th>Assigned Service</th>
+                                        <th>% Share</th>
+                                        <th>Expected Amount</th>
+                                        <th>Notes</th>
+                                    </thead>
+                                    <tbody >
+                                        <?php
+                                            $sql=$con->prepare('SELECT tbldevelopers_project.Posstion,PersentageShare,Note,Fname,LName,MidelName
+                                                                FROM tbldevelopers_project
+                                                                INNER JOIN tblstaff ON tblstaff.staffID = tbldevelopers_project.FreelancerID
+                                                                WHERE projectID = ?');
+                                            $sql->execute(array($projectID));
+                                            $freelancers = $sql->fetchAll();
+                                            foreach($freelancers as $free){
+                                                $amountFree = $free['PersentageShare'] * $totalBuget / 100;
+                                                echo '
+                                                    <tr>
+                                                        <td>'.$free['Fname'].' '.$free['MidelName'].' '.$free['LName'].'</td>
+                                                        <td>'.$free['Posstion'].'</td>
+                                                        <td>'.$free['PersentageShare'].' % </td>
+                                                        <td>'.number_format($amountFree,2).' $</td>
+                                                        <td>'.$free['Note'].'</td>
+                                                    </tr>
+                                                ';
+                                            }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="longtextdata">
+                                <label for="">Note:</label>
+                                <p><?php echo nl2br($info['note']) ?></p>
+                            </div>
+                            <div class="btncontroler">
+                                <button class="btn btn-secondary btnbacktomanage">Back</button>
+                            </div>
+                        </div>
+                    <?php
+                    }else{
+                        echo '<script> location.href="ManageProject.php" </script>';
+                    }
 
                 }elseif($do=='add'){
                     ?>
@@ -319,8 +468,24 @@
                     </div>
                 <?php
                 }elseif($do=='edid'){
+                    $projectID = (isset($_GET['proid']))?$_GET['proid']:0;
+                    $checkProjectID = checkItem('ProjectID','tblprojects',$projectID);
+
+                    if($checkProjectID == 1){
+
+                    }else{
+                        echo '<script> location.href="ManageProject.php" </script>';
+                    }
 
                 }elseif($do=='cancel'){
+                    $projectID = (isset($_GET['proid']))?$_GET['proid']:0;
+                    $checkProjectID = checkItem('ProjectID','tblprojects',$projectID);
+
+                    if($checkProjectID == 1){
+
+                    }else{
+                        echo '<script> location.href="ManageProject.php" </script>';
+                    }
 
                 }else{
                     echo '<script> location.href="ManageProject.php" </script>';
