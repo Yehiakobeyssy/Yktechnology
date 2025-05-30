@@ -1,4 +1,8 @@
 $(document).ready(function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    const doParam = urlParams.get('do');
+
+
     $.ajax({
         url: 'ajaxadmin/fetch_Project.php',
         method: 'GET',
@@ -56,7 +60,7 @@ response.forEach(project => {
                         </td>
                         <td>
                             <button class="btn btn-sm btn-primary btnviewProject" data-index="${project.ProjectID}">View</button>
-                            <button class="btn btn-sm btn-secondary">Edit</button>
+                            <button class="btn btn-sm btn-secondary btnEditProject" data-index="${project.ProjectID}">Edit</button>
                         </td>
                     </tr>
                 `;
@@ -99,7 +103,7 @@ response.forEach(project => {
 
     /*begin with new*/
     function loadClientInfoAndServices(clientID) {
-        $('#txtClient').val(clientID);
+        $('.txtClient').val(clientID);
 
         if (clientID !== '') {
             // Fetch client info
@@ -110,16 +114,16 @@ response.forEach(project => {
                 dataType: 'json',
                 success: function (response) {
                     if (response.length > 0) {
-                        $('#lblAddress').text(response[0].Client_addresse);
-                        $('#lblphonenUmber').text(response[0].Client_Phonenumber);
+                        $('.lblAddress').text(response[0].Client_addresse);
+                        $('.lblphonenUmber').text(response[0].Client_Phonenumber);
                     } else {
-                        $('#lblAddress').text('---');
-                        $('#lblphonenUmber').text('---');
+                        $('.lblAddress').text('---');
+                        $('.lblphonenUmber').text('---');
                     }
                 },
                 error: function () {
-                    $('#lblAddress').text('Error loading address');
-                    $('#lblphonenUmber').text('Error loading phone');
+                    $('.lblAddress').text('Error loading address');
+                    $('.lblphonenUmber').text('Error loading phone');
                 }
             });
 
@@ -138,35 +142,35 @@ response.forEach(project => {
                     } else {
                         optionSer = '<option value="">No services found</option>';
                     }
-                    $('#selService').html(optionSer);
+                    $('.selService').html(optionSer);
                 },
                 error: function () {
-                    $('#selService').html('<option value="">Error loading services</option>');
+                    $('.selService').html('<option value="">Error loading services</option>');
                 }
             });
         } else {
-            $('#lblAddress').text('---');
-            $('#lblphonenUmber').text('---');
-            $('#selService').html('<option value="">Select Service</option>');
+            $('.lblAddress').text('---');
+            $('.lblphonenUmber').text('---');
+            $('.selService').html('<option value="">Select Service</option>');
         }
     }
 
     // Trigger on client selection
-    $('#clientSelect').on('change', function () {
+    $('.clientSelect').on('change', function () {
         const clientID = $(this).val();
         loadClientInfoAndServices(clientID);
     });
 
     // Trigger on page load if client is already selected
     $(document).ready(function () {
-        const initialClientID = $('#clientSelect').val();
+        const initialClientID = $('.clientSelect').val();
         if (initialClientID !== '') {
             loadClientInfoAndServices(initialClientID);
         }
     });
 
 
-    $('#selService').on('change', function () {
+    $('.selService').on('change', function () {
         const serviceID = $(this).val();
 
         if (serviceID) {
@@ -206,7 +210,7 @@ response.forEach(project => {
                                 `;
                             });
 
-                            $('#viewServiceProject').html(rows);
+                            $('.viewServiceProject').html(rows);
 
                             // Display total budget
                             $('.totalbudgut').text(response.totalbudget + ' $');
@@ -224,7 +228,7 @@ response.forEach(project => {
     });
 
 
-    $('#selFreelancer').on('change', function () {
+    $('.selFreelancer').on('change', function () {
         const freelancerId = $(this).val();
 
         if (freelancerId) {
@@ -271,7 +275,7 @@ response.forEach(project => {
                 const response = JSON.parse(res);
                 if (response.status === 'success') {
                     // Refresh the list
-                    $('#selService').trigger('change');
+                    $('.selService').trigger('change');
                 } else {
                     alert('Failed to delete the service.');
                 }
@@ -288,7 +292,10 @@ response.forEach(project => {
         const ProID = $(this).data('index');
         location.href= "ManageProject.php?do=view&proid="+ProID;
     })
-
+    $(document).on('click','.btnEditProject',function(){
+        const ProID = $(this).data('index');
+        location.href= "ManageProject.php?do=edid&proid="+ProID;
+    })
 
     // Update when user finishes typing (blur)
     $(document).on('blur', '.freelancerInput', function () {
@@ -331,6 +338,7 @@ response.forEach(project => {
             success: function (res) {
                 // Refresh the freelancer list
                 loadFreelancers(); // You can create this function to re-fetch and re-render the table
+                console.error(res);
             },
             error: function (xhr) {
                 console.error('Delete error:', xhr);
@@ -368,8 +376,8 @@ response.forEach(project => {
 
     function normalizeSharesTo100() {
         let inputs = $('.freelancerInput[name^="share_"]').toArray();
-        inputs.push($('#txtsharereserve')[0]);
-        inputs.push($('#txtsharemanagment')[0]);
+        inputs.push($('.txtsharereserve')[0]);
+        inputs.push($('.txtsharemanagment')[0]);
 
         let rawValues = inputs.map(input => ({
             element: $(input),
@@ -409,8 +417,8 @@ response.forEach(project => {
         // Always send current values to backend
         let sendData = {
             freelancers: [],
-            reserve: parseInt($('#txtsharereserve').val()) || 0,
-            management: parseInt($('#txtsharemanagment').val()) || 0
+            reserve: parseInt($('.txtsharereserve').val()) || 0,
+            management: parseInt($('.txtsharemanagment').val()) || 0
         };
 
         $('.freelancerInput[name^="share_"]').each(function () {
@@ -436,13 +444,57 @@ response.forEach(project => {
         updateTotalDisplay();
     }
     
-    $(document).on('blur', '.freelancerInput[type="number"], #txtsharemanagment, #txtsharereserve', function () {
+    $(document).on('blur', '.freelancerInput[type="number"], .txtsharemanagment, .txtsharereserve', function () {
         normalizeSharesTo100();
     });
 
     $('.btnbacktomanage').click(function(){
         location.href="ManageProject.php"
     })
+
+
+    if (doParam === 'edid') {
+        $.ajax({
+            url: 'ajaxadmin/fetchServiceProject.php',
+            method: 'GET',
+            dataType: 'json',
+            success: function(response) {
+                let rows = '';
+                response.services.forEach((item, index) => {
+                    rows += `
+                        <tr>
+                            <td>${item.serviceID}</td>
+                            <td>${item.ServiceTitle}</td>
+                            <td>${item.Budget}</td>
+                            <td>
+                                <input 
+                                    type="text" 
+                                    name="note_${index}" 
+                                    value="${item.note}" 
+                                    data-index="${index}" 
+                                    class="noteInput"
+                                />
+                            </td>
+                            <td>
+                                <button class="deleteServiceBtn" data-index="${index}" style="color: red; border: none; background: none;">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+                });
+                $('.viewServiceProject').html(rows);
+
+                // Display total budget
+                $('.totalbudgut').text(response.totalbudget + ' $');
+            },
+            error: function(xhr, status, error) {
+                console.error('Error fetching service list:', status, error);
+            }
+        });
+
+        loadFreelancers()
+    }
 
 });
 

@@ -45,6 +45,8 @@
             <?php
                 if($do == 'manage'){?>
                     <?php
+                        unset($_SESSION['ServiceProject']);
+                        unset($_SESSION['freelancerProject']);
                         $sql = $con->prepare('SELECT 
                                                 COUNT(ProjectID) AS total,
                                                 SUM(Status = 3) AS finished,
@@ -280,7 +282,7 @@
                                 <div class="left">
                                     <div class="double">
                                         <label for="">Client Name :</label>
-                                        <select name="ClientID" id="clientSelect" required>
+                                        <select name="ClientID" class="clientSelect" required>
                                             <option value="">[Selct Client]</option>
                                             <?php
                                                 $sql= $con->prepare('SELECT ClientID,Client_FName,Client_LName FROM tblclients WHERE  client_active = 1 ORDER BY Client_FName');
@@ -293,10 +295,10 @@
                                         </select>
                                     </div>
                                     <div class="double">
-                                        <span id="lblAddress"></span>
+                                        <span class="lblAddress"></span>
                                     </div>
                                     <div class="double">
-                                        <span id="lblphonenUmber"></span>
+                                        <span class="lblphonenUmber"></span>
                                     </div>
                                 </div>
                                 <div class="right">
@@ -321,8 +323,8 @@
                             <div class="projectServices">
                                 <h4>Project Services (<span class="totalbudgut"></span>)</h4>
                                 <div class="selectService">
-                                    <input type="text" name="txtClientService" id="txtClient" hidden>
-                                    <select name="" id="selService"></select>
+                                    <input type="text" name="txtClientService" class="txtClient" hidden>
+                                    <select name="" class="selService"></select>
                                     <table>
                                         <thead>
                                             <th>Service ID</th>
@@ -331,7 +333,7 @@
                                             <th>Notes</th>
                                             <th>Control</th>
                                         </thead>
-                                        <tbody id="viewServiceProject">
+                                        <tbody class="viewServiceProject">
 
                                         </tbody>
                                     </table>
@@ -342,16 +344,16 @@
                                 <div class="input_schare ">
                                     <div class="double left">
                                         <label for="">% Managment</label>
-                                        <input type="number" name="shareManagement" id="txtsharemanagment" value="10" step="0.01">
+                                        <input type="number" name="shareManagement"  class="txtsharemanagment" value="10" step="0.01" value="<?php echo $info['shareManagement'] ?>">
                                     </div>
                                     <div class="double right">
                                         <label for="">% Reserve</label>
-                                        <input type="number" name="shareReserve" id="txtsharereserve" value="20" step="0.01">
+                                        <input type="number" name="shareReserve" class="txtsharereserve" value="20" step="0.01" value="<?php echo $info['shareReserve'] ?>">
                                     </div>
                                 </div>
                                 <div class="long">
                                     <label for="">New Freelancer</label>
-                                    <select name="" id="selFreelancer">
+                                    <select name="" class="selFreelancer">
                                         <option value="">[Select Freelancer]</option>
                                         <?php
                                             $sql= $con->prepare('SELECT staffID,Fname,MidelName,LName FROM  tblstaff WHERE accepted = 1 AND block=0 ORDER BY Fname');
@@ -472,7 +474,320 @@
                     $checkProjectID = checkItem('ProjectID','tblprojects',$projectID);
 
                     if($checkProjectID == 1){
+                        $sql=$con->prepare('SELECT project_Name,admin_FName,Project_Manager,admin_LName,tblprojects.ClientID,Client_FName,Client_LName,Client_addresse,Client_Phonenumber,
+                                                        StartTime,ExpectedDate,EndDate,Discription,shareManagement,shareReserve,note
+                                                FROM tblprojects 
+                                                INNER JOIN  tbladmin ON  tbladmin.admin_ID  = tblprojects.Project_Manager
+                                                INNER JOIN tblclients ON tblclients.ClientID = tblprojects.ClientID
+                                                WHERE ProjectID = ?');
+                        $sql->execute(array($projectID));
+                        $info = $sql->fetch();
+                    ?>
+                    <div class="newForm">
+                        <div class="formtitle">
+                            <h3>Project Form</h3>
+                        </div>
+                        <form action="" method="post">
+                            <div class="long">
+                                <label for="">Project Name : </label>
+                                <input type="text" name="project_Name" id="" required value="<?php echo $info['project_Name']?>">
+                            </div>
+                            <div class="long">
+                                <label for="">Project Manager :</label>
+                                <select name="Project_Manager" id="">
+                                    <?php
+                                        $sql=$con->prepare('SELECT admin_ID,admin_FName,admin_LName FROM tbladmin ORDER BY admin_FName');
+                                        $sql->execute();
+                                        $admins = $sql->fetchAll();
+                                        foreach ($admins as $admin) {
+                                            $selected = ($admin['admin_ID'] == $info['Project_Manager']) ? 'selected' : '';
+                                            echo '<option value="' . $admin['admin_ID'] . '" ' . $selected . '>'
+                                                    . $admin['admin_FName'] . ' ' . $admin['admin_LName'] .
+                                                    '</option>';
+                                        }
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="colmdata">
+                                <div class="left">
+                                    <div class="double">
+                                        <label for="">Client Name :</label>
+                                        <select name="ClientID" class="clientSelect" required>
+                                            <option value="">[Selct Client]</option>
+                                            <?php
+                                                $sql= $con->prepare('SELECT ClientID,Client_FName,Client_LName FROM tblclients WHERE  client_active = 1 ORDER BY Client_FName');
+                                                $sql->execute();
+                                                $clients = $sql->fetchAll();
+                                                foreach($clients  as $client){
+                                                    $selected = ($client['ClientID'] == $info['ClientID']) ? 'selected' : '';
+                                                    echo '<option value="'.$client['ClientID'].'" '.$selected.'>'.$client['Client_FName'].' '.$client['Client_LName'].'</option>';
+                                                };
+                                            ?>
+                                        </select>
+                                    </div>
+                                    <div class="double">
+                                        <span class="lblAddress"><?php echo $info['Client_addresse']?></span>
+                                    </div>
+                                    <div class="double">
+                                        <span class="lblphonenUmber"><?php echo $info['Client_Phonenumber']?></span>
+                                    </div>
+                                </div>
+                                <div class="right">
+                                    <div class="double">
+                                        <label for="">Start Date</label>
+                                        <input type="date" name="StartTime" id="" required value="<?php echo $info['StartTime'] ?>">
+                                    </div>
+                                    <div class="double">
+                                        <label for="">Expected Delvery</label>
+                                        <input type="date" name="ExpectedDate" id="" required value="<?php echo $info['ExpectedDate'] ?>">
+                                    </div>
+                                    <div class="double">
+                                        <label for="">Actual End Date</label>
+                                        <input type="date" name="EndDate" id="" value="<?php echo $info['EndDate'] ?>">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="longtextdata">
+                                <label for="">Discription</label>
+                                <textarea name="Discription" id="" rows="5"><?php echo $info['Discription'] ?></textarea>
+                            </div>
+                            <div class="projectServices">
+                                <h4>Project Services (<span class="totalbudgut"></span>)</h4>
+                                <div class="selectService">
+                                    <input type="text" name="txtClientService" class="txtClient" hidden>
+                                    <select name="" class="selService"></select>
+                                    <?php
+                                        $sql= $con->prepare('SELECT ServiceID,Note FROM tblserviceproject WHERE ProjectID = ?');
+                                        $sql->execute(array($projectID));
+                                        $services=$sql->fetchAll();
+                                        foreach($services as $ser){
+                                            if ($ser['ServiceID'] > 0) {
+                                                $itemarray = array(
+                                                    'id' => $ser['ServiceID'],
+                                                    'note' => '',
+                                                );
 
+                                                if (isset($_SESSION['ServiceProject'])) {
+                                                    $exists = false;
+
+                                                    // Check if service already exists
+                                                    foreach ($_SESSION['ServiceProject'] as $item) {
+                                                        if ($item['id'] == $ser['ServiceID']) {
+                                                            $exists = true;
+                                                            break;
+                                                        }
+                                                    }
+
+                                                    // Only add if it doesn't exist
+                                                    if (!$exists) {
+                                                        $_SESSION['ServiceProject'][] = $itemarray;
+                                                    }
+
+                                                } else {
+                                                    // First time creation
+                                                    $_SESSION['ServiceProject'][0] = $itemarray;
+                                                }
+                                            }
+                                        }
+                                    ?>
+                                    <table>
+                                        <thead>
+                                            <th>Service ID</th>
+                                            <th>Service Name</th>
+                                            <th>Budjet</th>
+                                            <th>Notes</th>
+                                            <th>Control</th>
+                                        </thead>
+                                        <tbody class="viewServiceProject">
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="Developers">
+                                <h4>Developers & Shares</h4>
+                                <div class="input_schare ">
+                                    <div class="double left">
+                                        <label for="">% Managment</label>
+                                        <input type="number" name="shareManagement" class="txtsharemanagment"  step="0.01"  value="<?php echo $info['shareManagement'] ?>">
+                                    </div>
+                                    <div class="double right">
+                                        <label for="">% Reserve</label>
+                                        <input type="number" name="shareReserve" class="txtsharereserve"  step="0.01" value="<?php echo $info['shareReserve'] ?>">
+                                    </div>
+                                </div>
+                                <div class="long">
+                                    <label for="">New Freelancer</label>
+                                    <select name="" class="selFreelancer">
+                                        <option value="">[Select Freelancer]</option>
+                                        <?php
+                                            $sql= $con->prepare('SELECT staffID,Fname,MidelName,LName FROM  tblstaff WHERE accepted = 1 AND block=0 ORDER BY Fname');
+                                            $sql->execute();
+                                            $freelancers = $sql->fetchAll();
+                                            foreach($freelancers as $freelancer){
+                                                echo '<option value="'.$freelancer['staffID'].'">'.$freelancer['Fname'].' '.$freelancer['MidelName'].' '.$freelancer['LName'].'</option>';
+                                            }
+                                        ?>
+                                    </select>
+                                </div>
+                                <table>
+                                    <?php
+                                        $sql=$con->prepare('SELECT FreelancerID,Posstion,PersentageShare,Note FROM tbldevelopers_project WHERE projectID=?');
+                                        $sql->execute(array($projectID));
+                                        $freelanceredids = $sql->fetchAll();
+                                        foreach($freelanceredids as $freedid){
+                                            if ($freedid['FreelancerID'] > 0) {
+                                                $itemarray = array(
+                                                    'id'        => $freedid['FreelancerID'],
+                                                    'Service'   => $freedid['Posstion'],
+                                                    'share'     => $freedid['PersentageShare'],
+                                                    'note'      => $freedid['Note'],
+                                                );
+
+                                                if (isset($_SESSION['freelancerProject'])) {
+                                                    $exists = false;
+
+                                                    // Check if service already exists
+                                                    foreach ($_SESSION['freelancerProject'] as $item) {
+                                                        if ($item['id'] == $freedid['FreelancerID']) {
+                                                            $exists = true;
+                                                            break;
+                                                        }
+                                                    }
+
+                                                    // Only add if it doesn't exist
+                                                    if (!$exists) {
+                                                        $_SESSION['freelancerProject'][] = $itemarray;
+                                                    }
+
+                                                } else {
+                                                    // First time creation
+                                                    $_SESSION['freelancerProject'][0] = $itemarray;
+                                                }
+                                            }
+                                        }
+                                    ?>
+                                    <thead>
+                                        <th>Name</th>
+                                        <th>Assigned Service</th>
+                                        <th>% Share</th>
+                                        <th>Expected Amount</th>
+                                        <th>Notes</th>
+                                        <th>Control</th>
+                                    </thead>
+                                    <tbody class="viewfreelancers">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="longtextdata">
+                                <label for="">Note:</label>
+                                <textarea name="note" id="" rows="5"> <?php echo $info['note'] ?></textarea>
+                            </div>
+                            <div class="btncontroler">
+                                <button type="reset" class="btn btn-danger">Clear</button>
+                                <button type="submit" class="btn btn-warning" name="btnEdidproject">Edid Project</button>
+                            </div>
+                        </form>
+                    </div>
+                    <?php
+                        if(isset($_POST['btnEdidproject'])){
+                            $stat=$con->prepare('DELETE FROM  tbldevelopers_project WHERE projectID = ?');
+                            $stat->execute(array($projectID));
+                            $stat=$con->prepare('DELETE FROM  tblserviceproject WHERE ProjectID = ?');
+                            $stat->execute(array($projectID));
+
+
+                            $project_Name       = $_POST['project_Name'];
+                            $Project_Manager    = $_POST['Project_Manager'];
+                            $ClientID           = $_POST['ClientID'];
+                            $StartTime          = $_POST['StartTime'];
+                            $ExpectedDate	    = $_POST['ExpectedDate'];
+                            $EndDate            = $_POST['EndDate'];
+                            $Discription        = $_POST['Discription'];
+                            $shareManagement    = $_POST['shareManagement'];
+                            $shareReserve       = $_POST['shareReserve'];
+                            $note               = $_POST['note'];
+                            //projectID
+
+                                
+                            $sql=$con->prepare('UPDATE  tblprojects 
+                                                SET 
+                                                    ClientID=:ClientID ,
+                                                    Project_Manager =:Project_Manager ,
+                                                    Discription = :Discription,
+                                                    project_Name =:project_Name,
+                                                    StartTime = :StartTime ,
+                                                    ExpectedDate = :ExpectedDate ,
+                                                    EndDate =:EndDate ,
+                                                    shareManagement	 = :shareManagement	,
+                                                    shareReserve	= :shareReserve	,
+                                                    note = :note
+                                                WHERE 
+                                                    ProjectID  = :ProjectID
+                                                ');
+                            $sql->execute(array(
+                                'ClientID'          =>$ClientID,
+                                'Project_Manager'   =>$Project_Manager,
+                                'Discription'       =>$Discription,
+                                'project_Name'      =>$project_Name,
+                                'StartTime'         =>$StartTime,
+                                'ExpectedDate'      =>$ExpectedDate,
+                                'EndDate'           =>$EndDate,
+                                'shareManagement'   =>$shareManagement,
+                                'shareReserve'      =>$shareReserve,
+                                'note'              =>$note,
+                                'ProjectID'         =>$projectID
+                            ));
+                            
+
+                            if (isset($_SESSION['ServiceProject'])) {
+                                
+                                foreach ($_SESSION['ServiceProject'] as $index => $item) {
+                                    $ServiceID = $item['id'];
+                                    $note = $item['note'];
+
+                                    $sql=$con->prepare('INSERT INTO tblserviceproject 
+                                                            (ProjectID,ServiceID,Note)
+                                                        VALUES
+                                                            (:ProjectID,:ServiceID,:Note)');
+                                    $sql->execute(array(
+                                        'ProjectID'     => $projectID,
+                                        'ServiceID'     => $ServiceID,
+                                        'Note'          => $note
+                                    ));
+                                }
+
+                                unset($_SESSION['ServiceProject']);
+                            }
+
+                            if (isset($_SESSION['freelancerProject'])){
+                                
+                                foreach ($_SESSION['freelancerProject'] as $index => $item) {
+                                    $freelancerId       = $item['id'];
+                                    $Service            = $item['Service'];
+                                    $share              = $item['share'];
+                                    $frenote            = $item['note'];
+
+                                    $sql=$con->prepare('INSERT INTO tbldevelopers_project
+                                                            (projectID,FreelancerID,Posstion,PersentageShare,Note)
+                                                        VALUES
+                                                            (:projectID,:FreelancerID,:Posstion,:PersentageShare,:Note)');
+                                    $sql->execute(array(
+                                        'projectID'         => $projectID,
+                                        'FreelancerID'      => $freelancerId,
+                                        'Posstion'          => $Service,
+                                        'PersentageShare'   => $share,
+                                        'Note'              => $frenote
+                                    ));
+
+                                }
+
+                                unset($_SESSION['freelancerProject']);
+                            }
+
+                            echo '<script> location.href="ManageProject.php" </script>';
+                        }
                     }else{
                         echo '<script> location.href="ManageProject.php" </script>';
                     }
