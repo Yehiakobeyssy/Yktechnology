@@ -366,47 +366,51 @@ response.forEach(project => {
         inputs.push($('#txtsharereserve')[0]);
         inputs.push($('#txtsharemanagment')[0]);
 
-        let rawValues = inputs.map(input => {
-            return {
-                element: $(input),
-                original: parseFloat($(input).val()) || 0
-            };
-        });
+        let rawValues = inputs.map(input => ({
+            element: $(input),
+            original: parseFloat($(input).val()) || 0
+        }));
 
         let totalOriginal = rawValues.reduce((sum, item) => sum + item.original, 0);
 
-        if (totalOriginal > 0) {
+        // Only normalize if total is greater than 100
+        if (totalOriginal > 100) {
             let scale = 100 / totalOriginal;
-            let adjustedValues = [];
-            let sumSoFar = 0;
+            let intValues = [];
+            let totalInt = 0;
 
-            for (let i = 0; i < rawValues.length - 1; i++) {
-                let scaled = rawValues[i].original * scale;
-                let rounded = Math.round(scaled * 100) / 100; // round to 2 decimals
-                adjustedValues.push(rounded);
-                sumSoFar += rounded;
+            // Scale and floor to integers
+            for (let i = 0; i < rawValues.length; i++) {
+                let scaled = Math.floor(rawValues[i].original * scale);
+                intValues.push(scaled);
+                totalInt += scaled;
             }
 
-            // Last value is 100 - sumSoFar
-            let lastValue = Math.round((100 - sumSoFar) * 100) / 100;
-            adjustedValues.push(lastValue);
+            // Distribute remaining points
+            let remaining = 100 - totalInt;
+            let i = 0;
+            while (remaining > 0) {
+                intValues[i % intValues.length]++;
+                remaining--;
+                i++;
+            }
 
             // Update UI
             for (let i = 0; i < rawValues.length; i++) {
-                rawValues[i].element.val(adjustedValues[i]);
+                rawValues[i].element.val(intValues[i]);
             }
         }
 
-        // Prepare data for backend
+        // Always send current values to backend
         let sendData = {
             freelancers: [],
-            reserve: parseFloat($('#txtsharereserve').val()) || 0,
-            management: parseFloat($('#txtsharemanagment').val()) || 0
+            reserve: parseInt($('#txtsharereserve').val()) || 0,
+            management: parseInt($('#txtsharemanagment').val()) || 0
         };
 
         $('.freelancerInput[name^="share_"]').each(function () {
             let index = $(this).data('index');
-            let share = parseFloat($(this).val()) || 0;
+            let share = parseInt($(this).val()) || 0;
             sendData.freelancers.push({ index: index, share: share });
         });
 
@@ -426,7 +430,7 @@ response.forEach(project => {
 
         updateTotalDisplay();
     }
-
+    
     $(document).on('blur', '.freelancerInput[type="number"], #txtsharemanagment, #txtsharereserve', function () {
         normalizeSharesTo100();
     });
