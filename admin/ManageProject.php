@@ -40,7 +40,7 @@
         <div class="contain">
             <div class="title">
                 <h1> <i class="fa-solid fa-diagram-project "></i> Project Managment</h1>
-                <button class="btn btn-primary btnPosstion">New Project</button>
+                <button class="btn btn-primary btnPosstion btnnewproject">New Project</button>
             </div>
             <?php
                 if($do == 'manage'){?>
@@ -101,7 +101,140 @@
                 }elseif($do=='view'){
 
                 }elseif($do=='add'){
+                    ?>
+                    <div class="newForm">
+                        <div class="formtitle">
+                            <h3>Project Form</h3>
+                        </div>
+                        <form action="" method="post">
+                            <div class="long">
+                                <label for="">Project Name : </label>
+                                <input type="text" name="" id="">
+                            </div>
+                            <div class="long">
+                                <label for="">Project Manager :</label>
+                                <select name="" id="">
+                                    <?php
+                                        $sql=$con->prepare('SELECT admin_ID,admin_FName,admin_LName FROM tbladmin ORDER BY admin_FName');
+                                        $sql->execute();
+                                        $admins = $sql->fetchAll();
+                                        foreach ($admins as $admin) {
+                                            $selected = ($admin['admin_ID'] == $adminId) ? 'selected' : '';
+                                            echo '<option value="' . $admin['admin_ID'] . '" ' . $selected . '>'
+                                                    . $admin['admin_FName'] . ' ' . $admin['admin_LName'] .
+                                                    '</option>';
+                                        }
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="colmdata">
+                                <div class="left">
+                                    <div class="double">
+                                        <label for="">Client Name :</label>
+                                        <select name="" id="clientSelect">
+                                            <option value="">[Selct Client]</option>
+                                            <?php
+                                                $sql= $con->prepare('SELECT ClientID,Client_FName,Client_LName FROM tblclients WHERE  client_active = 1 ORDER BY Client_FName');
+                                                $sql->execute();
+                                                $clients = $sql->fetchAll();
+                                                foreach($clients  as $client){
+                                                    echo '<option value="'.$client['ClientID'].'">'.$client['Client_FName'].' '.$client['Client_LName'].'</option>';
+                                                };
+                                            ?>
+                                        </select>
+                                    </div>
+                                    <div class="double">
+                                        <span id="lblAddress"></span>
+                                    </div>
+                                    <div class="double">
+                                        <span id="lblphonenUmber"></span>
+                                    </div>
+                                </div>
+                                <div class="right">
+                                    <div class="double">
+                                        <label for="">Start Date</label>
+                                        <input type="date" name="" id="">
+                                    </div>
+                                    <div class="double">
+                                        <label for="">Expected Delvery</label>
+                                        <input type="date" name="" id="">
+                                    </div>
+                                    <div class="double">
+                                        <label for="">Actual End Date</label>
+                                        <input type="date" name="" id="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="longtextdata">
+                                <label for="">Discription</label>
+                                <textarea name="" id="" rows="5"></textarea>
+                            </div>
+                            <div class="projectServices">
+                                <h4>Project Services (<span class="totalbudgut"></span>)</h4>
+                                <div class="selectService">
+                                    <input type="text" name="txtClientService" id="txtClient" hidden>
+                                    <select name="" id="selService"></select>
+                                    <table>
+                                        <thead>
+                                            <th>Service ID</th>
+                                            <th>Service Name</th>
+                                            <th>Budjet</th>
+                                            <th>Notes</th>
+                                            <th>Control</th>
+                                        </thead>
+                                        <tbody id="viewServiceProject">
 
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="Developers">
+                                <h4>Developers & Shares</h4>
+                                <div class="input_schare ">
+                                    <div class="double left">
+                                        <label for="">% Managment</label>
+                                        <input type="number" name="" id="txtsharemanagment" value="10" step="0.01">
+                                    </div>
+                                    <div class="double right">
+                                        <label for="">% Reserve</label>
+                                        <input type="number" name="" id="txtsharereserve" value="20" step="0.01">
+                                    </div>
+                                </div>
+                                <div class="long">
+                                    <label for="">New Freelancer</label>
+                                    <select name="" id="selFreelancer">
+                                        <option value="">[Select Freelancer]</option>
+                                        <?php
+                                            $sql= $con->prepare('SELECT staffID,Fname,MidelName,LName FROM  tblstaff WHERE accepted = 1 AND block=0 ORDER BY Fname');
+                                            $sql->execute();
+                                            $freelancers = $sql->fetchAll();
+                                            foreach($freelancers as $freelancer){
+                                                echo '<option value="'.$freelancer['staffID'].'">'.$freelancer['Fname'].' '.$freelancer['MidelName'].' '.$freelancer['LName'].'</option>';
+                                            }
+                                        ?>
+                                    </select>
+                                </div>
+                                <table>
+                                    <thead>
+                                        <th>Name</th>
+                                        <th>Assigned Service</th>
+                                        <th>% Share</th>
+                                        <th>Expected Amount</th>
+                                        <th>Notes</th>
+                                        <th>Control</th>
+                                    </thead>
+                                    <tbody class="viewfreelancers">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="longtextdata">
+                                <label for="">Note:</label>
+                                <textarea name="" id="" rows="5"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                <?php
                 }elseif($do=='edid'){
 
                 }elseif($do=='cancel'){

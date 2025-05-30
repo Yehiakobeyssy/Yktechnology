@@ -92,5 +92,310 @@ response.forEach(project => {
             $('.viewProject .no-record').remove();
         }
     });
+
+    $('.btnnewproject').click(function(){
+        location.href="ManageProject.php?do=add"
+    });
+
+    /*begin with new*/
+    function loadClientInfoAndServices(clientID) {
+        $('#txtClient').val(clientID);
+
+        if (clientID !== '') {
+            // Fetch client info
+            $.ajax({
+                url: 'ajaxadmin/fetchClinetinfo.php',
+                method: 'GET',
+                data: { client: clientID },
+                dataType: 'json',
+                success: function (response) {
+                    if (response.length > 0) {
+                        $('#lblAddress').text(response[0].Client_addresse);
+                        $('#lblphonenUmber').text(response[0].Client_Phonenumber);
+                    } else {
+                        $('#lblAddress').text('---');
+                        $('#lblphonenUmber').text('---');
+                    }
+                },
+                error: function () {
+                    $('#lblAddress').text('Error loading address');
+                    $('#lblphonenUmber').text('Error loading phone');
+                }
+            });
+
+            // Fetch services
+            $.ajax({
+                url: 'ajaxadmin/fetchServiceClient.php',
+                method: 'GET',
+                data: { client: clientID },
+                dataType: 'json',
+                success: function (response) {
+                    let optionSer = '<option value="">Select Service</option>';
+                    if (response.length > 0) {
+                        response.forEach(service => {
+                            optionSer += `<option value="${service.ServicesID}">${service.ServiceTitle} ( ${service.Service_Name} ) </option>`;
+                        });
+                    } else {
+                        optionSer = '<option value="">No services found</option>';
+                    }
+                    $('#selService').html(optionSer);
+                },
+                error: function () {
+                    $('#selService').html('<option value="">Error loading services</option>');
+                }
+            });
+        } else {
+            $('#lblAddress').text('---');
+            $('#lblphonenUmber').text('---');
+            $('#selService').html('<option value="">Select Service</option>');
+        }
+    }
+
+    // Trigger on client selection
+    $('#clientSelect').on('change', function () {
+        const clientID = $(this).val();
+        loadClientInfoAndServices(clientID);
+    });
+
+    // Trigger on page load if client is already selected
+    $(document).ready(function () {
+        const initialClientID = $('#clientSelect').val();
+        if (initialClientID !== '') {
+            loadClientInfoAndServices(initialClientID);
+        }
+    });
+
+
+    $('#selService').on('change', function () {
+        const serviceID = $(this).val();
+
+        if (serviceID) {
+            $.ajax({
+                url: 'ajaxadmin/addServiceprojectarray.php',
+                method: 'GET',
+                data: { serID: serviceID },
+                success: function(response) {
+                    // After adding service to session, fetch updated list
+                    $.ajax({
+                        url: 'ajaxadmin/fetchServiceProject.php',
+                        method: 'GET',
+                        dataType: 'json',
+                        success: function(response) {
+                            let rows = '';
+                            response.services.forEach((item, index) => {
+                                rows += `
+                                    <tr>
+                                        <td>${item.serviceID}</td>
+                                        <td>${item.ServiceTitle}</td>
+                                        <td>${item.Budget}</td>
+                                        <td>
+                                            <input 
+                                                type="text" 
+                                                name="note_${index}" 
+                                                value="${item.note}" 
+                                                data-index="${index}" 
+                                                class="noteInput"
+                                            />
+                                        </td>
+                                        <td>
+                                            <button class="deleteServiceBtn" data-index="${index}" style="color: red; border: none; background: none;">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                `;
+                            });
+
+                            $('#viewServiceProject').html(rows);
+
+                            // Display total budget
+                            $('.totalbudgut').text(response.totalbudget + ' $');
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('Error fetching service list:', status, error);
+                        }
+                    });
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error adding service:', status, error);
+                }
+            });
+        }
+    });
+
+
+    $('#selFreelancer').on('change', function () {
+        const freelancerId = $(this).val();
+
+        if (freelancerId) {
+            $.ajax({
+                url: 'ajaxadmin/addFreelancerObjectarray.php',
+                method: 'GET',
+                data: { freelancer: freelancerId },
+                success: function(response) {
+                    // Fetch updated list
+                    $.ajax({
+                        url: 'ajaxadmin/fetchfreelancerProject.php',
+                        method: 'GET',
+                        dataType: 'json',
+                        success: function(response) {
+                            let rows = '';
+                            response.freelancers.forEach((item, index) => {
+                                rows += `
+                                    <tr>
+                                        <td>${item.Name}</td>
+                                        <td>
+                                            <input 
+                                                type="text" 
+                                                name="service_${index}" 
+                                                value="${item.Service}" 
+                                                data-index="${index}" 
+                                                data-field="Service"
+                                                class="freelancerInput"
+                                            />
+                                        </td>
+                                        <td>
+                                            <input 
+                                                type="number" 
+                                                name="share_${index}" 
+                                                value="${item.Share}" 
+                                                data-index="${index}" 
+                                                data-field="Share"
+                                                class="freelancerInput"
+                                            />
+                                        </td>
+                                        <td></td>
+                                        <td>
+                                            <input 
+                                                type="text" 
+                                                name="note_${index}" 
+                                                value="${item.Note}" 
+                                                data-index="${index}" 
+                                                data-field="Note"
+                                                class="freelancerInput"
+                                            />
+                                        </td>
+                                        <td>
+                                            <button class="deleteFreelancerBtn" data-index="${index}" style="color: red; border: none; background: none;">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                `;
+                            });
+                            $('.viewfreelancers').html(rows);
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('Error fetching freelancer list:', status, error);
+                        }
+                    });
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error adding freelancer:', status, error);
+                }
+            });
+        }
+    });
+
+
+    $(document).on('change', '.noteInput', function () {
+        const index = $(this).data('index');
+        const note = $(this).val();
+
+        $.ajax({
+            url: 'ajaxadmin/updateNote.php',
+            method: 'POST',
+            data: { index: index, note: note },
+            success: function (res) {
+                console.log('Note updated');
+            },
+            error: function (xhr, status, error) {
+                console.error('Error updating note:', status, error);
+            }
+        });
+    });
+
+    $(document).on('click', '.deleteServiceBtn', function () {
+        const index = $(this).data('index');
+        $.ajax({
+            url: 'ajaxadmin/deleteService.php',
+            method: 'POST',
+            data: { index: index },
+            success: function (res) {
+                const response = JSON.parse(res);
+                if (response.status === 'success') {
+                    // Refresh the list
+                    $('#selService').trigger('change');
+                } else {
+                    alert('Failed to delete the service.');
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error('Error deleting service:', status, error);
+            }
+        });
+    });
+
+
+    // Update when user finishes typing (blur)
+    $(document).on('blur', '.freelancerInput', function () {
+        const $input = $(this); // save reference to input
+        const index = $input.data('index');
+        const field = $input.data('field');
+        const value = $input.val();
+
+        $.ajax({
+            url: 'ajaxadmin/updateFreelancerField.php',
+            method: 'POST',
+            data: { index, field, value },
+            success: function (res) {
+                console.log('Updated:', field, value);
+                $input.val(value); // force value back in case it gets overwritten
+            },
+            error: function (xhr) {
+                console.error('Update error:', xhr);
+            }
+        });
+    });
+
+    // Delete button
+    $(document).on('click', '.deleteFreelancerBtn', function () {
+        const index = $(this).data('index');
+
+        $.ajax({
+            url: 'ajaxadmin/deleteFreelancerFromSession.php',
+            method: 'POST',
+            data: { index },
+            success: function (res) {
+                // Refresh the freelancer list
+                loadFreelancers(); // You can create this function to re-fetch and re-render the table
+            },
+            error: function (xhr) {
+                console.error('Delete error:', xhr);
+            }
+        });
+
+        return false
+    });
+
+
+    // Load freelancers list
+function loadFreelancers() {
+    $.getJSON('ajaxadmin/fetchfreelancerProject.php', function (res) {
+        let rows = res.freelancers.map((item, index) => `
+            <tr>
+                <td>${item.Name}</td>
+                <td><input type="text" name="service_${index}" value="${item.Service}" data-index="${index}" data-field="Service" class="freelancerInput" /></td>
+                <td><input type="number" name="share_${index}" value="${item.Share}" data-index="${index}" data-field="Share" class="freelancerInput" /></td>
+                <td></td>
+                <td><input type="text" name="note_${index}" value="${item.Note}" data-index="${index}" data-field="Note" class="freelancerInput" /></td>
+                <td><button class="deleteFreelancerBtn" data-index="${index}" style="color:red; border:none; background:none;"><i class="fa-solid fa-trash"></i></button></td>
+            </tr>
+        `).join('');
+        $('.viewfreelancers').html(rows);
+    });
+}
+
+
 });
 
