@@ -91,6 +91,7 @@
                                 <th>Services</th>
                                 <th>Developers</th>
                                 <th>Date</th>
+                                <th>Task</th>
                                 <th>Status</th>
                                 <th>Control</th>
                             </thead>

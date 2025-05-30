@@ -13,14 +13,19 @@ $sql = "SELECT
             p.StartTime,
             p.ExpectedDate,
             p.EndDate,
-            ps.Status AS Status
+            ps.Status AS Status,
+            
+            -- Tasks count
+            COALESCE(task.TotalTasks, 0) AS TotalTasks,
+            COALESCE(task.FinishedTasks, 0) AS FinishedTasks
+
         FROM 
             tblprojects p
         JOIN tblclients c ON p.ClientID = c.ClientID
         JOIN tbladmin a ON p.Project_Manager = a.admin_ID
         JOIN tblproject_status ps ON p.Status = ps.Status_ID
 
-        -- Subquery for services and budget
+        -- Services and budget
         LEFT JOIN (
             SELECT 
                 sp.ProjectID,
@@ -31,7 +36,7 @@ $sql = "SELECT
             GROUP BY sp.ProjectID
         ) AS srv ON p.ProjectID = srv.ProjectID
 
-        -- Subquery for developers
+        -- Developers count
         LEFT JOIN (
             SELECT 
                 projectID,
@@ -40,8 +45,19 @@ $sql = "SELECT
             GROUP BY projectID
         ) AS dev ON p.ProjectID = dev.projectID
 
+        -- Tasks count
+        LEFT JOIN (
+            SELECT 
+                ProjectID,
+                COUNT(CASE WHEN Status < 5 THEN 1 END) AS TotalTasks,
+                COUNT(CASE WHEN Status = 4 THEN 1 END) AS FinishedTasks
+            FROM tbltask
+            GROUP BY ProjectID
+        ) AS task ON p.ProjectID = task.ProjectID
+
         GROUP BY 
             p.ProjectID;"
+
         ;
 
 // Prepare the SQL statement

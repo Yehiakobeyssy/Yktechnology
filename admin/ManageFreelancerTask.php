@@ -238,6 +238,15 @@
                             <label for="">Project Name</label>
                             <select name="ProjectID" id="">
                                 <option value="0">[Not Releted]</option>
+                                <?php 
+                                    $sql=$con->prepare('SELECT ProjectID,project_Name
+                                                        FROM tblprojects');
+                                    $sql->execute();
+                                    $projects = $sql->fetchAll();
+                                    foreach($projects as $pro){
+                                        echo '<option value="'.$pro['ProjectID'].'">'.$pro['project_Name'].'</option>';
+                                    }
+                                ?>
                             </select>
                         </div>
                         <div class="assginment">

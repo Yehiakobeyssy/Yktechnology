@@ -53,6 +53,7 @@ response.forEach(project => {
                             Expected: ${project.ExpectedDate}<br>
                             End: ${project.EndDate}
                         </td>
+                        <td>${project.FinishedTasks}/${project.TotalTasks}</td>
                         <td>
                             <div class="${statusClass}" style="padding:5px; text-align:center;">
                                 ${project.Status}
