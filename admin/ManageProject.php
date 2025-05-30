@@ -27,7 +27,7 @@
     }
 
     $do=isset($_GET['do'])?$_GET['do']:'manage';
-
+    // unset($_SESSION['freelancerProject']);
 ?>
     <link rel="stylesheet" href="css/ManageProject.css">
     <link rel="stylesheet" href="css/navbar.css">
@@ -106,6 +106,11 @@
                         <div class="formtitle">
                             <h3>Project Form</h3>
                         </div>
+                        <?php 
+                            if(isset($_SESSION['freelancerProject'])){
+                                print_r($_SESSION['freelancerProject']);
+                            }            
+                        ?>
                         <form action="" method="post">
                             <div class="long">
                                 <label for="">Project Name : </label>

@@ -260,7 +260,7 @@ response.forEach(project => {
                                                 name="share_${index}" 
                                                 value="${item.Share}" 
                                                 data-index="${index}" 
-                                                data-field="Share"
+                                                data-field="share"
                                                 class="freelancerInput"
                                             />
                                         </td>
@@ -271,7 +271,7 @@ response.forEach(project => {
                                                 name="note_${index}" 
                                                 value="${item.Note}" 
                                                 data-index="${index}" 
-                                                data-field="Note"
+                                                data-field="note"
                                                 class="freelancerInput"
                                             />
                                         </td>
@@ -380,22 +380,78 @@ response.forEach(project => {
 
 
     // Load freelancers list
-function loadFreelancers() {
-    $.getJSON('ajaxadmin/fetchfreelancerProject.php', function (res) {
-        let rows = res.freelancers.map((item, index) => `
-            <tr>
-                <td>${item.Name}</td>
-                <td><input type="text" name="service_${index}" value="${item.Service}" data-index="${index}" data-field="Service" class="freelancerInput" /></td>
-                <td><input type="number" name="share_${index}" value="${item.Share}" data-index="${index}" data-field="Share" class="freelancerInput" /></td>
-                <td></td>
-                <td><input type="text" name="note_${index}" value="${item.Note}" data-index="${index}" data-field="Note" class="freelancerInput" /></td>
-                <td><button class="deleteFreelancerBtn" data-index="${index}" style="color:red; border:none; background:none;"><i class="fa-solid fa-trash"></i></button></td>
-            </tr>
-        `).join('');
-        $('.viewfreelancers').html(rows);
-    });
-}
+    function loadFreelancers() {
+        $.getJSON('ajaxadmin/fetchfreelancerProject.php', function (res) {
+            let rows = res.freelancers.map((item, index) => `
+                <tr>
+                    <td>${item.Name}</td>
+                    <td><input type="text" name="service_${index}" value="${item.Service}" data-index="${index}" data-field="Service" class="freelancerInput" /></td>
+                    <td><input type="number" name="share_${index}" value="${item.Share}" data-index="${index}" data-field="share" class="freelancerInput" /></td>
+                    <td></td>
+                    <td><input type="text" name="note_${index}" value="${item.Note}" data-index="${index}" data-field="note" class="freelancerInput" /></td>
+                    <td><button class="deleteFreelancerBtn" data-index="${index}" style="color:red; border:none; background:none;"><i class="fa-solid fa-trash"></i></button></td>
+                </tr>
+            `).join('');
+            $('.viewfreelancers').html(rows);
+        });
+    }
 
+    function normalizeSharesTo100() {
+        let allInputs = $('.freelancerInput[type="number"]').toArray()
+            .concat([$('#txtsharereserve')[0], $('#txtsharemanagment')[0]]);
+
+        let total = 0;
+        let values = [];
+
+        allInputs.forEach(input => {
+            let val = parseFloat($(input).val()) || 0;
+            total += val;
+            values.push({ id: $(input).attr('id'), value: val, element: $(input) });
+        });
+
+        if (total > 100) {
+            let scale = 100 / total;
+
+            values.forEach(item => {
+                let newValue = parseFloat((item.value * scale).toFixed(2));
+                item.element.val(newValue);
+                item.value = newValue;
+            });
+        }
+
+        // Prepare data for backend
+        let sendData = {
+            freelancers: [],
+            reserve: parseFloat($('#txtsharereserve').val()) || 0,
+            management: parseFloat($('#txtsharemanagment').val()) || 0
+        };
+
+        $('.freelancerInput[name^="share_"]').each(function () {
+            let index = $(this).data('index');
+            let share = parseFloat($(this).val()) || 0;
+            sendData.freelancers.push({ index: index, share: share });
+        });
+
+        // Send to PHP
+        $.ajax({
+            url: 'ajaxadmin/updateSessionShares.php',
+            method: 'POST',
+            data: JSON.stringify(sendData),
+            contentType: 'application/json',
+            success: function (res) {
+                console.log('Session updated');
+            },
+            error: function (xhr) {
+                console.error('Session update failed:', xhr);
+            }
+        });
+
+        updateTotalDisplay();
+    }
+
+    $(document).on('blur', '.freelancerInput[type="number"], #txtsharemanagment, #txtsharereserve', function () {
+        normalizeSharesTo100();
+    });
 
 });
 

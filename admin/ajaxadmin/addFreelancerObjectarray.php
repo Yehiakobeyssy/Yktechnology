@@ -34,5 +34,5 @@ if ($freelancer > 0) {
 }
 
 // Optional: return a JSON response for frontend feedback
-echo json_encode(['status' => 'done']);
+echo json_encode(['status' => 'done']); 
 ?>
