@@ -27,7 +27,7 @@
     }
 
     $do=isset($_GET['do'])?$_GET['do']:'manage';
-    // unset($_SESSION['freelancerProject']);
+
 ?>
     <link rel="stylesheet" href="css/ManageProject.css">
     <link rel="stylesheet" href="css/navbar.css">
@@ -106,19 +106,14 @@
                         <div class="formtitle">
                             <h3>Project Form</h3>
                         </div>
-                        <?php 
-                            if(isset($_SESSION['freelancerProject'])){
-                                print_r($_SESSION['freelancerProject']);
-                            }            
-                        ?>
                         <form action="" method="post">
                             <div class="long">
                                 <label for="">Project Name : </label>
-                                <input type="text" name="" id="">
+                                <input type="text" name="project_Name" id="" required>
                             </div>
                             <div class="long">
                                 <label for="">Project Manager :</label>
-                                <select name="" id="">
+                                <select name="Project_Manager" id="">
                                     <?php
                                         $sql=$con->prepare('SELECT admin_ID,admin_FName,admin_LName FROM tbladmin ORDER BY admin_FName');
                                         $sql->execute();
@@ -136,7 +131,7 @@
                                 <div class="left">
                                     <div class="double">
                                         <label for="">Client Name :</label>
-                                        <select name="" id="clientSelect">
+                                        <select name="ClientID" id="clientSelect" required>
                                             <option value="">[Selct Client]</option>
                                             <?php
                                                 $sql= $con->prepare('SELECT ClientID,Client_FName,Client_LName FROM tblclients WHERE  client_active = 1 ORDER BY Client_FName');
@@ -158,21 +153,21 @@
                                 <div class="right">
                                     <div class="double">
                                         <label for="">Start Date</label>
-                                        <input type="date" name="" id="">
+                                        <input type="date" name="StartTime" id="" required>
                                     </div>
                                     <div class="double">
                                         <label for="">Expected Delvery</label>
-                                        <input type="date" name="" id="">
+                                        <input type="date" name="ExpectedDate" id="" required>
                                     </div>
                                     <div class="double">
                                         <label for="">Actual End Date</label>
-                                        <input type="date" name="" id="">
+                                        <input type="date" name="EndDate" id="">
                                     </div>
                                 </div>
                             </div>
                             <div class="longtextdata">
                                 <label for="">Discription</label>
-                                <textarea name="" id="" rows="5"></textarea>
+                                <textarea name="Discription" id="" rows="5"></textarea>
                             </div>
                             <div class="projectServices">
                                 <h4>Project Services (<span class="totalbudgut"></span>)</h4>
@@ -198,11 +193,11 @@
                                 <div class="input_schare ">
                                     <div class="double left">
                                         <label for="">% Managment</label>
-                                        <input type="number" name="" id="txtsharemanagment" value="10" step="0.01">
+                                        <input type="number" name="shareManagement" id="txtsharemanagment" value="10" step="0.01">
                                     </div>
                                     <div class="double right">
                                         <label for="">% Reserve</label>
-                                        <input type="number" name="" id="txtsharereserve" value="20" step="0.01">
+                                        <input type="number" name="shareReserve" id="txtsharereserve" value="20" step="0.01">
                                     </div>
                                 </div>
                                 <div class="long">
@@ -235,9 +230,92 @@
                             </div>
                             <div class="longtextdata">
                                 <label for="">Note:</label>
-                                <textarea name="" id="" rows="5"></textarea>
+                                <textarea name="note" id="" rows="5"></textarea>
+                            </div>
+                            <div class="btncontroler">
+                                <button type="reset" class="btn btn-danger">Clear</button>
+                                <button type="submit" class="btn btn-success" name="btnnewproject">Save Project</button>
                             </div>
                         </form>
+                        <?php
+                            if(isset($_POST['btnnewproject'])){
+                                $project_Name       = $_POST['project_Name'];
+                                $Project_Manager    = $_POST['Project_Manager'];
+                                $ClientID           = $_POST['ClientID'];
+                                $StartTime          = $_POST['StartTime'];
+                                $ExpectedDate	    = $_POST['ExpectedDate'];
+                                $EndDate            = $_POST['EndDate'];
+                                $Discription        = $_POST['Discription'];
+                                $shareManagement    = $_POST['shareManagement'];
+                                $shareReserve       = $_POST['shareReserve'];
+                                $Status             = 1;
+                                $note               = $_POST['note'];
+
+                                $sql=$con->prepare('INSERT INTO tblprojects 
+                                                        (ClientID,Project_Manager,Discription,project_Name,StartTime,ExpectedDate,EndDate,shareManagement,shareReserve,Status,note) 
+                                                    VALUES 
+                                                        (:ClientID,:Project_Manager,:Discription,:project_Name,:StartTime,:ExpectedDate,:EndDate,:shareManagement,:shareReserve,:Status,:note)');
+                                $sql->execute(array(
+                                    'ClientID'          => $ClientID ,
+                                    'Project_Manager'   => $Project_Manager,
+                                    'Discription'       => $Discription,
+                                    'project_Name'      => $project_Name,
+                                    'StartTime'         => $StartTime,
+                                    'ExpectedDate'      => $ExpectedDate,
+                                    'EndDate'           => $EndDate,
+                                    'shareManagement'   => $shareManagement,
+                                    'shareReserve'      => $shareReserve ,
+                                    'Status'            => $Status,
+                                    'note'              => $note
+                                ));
+
+                                $ProjectID = get_last_ID('ProjectID','tblprojects');
+
+                                if (isset($_SESSION['ServiceProject'])) {
+
+                                    foreach ($_SESSION['ServiceProject'] as $index => $item) {
+                                        $ServiceID = $item['id'];
+                                        $note = $item['note'];
+
+                                        $sql=$con->prepare('INSERT INTO tblserviceproject 
+                                                                (ProjectID,ServiceID,Note)
+                                                            VALUES
+                                                                (:ProjectID,:ServiceID,:Note)');
+                                        $sql->execute(array(
+                                            'ProjectID'     => $ProjectID,
+                                            'ServiceID'     => $ServiceID,
+                                            'Note'          => $note
+                                        ));
+                                    }
+
+                                    unset($_SESSION['ServiceProject']);
+                                }
+
+                                if (isset($_SESSION['freelancerProject'])){
+                                    foreach ($_SESSION['freelancerProject'] as $index => $item) {
+                                        $freelancerId = $item['id'];
+                                        $Service      = $item['Service'];
+                                        $share        = $item['share'];
+                                        $frenote         = $item['note'];
+
+                                        $sql=$con->prepare('INSERT INTO tbldevelopers_project
+                                                                (projectID,FreelancerID,Posstion,PersentageShare,Note)
+                                                            VALUES
+                                                                (:projectID,:FreelancerID,:Posstion,:PersentageShare,:Note)');
+                                        $sql->execute(array(
+                                            'projectID'         => $ProjectID,
+                                            'FreelancerID'      => $freelancerId,
+                                            'Posstion'          => $Service,
+                                            'PersentageShare'   => $share,
+                                            'Note'              => $frenote
+                                        ));
+
+                                    }
+
+                                    unset($_SESSION['freelancerProject']);
+                                }
+                            }
+                        ?>
                     </div>
                 <?php
                 }elseif($do=='edid'){

@@ -234,61 +234,7 @@ response.forEach(project => {
                 data: { freelancer: freelancerId },
                 success: function(response) {
                     // Fetch updated list
-                    $.ajax({
-                        url: 'ajaxadmin/fetchfreelancerProject.php',
-                        method: 'GET',
-                        dataType: 'json',
-                        success: function(response) {
-                            let rows = '';
-                            response.freelancers.forEach((item, index) => {
-                                rows += `
-                                    <tr>
-                                        <td>${item.Name}</td>
-                                        <td>
-                                            <input 
-                                                type="text" 
-                                                name="service_${index}" 
-                                                value="${item.Service}" 
-                                                data-index="${index}" 
-                                                data-field="Service"
-                                                class="freelancerInput"
-                                            />
-                                        </td>
-                                        <td>
-                                            <input 
-                                                type="number" 
-                                                name="share_${index}" 
-                                                value="${item.Share}" 
-                                                data-index="${index}" 
-                                                data-field="share"
-                                                class="freelancerInput"
-                                            />
-                                        </td>
-                                        <td></td>
-                                        <td>
-                                            <input 
-                                                type="text" 
-                                                name="note_${index}" 
-                                                value="${item.Note}" 
-                                                data-index="${index}" 
-                                                data-field="note"
-                                                class="freelancerInput"
-                                            />
-                                        </td>
-                                        <td>
-                                            <button class="deleteFreelancerBtn" data-index="${index}" style="color: red; border: none; background: none;">
-                                                <i class="fa-solid fa-trash"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                `;
-                            });
-                            $('.viewfreelancers').html(rows);
-                        },
-                        error: function(xhr, status, error) {
-                            console.error('Error fetching freelancer list:', status, error);
-                        }
-                    });
+                    loadFreelancers()
                 },
                 error: function(xhr, status, error) {
                     console.error('Error adding freelancer:', status, error);
@@ -334,6 +280,8 @@ response.forEach(project => {
                 console.error('Error deleting service:', status, error);
             }
         });
+
+        return false
     });
 
 
@@ -356,7 +304,16 @@ response.forEach(project => {
                 console.error('Update error:', xhr);
             }
         });
+
+        
     });
+
+    $(document).on('blur', '.freelancerInput[type="number"]', function () {
+        
+        loadFreelancers()
+        
+    });
+
 
     // Delete button
     $(document).on('click', '.deleteFreelancerBtn', function () {
@@ -381,42 +338,63 @@ response.forEach(project => {
 
     // Load freelancers list
     function loadFreelancers() {
+        const totalBudget = parseFloat($('.totalbudgut').text()) || 0;
+
         $.getJSON('ajaxadmin/fetchfreelancerProject.php', function (res) {
-            let rows = res.freelancers.map((item, index) => `
-                <tr>
-                    <td>${item.Name}</td>
-                    <td><input type="text" name="service_${index}" value="${item.Service}" data-index="${index}" data-field="Service" class="freelancerInput" /></td>
-                    <td><input type="number" name="share_${index}" value="${item.Share}" data-index="${index}" data-field="share" class="freelancerInput" /></td>
-                    <td></td>
-                    <td><input type="text" name="note_${index}" value="${item.Note}" data-index="${index}" data-field="note" class="freelancerInput" /></td>
-                    <td><button class="deleteFreelancerBtn" data-index="${index}" style="color:red; border:none; background:none;"><i class="fa-solid fa-trash"></i></button></td>
-                </tr>
-            `).join('');
+            let rows = res.freelancers.map((item, index) => {
+                let share = parseFloat(item.Share) || 0;
+                let amount = ((totalBudget * share) / 100).toFixed(2);
+
+                return `
+                    <tr>
+                        <td>${item.Name}</td>
+                        <td><input type="text" name="service_${index}" value="${item.Service}" data-index="${index}" data-field="Service" class="freelancerInput" /></td>
+                        <td><input type="number" name="share_${index}" value="${item.Share}" data-index="${index}" data-field="share" class="freelancerInput" /></td>
+                        <td>${amount}</td>
+                        <td><input type="text" name="note_${index}" value="${item.Note}" data-index="${index}" data-field="note" class="freelancerInput" /></td>
+                        <td><button class="deleteFreelancerBtn" data-index="${index}" style="color:red; border:none; background:none;"><i class="fa-solid fa-trash"></i></button></td>
+                    </tr>
+                `;
+            }).join('');
             $('.viewfreelancers').html(rows);
         });
     }
 
+
     function normalizeSharesTo100() {
-        let allInputs = $('.freelancerInput[type="number"]').toArray()
-            .concat([$('#txtsharereserve')[0], $('#txtsharemanagment')[0]]);
+        let inputs = $('.freelancerInput[name^="share_"]').toArray();
+        inputs.push($('#txtsharereserve')[0]);
+        inputs.push($('#txtsharemanagment')[0]);
 
-        let total = 0;
-        let values = [];
-
-        allInputs.forEach(input => {
-            let val = parseFloat($(input).val()) || 0;
-            total += val;
-            values.push({ id: $(input).attr('id'), value: val, element: $(input) });
+        let rawValues = inputs.map(input => {
+            return {
+                element: $(input),
+                original: parseFloat($(input).val()) || 0
+            };
         });
 
-        if (total > 100) {
-            let scale = 100 / total;
+        let totalOriginal = rawValues.reduce((sum, item) => sum + item.original, 0);
 
-            values.forEach(item => {
-                let newValue = parseFloat((item.value * scale).toFixed(2));
-                item.element.val(newValue);
-                item.value = newValue;
-            });
+        if (totalOriginal > 0) {
+            let scale = 100 / totalOriginal;
+            let adjustedValues = [];
+            let sumSoFar = 0;
+
+            for (let i = 0; i < rawValues.length - 1; i++) {
+                let scaled = rawValues[i].original * scale;
+                let rounded = Math.round(scaled * 100) / 100; // round to 2 decimals
+                adjustedValues.push(rounded);
+                sumSoFar += rounded;
+            }
+
+            // Last value is 100 - sumSoFar
+            let lastValue = Math.round((100 - sumSoFar) * 100) / 100;
+            adjustedValues.push(lastValue);
+
+            // Update UI
+            for (let i = 0; i < rawValues.length; i++) {
+                rawValues[i].element.val(adjustedValues[i]);
+            }
         }
 
         // Prepare data for backend
@@ -432,7 +410,7 @@ response.forEach(project => {
             sendData.freelancers.push({ index: index, share: share });
         });
 
-        // Send to PHP
+        // Send to backend
         $.ajax({
             url: 'ajaxadmin/updateSessionShares.php',
             method: 'POST',
