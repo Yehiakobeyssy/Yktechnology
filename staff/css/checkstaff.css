@@ -1,0 +1,41 @@
+body {
+    background-color: #1c4e80;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+.discution{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: white;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+.discution img{
+    width: 350px;
+    height: 350px;
+}
+.discution p{
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 30px;
+}
+.discution button {
+    padding: 10px 30px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    background-color: navy;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.discution button:hover {
+    background-color: #001f4d;
+}
