@@ -239,6 +239,7 @@
                 <div class="col-md-3 follow">
                     <h3>Sections</h3>
                     <a href="user/index.php">Login</a>
+                    <a href="staff/index.php">Freelancer Section</a>
                     <a href="Saleagent/index.php">Sale Agent section</a>
                 </div>
             </div>

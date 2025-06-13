@@ -2,9 +2,9 @@
     session_start();
 
     if(isset($_COOKIE['staff'])){
-        header('location:dashboard.php');
+        header('location:checkstaff.php');
     }elseif(isset($_SESSION['staff'])){
-        header('location:dashboard.php');
+        header('location:checkstaff.php');
     }
 
     include '../settings/connect.php';
@@ -13,14 +13,73 @@
 
     $do= (isset($_GET['do']))?$_GET['do']:'login';
 
-    $do='signup'
 ?>
     <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
     <?php
         if($do=='login'){
+        ?>
+            <div class="frmlogin">
+                <div class="logo_login">
+                    <i class="fa-solid fa-clipboard-user"></i>
+                </div>
+                <form action="" method="post">
+                    <div class="frmcateria">
+                        <div class="oneline">
+                            <label for="">E-mail</label>
+                            <input type="email" name="emailuser" id="" class="alone">
+                        </div>
+                        <div class="oneline">
+                            <label for="">Password</label>
+                            <input type="password" name="passworduser" id="" class="alone">
+                        </div>
+                    </div>
+                    <div class="remember">
+                        <div class="rem">
+                            <input type="checkbox" name="rememberme" id="txtrememberme">
+                            <label for="txtrememberme">Remember Me</label>
+                        </div>
+                        <div class="forget">
+                            <a href="forgetpass.php">Forget Password!</a>
+                        </div>
+                    </div> 
+                    <div class="crlbutton">
+                        <button type="submit" name="btnlogin">Login</button>
+                        <a href="index.php?do=signup">Apply now</a>
+                    </div>
+                </form>
+                <?php
+                    if(isset($_POST['btnlogin'])){
+                        $useremail  = $_POST['emailuser'];
+                        $userpass   = sha1($_POST['passworduser']);
+                        $rember_me  = (isset($_POST['rememberme']))?1:0;
 
+                        $sql= $con->prepare('SELECT staffID FROM  tblstaff WHERE Staff_email = ? AND staffPassword = ?');
+                        $sql->execute(array($useremail,$userpass));
+                        $rowCount = $sql->rowCount();
+                        $result= $sql->fetch();
+                        $staffID= $result['staffID'];
+
+                        if($rowCount == 1){
+
+                            if($rember_me == 1){
+                                setcookie('staff', $staffID, time()+3600 * 24 * 365);
+                            }else{
+                                $_SESSION['staff'] = $staffID;
+                            }
+                            header('location:checkstaff.php');
+                        }else{
+                            echo '
+                                <div class="alert alert-danger" role="alert">
+                                    E-mail or Password is wrong!!
+                                </div>
+                            ';
+                        }
+                    }
+                ?>
+            </div>
+        <?php
         }elseif($do=='signup'){?>
             <div class="new_staff">
                 <div class="title">
@@ -231,7 +290,7 @@
                                                         (Fname, MidelName, LName, Gender,DOB, Nationality, Staff_Phone, Staff_email, Staff_Country, Region, Staff_address,
                                                         Posstion, Start_date, expected_sallary, Work_hours, now_work, Notice_Period, Experiance_years, Programing_lang, 
                                                         Framworks, link_experinace, link_github, Comunication_Lang, staff_CV, Staff_Photo, Front_ID, Back_ID, 
-                                                        Transfer_Money, Transfer_Note, Password, block, accepted) 
+                                                        Transfer_Money, Transfer_Note, staffPassword, block, accepted) 
                                                     VALUES 
                                                         (?, ?, ?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
 

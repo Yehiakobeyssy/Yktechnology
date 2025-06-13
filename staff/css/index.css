@@ -89,16 +89,90 @@ select {
 .double {
     width: 47%;
 }
+.alone{
+    width: calc(90% - 150px);
+}
 
 .full {
     width: 85%;
+}
+.frmlogin{
+    background-color: white;
+    width:50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.logo_login{
+    text-align: center;
+    width: 120px;
+    height: 120px;
+    background-color:#1c4e80;
+    border-radius: 50%;
+    margin: -75px auto 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 75px;
+}
+.frmlogin .frmcateria{
+    margin-top: 15px;
+}
+.frmlogin .frmcateria label{
+    width: 150px;
+    font-weight: bold;
+    
+} 
+.remember{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 7px;
+}
+.forget a , .crlbutton a{
+    text-decoration: none;
+    color: #666;
+    font-weight: bold;
+}
+.crlbutton{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.crlbutton button {
+    background-color: #163d66;
+    width: 200px;
+    padding: 15px 20px;
+    border-radius: 12px;
+    color: #ffffff;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.crlbutton button:hover {
+    background-color: #1f4f80;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
+}
+.crlbutton a{
+    margin-top: 15px;
 }
 
 /* Responsive Layout (Optional but Recommended) */
 @media (max-width: 768px) {
     .trible, .double, .full {
         width: 100%;
-    }
+    } 
 
     .section_new label {
         width: 100%;
