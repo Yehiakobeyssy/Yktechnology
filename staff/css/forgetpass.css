@@ -1,0 +1,66 @@
+body{
+    background-color: #1c4e80;
+}
+.forget_pass,.container_resetpass{
+    width: 80%;
+    margin: 25px auto;
+    background-color: white;
+    padding: 10px;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.forget_pass p{
+    margin: 5px 15px;
+    color: red;
+    font-weight: bold;
+}
+.forget_pass form{
+    margin: 20px ;
+    text-align: center;
+}
+.forget_pass input{
+    width: 80%;
+    padding: 7px;
+    text-align: center;
+    background-color: #3383d4;
+    font-size: 18px;
+    color: white;
+    border-radius: 15px;
+}   
+.forget_pass input:focus{
+    outline: none;
+}
+.btn_control {
+    margin: 10px;
+}
+.btn_control button{
+    background-color: transparent;
+    border: #1c4e80 1px solid;
+    color: #1c4e80;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 10px;
+}
+.btn_control button:hover{
+    background-color: #1c4e80;
+    border: #1c4e80 1px solid;
+    color: white;
+}
+.form_reset{
+    width: 80%;
+    margin: 10px auto ;
+    text-align: center;
+}
+.form_reset table{
+    width: 100%;
+}
+.form_reset label{
+    text-align: left !important;
+    font-weight: bold;
+    margin-right: 10px;
+    width: 50%;
+    margin-bottom: 7px;
+}
+.form_reset input{
+    width: 100%;
+}
