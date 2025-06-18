@@ -6,3 +6,65 @@ body {
 main{
     display: flex;
 }
+.dashbord_info{
+    margin: 0 15px;
+    width: 100%;
+}
+.title_daschborad{
+    margin-top: 35px;
+}
+.title_daschborad span{
+    color: red;
+}
+.statistic{
+    margin-top: 25px;
+    width: 100%;
+    height: 250px;
+    background: linear-gradient(135deg, #3383d4, #1c4e80);
+    border-radius: 10px;
+    padding: 20px;
+    color: white;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    box-sizing: border-box;
+}
+.work_section{
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-between;
+}
+.project_doto,.tasks{
+    width: 48%;
+}
+.project,.do_to,.tasks{
+    border: 2px solid #000; 
+    border-radius: 10px; 
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15); 
+    background-color: #fff;
+}
+.project table,.do_to table,.tasks table{
+    width: 100%;
+    border-collapse: collapse;
+}
+.project table th, 
+.project table td,
+.do_to table th,
+.do_to table td,
+.tasks table th,
+.tasks table td {
+    padding: 10px;
+    text-align: left;
+}
+
+.project table th, 
+.do_to table th,
+.tasks table th{
+    background-color: #3383d4;
+    color: white;
+}
+.project table button,.do_to table button,.tasks table button{
+    background-color: transparent;
+    border: transparent;
+    color: #1c4e80;
+}

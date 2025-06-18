@@ -61,7 +61,7 @@
             </a>
         </div>
         <div class="select">
-            <a href="">
+            <a href="manageProjects.php">
                 <i class="fas fa-folder-open"></i> Projects
             </a>
         </div>
