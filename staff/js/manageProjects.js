@@ -85,4 +85,8 @@ $(function(){
         const index = $(this).data('index');
         location.href="manageProjects.php?do=view&pid="+index
     })
+
+    $('.btnbacktomanage').click(function(){
+        location.href="manageProjects.php"
+    })
 });

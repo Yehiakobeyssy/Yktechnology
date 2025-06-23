@@ -97,3 +97,105 @@ main{
     border: none;
     color: #2c6cb5;
 }
+
+.titleviewproject{
+    margin-top: 23px;
+    display: flex;
+    align-items: center;
+}
+.titleviewproject i{
+    margin-right: 10px;
+    font-size: 32px;
+}
+.newForm{
+    width: 90%;
+    margin: 25px auto !important;
+    background-color: #f9f9f9;
+    padding: 30px 25px !important;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    border: 1px solid #ddd;
+}
+.formtitle{
+    text-align: center;
+    margin-bottom: 20px !important;
+}
+.long{
+    margin: 7px 0 !important;
+}
+.long label,.double label,.longtextdata label{
+    font-weight: bold;
+    width: 150px;
+}
+.long input,.long select, .double input,.double select,.selectService input,.viewfreelancers input{
+    width: calc(100% - 170px);
+    padding: 10px !important;
+    margin-bottom: 15px !important;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.viewfreelancers input{
+    width: 200px;
+}
+.colmdata{
+    display: flex;
+    justify-content: space-between;
+}
+.left,.right{
+    width: 48%;
+}
+.double span{
+    font-size: larger;
+}
+.longtextdata{
+    display: flex;
+    flex-direction: column;
+}
+.longtextdata textarea{
+    padding: 10px !important;
+    margin-bottom: 15px !important;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.selectService{
+    text-align: center;
+}
+.selectService select{
+    width: 80%;
+    padding: 10px !important;
+    margin:  15px 0  !important;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.selectService table,.Developers table{
+    width: 100%;
+}
+.selectService table th ,.Developers table th{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+.selectService tbody  td ,.Developers tbody td{
+    padding: 10px !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+}
+.Developers{
+    margin: 15px !important;
+}
+.input_schare{
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 0 !important;
+}
+
+.btncontroler{
+    text-align: center;
+    margin: 15px !important;
+}
+.btncontroler button{
+    width: 150px;
+    margin: 5px!important;
+    padding: 10px!important;
+}
+.viewprojectServices,.viewDevelopers{
+    margin: 20px 0!important;
+}
