@@ -66,7 +66,7 @@
             </a>
         </div>
         <div class="select">
-            <a href="">
+            <a href="manageTask.php">
                 <i class="fas fa-tasks"></i> Tasks
             </a>
         </div>
