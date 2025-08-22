@@ -71,7 +71,7 @@
             </a>
         </div>
         <div class="select">
-            <a href="">
+            <a href="managedoto.php">
                 <i class="fas fa-list-check"></i> To Do
             </a>
         </div>

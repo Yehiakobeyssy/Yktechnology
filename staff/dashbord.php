@@ -105,6 +105,15 @@
                     </div>
                     <div class="do_to">
                         <h4>Do to</h4>
+                        <table>
+                            <thead>
+                                <th>Done</th>
+                                <th>Importance</th>
+                                <th>Task</th>
+                                <th>Date to Finish</th>
+                            </thead>
+                            <tbody id="tblfetchtodo"></tbody>
+                        </table>
                     </div>
                 </div>
                 <div class="tasks">
