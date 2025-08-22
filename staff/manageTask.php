@@ -255,8 +255,9 @@
                     $check_task = checkItem('taskID', 'tbltask',$taskID);
 
                     if($check_task == 1){
-                        $sql=$con->prepare('UPDATE tbltask SET Status=4  WHERE taskID = ?');
-                        $sql->execute(array($taskID));
+                        $today =date("Y-m-d");
+                        $sql=$con->prepare('UPDATE tbltask SET Status=4,FinishDate=?  WHERE taskID = ?');
+                        $sql->execute(array($today,$taskID));
                         echo '<script> location.href="manageTask.php"</script>';
                     }else{
                         echo '<script> location.href="manageTask.php"</script>';
