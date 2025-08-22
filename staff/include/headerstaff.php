@@ -6,7 +6,7 @@
     $staff_photo = $result['Staff_Photo'];
 
     $photoPath = "../Documents/" . $staff_photo;
-    if (!file_exists($photoPath) || empty($personal_Photo)) {
+    if (!file_exists($photoPath) || empty($staff_photo)) {
         $photoPath = "../Documents/nophoto.png";
     }
 ?>
@@ -86,8 +86,9 @@
                 
             </button>
             <div class="dropdown-menu">
-                <a href="#">Change Password</a>
-                <a href="#">Logout</a>
+                
+                <a href="changepassword.php">Change Password</a>
+                <a href="logout.php">Logout</a>
             </div>
         </div>
     </div>
