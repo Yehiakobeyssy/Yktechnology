@@ -1,0 +1,121 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+main{
+    display: flex;
+}
+.project_container{
+    width: 100%;
+    margin-left: 15px;
+}
+
+.new_staff {
+    background-color: #fff;
+    width: 100%;
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Title Section */
+.new_staff .title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.new_staff img {
+    width: 50%;
+    margin-bottom: 10px;
+}
+
+.title h3 {
+    font-size: 24px;
+    margin: 10px 0 5px;
+}
+
+.title label {
+    font-size: 14px;
+    color: #666;
+}
+
+/* Section Styling */
+.section_new {
+    border-bottom: 2px solid rgba(0, 0, 0, 0.07);
+    padding: 20px 0;
+}
+
+.section_new:last-child {
+    border-bottom: none;
+}
+
+/* Headings */
+h4, h5, h6 {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 20px 0 10px;
+}
+
+/* Label and Input Styling */
+.section_new label {
+    display: inline-block;
+    font-weight: 600;
+    margin: 10px 0 5px;
+    width: 140px;
+    vertical-align: top;
+}
+
+/* Input Styles */
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="date"],
+input[type="password"],
+input[type="file"],
+select {
+    border-radius: 8px;
+    background-color: #f1f3f9;
+    border: 1px solid #ccc;
+    padding: 10px 15px;
+    margin: 7px 0;
+    font-size: 14px;
+}
+
+/* Input Sizes */
+.trible {
+    width: 25%;
+}
+
+.double {
+    width: 47%;
+}
+.alone{
+    width: calc(90% - 150px);
+}
+
+.full {
+    width: 85%;
+}
+.save_form {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.save_form button {
+    background-color: #1c4e80;
+    color: #fff;
+    border: none;
+    padding: 10px 25px;
+    font-size: 16px;
+    margin: 0 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.save_form button:hover {
+    background-color: #163d66;
+}

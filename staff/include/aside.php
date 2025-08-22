@@ -76,7 +76,7 @@
             </a>
         </div>
         <div class="select">
-            <a href="">
+            <a href="ManageProfile.php">
                 <i class="fas fa-user"></i> Profile
             </a>
         </div>
