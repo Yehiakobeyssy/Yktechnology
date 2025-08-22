@@ -92,8 +92,161 @@ main{
 .tableview tbody tr:last-child td {
     border-bottom: none;
 }
-#tblprojects button{
-    background-color: transparent;
+#ctl button{
+    background-color: transparent ;
     border: none;
-    color: #2c6cb5;
+    font-size: 20px;
+} 
+.newform{
+    background-color: #f0f0f0;
+    width: 90%;
+    margin: 10px auto !important;
+    padding: 20px !important;
+    border-radius: 20px;
+}
+.title_form{
+    text-align: center;
+    margin: 15px !important;
+}
+.tiletaske,.task_discription,.budget,.Communication,.Freelancer_Report{
+    display: flex;
+    flex-direction: column;
+}
+.tiletaske label,.newassgiment label,.task_discription label,.newdate label,.budget label,.Communication label,.Freelancer_Report label{
+    font-weight: bold;
+    margin-bottom: 4px!important;
+}
+.tiletaske input,.tiletaske select,.newassgiment select,.task_discription textarea,.newdate input,.budget textarea,.Communication input,.Freelancer_Report textarea{
+    width: 100%;
+    padding: 10px !important;
+    margin-bottom: 15px !important;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.assginment{
+    display: flex;
+    justify-content: space-between;
+}
+.newassgiment{
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+}
+.dates{
+    display: flex;
+    justify-content: space-around;
+}
+.newdate{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+}
+.ctrl{
+    text-align: right;
+    margin: 10px !important;
+}
+.ctrl button{
+    padding: 10px !important;
+    margin: 0 5px !important;
+}
+.oneline {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px !important;
+    flex-wrap: wrap;
+}
+.longtext{
+    display: flex;
+    flex-direction: column;
+    margin: 20px auto !important;
+    padding: 20px !important;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+.longtext label{
+    font-weight: bold;
+    color: #333;
+    margin-right: 10px !important;
+    margin-bottom: 15px !important;
+    min-width: 100px; /* Adjust for alignment */
+    text-decoration: underline;
+}
+.data_one {
+    flex: 1 1 45%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px !important;
+    width: 48%;
+}
+
+.data_one label {
+    font-weight: bold;
+    color: #333;
+    margin-right: 10px !important;
+    min-width: 100px; /* Adjust for alignment */
+    width: 150px;
+}
+
+.data_one span {
+    flex-grow: 1;
+    padding: 6px 10px !important;
+    border-radius: 6px;
+    color: #444;
+}
+.btncontrol{
+    margin: 15px !important;
+    text-align: right;
+}
+.btncontrol button{
+    width: 150px ;
+    padding: 10px!important;
+}
+.blocksection{
+    width: 50%;
+    margin: 20px auto !important;
+    text-align: center;
+    padding: 20px !important;
+}
+.blocksection  button{
+    padding: 10px !important;
+    width: 150px;
+    margin-top: 20px !important;
+}
+#btnedidReord{
+    margin-top: 15px;
+    width: 150px;
+}
+.popupreport{
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    width: 100%;
+    height: 100vh;
+}
+.conteiner_report{
+    position: relative;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 50%;
+    height: 500px;
+    overflow-y: auto;
+    background-color: white;
+    border-radius: 20px;
+    padding: 15px;
+    box-shadow: 0px 4px 32px 0px rgba(61, 70, 112, 0.08);
+}
+.closepopup_report{
+    position: absolute;
+    top:15px;
+    right: 15px;
+    font-weight: bold;
+    font-size: 32px;
+    transform: rotate(45deg);
+    cursor: pointer;
 }
