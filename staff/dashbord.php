@@ -40,7 +40,50 @@
                 <h3>Welcome <span> <?php echo $staff_name ?> </span>,</h3>
             </div>
             <div class="statistic">
-
+                <div class="balance">
+                    <?php
+                        $sql=$con->prepare('SELECT COALESCE(SUM(depit),0) AS De , COALESCE(SUM(criedit),0) AS Cr FROM tblaccountstatment_staff WHERE staffID = ?');
+                        $sql->execute(array($staff_Id));
+                        $result_account = $sql->fetch();
+                        $balance = $result_account['De']-$result_account['Cr']
+                    ?>
+                    <h2><?php echo number_format($balance,2) . " $" ?></h2>
+                    <a href="">wihdraw</a>
+                </div>
+                <div class="historyBalance">
+                    <h4>History Transaction</h4>
+                    <?php 
+                        $sql=$con->prepare('SELECT discription ,depit ,criedit,date_account 
+                                            FROM   tblaccountstatment_staff 
+                                            WHERE staffID = ?
+                                            ORDER BY accountID  DESC
+                                            LIMIT 3');
+                        $sql->execute(array($staff_Id));
+                        $result=$sql->fetchAll();
+                        foreach($result as $card){
+                            $amount = $card['depit'] - $card['criedit'];
+                            if($amount > 0){
+                                $classAmount="income";
+                            }elseif($amount < 0){
+                                $classAmount='expense';
+                            }else{
+                                $classAmount='';
+                            }
+                            $formattedDate = date("d/m/Y", strtotime($card['date_account']));
+                            echo '
+                                <div class="card_trasfer">
+                                    <div class="data">
+                                        <h4>'.$card['discription'].'</h4>
+                                        <label for="">'.$formattedDate.'</label>
+                                    </div>
+                                    <div class="amount '.$classAmount.'">
+                                        '.number_format($amount,2).' $ 
+                                    </div>
+                                </div>
+                            ';
+                        }
+                    ?>
+                </div>
             </div>
             <div class="work_section">  
                 <div class="project_doto">

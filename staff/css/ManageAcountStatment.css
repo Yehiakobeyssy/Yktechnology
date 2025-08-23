@@ -1,0 +1,180 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+main{
+    display: flex;
+}
+.project_container{
+    width: 100%;
+    margin-left: 15px;
+}
+.title{
+    margin: 30px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.statistic {
+    margin: 25px;
+    width: 95%;
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* عشان يستجيب للموبايل */
+}
+
+/* بطاقة الاستعلام */
+.createria {
+    flex: 0.5;
+    min-width: 280px;
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    border: 1px solid #e5e9f0;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.createria:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+}
+
+.createria table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.createria td {
+    padding: 10px 6px;
+}
+.createria label {
+    font-weight: 600;
+    font-size: 14px;
+    color: #333;
+}
+.createria input {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #d1d9e6;
+    border-radius: 8px;
+    outline: none;
+    font-size: 14px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.createria input:focus {
+    border-color: #2e7dd7;
+    box-shadow: 0 0 0 3px rgba(46,125,215,0.15);
+}
+
+/* زر البحث */
+.createria .btn {
+    margin-top: 15px;
+    padding: 10px 18px;
+    border-radius: 10px;
+    border: none;
+    background: linear-gradient(135deg, #2e7dd7, #1c4e80);
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+.createria .btn:hover {
+    background: linear-gradient(135deg, #1c4e80, #16385c);
+    transform: translateY(-2px);
+}
+
+/* بطاقة الرصيد */
+.balance {
+    flex: 0.5;
+    min-width: 220px;
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #e5e9f0;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.balance:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+}
+.balance h4 {
+    margin: 0;
+    font-size: 16px;
+    color: #555;
+    font-weight: 600;
+}
+.balance h2 {
+    margin-top: 10px;
+    font-size: 28px;
+    color: #2e7dd7;
+    font-weight: 800;
+}
+.data_fetch {
+  margin-top: 25px;
+  width: 100%;
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  border: 1px solid #e5e9f0;
+  overflow-x: auto; /* في حال الجدول طويل بالموبايل */
+}
+
+.data_fetch table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  color: #333;
+}
+
+/* رأس الجدول */
+.data_fetch thead {
+  background: #f5f8fc;
+}
+.data_fetch thead th {
+  padding: 12px 10px;
+  text-align: left;
+  font-weight: 700;
+  font-size: 14px;
+  color: #1c3557;
+  border-bottom: 2px solid #dce3ef;
+  text-align: center;
+}
+
+/* جسم الجدول */
+.data_fetch tbody td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #e9edf4;
+  text-align: center;
+}
+
+/* صفوف متبادلة اللون */
+.data_fetch tbody tr:nth-child(even) {
+  background: #fafbfe;
+}
+
+/* تأثير عند المرور بالماوس */
+.data_fetch tbody tr:hover {
+  background: #eef5ff;
+  transition: background 0.2s ease;
+}
+
+/* الأرقام (تتنسق يمين) */
+.data_fetch td:nth-child(4),
+.data_fetch td:nth-child(5),
+.data_fetch td:nth-child(6) {
+  text-align: right;
+  font-weight: 600;
+}
+
+/* العمود الأول (#) أصغر */
+.data_fetch td:first-child,
+.data_fetch th:first-child {
+  width: 40px;
+  text-align: center;
+}
+

@@ -404,7 +404,7 @@
             $checkout_id = $response_data['id'];
             return $checkout_id;
         } else {
-            echo 'Failed to create checkout. Response: ' . $response;
+            //echo 'Failed to create checkout. Response: ' . $response;
         }
     }
 

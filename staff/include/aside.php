@@ -71,6 +71,11 @@
             </a>
         </div>
         <div class="select">
+            <a href="ManageAcountStatment.php">
+                <i class="fa-solid fa-file-invoice-dollar"></i> Account Statment
+            </a>
+        </div>
+        <div class="select">
             <a href="managedoto.php">
                 <i class="fas fa-list-check"></i> To Do
             </a>
