@@ -46,7 +46,11 @@
         <div class="contain">
             <div class="title">
                 <h1> <i class="fa-solid fa-user-tie"></i> Freelancers</h1>
-                <button class="btn btn-primary btnPosstion">Posstion</button>
+                <div class="ctlbtn">
+                    <a href="accountstatmentstaff.php" class="btn btn-success" style="padding: 8px !important;">Statments</a>
+                    <button class="btn btn-primary btnPosstion">Posstion</button>
+                </div>
+                
             </div>
             <?php
                 if($do=='manage'){?>
@@ -105,6 +109,7 @@
                                 <th>Role</th>
                                 <th>Expected sal.</th>
                                 <th>Accepted Date</th>
+                                <th>Balance</th>
                                 <th>Status</th>
                                 <th>Control</th>
                             </thead>

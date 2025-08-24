@@ -2,34 +2,43 @@
 include '../../settings/connect.php';
 
 $sql = "SELECT 
-            staffID,
-            CONCAT(Fname, ' ', MidelName, ' ', LName) AS fullname,
-            Staff_Phone,
-            Staff_email,
-            Region,
-            Staff_address,
-            Possition_Name,
-            expected_sallary,
-            DatewillBegin,
-            block,
-            accepted,
+            s.staffID,
+            CONCAT(s.Fname, ' ', s.MidelName, ' ', s.LName) AS fullname,
+            s.Staff_Phone,
+            s.Staff_email,
+            s.Region,
+            s.Staff_address,
+            p.Possition_Name,
+            s.expected_sallary,
+            s.DatewillBegin,
+            s.block,
+            s.accepted,
             CASE 
-                WHEN block = 1 THEN 'blocked'
-                WHEN block = 0 AND accepted = 1 THEN 'accepted'
-                WHEN block = 0 AND accepted = 0 THEN 'on Study'
+                WHEN s.block = 1 THEN 'blocked'
+                WHEN s.block = 0 AND s.accepted = 1 THEN 'accepted'
+                WHEN s.block = 0 AND s.accepted = 0 THEN 'on Study'
                 ELSE 'unknown'
-            END AS status
-        FROM tblstaff
-        INNER JOIN tblpossition_request 
-        ON Possition_ID = Posstion
+            END AS status,
+            COALESCE(SUM(a.depit - a.criedit), 0) AS balance
+        FROM tblstaff s
+        INNER JOIN tblpossition_request p
+            ON p.Possition_ID = s.Posstion
+        LEFT JOIN tblaccountstatment_staff a
+            ON a.staffID = s.staffID
+        GROUP BY 
+            s.staffID, s.Fname, s.MidelName, s.LName,
+            s.Staff_Phone, s.Staff_email, s.Region, s.Staff_address,
+            p.Possition_Name, s.expected_sallary, s.DatewillBegin,
+            s.block, s.accepted
         ORDER BY 
             CASE 
-                WHEN block = 0 AND accepted = 0 THEN 0  -- on Study first
-                WHEN block = 0 AND accepted = 1 THEN 1  -- accepted second
-                WHEN block = 1 THEN 2                   -- blocked last
+                WHEN s.block = 0 AND s.accepted = 0 THEN 0  -- on Study first
+                WHEN s.block = 0 AND s.accepted = 1 THEN 1  -- accepted second
+                WHEN s.block = 1 THEN 2                     -- blocked last
                 ELSE 3
-            END";
-;
+            END;
+        ";
+
 
 // Prepare the SQL statement
 $stmt = $con->prepare($sql);

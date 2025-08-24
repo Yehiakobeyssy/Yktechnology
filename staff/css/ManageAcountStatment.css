@@ -101,18 +101,34 @@ main{
     transform: translateY(-3px);
     box-shadow: 0 12px 28px rgba(0,0,0,0.12);
 }
+.balance table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.balance th {
+    padding: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: left;
+    color: #333;
+    border-bottom: 1px solid #eaeaea;
+}
+
 .balance h4 {
     margin: 0;
     font-size: 16px;
-    color: #555;
-    font-weight: 600;
+    font-weight: bold;
+    color: #2d89ef;
 }
-.balance h2 {
-    margin-top: 10px;
-    font-size: 28px;
-    color: #2e7dd7;
-    font-weight: 800;
+
+.balance tr:last-child th {
+    border-bottom: none;
+    font-size: 15px;
+    color: #111;
 }
+
 .data_fetch {
   margin-top: 25px;
   width: 100%;

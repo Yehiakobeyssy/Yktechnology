@@ -30,7 +30,8 @@ if($block == 1 || $accepted == 0){
 }
 
 $totalBalance = 0;
-$newBalance = 0;
+$balanceDuration = 0;
+$oldBalance = 0;
 
 // استعلام العمليات
 $query = "SELECT accountID, date_account, discription, depit, criedit
@@ -38,21 +39,29 @@ $query = "SELECT accountID, date_account, discription, depit, criedit
           WHERE staffID = ?";
 $params = [$staff_Id];
 
-// تحقق من فلتر البحث
 if (isset($_POST['txtsearch'])) {
     $dateBegin = !empty($_POST['txtbegin']) ? $_POST['txtbegin'] : null;
     $dateEnd   = !empty($_POST['txtEnd']) ? $_POST['txtEnd'] : null;
     $limit     = !empty($_POST['txtno']) ? (int)$_POST['txtno'] : null;
 
     if ($dateBegin && $dateEnd) {
+        // استعلام الفترة
         $query .= " AND date_account BETWEEN ? AND ?";
         $params[] = $dateBegin;
         $params[] = $dateEnd;
+
+        // حساب Old Balance
+        $oldQuery = "SELECT SUM(depit - criedit) AS oldBalance
+                     FROM tblaccountstatment_staff
+                     WHERE staffID = ? AND date_account < ?";
+        $oldStmt = $con->prepare($oldQuery);
+        $oldStmt->execute([$staff_Id, $dateBegin]);
+        $oldBalance = (float)$oldStmt->fetchColumn();
     }
 
-if (isset($limit) && $limit > 0) {
-    $query .= " LIMIT " . $limit;
-}
+    if (isset($limit) && $limit > 0) {
+        $query .= " LIMIT " . $limit;
+    }
 }
 
 $query .= " ORDER BY accountID DESC";
@@ -62,16 +71,19 @@ $sql = $con->prepare($query);
 $sql->execute($params);
 $result = $sql->fetchAll(PDO::FETCH_ASSOC);
 
-// حساب الرصيد الإجمالي
+// حساب الرصيد للفترة (Balance Duration)
 if (!empty($result) && is_array($result)) {
     foreach ($result as $row) {
         $depit = isset($row['depit']) ? floatval($row['depit']) : 0;
         $criedit = isset($row['criedit']) ? floatval($row['criedit']) : 0;
-        $totalBalance += ($depit - $criedit);
+        $balanceDuration += ($depit - $criedit);
     }
 } else {
-    $totalBalance = 0;
+    $balanceDuration = 0;
 }
+
+// الحساب النهائي
+$totalBalance = $oldBalance + $balanceDuration;
 
 ?>
 
@@ -86,12 +98,10 @@ if (!empty($result) && is_array($result)) {
     <div class="title">
         <h3>Account Statement</h3>
         <div class="controlbtns">
-            <button class="btn btn-warning">Status Transfers</button>
-            <button class="btn btn-primary">Order Money</button>
+            <!-- <button class="btn btn-warning">Status Transfers</button> -->
+            <!-- <button class="btn btn-primary">Order Money</button> -->
         </div>
     </div>
-
-    <!-- نموذج البحث والرصيد الإجمالي -->
     <div class="statistic">
         <div class="createria">
             <form action="" method="post">
@@ -111,12 +121,22 @@ if (!empty($result) && is_array($result)) {
         </div>
 
         <div class="balance">
-            <h4>Total Balance</h4>
-            <h2><?php echo number_format($totalBalance, 2) . " $"; ?></h2>
+            <table>
+                <tr>
+                    <th> Old Balance</th>
+                    <th><h4><?php echo number_format($oldBalance, 2) ?> $</h4></th>
+                </tr>
+                <tr>
+                    <th> Balance Duration</th>
+                    <th><h4><?php echo number_format($balanceDuration, 2) ?> $</h4></th>
+                </tr>
+                <tr>
+                    <th>Total Balance</th>
+                    <th><h4><?php echo number_format($totalBalance, 2) ?> $</h4></th>
+                </tr>
+            </table>
         </div>
     </div>
-
-    <!-- جدول العمليات -->
     <div class="data_fetch">
         <table>
             <thead>
@@ -136,16 +156,26 @@ if (!empty($result) && is_array($result)) {
                         WHERE staffID = ?";
                 $params = [$staff_Id];
 
-                // تحقق من فلتر البحث
+                $oldBalance = 0;
+
                 if (isset($_POST['txtsearch'])) {
                     $dateBegin = !empty($_POST['txtbegin']) ? $_POST['txtbegin'] : null;
                     $dateEnd   = !empty($_POST['txtEnd']) ? $_POST['txtEnd'] : null;
                     $limit     = !empty($_POST['txtno']) ? (int)$_POST['txtno'] : null;
 
                     if ($dateBegin && $dateEnd) {
+                        // استعلام للفترة
                         $query .= " AND date_account BETWEEN ? AND ?";
                         $params[] = $dateBegin;
                         $params[] = $dateEnd;
+
+                        // استعلام لحساب الرصيد القديم قبل بداية التاريخ
+                        $oldQuery = "SELECT SUM(depit - criedit) AS oldBalance
+                                    FROM tblaccountstatment_staff
+                                    WHERE staffID = ? AND date_account < ?";
+                        $oldStmt = $con->prepare($oldQuery);
+                        $oldStmt->execute([$staff_Id, $dateBegin]);
+                        $oldBalance = (float)$oldStmt->fetchColumn();
                     }
 
                     if ($limit) {
@@ -162,11 +192,9 @@ if (!empty($result) && is_array($result)) {
 
                 if (!empty($result) && is_array($result)) {
 
-                    // عكس الصفوف للحساب من الأسفل للأعلى
+                    // نفس الحسابات اللي فوق مع running balance يبدأ من old balance
                     $reversedResult = array_reverse($result);
-
-                    // حساب الرصيد من الأسفل للأعلى
-                    $runningBalance = 0;
+                    $runningBalance = $oldBalance;
                     $balances = [];
 
                     foreach ($reversedResult as $row) {
@@ -175,22 +203,18 @@ if (!empty($result) && is_array($result)) {
                         $amount = $depit - $criedit;
 
                         $runningBalance += $amount;
-                        $balances[] = $runningBalance; // نخزن الرصيد لكل صف
+                        $balances[] = $runningBalance;
                     }
 
-                    // الآن نعرض الصفوف بالترتيب التنازلي مع الرصيد الصحيح
                     $totalRows = count($result);
                     for ($i = 0; $i < $totalRows; $i++) {
-                        $row = $result[$i]; // نستخدم الصفوف الأصلية بالترتيب التنازلي
+                        $row = $result[$i];
                         $depit = isset($row['depit']) ? floatval($row['depit']) : 0;
                         $criedit = isset($row['criedit']) ? floatval($row['criedit']) : 0;
                         $formattedDate = isset($row['date_account']) ? date("d/m/Y", strtotime($row['date_account'])) : '';
                         $description = isset($row['discription']) ? htmlspecialchars($row['discription']) : '';
 
-                        // الرقم التنازلي
                         $number = $totalRows - $i;
-
-                        // الرصيد الصحيح من الأسفل للأعلى
                         $balance = $balances[$totalRows - $i - 1];
 
                         echo "<tr>
@@ -203,8 +227,23 @@ if (!empty($result) && is_array($result)) {
                         </tr>";
                     }
 
+                    if ($oldBalance != 0) {
+                        echo "<tr style='font-weight:bold;background:#f0f0f0'>
+                            <td colspan='5' style='text-align:right'>Old Balance</td>
+                            <td>".number_format($oldBalance, 2)."</td>
+                        </tr>";
+                    }
+
                 } else {
-                    echo "<tr><td colspan='6' style='text-align:center'>No data found</td></tr>";
+                    // مافيه بيانات بالفترة، لكن فيه Old Balance
+                    if ($oldBalance != 0) {
+                        echo "<tr style='font-weight:bold;background:#f0f0f0'>
+                            <td colspan='5' style='text-align:right'>Old Balance</td>
+                            <td>".number_format($oldBalance, 2)."</td>
+                        </tr>";
+                    } else {
+                        echo "<tr><td colspan='6' style='text-align:center'>No data found</td></tr>";
+                    }
                 }
 
             ?>

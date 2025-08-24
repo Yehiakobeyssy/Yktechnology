@@ -35,10 +35,11 @@ $(document).ready(function() {
                         <td>${staff.Possition_Name}</td>
                         <td>$${staff.expected_sallary}</td>
                         <td>${staff.DatewillBegin}</td>
+                        <td>${ staff.balance.toFixed(2) } $</td>
                         <td><div class="${statusClass} statusfre">${statusText}</div></td>
                         <td>
                             <button class="btncotrol_staff btn btn-primary btnview" data-index="${staff.staffID}">View</button>
-                            <button class="btncotrol_staff btn btn-success" >Whatsup</button><br>
+                            <button class="btncotrol_staff btn btn-success gotostatment" data-index="${staff.staffID}" >Statment</button><br>
                             <button class="btncotrol_staff btn btn-danger btnblock" data-index="${staff.staffID}">Block</button>
                             <button class="btncotrol_staff btn btn-secondary btngotask" data-index="${staff.staffID}">Send Task</button>
                         </td>
@@ -156,6 +157,11 @@ $(document).ready(function() {
             }
         });
     });
+
+    $('.viewFrelancer').on('click','.gotostatment' , function(){
+        let freid = $(this).data("index");
+        location.href= 'accountstatmentstaff.php?txtStaff='+freid
+    })
 
     $('.btnPosstion').click(function(){
         $('.popup').show()

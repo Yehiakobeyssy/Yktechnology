@@ -1,0 +1,255 @@
+.mainform{
+    display: flex;
+}
+.contain{
+    margin-left: 25px !important;
+    width: 100%;
+}
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+.title {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin  : 20px !important;
+    border: 2px solid #eaeaea !important;
+    padding: 10px !important;
+}
+
+.title h4 {
+    font-size: 20px !important;
+    font-weight: bold !important;
+    margin: 0 !important;
+    color: #2c3e50 !important;
+}
+
+.btncontrols_tilte button {
+    padding: 8px 16px !important;
+    font-size: 14px !important;
+    border-radius: 6px !important;
+    cursor: pointer !important;
+    border: none !important;
+    background: #2d89ef !important;
+    color: #fff !important;
+    transition: background 0.3s ease !important;
+}
+
+.btncontrols_tilte button:hover {
+    background: #1b5dab !important;
+}
+
+.statistic {
+    display: flex !important;
+    justify-content: space-between !important;
+    margin-bottom: 20px !important;
+}
+
+.crediria, .result {
+    width: 48% !important;
+    background: #fafafa !important;
+    border-radius: 10px !important;
+    padding: 15px !important;
+    border: 1px solid #e5e9f0 !important;
+}
+
+.crediria table, .result table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+}
+
+.crediria th, .crediria td, 
+.result th, .result td {
+    padding: 10px !important;
+    text-align: left !important;
+    font-size: 14px !important;
+    color: #333 !important;
+}
+
+.crediria input, 
+.crediria select {
+    padding: 8px 12px !important;
+    border: 1px solid #ccc !important;
+    border-radius: 6px !important;
+    font-size: 14px !important;
+    transition: border 0.3s, box-shadow 0.3s !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.crediria input:focus, 
+.crediria select:focus {
+    border-color: #2d89ef !important;
+    box-shadow: 0 0 5px rgba(45,137,239,0.3) !important;
+    outline: none !important;
+}
+
+.result th {
+    font-weight: bold !important;
+}
+
+.result h4 {
+    margin: 0 !important;
+    font-size: 16px !important;
+    color: #27ae60 !important;
+    font-weight: bold !important;
+}
+
+.result_table {
+    margin-top: 25px !important;
+    background: #fff !important;
+    border-radius: 10px !important;
+    padding: 15px !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06) !important;
+}
+
+.result_table table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+}
+
+.result_table thead {
+    background: #2d89ef !important;
+    color: #fff !important;
+}
+
+.result_table th, 
+.result_table td {
+    padding: 12px !important;
+    font-size: 14px !important;
+    border: 1px solid #eaeaea !important;
+    text-align: center !important;
+}
+
+.result_table tbody tr:nth-child(even) {
+    background: #f9f9f9 !important;
+}
+
+.result_table tbody tr:hover {
+    background: #eef6ff !important;
+}
+
+.filter-buttons {
+    text-align: right !important;
+    margin-top: 10px !important;
+    padding: 7px !important;
+}
+
+.filter-buttons .btn {
+    margin-left: 8px !important;
+    padding: 7px !important;    
+}
+
+.popupadd {
+    display: none ;  /* مخفي مبدئيًا */
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100vh !important;
+    background-color: rgba(0,0,0,0.5) !important;
+    justify-content: center !important;
+    align-items: center !important;
+    z-index: 9999 !important;
+}
+
+
+.container_popup {
+    position: relative !important;
+    background-color: #ffffff !important;
+    border-radius: 15px !important;
+    padding: 30px !important;
+    width: 500px !important;
+    max-width: 90% !important;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2) !important;
+}
+
+.close_popup {
+    position: absolute !important;
+    top: 15px !important;
+    right: 15px !important;
+    transform: rotate(45deg) !important;
+    font-size: 20px !important;
+    font-weight: bold !important;
+    cursor: pointer !important;
+    color: #333 !important;
+    transition: color 0.3s !important;
+}
+
+.close_popup:hover {
+    color: #2d89ef !important;
+}
+
+.container_popup h3 {
+    text-align: center !important;
+    margin-bottom: 20px !important;
+    font-size: 22px !important;
+    color: #2d89ef !important;
+}
+
+.form_popup .form-group {
+    display: flex !important;
+    flex-direction: column !important;
+    margin-bottom: 15px !important;
+}
+
+.form_popup .form-group label {
+    font-weight: 600 !important;
+    margin-bottom: 5px !important;
+    color: #333 !important;
+}
+
+.form_popup .form-group input,
+.form_popup .form-group select {
+    padding: 10px 12px !important;
+    font-size: 14px !important;
+    border: 1px solid #ccc !important;
+    border-radius: 6px !important;
+    transition: border 0.3s, box-shadow 0.3s !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.form_popup .form-group input:focus,
+.form_popup .form-group select:focus {
+    border-color: #2d89ef !important;
+    box-shadow: 0 0 5px rgba(45,137,239,0.3) !important;
+    outline: none !important;
+}
+
+.radio-group {
+    display: flex !important;
+    gap: 20px !important;
+    align-items: center !important;
+    font-weight: 500 !important;
+}
+
+.radio-group label {
+    font-weight: normal !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 5px !important;
+    cursor: pointer !important;
+}
+
+.ctlbtn {
+    display: flex !important;
+    justify-content: center !important;
+    margin-top: 20px !important;
+}
+
+.ctlbtn .btn-success {
+    padding: 10px 20px !important;
+    font-size: 16px !important;
+    background-color: #2d89ef !important;
+    color: #fff !important;
+    border-radius: 8px !important;
+    border: none !important;
+    cursor: pointer !important;
+    transition: background 0.3s !important;
+}
+
+.ctlbtn .btn-success:hover {
+    background-color: #1b5dab !important;
+}
