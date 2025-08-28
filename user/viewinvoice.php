@@ -68,7 +68,7 @@
     <div class="conteinerinvoice" id="contentToConvert">
         <div class="title">
             <div class="companyInfo">
-                <h3>YK-Technology</h3>
+                <h3>Kawnex</h3>
                 <?php
                     $sql=$con->prepare('SELECT tax_number,addresse,zip_code,region,website FROM tblsetting WHERE SettingID=1');
                     $sql->execute();

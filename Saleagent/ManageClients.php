@@ -160,7 +160,7 @@
                             $bodyemail      = $_POST['txtemailbody'];
 
                             require_once '../mail.php';
-                            $mail->setFrom($applicationemail, 'YK-Technology');
+                            $mail->setFrom($applicationemail, 'Kawnex');
                             $mail->addAddress($userEmail);
                             $mail->Subject = $subjectemail;
                             $mail->Body    = $bodyemail;

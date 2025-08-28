@@ -169,14 +169,14 @@
                                     'client_active'         =>$client_active
                                 ));
                                 require_once '../mail.php';
-                                $mail->setFrom($applicationemail, 'YK technology');
+                                $mail->setFrom($applicationemail, 'Kawnex');
                                 $mail->addAddress($Client_email);
-                                $mail->Subject = 'Welcome to YK technology';
+                                $mail->Subject = 'Welcome to Kawnex';
                                 $mail->Body    = 'Dear '.$Client_FName.',
                                                 We are thrilled to inform you that your registration was a success! 🎉<br>
                                                 Welcome to our community. You are now part of an exciting journey where. <br>
                                                 We are excited to have you on board, and we cant wait to see what amazing things you will accomplish.<br>
-                                                If you have any questions or need assistance, please dont hesitate to reach out to our dedicated support team at info@ykinnovate.com. 
+                                                If you have any questions or need assistance, please dont hesitate to reach out to our dedicated support team at info@kawnex.com. 
                                                 They are here to help you every step of the way.<br>
                                                 Thank you for choosing us, and we look forward to providing you with a fantastic experience.<br>
                                                 Best regards,<br>

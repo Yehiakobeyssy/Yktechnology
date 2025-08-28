@@ -172,7 +172,7 @@
                             ));
 
                             require_once '../mail.php';
-                            $mail->setFrom($applicationemail, 'YK technology');
+                            $mail->setFrom($applicationemail, 'Kawnex');
                             $mail->addAddress($clientinfo['Client_email']);
                             $mail->Subject = 'Ticket Receipt Confirmation';
                             $mail->Body    = '
@@ -182,10 +182,10 @@
                             Our dedicated team is currently reviewing your ticket, and we are committed to resolving your issue as swiftly as possible. Rest assured that your request is in capable hands, and we will do our best to provide you with a timely and satisfactory resolution.<br>
                             In the meantime, if you have any additional information or details that could assist us in expediting the process, please dont hesitate to reply to this email or include them in a follow-up message.<br>
                             Thank you for choosing our services, and we appreciate your understanding as we work to meet your needs. We will keep you updated on the progress of your ticket and notify you as soon as it has been successfully resolved.<br>
-                            If you have any urgent concerns or require immediate assistance, please feel free to contact our customer support email at info@ykinnovate.com.<br>
+                            If you have any urgent concerns or require immediate assistance, please feel free to contact our customer support email at info@kawnex.com.<br>
                             Once again, thank you for reaching out to us. We value your business and look forward to assisting you promptly.<br>
                             Best regards,<br>
-                            YK-technology <br>
+                            Kawnex <br>
                             Customer Support Team
                             ';
                             $mail->send();

@@ -198,9 +198,9 @@
                         ));
 
                         require_once '../mail.php';
-                        $mail->setFrom($applicationemail, 'YK technology Sale Agent');
+                        $mail->setFrom($applicationemail, 'Kawnex Sale Agent');
                         $mail->addAddress($email_Sale);
-                        $mail->Subject = 'Welcome to YK technology - Your Agent Account Details';
+                        $mail->Subject = 'Welcome to Kawnex - Your Agent Account Details';
                         $mail->Body    = '
                                             Dear '.$Sale_FName.' '.$Sale_LName.'<br>
                                             We are pleased to inform you that you have been accepted as a member of our sales team. 
@@ -222,11 +222,11 @@
                                             transactions are associated with your account. This will help us accurately calculate your 
                                             commission. <br>
                                             If you have any questions or need further assistance, please dont hesitate to reach out to our 
-                                            support team at info@yktechnology.com . We are here to help you succeed and provide the best service to 
+                                            support team at info@kawnex.com . We are here to help you succeed and provide the best service to 
                                             our clients. <br>
                                             Once again, welcome to our team, and we look forward to a successful partnership!<br>
                                             Best regards,<br>
-                                            YK-technology
+                                            Kawnex
                                         ';
                         $mail->send();
                     }

@@ -28,7 +28,7 @@
     <header>
         <div class="shopinfo">
             <img src="images/logo.png" alt="">
-            <h2>YK-Technology</h2>
+            <h2>Kawnex</h2>
         </div>
         <div class="navbar">
             <a href="index.php"><i class="fa-solid fa-house"></i></a>

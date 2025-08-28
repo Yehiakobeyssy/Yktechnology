@@ -44,7 +44,7 @@
     $clientEmail = $resultclient['Client_email'];
 
     require_once '../mail.php';
-    $mail->setFrom($applicationemail, 'YK technology');
+    $mail->setFrom($applicationemail, 'Kawnex');
     $mail->addAddress($clientEmail);
     $mail->Subject = 'Confirmation of Successful Payment';
     $mail->Body    = '
@@ -60,7 +60,7 @@
                         Payment Method: Depit/Crited Card <br>
                         If you have any questions or concerns regarding this payment or any other matter 
                         related to our services/products, please feel free to contact our customer support
-                        team at info@ykinnovate.com. We are here to assist you with any inquiries you may
+                        team at info@kawnex.com. We are here to assist you with any inquiries you may
                         have.<br>
                         Once again, thank you for your timely payment. We value your business and look 
                         forward to serving you in the future. If you require any further documentation or 
@@ -88,7 +88,7 @@
         $sql=$con->prepare('UPDATE  tblinvoice SET Invoice_Status = 2 WHERE InvoiceID = ?');
         $sql->execute(array($invoiceID));
 
-        $mail->setFrom($applicationemail, 'YK technology');
+        $mail->setFrom($applicationemail, 'Kawnex');
         $mail->addAddress($clientEmail);
         $mail->Subject = 'Confirmation of Full Payment for Invoice '.$invoiceID;
         $mail->Body    = '
@@ -98,7 +98,7 @@
                             We would like to express our sincere appreciation for your prompt payment. Your commitment to fulfilling your 
                             financial obligations is greatly valued, and it helps us maintain the smooth operation of our business.<br>
                             If you have any questions or need further clarification regarding this payment, please do not hesitate to contact 
-                            our accounts department at info@ykinnovate.com.<br>
+                            our accounts department at info@kawnex.com.<br>
                             Once again, thank you for your prompt attention to this matter, and we look forward to continuing our business relationship.<br>
                             Best regards,
                         ';
@@ -129,7 +129,7 @@
                         'Crieted'       =>$Crieted
                     ));
     
-        $mail->setFrom($applicationemail, 'YK technology');
+        $mail->setFrom($applicationemail, 'Kawnex');
         $mail->addAddress($saleMan_email);
         $mail->Subject = 'Commission Notification';
         $mail->Body    = '

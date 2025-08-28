@@ -2,7 +2,7 @@
     <div class="title_header">
         <div class="nameuser">
             <img src="../images/logo.png" alt="" srcset="">
-            <h3>YK-Technology</h3>
+            <h3>Kawnex</h3>
         </div>
         <div class="usernotification">
             <a href=""><i class="fa-solid fa-bell"></i></a>

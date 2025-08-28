@@ -3,13 +3,13 @@
     include 'common/function.php';
     include 'common/head.php';
 ?>
-    <meta property="og:image" content="https://ykinnovate.com/images/seo.png">
+    <meta property="og:image" content="https://kawnex.com/images/seo.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta name="description" content="'Web Development,''IT Management,' 'Technology Solutions,' 'social media,' and  graphic design are examples of the services we offer.">
-    <meta name="keywords" content="web development, IT management, technology solutions, responsive web design, database management, software development, desktop applications, IT support, technology consulting, web developer, IT services, Austria, YK-Technology, social media, graphic design">
-    <meta property="og:title" content="YK-technology">
-    <meta property="og:url" content="https://www.ykinnovate.com">
+    <meta name="keywords" content="web development, IT management, technology solutions, responsive web design, database management, software development, desktop applications, IT support, technology consulting, web developer, IT services, Austria, Kawnex, social media, graphic design">
+    <meta property="og:title" content="Kawnex">
+    <meta property="og:url" content="https://www.kawnex.com">
     <meta property="og:description" content="'Web Development,''IT Management,' 'Technology Solutions,' 'social media,' and  graphic design are examples of the services we offer.">
     <meta property="og:type" content="website">
     
@@ -23,7 +23,7 @@
     <header>
         <div class="companyinfo">
             <img src="images/logo.png" alt="">
-            <h3>YK-Technology</h3>
+            <h3>Kawnex</h3>
         </div>
 
         <input type="checkbox" id="menu-bar">
@@ -58,7 +58,7 @@
     </div>
     <div class="services" id="services">
         <h1>Our Services</h1>
-        <p>Welcome to YK Technology, where we provide top-quality services tailored to your needs. Let us know what you require, and we'll take care of the rest.</p>
+        <p>Welcome to Kawnex, where we provide top-quality services tailored to your needs. Let us know what you require, and we'll take care of the rest.</p>
         <div class="allservice">
             <?php
                 $sql=$con->prepare('SELECT Cat_ID,Category_Icon,Category_Name,Cat_Discription FROM tblcategory WHERE Cat_Active=1');
@@ -125,8 +125,8 @@
         }
     ?>
     <div class="my_portfolio" style="display: <?php echo  $displayPro ?>;">
-        <h1>Showcasing My Skills and Experience</h1>
-        <p>Explore my portfolio to see my expertise in web and desktop development, as well as my proficiency in IT management.</p>
+        <h1>Showcasing Our Skills and Experience</h1>
+        <p>Explore Our portfolio to see my expertise in web and desktop development, as well as my proficiency in IT management.</p>
         <div class="portfolio_cards">
             <?php
                 $sql=$con->prepare('SELECT portfolio_ID,portfolio_Title,portfolio_Pic FROM tblportfolio WHERE portfolio_Active =1');
@@ -205,7 +205,7 @@
                 $message=$_POST['txtmail'];
                 require_once 'mail.php';
                 $mail->setFrom($applicationemail, 'Contact US Form');
-                $mail->addAddress('yehiakobeyssy2018@gmail.com');
+                $mail->addAddress('info@kawnex.com');
                 $mail->Subject = 'New Question From MR/Mis: ' . $ClientName;
                 $mail->Body    = $message. '<br> <span style="font-weight: bold;"> The clinet Phone Number is</span>   :' . $phonenumber . '<br> <span style="font-weight: bold;"> The clinet Email is</span> : '. $email;
                 $mail->send();

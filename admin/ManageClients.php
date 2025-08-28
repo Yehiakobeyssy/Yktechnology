@@ -157,15 +157,15 @@
                     $mail->Subject = 'Password Reset Notification';
                     $mail->Body    = '
                                         Dear '.$clientName.', <br>
-                                        We hope this email finds you well. We wanted to inform you that your password for your YK-technology  account has been reset as per your request or for security reasons.<br>
+                                        We hope this email finds you well. We wanted to inform you that your password for your Kawnex  account has been reset as per your request or for security reasons.<br>
                                         Here are your updated account details:<br>
                                         - Username: '.$clientEmail.'<br>
                                         - New Password: '.$password.' <br>
                                         Please make sure to keep your login credentials secure and do not share them with anyone. 
                                         If you did not request this password reset or have any concerns about the security of your account,
-                                        please contact our support team immediately at info@ykinnovate.com .<br>
-                                        To access your account, please visit our website at www.ykinnovate.com/user and use the provided login credentials.<br>
-                                        Thank you for choosing Yk-technology. We are committed to providing you with a secure and reliable service.<br>
+                                        please contact our support team immediately at info@kawnex.com .<br>
+                                        To access your account, please visit our website at www.kawnex.com/user and use the provided login credentials.<br>
+                                        Thank you for choosing Kawnex. We are committed to providing you with a secure and reliable service.<br>
                                         If you have any questions or need further assistance, feel free to reach out to our support team. We are here to help.<br>
                                         Best regards,
                     ';
@@ -213,7 +213,7 @@
                             $bodyemail      = $_POST['txtemailbody'];
 
                             require_once '../mail.php';
-                            $mail->setFrom($applicationemail, 'YK-Technology');
+                            $mail->setFrom($applicationemail, 'Kawnex');
                             $mail->addAddress($userEmail);
                             $mail->Subject = $subjectemail;
                             $mail->Body    = $bodyemail;

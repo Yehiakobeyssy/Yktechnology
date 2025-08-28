@@ -1,7 +1,7 @@
 <?php
 // Import PHPMailer classes into the global namespace
 // These must be at the top of your script, not inside a function
-$applicationemail='yktechnologyapp@ykinnovate.com';
+$applicationemail='yktechnologyapp@kawnex.com';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
@@ -17,7 +17,7 @@ $mail = new PHPMailer();
     $mail->isSMTP();                                            // Send using SMTP
     $mail->Host       = 'smtp.titan.email';                       // Set the SMTP server to send through
     $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-    $mail->Username   = 'yktechnologyapp@ykinnovate.com';            // SMTP username
+    $mail->Username   = 'yktechnologyapp@kawnex.com';            // SMTP username
     $mail->Password   = 'Mounir@141168';       //Mounir@141168            // SMTP password
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            // Enable implicit TLS encryption
     $mail->Port       = 587;                                    // SMTP password

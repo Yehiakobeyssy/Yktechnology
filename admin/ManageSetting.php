@@ -57,7 +57,7 @@
                         <h1>How we Work</h1>
                     </div>
                     <div class="card_staus card6">
-                        <h1>My CV</h1>
+                        <h1>Our CV</h1>
                     </div>
                     <div class="card_staus card7">
                         <h1>Edit Footer</h1>

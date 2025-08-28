@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pricing Information - YK-Technology</title>
+    <title>Pricing Information - Kawnex</title>
     <link rel="shortcut icon" href="images/logo.png" type="image/x-icon">
     <link href="common/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="common/fcss/all.min.css">
@@ -152,7 +152,7 @@
     <header>
         <div class="companyinfo">
             <img src="images/logo.png" alt="">
-            <h3>YK-Technology</h3>
+            <h3>Kawnex</h3>
         </div>
         <input type="checkbox" id="menu-bar">
         <label for="menu-bar"><i class="fa-solid fa-list-ul"></i></label>

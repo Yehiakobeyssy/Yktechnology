@@ -45,9 +45,9 @@
             </div>
             <div class="frmCV">
                 <form action="" method="post" enctype="multipart/form-data">
-                    <label for="">My Cv</label>
+                    <label for="">Our Cv</label>
                     <textarea name="txtmyCv" id=""  rows="20"><?php echo $result['Cv_text'] ?></textarea>
-                    <label for="">My Photo</label>
+                    <label for="">Our Photo</label>
                     <input type="file" name="myphoto" id="myphoto">
                     <div class="btncotrol">
                         <button type="submit" name="btnEdit">Edit</button>

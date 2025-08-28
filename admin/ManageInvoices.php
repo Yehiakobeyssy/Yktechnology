@@ -274,7 +274,7 @@
                                 $info=$sql->fetch();
 
                             ?>
-                            <h3>YK-Technology</h3>
+                            <h3>Kawnex</h3>
                             <label for=""><?php echo $info['tax_number'] ?></label>
                             <label for=""><?php echo $info['addresse'] ?></label>
                             <label for=""><?php echo $info['zip_code'].' - '. $info['region'] ?></label>
@@ -525,7 +525,7 @@
                                 
 
                                 require_once '../mail.php';
-                                $mail->setFrom($applicationemail, 'YK technology');
+                                $mail->setFrom($applicationemail, 'Kawnex');
                                 $mail->addAddress($cleintEmail);
                                 $mail->Subject = 'Confirmation of Successful Payment';
                                 $mail->Body    = '
@@ -541,7 +541,7 @@
                                                     Payment Method: '.$paymentnameMethod.'  <br>
                                                     If you have any questions or concerns regarding this payment or any other matter 
                                                     related to our services/products, please feel free to contact our customer support
-                                                    team at info@ykinnovate.com. We are here to assist you with any inquiries you may
+                                                    team at info@kawnex.com. We are here to assist you with any inquiries you may
                                                     have.<br>
                                                     Once again, thank you for your timely payment. We value your business and look 
                                                     forward to serving you in the future. If you require any further documentation or 
@@ -569,7 +569,7 @@
                                     $sql=$con->prepare('UPDATE  tblinvoice SET Invoice_Status = 2 WHERE InvoiceID = ?');
                                     $sql->execute(array($invoiceID));
 
-                                    $mail->setFrom($applicationemail, 'YK technology');
+                                    $mail->setFrom($applicationemail, 'Kawnex');
                                     $mail->addAddress($cleintEmail);
                                     $mail->Subject = 'Confirmation of Full Payment for Invoice '.$invoiceID;
                                     $mail->Body    = '
@@ -579,7 +579,7 @@
                                             We would like to express our sincere appreciation for your prompt payment. Your commitment to fulfilling your 
                                             financial obligations is greatly valued, and it helps us maintain the smooth operation of our business.<br>
                                             If you have any questions or need further clarification regarding this payment, please do not hesitate to contact 
-                                            our accounts department at info@ykinnovate.com.<br>
+                                            our accounts department at info@kawnex.com.<br>
                                             Once again, thank you for your prompt attention to this matter, and we look forward to continuing our business relationship.<br>
                                             Best regards,
                                         ';
@@ -610,7 +610,7 @@
                                         'Crieted'       =>$Crieted
                                     ));
 
-                                    $mail->setFrom($applicationemail, 'YK technology');
+                                    $mail->setFrom($applicationemail, 'Kawnex');
                                     $mail->addAddress($saleMan_email);
                                     $mail->Subject = 'Commission Notification';
                                     $mail->Body    = '
@@ -663,7 +663,7 @@
                                 $sql->execute(array($invoiceID));
                                 
                                 require_once '../mail.php';
-                                $mail->setFrom($applicationemail, 'YK technology');
+                                $mail->setFrom($applicationemail, 'Kawnex');
                                 $mail->addAddress($userEmail);
                                 $mail->Subject = 'Invoice Cancellation Notice';
                                 $mail->Body    = '
@@ -674,7 +674,7 @@
                                 The decision to cancel this invoice is based on not paid or User request or dublicated invoice or changing service
                                 We understand that this may cause inconvenience, and we sincerely apologize for any inconvenience this may have caused you.<br>
                                 If you have any questions or concerns regarding this cancellation, or if you require any further clarification, 
-                                please do not hesitate to reach out to our Accounts Department at info@ykinnovate.com .<br>
+                                please do not hesitate to reach out to our Accounts Department at info@kawnex.com .<br>
                                 Once again, we apologize for any inconvenience this may have caused, and we appreciate your understanding in this matter. 
                                 We value your business and look forward to continuing our positive business relationship.<br>
                                 Thank you for your attention to this matter.<br>

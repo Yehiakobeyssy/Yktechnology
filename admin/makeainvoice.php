@@ -237,12 +237,12 @@ $do = (isset($_GET['do'])) ? $_GET['do'] : '';
                         $expirationDate = date('Y-m-d', strtotime($InvoiceDate . ' + ' . 30 . ' days'));
 
                         require_once '../mail.php';
-                        $mail->setFrom($applicationemail, 'YK technology');
+                        $mail->setFrom($applicationemail, 'Kawnex');
                         $mail->addAddress($clientemail);
                         $mail->Subject = 'Invoice for Service - Invoice #'.$Invoice.'';
                         $mail->Body    = '
                                             Dear '.$clientName.',<br>
-                                            I hope this email finds you well. I want to express my gratitude for choosing YK-technology for your Service needs. As part of our commitment to transparency and efficient communication, we are sending you the invoice for the Service provided to you.<br>
+                                            I hope this email finds you well. I want to express my gratitude for choosing Kawnex for your Service needs. As part of our commitment to transparency and efficient communication, we are sending you the invoice for the Service provided to you.<br>
                                             Below are the details of your invoice:<br>
                 
                                             Invoice Number: #'.$Invoice.'<br>
@@ -251,9 +251,9 @@ $do = (isset($_GET['do'])) ? $_GET['do'] : '';
                                             Amount Due: $'.$TotalAmount+$TotalTax .'<br>
                                             Please review the invoice . You can find the  invoice  on the following link. <br>
                                             <a href="'.$websiteaddresse.'user/viewinvoice.php?id='.$Invoice.'">view Invoice </a>
-                                            If you have any questions or concerns regarding this invoice or need any additional information, please do not hesitate to reach out to our dedicated support team at info@ykinnovate.com.<br>
+                                            If you have any questions or concerns regarding this invoice or need any additional information, please do not hesitate to reach out to our dedicated support team at info@kawnex.com.<br>
                                             We kindly request that you make the payment by the due date to ensure there are no disruptions to your Service. Your prompt attention to this matter is greatly appreciated.<br>
-                                            Thank you once again for choosing YK-technology. We value your business and are committed to providing you with the best Service experience.<br>
+                                            Thank you once again for choosing Kawnex. We value your business and are committed to providing you with the best Service experience.<br>
                                             Best Regards,
                                         ';
                         $mail->send();

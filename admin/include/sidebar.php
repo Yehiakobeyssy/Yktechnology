@@ -2,7 +2,7 @@
 
     <nav class="sidebar close">
         <header>
-            <h3 style="color:white">YK Tech</h3>
+            <h3 style="color:white">Kawnex</h3>
             <i class='bx bx-chevron-right toggle'></i>
         </header>
         <div class="menu-bar">
