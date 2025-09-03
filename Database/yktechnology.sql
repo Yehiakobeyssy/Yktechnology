@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 07, 2023 at 12:08 AM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Erstellungszeit: 03. Sep 2025 um 20:00
+-- Server-Version: 10.4.32-MariaDB
+-- PHP-Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `yktechnology`
+-- Datenbank: `yktechnology`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tblaccountstatment_saleperson`
+-- Tabellenstruktur für Tabelle `tblaccountstatment_saleperson`
 --
 
 CREATE TABLE `tblaccountstatment_saleperson` (
@@ -39,7 +39,22 @@ CREATE TABLE `tblaccountstatment_saleperson` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbladmin`
+-- Tabellenstruktur für Tabelle `tblaccountstatment_staff`
+--
+
+CREATE TABLE `tblaccountstatment_staff` (
+  `accountID` int(11) NOT NULL,
+  `date_account` date NOT NULL,
+  `staffID` int(11) NOT NULL,
+  `discription` varchar(100) NOT NULL,
+  `depit` float NOT NULL,
+  `criedit` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `tbladmin`
 --
 
 CREATE TABLE `tbladmin` (
@@ -53,16 +68,18 @@ CREATE TABLE `tbladmin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `tbladmin`
+-- Daten für Tabelle `tbladmin`
 --
 
 INSERT INTO `tbladmin` (`admin_ID`, `admin_FName`, `admin_LName`, `admin_email`, `admin_password`, `admin_phoneNumber`, `admin_active`) VALUES
-(1, 'yehia', 'kobeyssy', 'yehiakobeyssy2018@gmail.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', '680764789', 1);
+(1, 'Yehia', 'Kobeyssy', 'yehiakobeyssy2018@gmail.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', '0436764420062', 1),
+(2, 'Aya ', 'Shahdi', 'ayashhadeh015@gmail.com', '123', '0963994245188', 1),
+(3, 'Yassein', 'Yassein', 'yassein.yassein99@gmail.com', '123', '0963934898126', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tblcategory`
+-- Tabellenstruktur für Tabelle `tblcategory`
 --
 
 CREATE TABLE `tblcategory` (
@@ -76,7 +93,7 @@ CREATE TABLE `tblcategory` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tblclients`
+-- Tabellenstruktur für Tabelle `tblclients`
 --
 
 CREATE TABLE `tblclients` (
@@ -100,7 +117,7 @@ CREATE TABLE `tblclients` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tblclientservices`
+-- Tabellenstruktur für Tabelle `tblclientservices`
 --
 
 CREATE TABLE `tblclientservices` (
@@ -125,7 +142,7 @@ CREATE TABLE `tblclientservices` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tblcountrys`
+-- Tabellenstruktur für Tabelle `tblcountrys`
 --
 
 CREATE TABLE `tblcountrys` (
@@ -135,7 +152,7 @@ CREATE TABLE `tblcountrys` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `tblcountrys`
+-- Daten für Tabelle `tblcountrys`
 --
 
 INSERT INTO `tblcountrys` (`CountryID`, `CountryName`, `CountryTVA`) VALUES
@@ -390,7 +407,7 @@ INSERT INTO `tblcountrys` (`CountryID`, `CountryName`, `CountryTVA`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbldeiteilticket`
+-- Tabellenstruktur für Tabelle `tbldeiteilticket`
 --
 
 CREATE TABLE `tbldeiteilticket` (
@@ -405,7 +422,7 @@ CREATE TABLE `tbldeiteilticket` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbldetailinvoice`
+-- Tabellenstruktur für Tabelle `tbldetailinvoice`
 --
 
 CREATE TABLE `tbldetailinvoice` (
@@ -420,7 +437,22 @@ CREATE TABLE `tbldetailinvoice` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbldomaintype`
+-- Tabellenstruktur für Tabelle `tbldevelopers_project`
+--
+
+CREATE TABLE `tbldevelopers_project` (
+  `Dev_Pro_ID` int(11) NOT NULL,
+  `projectID` int(11) NOT NULL,
+  `FreelancerID` int(11) NOT NULL,
+  `Posstion` varchar(30) NOT NULL,
+  `PersentageShare` float NOT NULL,
+  `Note` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `tbldomaintype`
 --
 
 CREATE TABLE `tbldomaintype` (
@@ -431,7 +463,7 @@ CREATE TABLE `tbldomaintype` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbldomeinclients`
+-- Tabellenstruktur für Tabelle `tbldomeinclients`
 --
 
 CREATE TABLE `tbldomeinclients` (
@@ -450,7 +482,24 @@ CREATE TABLE `tbldomeinclients` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tblduration`
+-- Tabellenstruktur für Tabelle `tbldoto`
+--
+
+CREATE TABLE `tbldoto` (
+  `dotoID` int(11) NOT NULL,
+  `freelancer_ID` int(11) NOT NULL,
+  `priority` int(11) NOT NULL,
+  `Datetask` date NOT NULL,
+  `taskSubject` varchar(120) NOT NULL,
+  `disktiption` longtext NOT NULL,
+  `DateEnd` date NOT NULL,
+  `done` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `tblduration`
 --
 
 CREATE TABLE `tblduration` (
@@ -460,7 +509,7 @@ CREATE TABLE `tblduration` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `tblduration`
+-- Daten für Tabelle `tblduration`
 --
 
 INSERT INTO `tblduration` (`DurationID`, `DurationName`, `days`) VALUES
@@ -471,11 +520,12 @@ INSERT INTO `tblduration` (`DurationID`, `DurationName`, `days`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tblexpensis`
+-- Tabellenstruktur für Tabelle `tblexpensis`
 --
 
 CREATE TABLE `tblexpensis` (
   `ExpenisisID` int(11) NOT NULL,
+  `adminID` int(11) NOT NULL,
   `ExpensisDate` date NOT NULL,
   `ExpenisType` int(11) NOT NULL,
   `Discription` varchar(75) NOT NULL,
@@ -487,7 +537,7 @@ CREATE TABLE `tblexpensis` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tblforms`
+-- Tabellenstruktur für Tabelle `tblforms`
 --
 
 CREATE TABLE `tblforms` (
@@ -499,7 +549,32 @@ CREATE TABLE `tblforms` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tblinvoice`
+-- Tabellenstruktur für Tabelle `tblhowwework`
+--
+
+CREATE TABLE `tblhowwework` (
+  `ID` int(11) NOT NULL,
+  `No` int(11) NOT NULL,
+  `title` varchar(50) NOT NULL,
+  `discription` longtext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Daten für Tabelle `tblhowwework`
+--
+
+INSERT INTO `tblhowwework` (`ID`, `No`, `title`, `discription`) VALUES
+(1, 1, 'Understanding Your Needs', 'Whether you need a logo, website, system, or full brand identity—we start with a meeting to understand your goals, ideas, and expectations.'),
+(2, 2, 'Planning & Proposal', 'Based on your request, we prepare a detailed plan including scope, timeline, and cost. We make sure everything is clear before starting.'),
+(3, 3, 'Creative Design Phase', 'We design your logo, UI/UX, branding, or website visuals based on your identity and preferences. You’ll receive samples and give feedback.'),
+(4, 4, 'Development & Execution', 'After design approval, we build and implement your solution—whether it\'s a website, eCommerce platform, or management system—ensuring it works smoothly and matches your expectations.'),
+(5, 5, 'Testing & Revisions', 'We test all features and visuals, and you can request edits or improvements before final delivery. We make sure everything works perfectly.'),
+(6, 6, 'Final Delivery & Ongoing Support', 'You receive your logo, website, or system fully ready to use. We assist with launch and provide support or updates if needed.');
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `tblinvoice`
 --
 
 CREATE TABLE `tblinvoice` (
@@ -515,7 +590,7 @@ CREATE TABLE `tblinvoice` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbllibrary`
+-- Tabellenstruktur für Tabelle `tbllibrary`
 --
 
 CREATE TABLE `tbllibrary` (
@@ -529,7 +604,7 @@ CREATE TABLE `tbllibrary` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tblourworkers`
+-- Tabellenstruktur für Tabelle `tblourworkers`
 --
 
 CREATE TABLE `tblourworkers` (
@@ -543,7 +618,7 @@ CREATE TABLE `tblourworkers` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tblpayments`
+-- Tabellenstruktur für Tabelle `tblpayments`
 --
 
 CREATE TABLE `tblpayments` (
@@ -559,7 +634,7 @@ CREATE TABLE `tblpayments` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tblpayment_method`
+-- Tabellenstruktur für Tabelle `tblpayment_method`
 --
 
 CREATE TABLE `tblpayment_method` (
@@ -570,18 +645,18 @@ CREATE TABLE `tblpayment_method` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `tblpayment_method`
+-- Daten für Tabelle `tblpayment_method`
 --
 
 INSERT INTO `tblpayment_method` (`paymentmethodD`, `methot`, `note`, `method_active`) VALUES
-(1, 'PayPal ', '', 1),
-(2, 'From Old Balance', '', 0),
-(3, 'Bank Transfer', '', 1);
+(1, 'PayPal ', '', 0),
+(2, 'Depit Card', '', 0),
+(3, 'From Old Balance', '', 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tblportfolio`
+-- Tabellenstruktur für Tabelle `tblportfolio`
 --
 
 CREATE TABLE `tblportfolio` (
@@ -598,7 +673,61 @@ CREATE TABLE `tblportfolio` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tblsalesperson`
+-- Tabellenstruktur für Tabelle `tblpossition_request`
+--
+
+CREATE TABLE `tblpossition_request` (
+  `Possition_ID` int(11) NOT NULL,
+  `Possition_Name` varchar(30) NOT NULL,
+  `active_postion` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `tblprojects`
+--
+
+CREATE TABLE `tblprojects` (
+  `ProjectID` int(11) NOT NULL,
+  `ClientID` int(11) NOT NULL,
+  `Project_Manager` int(11) NOT NULL,
+  `Discription` longtext NOT NULL,
+  `project_Name` varchar(100) NOT NULL,
+  `StartTime` date NOT NULL,
+  `ExpectedDate` date NOT NULL,
+  `EndDate` date DEFAULT NULL,
+  `shareManagement` float NOT NULL,
+  `shareReserve` float NOT NULL,
+  `Status` int(11) NOT NULL,
+  `note` longtext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `tblproject_status`
+--
+
+CREATE TABLE `tblproject_status` (
+  `Status_ID` int(11) NOT NULL,
+  `Status` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Daten für Tabelle `tblproject_status`
+--
+
+INSERT INTO `tblproject_status` (`Status_ID`, `Status`) VALUES
+(1, 'Study'),
+(2, 'Working'),
+(3, 'Completed'),
+(4, 'Cancel');
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `tblsalesperson`
 --
 
 CREATE TABLE `tblsalesperson` (
@@ -620,7 +749,20 @@ CREATE TABLE `tblsalesperson` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tblservices`
+-- Tabellenstruktur für Tabelle `tblserviceproject`
+--
+
+CREATE TABLE `tblserviceproject` (
+  `ServiceProjectID` int(11) NOT NULL,
+  `ProjectID` int(11) NOT NULL,
+  `ServiceID` int(11) NOT NULL,
+  `Note` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `tblservices`
 --
 
 CREATE TABLE `tblservices` (
@@ -639,7 +781,43 @@ CREATE TABLE `tblservices` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tblslideshow`
+-- Tabellenstruktur für Tabelle `tblsetting`
+--
+
+CREATE TABLE `tblsetting` (
+  `SettingID` int(11) NOT NULL,
+  `tax_number` varchar(20) NOT NULL,
+  `addresse` varchar(100) NOT NULL,
+  `zip_code` varchar(20) NOT NULL,
+  `region` varchar(30) NOT NULL,
+  `website` varchar(50) NOT NULL,
+  `key_payPal` varchar(100) NOT NULL,
+  `Sumup_AccessToken` varchar(150) NOT NULL,
+  `Sumup_merchat_code` varchar(50) NOT NULL,
+  `Sumup_Email` varchar(50) NOT NULL,
+  `Cv_text` longtext NOT NULL,
+  `Cv_pic` varchar(50) NOT NULL,
+  `show_profolio` tinyint(1) NOT NULL,
+  `show_ourteam` tinyint(1) NOT NULL,
+  `textaboutus` longtext NOT NULL,
+  `link_facebook` varchar(75) NOT NULL,
+  `link_github` varchar(75) NOT NULL,
+  `link_linkin` varchar(75) NOT NULL,
+  `Company_Email` varchar(40) NOT NULL,
+  `Company_Phone` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Daten für Tabelle `tblsetting`
+--
+
+INSERT INTO `tblsetting` (`SettingID`, `tax_number`, `addresse`, `zip_code`, `region`, `website`, `key_payPal`, `Sumup_AccessToken`, `Sumup_merchat_code`, `Sumup_Email`, `Cv_text`, `Cv_pic`, `show_profolio`, `show_ourteam`, `textaboutus`, `link_facebook`, `link_github`, `link_linkin`, `Company_Email`, `Company_Phone`) VALUES
+(1, '', 'Vorgartenstrasse 196', '1020', 'Wien', 'www.kawnex.com', '', '', '', '', 'We are a team of experienced engineers with a strong passion for building smart, efficient, and scalable digital systems. With over 15 years of expertise in the software industry, we combine technical excellence with innovative thinking to deliver solutions that empower businesses to grow and succeed.\r\n\r\nOur background includes solid foundations in administrative informatics, accounting systems, and computer engineering, giving us a unique perspective that bridges both technology and business needs. Over the years, we have gained deep expertise in software development, network systems, server management, and database engineering—allowing us to design solutions that are secure, stable, and built to last.\r\n\r\nAs the driving force behind Kawnex, we lead full-cycle development projects from concept and design to coding, deployment, and maintenance. We specialize in developing custom websites, advanced web applications, mobile apps, and powerful backend systems, all seamlessly integrated with optimized databases and clean, reliable code.\r\n\r\nWhether it’s creating a sleek corporate website, building a multi-store eCommerce platform, or designing advanced accounting, inventory, and POS systems, our mission is to deliver products that combine functionality, performance, and user-focused design.\r\n\r\nAt Kawnex, we don’t just build software—we craft complete digital experiences tailored to our clients’ goals, with an eye on future scalability and innovation.', '1756387780.png', 0, 0, 'Kawnex is a team of experienced engineers creating smart, scalable digital solutions. We deliver custom websites, apps, and integrated systems designed for performance, security, and growth.', '', '', '', 'info@kawnex.com', '+436764420062');
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `tblslideshow`
 --
 
 CREATE TABLE `tblslideshow` (
@@ -648,10 +826,21 @@ CREATE TABLE `tblslideshow` (
   `slideactive` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Daten für Tabelle `tblslideshow`
+--
+
+INSERT INTO `tblslideshow` (`slideID`, `slideimg`, `slideactive`) VALUES
+(1, '1747996286.png', 1),
+(2, '1747996298.png', 1),
+(3, '1747996312.png', 1),
+(4, '1747996326.png', 1),
+(6, '1747996353.png', 1);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tblspeafications`
+-- Tabellenstruktur für Tabelle `tblspeafications`
 --
 
 CREATE TABLE `tblspeafications` (
@@ -663,7 +852,51 @@ CREATE TABLE `tblspeafications` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tblstatusdomein`
+-- Tabellenstruktur für Tabelle `tblstaff`
+--
+
+CREATE TABLE `tblstaff` (
+  `staffID` int(11) NOT NULL,
+  `Fname` varchar(30) NOT NULL,
+  `MidelName` varchar(30) NOT NULL,
+  `LName` varchar(30) NOT NULL,
+  `Gender` int(11) NOT NULL,
+  `DOB` date NOT NULL,
+  `Nationality` int(11) NOT NULL,
+  `Staff_Phone` varchar(15) NOT NULL,
+  `Staff_email` varchar(30) NOT NULL,
+  `Staff_Country` int(11) NOT NULL,
+  `Region` varchar(30) NOT NULL,
+  `Staff_address` varchar(100) NOT NULL,
+  `Posstion` int(11) NOT NULL,
+  `Start_date` date NOT NULL,
+  `expected_sallary` float NOT NULL,
+  `Work_hours` int(11) NOT NULL,
+  `now_work` tinyint(1) NOT NULL,
+  `Notice_Period` varchar(100) NOT NULL,
+  `Experiance_years` int(11) NOT NULL,
+  `Programing_lang` varchar(75) NOT NULL,
+  `Framworks` varchar(75) NOT NULL,
+  `link_experinace` varchar(75) NOT NULL,
+  `link_github` varchar(75) NOT NULL,
+  `Comunication_Lang` varchar(5) NOT NULL,
+  `staff_CV` varchar(50) NOT NULL,
+  `Staff_Photo` varchar(50) NOT NULL,
+  `Front_ID` varchar(50) NOT NULL,
+  `Back_ID` varchar(50) NOT NULL,
+  `Transfer_Money` int(11) NOT NULL,
+  `Transfer_Note` varchar(50) NOT NULL,
+  `staffPassword` varchar(100) NOT NULL,
+  `block` tinyint(1) NOT NULL,
+  `accepted` tinyint(1) NOT NULL,
+  `DatewillBegin` date DEFAULT NULL,
+  `Abouthim` longtext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `tblstatusdomein`
 --
 
 CREATE TABLE `tblstatusdomein` (
@@ -673,7 +906,7 @@ CREATE TABLE `tblstatusdomein` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `tblstatusdomein`
+-- Daten für Tabelle `tblstatusdomein`
 --
 
 INSERT INTO `tblstatusdomein` (`StatusDomeinID`, `StatusDomein`, `StatusColor`) VALUES
@@ -686,7 +919,7 @@ INSERT INTO `tblstatusdomein` (`StatusDomeinID`, `StatusDomein`, `StatusColor`) 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tblstatusinvoice`
+-- Tabellenstruktur für Tabelle `tblstatusinvoice`
 --
 
 CREATE TABLE `tblstatusinvoice` (
@@ -696,7 +929,7 @@ CREATE TABLE `tblstatusinvoice` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `tblstatusinvoice`
+-- Daten für Tabelle `tblstatusinvoice`
 --
 
 INSERT INTO `tblstatusinvoice` (`StatusInvoiceID`, `StatusInvoice`, `StatusInvoiceColor`) VALUES
@@ -707,7 +940,7 @@ INSERT INTO `tblstatusinvoice` (`StatusInvoiceID`, `StatusInvoice`, `StatusInvoi
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tblstatusservices`
+-- Tabellenstruktur für Tabelle `tblstatusservices`
 --
 
 CREATE TABLE `tblstatusservices` (
@@ -717,7 +950,7 @@ CREATE TABLE `tblstatusservices` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `tblstatusservices`
+-- Daten für Tabelle `tblstatusservices`
 --
 
 INSERT INTO `tblstatusservices` (`StatusSerID`, `Status`, `Status_Color`) VALUES
@@ -729,7 +962,7 @@ INSERT INTO `tblstatusservices` (`StatusSerID`, `Status`, `Status_Color`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tblstatusticket`
+-- Tabellenstruktur für Tabelle `tblstatusticket`
 --
 
 CREATE TABLE `tblstatusticket` (
@@ -739,7 +972,7 @@ CREATE TABLE `tblstatusticket` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `tblstatusticket`
+-- Daten für Tabelle `tblstatusticket`
 --
 
 INSERT INTO `tblstatusticket` (`StatusTicketID`, `Status`, `fontColor`) VALUES
@@ -751,7 +984,75 @@ INSERT INTO `tblstatusticket` (`StatusTicketID`, `Status`, `fontColor`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbltaskadmin`
+-- Tabellenstruktur für Tabelle `tblstatus_accountststament_staff`
+--
+
+CREATE TABLE `tblstatus_accountststament_staff` (
+  `accountstatusID` int(11) NOT NULL,
+  `accountstatusName` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Daten für Tabelle `tblstatus_accountststament_staff`
+--
+
+INSERT INTO `tblstatus_accountststament_staff` (`accountstatusID`, `accountstatusName`) VALUES
+(1, 'Under Review'),
+(2, 'Approved'),
+(3, 'Processing Transfer'),
+(4, 'Transferred'),
+(5, 'Cancelled');
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `tblstatus_task_freelancer`
+--
+
+CREATE TABLE `tblstatus_task_freelancer` (
+  `StatusID` int(11) NOT NULL,
+  `Status_name` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Daten für Tabelle `tblstatus_task_freelancer`
+--
+
+INSERT INTO `tblstatus_task_freelancer` (`StatusID`, `Status_name`) VALUES
+(1, 'Send To Freelancer'),
+(2, 'Accepted By freelancer'),
+(3, 'Working'),
+(4, 'Finish'),
+(5, 'Cancel');
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `tbltask`
+--
+
+CREATE TABLE `tbltask` (
+  `taskID` int(11) NOT NULL,
+  `assignFrom` int(11) NOT NULL,
+  `Assign_to` int(11) NOT NULL,
+  `taskTitle` varchar(100) NOT NULL,
+  `ProjectID` int(11) NOT NULL,
+  `taskDiscription` longtext NOT NULL,
+  `StartDate` date NOT NULL,
+  `DueDate` date NOT NULL,
+  `FinishDate` date DEFAULT NULL,
+  `BudjectTerms` longtext NOT NULL,
+  `communicationChannel` varchar(100) NOT NULL,
+  `notes` longtext NOT NULL,
+  `Finish` tinyint(1) NOT NULL,
+  `acceptedbyfreelancer` tinyint(1) NOT NULL,
+  `Status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `tbltaskadmin`
 --
 
 CREATE TABLE `tbltaskadmin` (
@@ -768,7 +1069,7 @@ CREATE TABLE `tbltaskadmin` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbltaskpriority`
+-- Tabellenstruktur für Tabelle `tbltaskpriority`
 --
 
 CREATE TABLE `tbltaskpriority` (
@@ -777,7 +1078,7 @@ CREATE TABLE `tbltaskpriority` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `tbltaskpriority`
+-- Daten für Tabelle `tbltaskpriority`
 --
 
 INSERT INTO `tbltaskpriority` (`priority_id`, `priority_name`) VALUES
@@ -793,7 +1094,7 @@ INSERT INTO `tbltaskpriority` (`priority_id`, `priority_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tblticket`
+-- Tabellenstruktur für Tabelle `tblticket`
 --
 
 CREATE TABLE `tblticket` (
@@ -810,7 +1111,7 @@ CREATE TABLE `tblticket` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbltypeexpensis`
+-- Tabellenstruktur für Tabelle `tbltypeexpensis`
 --
 
 CREATE TABLE `tbltypeexpensis` (
@@ -819,7 +1120,7 @@ CREATE TABLE `tbltypeexpensis` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `tbltypeexpensis`
+-- Daten für Tabelle `tbltypeexpensis`
 --
 
 INSERT INTO `tbltypeexpensis` (`TypeexpensisID`, `Type_Expensis`) VALUES
@@ -830,7 +1131,7 @@ INSERT INTO `tbltypeexpensis` (`TypeexpensisID`, `Type_Expensis`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbltypeoftickets`
+-- Tabellenstruktur für Tabelle `tbltypeoftickets`
 --
 
 CREATE TABLE `tbltypeoftickets` (
@@ -839,7 +1140,7 @@ CREATE TABLE `tbltypeoftickets` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `tbltypeoftickets`
+-- Daten für Tabelle `tbltypeoftickets`
 --
 
 INSERT INTO `tbltypeoftickets` (`TypeTicketID`, `TypeTicket`) VALUES
@@ -850,393 +1151,549 @@ INSERT INTO `tbltypeoftickets` (`TypeTicketID`, `TypeTicket`) VALUES
 (5, 'UPDATE Service');
 
 --
--- Indexes for dumped tables
+-- Indizes der exportierten Tabellen
 --
 
 --
--- Indexes for table `tblaccountstatment_saleperson`
+-- Indizes für die Tabelle `tblaccountstatment_saleperson`
 --
 ALTER TABLE `tblaccountstatment_saleperson`
   ADD PRIMARY KEY (`AccountID`);
 
 --
--- Indexes for table `tbladmin`
+-- Indizes für die Tabelle `tblaccountstatment_staff`
+--
+ALTER TABLE `tblaccountstatment_staff`
+  ADD PRIMARY KEY (`accountID`);
+
+--
+-- Indizes für die Tabelle `tbladmin`
 --
 ALTER TABLE `tbladmin`
   ADD PRIMARY KEY (`admin_ID`);
 
 --
--- Indexes for table `tblcategory`
+-- Indizes für die Tabelle `tblcategory`
 --
 ALTER TABLE `tblcategory`
   ADD PRIMARY KEY (`Cat_ID`);
 
 --
--- Indexes for table `tblclients`
+-- Indizes für die Tabelle `tblclients`
 --
 ALTER TABLE `tblclients`
   ADD PRIMARY KEY (`ClientID`);
 
 --
--- Indexes for table `tblclientservices`
+-- Indizes für die Tabelle `tblclientservices`
 --
 ALTER TABLE `tblclientservices`
   ADD PRIMARY KEY (`ServicesID`);
 
 --
--- Indexes for table `tblcountrys`
+-- Indizes für die Tabelle `tblcountrys`
 --
 ALTER TABLE `tblcountrys`
   ADD PRIMARY KEY (`CountryID`);
 
 --
--- Indexes for table `tbldeiteilticket`
+-- Indizes für die Tabelle `tbldeiteilticket`
 --
 ALTER TABLE `tbldeiteilticket`
   ADD PRIMARY KEY (`detailTicketID`);
 
 --
--- Indexes for table `tbldetailinvoice`
+-- Indizes für die Tabelle `tbldetailinvoice`
 --
 ALTER TABLE `tbldetailinvoice`
   ADD PRIMARY KEY (`DeitailInvoiceID`);
 
 --
--- Indexes for table `tbldomaintype`
+-- Indizes für die Tabelle `tbldevelopers_project`
+--
+ALTER TABLE `tbldevelopers_project`
+  ADD PRIMARY KEY (`Dev_Pro_ID`);
+
+--
+-- Indizes für die Tabelle `tbldomaintype`
 --
 ALTER TABLE `tbldomaintype`
   ADD PRIMARY KEY (`DomainTypeID`);
 
 --
--- Indexes for table `tbldomeinclients`
+-- Indizes für die Tabelle `tbldomeinclients`
 --
 ALTER TABLE `tbldomeinclients`
   ADD PRIMARY KEY (`DomeinID`);
 
 --
--- Indexes for table `tblduration`
+-- Indizes für die Tabelle `tbldoto`
+--
+ALTER TABLE `tbldoto`
+  ADD PRIMARY KEY (`dotoID`);
+
+--
+-- Indizes für die Tabelle `tblduration`
 --
 ALTER TABLE `tblduration`
   ADD PRIMARY KEY (`DurationID`);
 
 --
--- Indexes for table `tblexpensis`
+-- Indizes für die Tabelle `tblexpensis`
 --
 ALTER TABLE `tblexpensis`
   ADD PRIMARY KEY (`ExpenisisID`);
 
 --
--- Indexes for table `tblforms`
+-- Indizes für die Tabelle `tblforms`
 --
 ALTER TABLE `tblforms`
   ADD PRIMARY KEY (`formID`);
 
 --
--- Indexes for table `tblinvoice`
+-- Indizes für die Tabelle `tblhowwework`
+--
+ALTER TABLE `tblhowwework`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indizes für die Tabelle `tblinvoice`
 --
 ALTER TABLE `tblinvoice`
   ADD PRIMARY KEY (`InvoiceID`);
 
 --
--- Indexes for table `tbllibrary`
+-- Indizes für die Tabelle `tbllibrary`
 --
 ALTER TABLE `tbllibrary`
   ADD PRIMARY KEY (`imageID`);
 
 --
--- Indexes for table `tblourworkers`
+-- Indizes für die Tabelle `tblourworkers`
 --
 ALTER TABLE `tblourworkers`
   ADD PRIMARY KEY (`workerID`);
 
 --
--- Indexes for table `tblpayments`
+-- Indizes für die Tabelle `tblpayments`
 --
 ALTER TABLE `tblpayments`
   ADD PRIMARY KEY (`paymentID`);
 
 --
--- Indexes for table `tblpayment_method`
+-- Indizes für die Tabelle `tblpayment_method`
 --
 ALTER TABLE `tblpayment_method`
   ADD PRIMARY KEY (`paymentmethodD`);
 
 --
--- Indexes for table `tblportfolio`
+-- Indizes für die Tabelle `tblportfolio`
 --
 ALTER TABLE `tblportfolio`
   ADD PRIMARY KEY (`portfolio_ID`);
 
 --
--- Indexes for table `tblsalesperson`
+-- Indizes für die Tabelle `tblpossition_request`
+--
+ALTER TABLE `tblpossition_request`
+  ADD PRIMARY KEY (`Possition_ID`);
+
+--
+-- Indizes für die Tabelle `tblprojects`
+--
+ALTER TABLE `tblprojects`
+  ADD PRIMARY KEY (`ProjectID`);
+
+--
+-- Indizes für die Tabelle `tblproject_status`
+--
+ALTER TABLE `tblproject_status`
+  ADD PRIMARY KEY (`Status_ID`);
+
+--
+-- Indizes für die Tabelle `tblsalesperson`
 --
 ALTER TABLE `tblsalesperson`
   ADD PRIMARY KEY (`SalePersonID`);
 
 --
--- Indexes for table `tblservices`
+-- Indizes für die Tabelle `tblserviceproject`
+--
+ALTER TABLE `tblserviceproject`
+  ADD PRIMARY KEY (`ServiceProjectID`);
+
+--
+-- Indizes für die Tabelle `tblservices`
 --
 ALTER TABLE `tblservices`
   ADD PRIMARY KEY (`ServiceID`);
 
 --
--- Indexes for table `tblslideshow`
+-- Indizes für die Tabelle `tblsetting`
+--
+ALTER TABLE `tblsetting`
+  ADD PRIMARY KEY (`SettingID`);
+
+--
+-- Indizes für die Tabelle `tblslideshow`
 --
 ALTER TABLE `tblslideshow`
   ADD PRIMARY KEY (`slideID`);
 
 --
--- Indexes for table `tblspeafications`
+-- Indizes für die Tabelle `tblspeafications`
 --
 ALTER TABLE `tblspeafications`
   ADD PRIMARY KEY (`SpeaficationsID`);
 
 --
--- Indexes for table `tblstatusdomein`
+-- Indizes für die Tabelle `tblstaff`
+--
+ALTER TABLE `tblstaff`
+  ADD PRIMARY KEY (`staffID`);
+
+--
+-- Indizes für die Tabelle `tblstatusdomein`
 --
 ALTER TABLE `tblstatusdomein`
   ADD PRIMARY KEY (`StatusDomeinID`);
 
 --
--- Indexes for table `tblstatusinvoice`
+-- Indizes für die Tabelle `tblstatusinvoice`
 --
 ALTER TABLE `tblstatusinvoice`
   ADD PRIMARY KEY (`StatusInvoiceID`);
 
 --
--- Indexes for table `tblstatusservices`
+-- Indizes für die Tabelle `tblstatusservices`
 --
 ALTER TABLE `tblstatusservices`
   ADD PRIMARY KEY (`StatusSerID`);
 
 --
--- Indexes for table `tblstatusticket`
+-- Indizes für die Tabelle `tblstatusticket`
 --
 ALTER TABLE `tblstatusticket`
   ADD PRIMARY KEY (`StatusTicketID`);
 
 --
--- Indexes for table `tbltaskadmin`
+-- Indizes für die Tabelle `tblstatus_accountststament_staff`
+--
+ALTER TABLE `tblstatus_accountststament_staff`
+  ADD PRIMARY KEY (`accountstatusID`);
+
+--
+-- Indizes für die Tabelle `tblstatus_task_freelancer`
+--
+ALTER TABLE `tblstatus_task_freelancer`
+  ADD PRIMARY KEY (`StatusID`);
+
+--
+-- Indizes für die Tabelle `tbltask`
+--
+ALTER TABLE `tbltask`
+  ADD PRIMARY KEY (`taskID`);
+
+--
+-- Indizes für die Tabelle `tbltaskadmin`
 --
 ALTER TABLE `tbltaskadmin`
   ADD PRIMARY KEY (`taskID`);
 
 --
--- Indexes for table `tbltaskpriority`
+-- Indizes für die Tabelle `tbltaskpriority`
 --
 ALTER TABLE `tbltaskpriority`
   ADD PRIMARY KEY (`priority_id`);
 
 --
--- Indexes for table `tblticket`
+-- Indizes für die Tabelle `tblticket`
 --
 ALTER TABLE `tblticket`
   ADD PRIMARY KEY (`ticketID`);
 
 --
--- Indexes for table `tbltypeexpensis`
+-- Indizes für die Tabelle `tbltypeexpensis`
 --
 ALTER TABLE `tbltypeexpensis`
   ADD PRIMARY KEY (`TypeexpensisID`);
 
 --
--- Indexes for table `tbltypeoftickets`
+-- Indizes für die Tabelle `tbltypeoftickets`
 --
 ALTER TABLE `tbltypeoftickets`
   ADD PRIMARY KEY (`TypeTicketID`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT für exportierte Tabellen
 --
 
 --
--- AUTO_INCREMENT for table `tblaccountstatment_saleperson`
+-- AUTO_INCREMENT für Tabelle `tblaccountstatment_saleperson`
 --
 ALTER TABLE `tblaccountstatment_saleperson`
   MODIFY `AccountID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `tbladmin`
+-- AUTO_INCREMENT für Tabelle `tblaccountstatment_staff`
 --
-ALTER TABLE `tbladmin`
-  MODIFY `admin_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `tblaccountstatment_staff`
+  MODIFY `accountID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `tblcategory`
+-- AUTO_INCREMENT für Tabelle `tbladmin`
+--
+ALTER TABLE `tbladmin`
+  MODIFY `admin_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT für Tabelle `tblcategory`
 --
 ALTER TABLE `tblcategory`
   MODIFY `Cat_ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `tblclients`
+-- AUTO_INCREMENT für Tabelle `tblclients`
 --
 ALTER TABLE `tblclients`
   MODIFY `ClientID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `tblclientservices`
+-- AUTO_INCREMENT für Tabelle `tblclientservices`
 --
 ALTER TABLE `tblclientservices`
   MODIFY `ServicesID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `tblcountrys`
+-- AUTO_INCREMENT für Tabelle `tblcountrys`
 --
 ALTER TABLE `tblcountrys`
   MODIFY `CountryID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=254;
 
 --
--- AUTO_INCREMENT for table `tbldeiteilticket`
+-- AUTO_INCREMENT für Tabelle `tbldeiteilticket`
 --
 ALTER TABLE `tbldeiteilticket`
   MODIFY `detailTicketID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `tbldetailinvoice`
+-- AUTO_INCREMENT für Tabelle `tbldetailinvoice`
 --
 ALTER TABLE `tbldetailinvoice`
   MODIFY `DeitailInvoiceID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `tbldomaintype`
+-- AUTO_INCREMENT für Tabelle `tbldevelopers_project`
+--
+ALTER TABLE `tbldevelopers_project`
+  MODIFY `Dev_Pro_ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT für Tabelle `tbldomaintype`
 --
 ALTER TABLE `tbldomaintype`
   MODIFY `DomainTypeID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `tbldomeinclients`
+-- AUTO_INCREMENT für Tabelle `tbldomeinclients`
 --
 ALTER TABLE `tbldomeinclients`
   MODIFY `DomeinID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `tblduration`
+-- AUTO_INCREMENT für Tabelle `tbldoto`
+--
+ALTER TABLE `tbldoto`
+  MODIFY `dotoID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT für Tabelle `tblduration`
 --
 ALTER TABLE `tblduration`
   MODIFY `DurationID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `tblexpensis`
+-- AUTO_INCREMENT für Tabelle `tblexpensis`
 --
 ALTER TABLE `tblexpensis`
-  MODIFY `ExpenisisID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ExpenisisID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `tblforms`
+-- AUTO_INCREMENT für Tabelle `tblforms`
 --
 ALTER TABLE `tblforms`
   MODIFY `formID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `tblinvoice`
+-- AUTO_INCREMENT für Tabelle `tblhowwework`
+--
+ALTER TABLE `tblhowwework`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT für Tabelle `tblinvoice`
 --
 ALTER TABLE `tblinvoice`
   MODIFY `InvoiceID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `tbllibrary`
+-- AUTO_INCREMENT für Tabelle `tbllibrary`
 --
 ALTER TABLE `tbllibrary`
   MODIFY `imageID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `tblourworkers`
+-- AUTO_INCREMENT für Tabelle `tblourworkers`
 --
 ALTER TABLE `tblourworkers`
   MODIFY `workerID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `tblpayments`
+-- AUTO_INCREMENT für Tabelle `tblpayments`
 --
 ALTER TABLE `tblpayments`
   MODIFY `paymentID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `tblpayment_method`
+-- AUTO_INCREMENT für Tabelle `tblpayment_method`
 --
 ALTER TABLE `tblpayment_method`
   MODIFY `paymentmethodD` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `tblportfolio`
+-- AUTO_INCREMENT für Tabelle `tblportfolio`
 --
 ALTER TABLE `tblportfolio`
   MODIFY `portfolio_ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `tblsalesperson`
+-- AUTO_INCREMENT für Tabelle `tblpossition_request`
+--
+ALTER TABLE `tblpossition_request`
+  MODIFY `Possition_ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT für Tabelle `tblprojects`
+--
+ALTER TABLE `tblprojects`
+  MODIFY `ProjectID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT für Tabelle `tblproject_status`
+--
+ALTER TABLE `tblproject_status`
+  MODIFY `Status_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT für Tabelle `tblsalesperson`
 --
 ALTER TABLE `tblsalesperson`
   MODIFY `SalePersonID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `tblservices`
+-- AUTO_INCREMENT für Tabelle `tblserviceproject`
+--
+ALTER TABLE `tblserviceproject`
+  MODIFY `ServiceProjectID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT für Tabelle `tblservices`
 --
 ALTER TABLE `tblservices`
   MODIFY `ServiceID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `tblslideshow`
+-- AUTO_INCREMENT für Tabelle `tblsetting`
 --
-ALTER TABLE `tblslideshow`
-  MODIFY `slideID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `tblsetting`
+  MODIFY `SettingID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `tblspeafications`
+-- AUTO_INCREMENT für Tabelle `tblslideshow`
+--
+ALTER TABLE `tblslideshow`
+  MODIFY `slideID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT für Tabelle `tblspeafications`
 --
 ALTER TABLE `tblspeafications`
   MODIFY `SpeaficationsID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `tblstatusdomein`
+-- AUTO_INCREMENT für Tabelle `tblstaff`
+--
+ALTER TABLE `tblstaff`
+  MODIFY `staffID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT für Tabelle `tblstatusdomein`
 --
 ALTER TABLE `tblstatusdomein`
   MODIFY `StatusDomeinID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `tblstatusinvoice`
+-- AUTO_INCREMENT für Tabelle `tblstatusinvoice`
 --
 ALTER TABLE `tblstatusinvoice`
   MODIFY `StatusInvoiceID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `tblstatusservices`
+-- AUTO_INCREMENT für Tabelle `tblstatusservices`
 --
 ALTER TABLE `tblstatusservices`
   MODIFY `StatusSerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `tblstatusticket`
+-- AUTO_INCREMENT für Tabelle `tblstatusticket`
 --
 ALTER TABLE `tblstatusticket`
   MODIFY `StatusTicketID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `tbltaskadmin`
+-- AUTO_INCREMENT für Tabelle `tblstatus_accountststament_staff`
+--
+ALTER TABLE `tblstatus_accountststament_staff`
+  MODIFY `accountstatusID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT für Tabelle `tblstatus_task_freelancer`
+--
+ALTER TABLE `tblstatus_task_freelancer`
+  MODIFY `StatusID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT für Tabelle `tbltask`
+--
+ALTER TABLE `tbltask`
+  MODIFY `taskID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT für Tabelle `tbltaskadmin`
 --
 ALTER TABLE `tbltaskadmin`
   MODIFY `taskID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `tbltaskpriority`
+-- AUTO_INCREMENT für Tabelle `tbltaskpriority`
 --
 ALTER TABLE `tbltaskpriority`
   MODIFY `priority_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `tblticket`
+-- AUTO_INCREMENT für Tabelle `tblticket`
 --
 ALTER TABLE `tblticket`
   MODIFY `ticketID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `tbltypeexpensis`
+-- AUTO_INCREMENT für Tabelle `tbltypeexpensis`
 --
 ALTER TABLE `tbltypeexpensis`
   MODIFY `TypeexpensisID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `tbltypeoftickets`
+-- AUTO_INCREMENT für Tabelle `tbltypeoftickets`
 --
 ALTER TABLE `tbltypeoftickets`
   MODIFY `TypeTicketID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
